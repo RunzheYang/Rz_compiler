@@ -77,7 +77,7 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
         if (visble) System.out.println("<In Func>" + ctx.type().getText() + " " + ctx.ident().getText() + "(" + ")");
         visitChildren(ctx);
         if (!hasReturn && !ctx.ident().getText().equals("main")) {
-            throw new SemanticException("Semantic Error: No return in function '" + ctx.ident().getText() + "'");
+//            throw new SemanticException("Semantic Error: No return in function '" + ctx.ident().getText() + "'");
         }
         return null;
     }
@@ -113,7 +113,7 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
 
     @Override
     public Void visitReturn_jump(RzParser.Return_jumpContext ctx) throws SemanticException {
-        if (visble) System.out.println("<RETRUN> return " + (ctx.getChildCount() > 1 ? ctx.expr().getText() : ""));
+        if (visble) System.out.println("<RETRUN> return " + (ctx.getChildCount() > 2 ?  ctx.expr().getText() : ""));
         if (tpa.getCurrentFunc().getReturnType() instanceof VoidType && ctx.getChildCount() == 2) {
             hasReturn = true;
         } else if (!(tpa.getCurrentFunc().getReturnType() instanceof VoidType) && ctx.getChildCount() > 2) {

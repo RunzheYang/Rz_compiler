@@ -4,6 +4,7 @@ import Rz_compiler.semantics.SymbolTable;
 import Rz_compiler.syntax.RzParser;
 import Rz_compiler.errors.*;
 
+import com.sun.corba.se.impl.naming.cosnaming.NamingUtils;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 
@@ -163,8 +164,15 @@ public class TypeAnalyser {
             Type type1 = getTypeofExpression(ctx.getChild(0), symt);
             Type type2 = getTypeofExpression(ctx.getChild(2), symt);
             if (type1.equals(type2)
+                    && !(type1 instanceof ArrayType)
                     && !(type1 instanceof ClassType)
                     && !(type1 instanceof VoidType)) {
+                return new BoolType();
+            }
+            if ((type1 instanceof NullType
+                    && (type2 instanceof ArrayType || type2 instanceof ClassType))
+                    ||(type2 instanceof NullType
+                    && (type1 instanceof ArrayType || type1 instanceof ClassType))) {
                 return new BoolType();
             }
             throw new SemanticException("Semantic Error: Invalid comparing expression '" + ctx.getText() + "'");
@@ -511,6 +519,11 @@ public class TypeAnalyser {
             Type typeR = getTypeofAssignExpr(ctx.getChild(2), symt);
             if (identL instanceof Variable && typeL.equals(typeR)) {
                 return typeL;
+            }
+            if (identL instanceof Variable
+                    && (typeL instanceof ClassType || typeL instanceof ArrayType)
+                    && typeR instanceof NullType) {
+                return typeR;
             }
         }
         throw new SemanticException("Semantic Error: Invalid assignment '" + ctx.getText() + "'");
