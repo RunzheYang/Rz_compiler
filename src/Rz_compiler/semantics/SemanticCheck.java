@@ -44,6 +44,9 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
         String varname = ctx.init_declarator().ident().getText();
         if (symt.scope_lookup(varname) == null) {
             Type vartype = tpa.getTypeofType(ctx.type(), symt);
+            if (vartype instanceof VoidType) {
+                throw new SemanticException("Semantic Error: Cannot assign a variable as 'void' type");
+            }
             if (ctx.init_declarator().getChildCount() > 1) {
                 Type typeR =  tpa.getTypeofExpr(ctx.init_declarator().initializer().expr(), symt);
                 if (!vartype.equals(typeR)
@@ -73,7 +76,7 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
         hasReturn = tpa.getCurrentFunc().getReturnType() instanceof VoidType;
         if (visble) System.out.println("<In Func>" + ctx.type().getText() + " " + ctx.ident().getText() + "(" + ")");
         visitChildren(ctx);
-        if (!hasReturn) {
+        if (!hasReturn && !ctx.ident().getText().equals("main")) {
             throw new SemanticException("Semantic Error: No return in function '" + ctx.ident().getText() + "'");
         }
         return null;

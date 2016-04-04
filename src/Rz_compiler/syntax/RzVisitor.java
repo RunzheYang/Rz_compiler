@@ -1,4 +1,4 @@
-// Generated from /Users/YRZ/Desktop/Rz_compiler/src/Rz.g4 by ANTLR 4.5.1
+// Generated from /Users/YRZ/Rz_compiler/src/Rz.g4 by ANTLR 4.5.1
 package Rz_compiler.syntax;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 

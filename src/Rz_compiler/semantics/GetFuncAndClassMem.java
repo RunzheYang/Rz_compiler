@@ -34,7 +34,7 @@ public class GetFuncAndClassMem extends RzBaseVisitor<Void> {
             FunctionType functype = new FunctionType(tpa.getTypeofType(ctx.type(), symt));
             functype.addSymbolTable(symt);
             if (ctx.getChildCount() > 5) {
-                if (funcname.equals("compiler")) {
+                if (funcname.equals("main")) {
                     throw new SemanticException("Semantic Error: function 'main()' can not have any argument");
                 }
                 ArrayList<String> param_names =  new ArrayList<String>();

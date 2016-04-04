@@ -277,9 +277,11 @@ public class TypeAnalyser {
                 if (typePrimary instanceof ClassType
                         && ctx.getChild(1) instanceof RzParser.MemberContext) {
                     String memname = ctx.getChild(1).getChild(1).getText();
-                    Type memtype = ((ClassType) typePrimary).getMembers().get(memname).getType();
-                    if (memtype != null) {
-                        return memtype;
+                    if (((ClassType) typePrimary).getMembers().get(memname) != null) {
+                        Type memtype = ((ClassType) typePrimary).getMembers().get(memname).getType();
+                        if (memtype != null) {
+                            return memtype;
+                        }
                     }
                     throw new SemanticException("Semantic Error: Invalid class member '" + ctx.getText() + "'");
                 }
@@ -615,9 +617,11 @@ public class TypeAnalyser {
                 if (typePrimary instanceof ClassType
                         && ctx.getChild(1) instanceof RzParser.MemberContext) {
                     String memname = ctx.getChild(1).getChild(1).getText();
-                    Type memtype = ((ClassType) typePrimary).getMembers().get(memname).getType();
-                    if (memtype != null) {
-                        return new Variable(memtype);
+                    if (((ClassType) typePrimary).getMembers().get(memname) != null) {
+                        Type memtype = ((ClassType) typePrimary).getMembers().get(memname).getType();
+                        if (memtype != null) {
+                            return new Variable(memtype);
+                        }
                     }
                     throw new SemanticException("Semantic Error: Invalid member '" + ctx.getText() + "'");
                 }
