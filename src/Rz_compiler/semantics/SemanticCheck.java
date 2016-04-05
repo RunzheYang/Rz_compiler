@@ -112,6 +112,12 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
     }
 
     @Override
+    public Void visitExpr(RzParser.ExprContext ctx) {
+        tpa.getTypeofExpr(ctx, symt);
+        return null;
+    }
+
+    @Override
     public Void visitReturn_jump(RzParser.Return_jumpContext ctx) throws SemanticException {
         if (visble) System.out.println("<RETRUN> return " + (ctx.getChildCount() > 2 ?  ctx.expr().getText() : ""));
         if (tpa.getCurrentFunc().getReturnType() instanceof VoidType && ctx.getChildCount() == 2) {
@@ -133,13 +139,38 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
         if (!tpa.getTypeofExpr(ctx.expr(), symt).equals(new BoolType())) {
             throw new SemanticException("Semantic Error: expression in if () statement should return bool");
         }
-        visitChildren(ctx);
+
+        if (ctx.getChild(4) instanceof RzParser.StmtContext) {
+            visitStmt((RzParser.StmtContext) ctx.getChild(4));
+        } else if (ctx.getChild(4) instanceof RzParser.Var_declContext) {
+            SymbolTable symbolTable = new SymbolTable(symt);
+            this.symt = symbolTable;
+            visitVar_decl((RzParser.Var_declContext) ctx.getChild(4));
+            symbolTable = symt.getParent();
+            this.symt = symbolTable;
+        }
+        if (ctx.getChildCount() > 5) {
+            if (ctx.getChild(6) instanceof RzParser.StmtContext) {
+                visitStmt((RzParser.StmtContext) ctx.getChild(6));
+            } else if (ctx.getChild(6) instanceof RzParser.Var_declContext) {
+                SymbolTable symbolTable = new SymbolTable(symt);
+                this.symt = symbolTable;
+                visitVar_decl((RzParser.Var_declContext) ctx.getChild(6));
+                symbolTable = symt.getParent();
+                this.symt = symbolTable;
+            }
+        }
         return null;
     }
 
     @Override
     public Void visitIteration_stmt(RzParser.Iteration_stmtContext ctx) throws SemanticException {
         if (visble) System.out.println("\t\t<Iteration_Stmt> " + ctx.getText());
+
+        for (int i = 0; i < ctx.expr().size(); ++i) {
+            tpa.getTypeofExpr(ctx.expr(i), symt);
+        }
+
         if (ctx.getChild(0).getText().equals("for")) {
             if (ctx.getChild(2).getText().equals(";")) {
                 if (!ctx.getChild(3).getText().equals(";")) {
@@ -154,20 +185,41 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
                     }
                 }
             }
-        }
-
-        for (int i = 0; i < ctx.expr().size(); ++i) {
-            tpa.getTypeofExpr(ctx.expr(i), symt);
+            int toStmtInd = 5 + ctx.expr().size();
+            if (ctx.getChild(toStmtInd) instanceof RzParser.StmtContext) {
+                inLoop += 1;
+                visitStmt((RzParser.StmtContext) ctx.getChild(toStmtInd));
+                inLoop -= 1;
+            } else if (ctx.getChild(toStmtInd) instanceof RzParser.Var_declContext) {
+                inLoop += 1;
+                SymbolTable symbolTable = new SymbolTable(symt);
+                this.symt = symbolTable;
+                visitVar_decl((RzParser.Var_declContext) ctx.getChild(toStmtInd));
+                symbolTable = symt.getParent();
+                this.symt = symbolTable;
+                inLoop -= 1;
+            }
         }
 
         if (ctx.getChild(0).getText().equals("while")) {
             if (!(tpa.getTypeofExpr(ctx.expr(0), symt).equals(new BoolType()))) {
                 throw new SemanticException("Semantic Error: Expression in while(_expr_) {} statement should be bool");
             }
+            if (ctx.getChild(4) instanceof RzParser.StmtContext) {
+                inLoop += 1;
+                visitStmt((RzParser.StmtContext) ctx.getChild(4));
+                inLoop -= 1;
+            } else if (ctx.getChild(4) instanceof RzParser.Var_declContext) {
+                inLoop += 1;
+                SymbolTable symbolTable = new SymbolTable(symt);
+                this.symt = symbolTable;
+                visitVar_decl((RzParser.Var_declContext) ctx.getChild(4));
+                symbolTable = symt.getParent();
+                this.symt = symbolTable;
+                inLoop -= 1;
+            }
         }
-        inLoop += 1;
-        visitChildren(ctx);
-        inLoop -= 1;
+
         return null;
     }
 

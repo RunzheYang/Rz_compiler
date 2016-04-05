@@ -737,7 +737,8 @@ public class TypeAnalyser {
                     && ctx.getChild(1) instanceof RzParser.MemberContext) {
                 String memname = ctx.getChild(1).getChild(1).getText();
                 Type memtype = ((ClassType) identPrimary).getMembers().get(memname).getType();
-                if (memtype != null) return new Variable(memtype);
+//                if (memtype != null) return new Variable(memtype);
+                if (memtype != null) return memtype;
                 throw new SemanticException("Semantic Error: Invalid member '" + ctx.getText() + "'");
             }
 

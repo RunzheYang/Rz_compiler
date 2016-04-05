@@ -69,12 +69,12 @@ compound_stmt
     ;
 
 selec_stmt
-    :   'if' '(' expr ')' stmt ('else' stmt)?
+    :   'if' '(' expr ')' (stmt | var_decl) ('else' (stmt | var_decl))?
     ;
 
 iteration_stmt
-    :   'while' '(' expr ')' stmt
-    |   'for' '(' expr? ';' expr? ';' expr? ')' stmt
+    :   'while' '(' expr ')' (stmt | var_decl)
+    |   'for' '(' expr? ';' expr? ';' expr? ')' (stmt | var_decl)
     ;
 
 jump_stmt
