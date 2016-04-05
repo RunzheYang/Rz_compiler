@@ -57,6 +57,11 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
                             + vartype.toString() + " " + varname  + "'");
                 }
             }
+
+            if (symt.lookup(varname) instanceof FunctionType || symt.lookup(varname) instanceof ClassType) {
+                throw new SemanticException("Semantic Error: '" + varname + "' cannot be a variable because it is already a function or class");
+            }
+
             if (visble) System.out.println("\t<Variable> " + vartype.toString() + " " + varname);
             Variable var = new Variable(vartype);
             symt.add(varname, var);
