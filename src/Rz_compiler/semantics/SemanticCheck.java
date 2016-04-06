@@ -34,6 +34,9 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
         if (symt.lookup("main") == null || !(symt.lookup("main") instanceof FunctionType)) {
             throw new SemanticException("Semantic Error: No 'main()' function");
         }
+        if (!(((FunctionType) symt.lookup("main")).getReturnType() instanceof IntType)) {
+            throw new SemanticException("Semantic Error: 'main()' function should be 'int' type");
+        }
         visitChildren(ctx);
         return null;
     }
