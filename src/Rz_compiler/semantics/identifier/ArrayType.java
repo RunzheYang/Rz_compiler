@@ -1,9 +1,5 @@
 package Rz_compiler.semantics.identifier;
 
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
-
-import java.util.Observable;
-
 /**
  * Created by YRZ on 3/30/16.
  */

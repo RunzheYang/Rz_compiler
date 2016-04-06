@@ -1,7 +1,6 @@
 package Rz_compiler.semantics.identifier;
 
 import Rz_compiler.semantics.SymbolTable;
-import sun.jvm.hotspot.debugger.cdbg.Sym;
 
 import java.util.ArrayList;
 

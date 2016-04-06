@@ -2,7 +2,6 @@ package Rz_compiler.semantics;
 
 import Rz_compiler.syntax.RzBaseVisitor;
 import Rz_compiler.syntax.RzParser;
-import org.antlr.v4.runtime.tree.ParseTree;
 
 /**
  * Created by YRZ on 4/4/16.

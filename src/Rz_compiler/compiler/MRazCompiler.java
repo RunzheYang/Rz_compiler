@@ -38,7 +38,7 @@ public class MRazCompiler {
                 round_1.visit(tree);
             } catch (Exception err) {
                 System.err.println(err.getMessage());
-                System.exit(200);
+                System.exit(1);
             }
 
             GetFuncAndClassMem round_2 = new GetFuncAndClassMem(round_1.getSymt(), showlog);
@@ -46,7 +46,7 @@ public class MRazCompiler {
                 round_2.visit(tree);
             } catch (Exception err) {
                 System.err.println(err.getMessage());
-                System.exit(201);
+                System.exit(1);
             }
 
             SemanticCheck round_3 = new SemanticCheck(round_2.getSymt(), showlog);
@@ -54,12 +54,12 @@ public class MRazCompiler {
                 round_3.visit(tree);
             } catch (Exception err) {
                 System.err.println(err.getMessage());
-                System.exit(202);
+                System.exit(1);
             }
 
         } else {
             System.out.println("Syntax Error: " + paser.getNumberOfSyntaxErrors());
-            System.exit(100);
+            System.exit(1);
         }
 
 //        PrettyPrint pprint = new PrettyPrint();
