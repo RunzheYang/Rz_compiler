@@ -31,9 +31,11 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
 
     @Override
     public Void visitProg(RzParser.ProgContext ctx) throws SemanticException {
-        if (symt.lookup("main") == null || !(symt.lookup("main") instanceof FunctionType)) {
-            throw new SemanticException("Semantic Error: No 'main()' function");
-        }
+
+//        if (symt.lookup("main") == null || !(symt.lookup("main") instanceof FunctionType)) {
+//            throw new SemanticException("Semantic Error: No 'main()' function");
+//        }
+
         if (!(((FunctionType) symt.lookup("main")).getReturnType() instanceof IntType)) {
             throw new SemanticException("Semantic Error: 'main()' function should be 'int' type");
         }
@@ -50,6 +52,15 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
             if (vartype instanceof VoidType) {
                 throw new SemanticException("Semantic Error: Cannot assign a variable as 'void' type");
             }
+
+            if (/**symt.lookup(varname) instanceof FunctionType ||*/ symt.lookup(varname) instanceof ClassType) {
+                throw new SemanticException("Semantic Error: '" + varname + "' cannot be a variable because it is already a function or class");
+            }
+
+            if (visble) System.out.println("\t<Variable> " + vartype.toString() + " " + varname);
+            Variable var = new Variable(vartype);
+            symt.add(varname, var);
+
             if (ctx.init_declarator().getChildCount() > 1) {
                 Type typeR =  tpa.getTypeofExpr(ctx.init_declarator().initializer().expr(), symt);
                 if (!vartype.equals(typeR)
@@ -61,13 +72,6 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
                 }
             }
 
-            if (symt.lookup(varname) instanceof FunctionType || symt.lookup(varname) instanceof ClassType) {
-                throw new SemanticException("Semantic Error: '" + varname + "' cannot be a variable because it is already a function or class");
-            }
-
-            if (visble) System.out.println("\t<Variable> " + vartype.toString() + " " + varname);
-            Variable var = new Variable(vartype);
-            symt.add(varname, var);
         } else {
             throw new SemanticException("Semantic Error: Repeated definition of the variable '" + varname +"'");
         }
