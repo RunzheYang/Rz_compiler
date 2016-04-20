@@ -50,15 +50,18 @@ public class TypeAnalyser {
             if (ctype != null && ctype instanceof ClassType) {
                 return (ClassType) ctype;
             }
-            throw new SemanticException("Semantic Error: undefined class type '" + ctx.getChild(0).getText() + "'");
+            String Position = "line " +  ((RzParser.CLASSTYPEContext) ctx).start.getLine()
+                    + ":" + ((RzParser.CLASSTYPEContext)ctx).start.getCharPositionInLine() + " -> ";
+            throw new SemanticException(Position + "Semantic Error: undefined class type '" + ctx.getChild(0).getText() + "'");
         }
 
         //arrayType
         if (ctx instanceof RzParser.TypeContext) {
             return new ArrayType(getTypeofType(ctx.getChild(0), symt));
         }
-
-        throw new SemanticException("Semantic Error: Invalid type '" + ctx.getChild(0).getText() + "'");
+        String Position = "line " + ((RzParser.TypeContext)ctx).start.getLine()
+                + ":" + ((RzParser.TypeContext)ctx).start.getCharPositionInLine() + " -> ";
+        throw new SemanticException(Position + "Semantic Error: Invalid type '" + ctx.getChild(0).getText() + "'");
     }
 
     public Type getTypeofBaseType(ParseTree ctx) throws SemanticException {
@@ -79,8 +82,9 @@ public class TypeAnalyser {
         if (ctx.getText().equals(new StringType().toString())) {
             return new StringType();
         }
-
-        throw new SemanticException("Semantic Error: Invalid base type '" + ctx.getText() + "'");
+        String Position = "line " +  ((RzParser.CLASSTYPEContext) ctx).start.getLine()
+                + ":" + ((RzParser.CLASSTYPEContext)ctx).start.getCharPositionInLine() + " -> ";
+        throw new SemanticException(Position + "Semantic Error: Invalid base type '" + ctx.getText() + "'");
     }
 
     public Type getTypeofIdent(String ident, SymbolTable symt) throws SemanticException {
@@ -119,7 +123,9 @@ public class TypeAnalyser {
                     return new IntType();
                 }
             }
-            throw new SemanticException("Semantic Error: Invalid multiple expression '" + ctx.getText() + "'");
+            String Position = "line " +  ((RzParser.MULTIContext) ctx).start.getLine()
+                    + ":" + ((RzParser.MULTIContext)ctx).start.getCharPositionInLine() + " -> ";
+            throw new SemanticException(Position + "Semantic Error: Invalid multiple expression '" + ctx.getText() + "'");
         }
 
         if (ctx instanceof RzParser.ADDITIVEContext) {
@@ -135,7 +141,9 @@ public class TypeAnalyser {
                     return new StringType();
                 }
             }
-            throw new SemanticException("Semantic Error: Invalid additive expression '" + ctx.getText() + "'");
+            String Position = "line " +  ((RzParser.ADDITIVEContext) ctx).start.getLine()
+                    + ":" + ((RzParser.ADDITIVEContext)ctx).start.getCharPositionInLine() + " -> ";
+            throw new SemanticException(Position + "Semantic Error: Invalid additive expression '" + ctx.getText() + "'");
         }
 
         if (ctx instanceof RzParser.SHIFTContext) {
@@ -144,7 +152,9 @@ public class TypeAnalyser {
             if (type1 instanceof IntType && type2 instanceof IntType) {
                 return new IntType();
             }
-            throw new SemanticException("Semantic Error: Invalid shift expression '" + ctx.getText() + "'");
+            String Position = "line " +  ((RzParser.SHIFTContext) ctx).start.getLine()
+                    + ":" + ((RzParser.SHIFTContext)ctx).start.getCharPositionInLine() + " -> ";
+            throw new SemanticException(Position + "Semantic Error: Invalid shift expression '" + ctx.getText() + "'");
         }
 
         if (ctx instanceof RzParser.RELATIONContext) {
@@ -156,7 +166,9 @@ public class TypeAnalyser {
             if (type1 instanceof StringType && type2 instanceof StringType) {
                 return new BoolType();
             }
-            throw new SemanticException("Semantic Error: Invalid comparing expression '" + ctx.getText() + "'");
+            String Position = "line " +  ((RzParser.RELATIONContext) ctx).start.getLine()
+                    + ":" + ((RzParser.RELATIONContext)ctx).start.getCharPositionInLine() + " -> ";
+            throw new SemanticException(Position + "Semantic Error: Invalid comparing expression '" + ctx.getText() + "'");
         }
 
         if (ctx instanceof RzParser.EQUALITYContext) {
@@ -174,7 +186,9 @@ public class TypeAnalyser {
                     && (type1 instanceof ArrayType || type1 instanceof ClassType))) {
                 return new BoolType();
             }
-            throw new SemanticException("Semantic Error: Invalid comparing expression '" + ctx.getText() + "'");
+            String Position = "line " +  ((RzParser.EQUALITYContext) ctx).start.getLine()
+                    + ":" + ((RzParser.EQUALITYContext)ctx).start.getCharPositionInLine() + " -> ";
+            throw new SemanticException(Position + "Semantic Error: Invalid comparing expression '" + ctx.getText() + "'");
         }
 
         if (ctx instanceof RzParser.ANDContext
@@ -190,9 +204,13 @@ public class TypeAnalyser {
                     && !(type1 instanceof StringType)) {
                 return type1;
             }
-            throw new SemanticException("Semantic Error: Invalid logic or bit operation '" + ctx.getText() + "'");
+            String Position = "line " +  ((RzParser.ExpressionContext) ctx).start.getLine()
+                    + ":" + ((RzParser.ExpressionContext)ctx).start.getCharPositionInLine() + " -> ";
+            throw new SemanticException(Position + "Semantic Error: Invalid logic or bit operation '" + ctx.getText() + "'");
         }
-        throw new SemanticException("Semantic Error: Invalid type or not an expression '" + ctx.getText() + "'");
+        String Position = "line " +  ((RzParser.ExpressionContext) ctx).start.getLine()
+                + ":" + ((RzParser.ExpressionContext)ctx).start.getCharPositionInLine() + " -> ";
+        throw new SemanticException(Position + "Semantic Error: Invalid type or not an expression '" + ctx.getText() + "'");
     }
 
     public Type getTypeofCreationExpr(ParseTree ctx, SymbolTable symt) throws SemanticException {
@@ -209,7 +227,9 @@ public class TypeAnalyser {
         if (ctx instanceof RzParser.UNARYEXPRContext) {
             return getTypeofUnaryExpr(ctx.getChild(0), symt);
         }
-        throw new SemanticException("Semantic Error: Invalid creation expression '" + ctx.getText() + "'");
+        String Position = "line " +  ((RzParser.Creation_exprContext) ctx).start.getLine()
+                + ":" + ((RzParser.Creation_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+        throw new SemanticException(Position + "Semantic Error: Invalid creation expression '" + ctx.getText() + "'");
     }
 
     public Type getTypeofArray(ParseTree ctx, SymbolTable symt) throws SemanticException {
@@ -225,7 +245,6 @@ public class TypeAnalyser {
         if (ctx instanceof RzParser.ARR_MOREContext) {
             return new ArrayType(getTypeofArray(ctx.getChild(0), symt));
         }
-
         throw new SemanticException("Semantic Error: Invalid array type on right '" + ctx.getText() + "'");
     }
 
@@ -242,7 +261,9 @@ public class TypeAnalyser {
                 }
                 if (ctx.getChild(0).getText().equals("++") || ctx.getChild(0).getText().equals("--")) {
                     if (!(getIdentofUnaryExpr(ctx.getChild(1), symt) instanceof Variable)) {
-                        throw new SemanticException("Semantic Error: '++' or '--' cannot be apply to the '" + ctx.getChild(1).getText() + "'");
+                        String Position = "line " +  ((RzParser.Unary_exprContext) ctx).start.getLine()
+                                + ":" + ((RzParser.Unary_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+                        throw new SemanticException(Position + "Semantic Error: '++' or '--' cannot be apply to the '" + ctx.getChild(1).getText() + "'");
                     }
                 }
                 if ((!ctx.getChild(0).getText().equals("!")) &&
@@ -250,10 +271,14 @@ public class TypeAnalyser {
                         || (utype instanceof IntType))) {
                     return utype;
                 }
-                throw new SemanticException("Semantic Error: Unary operator cannot be apply to the '" + utype.toString() + "'");
+                String Position = "line " +  ((RzParser.Unary_exprContext) ctx).start.getLine()
+                        + ":" + ((RzParser.Unary_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+                throw new SemanticException(Position + "Semantic Error: Unary operator cannot be apply to the '" + utype.toString() + "'");
             }
         }
-        throw new SemanticException("Semantic Error: Invalid unary expression");
+        String Position = "line " +  ((RzParser.Unary_exprContext) ctx).start.getLine()
+                + ":" + ((RzParser.Unary_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+        throw new SemanticException(Position + "Semantic Error: Invalid unary expression");
     }
 
     public Type getTypeofPostExpr(ParseTree ctx, SymbolTable symt) throws SemanticException {
@@ -278,7 +303,9 @@ public class TypeAnalyser {
                     } else if (nowdim == 1) {
                         return ((ArrayType) typePrimary).getBasedtype();
                     }
-                    throw new SemanticException("Semantic Error: Invalid subscript '" +  ctx.getText() + "'");
+                    String Position = "line " +  ((RzParser.Postfix_exprContext) ctx).start.getLine()
+                            + ":" + ((RzParser.Postfix_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+                    throw new SemanticException(Position + "Semantic Error: Invalid subscript '" +  ctx.getText() + "'");
                 }
 
                 if (typePrimary instanceof ClassType
@@ -290,7 +317,9 @@ public class TypeAnalyser {
                             return memtype;
                         }
                     }
-                    throw new SemanticException("Semantic Error: Invalid class member '" + ctx.getText() + "'");
+                    String Position = "line " +  ((RzParser.Postfix_exprContext) ctx).start.getLine()
+                            + ":" + ((RzParser.Postfix_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+                    throw new SemanticException(Position + "Semantic Error: Invalid class member '" + ctx.getText() + "'");
                 }
 
                 if (typePrimary instanceof IntType
@@ -308,50 +337,58 @@ public class TypeAnalyser {
                     }
 
                     if (typePrimary instanceof StringType) {
-                        //int length()
-                        if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("length")
-                                && (ctx.getChild(1)).getChildCount() == 4) {
-                            return new IntType();
-                        }
-                        //int parseInt()
-                        if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("parseInt")
-                                && (ctx.getChild(1)).getChildCount() == 4) {
-                            return new IntType();
-                        }
-                        //string substring(int left, int right)
-                        if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("substring")) {
-                            if (ctx.getChild(1).getChildCount() > 4) {
-                                RzParser.ArgumentsContext arg =
-                                        ((RzParser.Build_in_FuntionContext) ctx.getChild(1)).arguments();
-                                if (arg.assign_expr().size() == 2) {
-                                    if ((getTypeofAssignExpr(arg.assign_expr(0), symt) instanceof IntType)
-                                            && (getTypeofAssignExpr(arg.assign_expr(1), symt) instanceof IntType)) {
-                                        return new StringType();
-                                    } else {
-                                        throw new SemanticException("Semantic Error: unmatched argument" +
-                                                " in build-in function substring(int left, int right)");
+                        if (ctx.getChild(1) instanceof RzParser.Build_in_FuntionContext) {
+                            //int length()
+                            if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("length")
+                                    && (ctx.getChild(1)).getChildCount() == 4) {
+                                return new IntType();
+                            }
+                            //int parseInt()
+                            if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("parseInt")
+                                    && (ctx.getChild(1)).getChildCount() == 4) {
+                                return new IntType();
+                            }
+                            //string substring(int left, int right)
+                            if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("substring")) {
+                                if (ctx.getChild(1).getChildCount() > 4) {
+                                    RzParser.ArgumentsContext arg =
+                                            ((RzParser.Build_in_FuntionContext) ctx.getChild(1)).arguments();
+                                    if (arg.assign_expr().size() == 2) {
+                                        if ((getTypeofAssignExpr(arg.assign_expr(0), symt) instanceof IntType)
+                                                && (getTypeofAssignExpr(arg.assign_expr(1), symt) instanceof IntType)) {
+                                            return new StringType();
+                                        } else {
+                                            String Position = "line " +  ((RzParser.Postfix_exprContext) ctx).start.getLine()
+                                                    + ":" + ((RzParser.Postfix_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+                                            throw new SemanticException(Position + "Semantic Error: unmatched argument" +
+                                                    " in build-in function substring(int left, int right)");
+                                        }
                                     }
                                 }
+                                String Position = "line " +  ((RzParser.Postfix_exprContext) ctx).start.getLine()
+                                        + ":" + ((RzParser.Postfix_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+                                throw new SemanticException(Position + "Semantic Error: number of parameters is not equal " +
+                                        "to which in build-in function substring(int left, int right)");
                             }
-                            throw new SemanticException("Semantic Error: number of parameters is not equal " +
-                                    "to which in build-in function substring(int left, int right)");
-                        }
-                        //int ord(int pos)
-                        if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("ord")) {
-                            if (ctx.getChild(1).getChildCount() > 4) {
-                                RzParser.ArgumentsContext arg =
-                                        ((RzParser.Build_in_FuntionContext) ctx.getChild(1)).arguments();
-                                if (arg.assign_expr().size() == 1) {
-                                    if (getTypeofAssignExpr(arg.assign_expr(0), symt) instanceof IntType) {
-                                        return new IntType();
-                                    } else {
-                                        throw new SemanticException("Semantic Error: unmatched argument in build-in " +
-                                                "function ord(int pos)");
+                            //int ord(int pos)
+                            if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("ord")) {
+                                if (ctx.getChild(1).getChildCount() > 4) {
+                                    RzParser.ArgumentsContext arg =
+                                            ((RzParser.Build_in_FuntionContext) ctx.getChild(1)).arguments();
+                                    if (arg.assign_expr().size() == 1) {
+                                        if (getTypeofAssignExpr(arg.assign_expr(0), symt) instanceof IntType) {
+                                            return new IntType();
+                                        } else {
+                                            String Position = "line " +  ((RzParser.Postfix_exprContext) ctx).start.getLine()
+                                                    + ":" + ((RzParser.Postfix_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+                                            throw new SemanticException(Position + "Semantic Error: unmatched argument in build-in " +
+                                                    "function ord(int pos)");
+                                        }
                                     }
                                 }
+                                throw new SemanticException("Semantic Error: unmatched argument in build-in " +
+                                        "function ord(int pos)");
                             }
-                            throw new SemanticException("Semantic Error: unmatched argument in build-in " +
-                                    "function ord(int pos)");
                         }
                     }
                 }
@@ -374,7 +411,9 @@ public class TypeAnalyser {
 
                                 if (!getTypeofAssignExpr(ctx.getChild(1).getChild(1).getChild(2 * i), symt).equals(
                                         ((FunctionType) identPrimary).getParamList().get(i))) {
-                                    throw new SemanticException("Semantic Error: unmatched parameter '"
+                                    String Position = "line " +  ((RzParser.Postfix_exprContext) ctx).start.getLine()
+                                            + ":" + ((RzParser.Postfix_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+                                    throw new SemanticException(Position + "Semantic Error: unmatched parameter '"
                                             + ctx.getChild(1).getChild(1).getChild(2 * i).getText() + "' in '" + ctx.getChild(0).getText() + "'");
                                 }
                             }
@@ -382,10 +421,14 @@ public class TypeAnalyser {
 
                         return ((FunctionType) identPrimary).getReturnType();
                     }
-                    throw new SemanticException("Semantic Error: number of parameters is not equal to which " +
+                    String Position = "line " +  ((RzParser.Postfix_exprContext) ctx).start.getLine()
+                            + ":" + ((RzParser.Postfix_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+                    throw new SemanticException(Position + "Semantic Error: number of parameters is not equal to which " +
                             "in the function declaration '" + ctx.getChild(0).getText() + "'");
                 }
-                throw new SemanticException("Semantic Error: Invalid function call '" + ctx.getChild(0).getText() + "(...)'");
+                String Position = "line " +  ((RzParser.Postfix_exprContext) ctx).start.getLine()
+                        + ":" + ((RzParser.Postfix_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+                throw new SemanticException(Position + "Semantic Error: Invalid function call '" + ctx.getChild(0).getText() + "(...)'");
             }
 
             if (identPrimary instanceof ClassType
@@ -395,7 +438,9 @@ public class TypeAnalyser {
                 if (memtype != null) {
                     return memtype;
                 }
-                throw new SemanticException("Semantic Error: Invalid member '" + memname + "'");
+                String Position = "line " +  ((RzParser.Postfix_exprContext) ctx).start.getLine()
+                        + ":" + ((RzParser.Postfix_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+                throw new SemanticException(Position + "Semantic Error: Invalid member '" + memname + "'");
             }
 
 //            if (identPrimary instanceof IntType
@@ -416,7 +461,9 @@ public class TypeAnalyser {
                     } else if (nowdim == 1) {
                         return ((ArrayType) identPrimary).getBasedtype();
                     }
-                    throw new SemanticException("Semantic Error: Invalid subscript '" + ctx.getText() + "'");
+                    String Position = "line " +  ((RzParser.Postfix_exprContext) ctx).start.getLine()
+                            + ":" + ((RzParser.Postfix_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+                    throw new SemanticException(Position + "Semantic Error: Invalid subscript '" + ctx.getText() + "'");
                 }
 
                 if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("size")
@@ -446,12 +493,16 @@ public class TypeAnalyser {
                                     && (getTypeofAssignExpr(arg.assign_expr(1), symt) instanceof IntType)) {
                                 return new StringType();
                             } else {
-                                throw new SemanticException("Semantic Error: unmatched argument in " +
+                                String Position = "line " +  ((RzParser.Postfix_exprContext) ctx).start.getLine()
+                                        + ":" + ((RzParser.Postfix_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+                                throw new SemanticException(Position + "Semantic Error: unmatched argument in " +
                                         "build-in function substring(int left, int right)");
                             }
                         }
                     }
-                    throw new SemanticException("Semantic Error: number of parameters is not equal to which" +
+                    String Position = "line " +  ((RzParser.Postfix_exprContext) ctx).start.getLine()
+                            + ":" + ((RzParser.Postfix_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+                    throw new SemanticException(Position + "Semantic Error: number of parameters is not equal to which" +
                             " in build-in function substring(int left, int right)");
                 }
                 //int ord(int pos)
@@ -463,17 +514,23 @@ public class TypeAnalyser {
                             if (getTypeofAssignExpr(arg.assign_expr(0), symt) instanceof IntType) {
                                 return new IntType();
                             } else {
-                                throw new SemanticException("Semantic Error: unmatched argument in " +
+                                String Position = "line " +  ((RzParser.Postfix_exprContext) ctx).start.getLine()
+                                        + ":" + ((RzParser.Postfix_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+                                throw new SemanticException(Position + "Semantic Error: unmatched argument in " +
                                         "build-in function ord(int pos)");
                             }
                         }
                     }
-                    throw new SemanticException("Semantic Error: unmatched argument in " +
+                    String Position = "line " +  ((RzParser.Postfix_exprContext) ctx).start.getLine()
+                            + ":" + ((RzParser.Postfix_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+                    throw new SemanticException(Position + "Semantic Error: unmatched argument in " +
                             "build-in function ord(int pos)");
                 }
             }
         }
-        throw new SemanticException("Semantic Error: Invalid post_expression '" + ctx.getText() + "'");
+        String Position = "line " +  ((RzParser.Postfix_exprContext) ctx).start.getLine()
+                + ":" + ((RzParser.Postfix_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+        throw new SemanticException(Position + "Semantic Error: Invalid post_expression '" + ctx.getText() + "'");
     }
 
     public Type getTypeofPrimaryExpr(ParseTree ctx, SymbolTable symt) throws SemanticException {
@@ -496,7 +553,9 @@ public class TypeAnalyser {
         if (ctx instanceof RzParser.Primary_PexprPContext) {
             return getTypeofExpr(ctx.getChild(1), symt);
         }
-        throw new SemanticException("Semantic Error: Invalid primary expression '" + ctx.getText() + "'");
+        String Position = "line " +  ((RzParser.Primary_exprContext) ctx).start.getLine()
+                + ":" + ((RzParser.Primary_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+        throw new SemanticException(Position + "Semantic Error: Invalid primary expression '" + ctx.getText() + "'");
     }
 
     public Type getTypeofExpr(ParseTree ctx, SymbolTable symt) throws SemanticException {
@@ -504,7 +563,9 @@ public class TypeAnalyser {
         if (ctx.getChild(0) instanceof RzParser.Assign_exprContext) {
             return getTypeofAssignExpr(ctx.getChild(0), symt);
         }
-        throw new SemanticException("Semantic Error: Invalid expr '" + ctx.getText() + "'");
+        String Position = "line " +  ((RzParser.Expr_stmtContext) ctx).start.getLine()
+                + ":" + ((RzParser.Expr_stmtContext)ctx).start.getCharPositionInLine() + " -> ";
+        throw new SemanticException(Position + "Semantic Error: Invalid expr '" + ctx.getText() + "'");
     }
 
     public Type getTypeofAssignExpr(ParseTree ctx, SymbolTable symt) {
@@ -525,7 +586,9 @@ public class TypeAnalyser {
                 return typeR;
             }
         }
-        throw new SemanticException("Semantic Error: Invalid assignment '" + ctx.getText() + "'");
+        String Position = "line " +  ((RzParser.Assign_exprContext) ctx).start.getLine()
+                + ":" + ((RzParser.Assign_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+        throw new SemanticException(Position + "Semantic Error: Invalid assignment '" + ctx.getText() + "'");
     }
 
     public Identifier getIdentofExpr(ParseTree ctx, SymbolTable symt) throws SemanticException {
@@ -533,7 +596,9 @@ public class TypeAnalyser {
         if (ctx.getChild(0) instanceof RzParser.Assign_exprContext) {
             return getIdentofAssignExpr(ctx.getChild(0), symt);
         }
-        throw new SemanticException("Semantic Error: Invalid expr '" + ctx.getText() + "'");
+        String Position = "line " +  ((RzParser.Expr_stmtContext) ctx).start.getLine()
+                + ":" + ((RzParser.Expr_stmtContext)ctx).start.getCharPositionInLine() + " -> ";
+        throw new SemanticException(Position + "Semantic Error: Invalid expr '" + ctx.getText() + "'");
     }
 
 
@@ -544,7 +609,9 @@ public class TypeAnalyser {
         if (ctx.getChild(0) instanceof RzParser.Unary_exprContext) {
             return getTypeofAssignExpr(ctx, symt);
         }
-        throw new SemanticException("Semantic Error: Invalid assignment '" + ctx.getText() + "'");
+        String Position = "line " +  ((RzParser.Assign_exprContext) ctx).start.getLine()
+                + ":" + ((RzParser.Assign_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+        throw new SemanticException(Position + "Semantic Error: Invalid assignment '" + ctx.getText() + "'");
     }
 
     public Identifier getIdentofExpression(ParseTree ctx, SymbolTable symt) throws SemanticException {
@@ -565,7 +632,9 @@ public class TypeAnalyser {
                 || ctx instanceof RzParser.LOGIC_ORContext) {
             return getTypeofExpression(ctx, symt);
         }
-        throw new SemanticException("Semantic Error: Invalid type or not an expression '" + ctx.getText() + "'");
+        String Position = "line " +  ((RzParser.Expr_stmtContext) ctx).start.getLine()
+                + ":" + ((RzParser.Expr_stmtContext)ctx).start.getCharPositionInLine() + " -> ";
+        throw new SemanticException(Position + "Semantic Error: Invalid type or not an expression '" + ctx.getText() + "'");
     }
 
     public Identifier getIdentofCreationExpr(ParseTree ctx, SymbolTable symt) throws SemanticException {
@@ -579,7 +648,9 @@ public class TypeAnalyser {
         if (ctx instanceof RzParser.UNARYEXPRContext) {
             return getIdentofUnaryExpr(ctx.getChild(0), symt);
         }
-        throw new SemanticException("Semantic Error: Invalid creation expression '" + ctx.getText() + "'");
+        String Position = "line " +  ((RzParser.Creation_exprContext) ctx).start.getLine()
+                + ":" + ((RzParser.Creation_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+        throw new SemanticException(Position + "Semantic Error: Invalid creation expression '" + ctx.getText() + "'");
     }
 
     public Identifier getIdentofUnaryExpr(ParseTree ctx, SymbolTable symt) throws SemanticException {
@@ -597,12 +668,19 @@ public class TypeAnalyser {
                     || (utype instanceof IntType))) {
                 return utype;
             }
-            throw new SemanticException("Semantic Error: Unary operator cannot be apply to a " + utype.toString());
+            String Position = "line " +  ((RzParser.Unary_exprContext) ctx).start.getLine()
+                    + ":" + ((RzParser.Unary_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+            throw new SemanticException(Position + "Semantic Error: Unary operator cannot be apply to a " + utype.toString());
         }
-        throw new SemanticException("Semantic Error: Invalid unary expression");
+        String Position = "line " +  ((RzParser.Unary_exprContext) ctx).start.getLine()
+                + ":" + ((RzParser.Unary_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+        throw new SemanticException(Position + "Semantic Error: Invalid unary expression");
     }
 
     public Identifier getIdentofPostExpr(ParseTree ctx, SymbolTable symt) throws SemanticException {
+        String Position = "line " +  ((RzParser.Postfix_exprContext) ctx).start.getLine()
+                + ":" + ((RzParser.Postfix_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+
         if (ctx.getChild(0) instanceof RzParser.Primary_exprContext) {
             return getIdentofPrimary(ctx.getChild(0), symt);
         }
@@ -615,6 +693,10 @@ public class TypeAnalyser {
                 Type typePrimary = ((Variable) identPrimary).getType();
                 if (typePrimary instanceof ArrayType
                     && ctx.getChild(1) instanceof RzParser.SubscriptContext) {
+
+                    if (!getTypeofExpr(((RzParser.SubscriptContext) ctx.getChild(1)).expr(), symt).equals(new IntType())) {
+                        throw new SemanticException(Position + "Semantic Error: Invalid type in [ ] '" + ctx.getText() + "'");
+                    }
                     int nowdim = (new ArrayType()).countdim(typePrimary.toString());
                     if (nowdim >= 2) {
                         ArrayType typehere = new ArrayType(typePrimary);
@@ -624,7 +706,7 @@ public class TypeAnalyser {
                     } else if (nowdim == 1) {
                         return new Variable(((ArrayType) typePrimary).getBasedtype());
                     }
-                    throw new SemanticException("Semantic Error: Invalid subscript '" + ctx.getText() + "'");
+                    throw new SemanticException(Position + "Semantic Error: Invalid subscript '" + ctx.getText() + "'");
                 }
                 if (typePrimary instanceof ClassType
                         && ctx.getChild(1) instanceof RzParser.MemberContext) {
@@ -635,7 +717,7 @@ public class TypeAnalyser {
                             return new Variable(memtype);
                         }
                     }
-                    throw new SemanticException("Semantic Error: Invalid member '" + ctx.getText() + "'");
+                    throw new SemanticException(Position + "Semantic Error: Invalid member '" + ctx.getText() + "'");
                 }
                 if (typePrimary instanceof IntType
                         &&  (ctx.getChild(1) instanceof RzParser.PlusPlusContext
@@ -672,12 +754,12 @@ public class TypeAnalyser {
                                             && (getTypeofAssignExpr(arg.assign_expr(1), symt) instanceof IntType)) {
                                         return new StringType();
                                     } else {
-                                        throw new SemanticException("Semantic Error: unmatched argument in build-in" +
+                                        throw new SemanticException(Position + "Semantic Error: unmatched argument in build-in" +
                                                 " function substring(int left, int right)");
                                     }
                                 }
                             }
-                            throw new SemanticException("Semantic Error: number of parameters is not equal " +
+                            throw new SemanticException(Position + "Semantic Error: number of parameters is not equal " +
                                     "to which in build-in function substring(int left, int right)");
                         }
                         //int ord(int pos)
@@ -689,12 +771,12 @@ public class TypeAnalyser {
                                     if (getTypeofAssignExpr(arg.assign_expr(0), symt) instanceof IntType) {
                                         return new IntType();
                                     } else {
-                                        throw new SemanticException("Semantic Error: unmatched argument in" +
+                                        throw new SemanticException(Position + "Semantic Error: unmatched argument in" +
                                                 " build-in function ord(int pos)");
                                     }
                                 }
                             }
-                            throw new SemanticException("Semantic Error: unmatched argument in build-in " +
+                            throw new SemanticException(Position + "Semantic Error: unmatched argument in build-in " +
                                     "function ord(int pos)");
                         }
                     }
@@ -718,7 +800,7 @@ public class TypeAnalyser {
 
                                 if (!getTypeofAssignExpr(ctx.getChild(1).getChild(1).getChild(2 * i), symt).equals(
                                         ((FunctionType) identPrimary).getParamList().get(i))) {
-                                    throw new SemanticException("Semantic Error: unmatched parameter '"
+                                    throw new SemanticException(Position + "Semantic Error: unmatched parameter '"
                                             + ctx.getChild(1).getChild(1).getChild(2 * i).getText() + "' in '" + ctx.getChild(0).getText() + "'");
                                 }
                             }
@@ -726,10 +808,10 @@ public class TypeAnalyser {
 
                         return ((FunctionType) identPrimary).getReturnType();
                     }
-                    throw new SemanticException("Semantic Error: number of parameters is not equal to which " +
+                    throw new SemanticException(Position + "Semantic Error: number of parameters is not equal to which " +
                             "in the function declaration '" + ctx.getChild(0).getText() + "'");
                 }
-                throw new SemanticException("Semantic Error: Invalid function call '" + ctx.getChild(0).getText() + "(...)'");
+                throw new SemanticException(Position + "Semantic Error: Invalid function call '" + ctx.getChild(0).getText() + "(...)'");
             }
 
             if (identPrimary instanceof ClassType
@@ -738,7 +820,7 @@ public class TypeAnalyser {
                 Type memtype = ((ClassType) identPrimary).getMembers().get(memname).getType();
 //                if (memtype != null) return new Variable(memtype);
                 if (memtype != null) return memtype;
-                throw new SemanticException("Semantic Error: Invalid member '" + ctx.getText() + "'");
+                throw new SemanticException(Position + "Semantic Error: Invalid member '" + ctx.getText() + "'");
             }
 
             if (identPrimary instanceof IntType
@@ -750,6 +832,11 @@ public class TypeAnalyser {
             // int size()
             if (identPrimary instanceof ArrayType) {
                 if (ctx.getChild(1) instanceof RzParser.SubscriptContext) {
+
+                    if (!getTypeofExpr(((RzParser.SubscriptContext) ctx.getChild(1)).expr(), symt).equals(new IntType())) {
+                        throw new SemanticException(Position + "Semantic Error: Invalid type in [ ] '" + ctx.getText() + "'");
+                    }
+
                     int nowdim = (new ArrayType()).countdim(identPrimary.toString());
                     if (nowdim == 1) {
                         return ((ArrayType) identPrimary).getBasedtype();
@@ -759,7 +846,7 @@ public class TypeAnalyser {
                         typehere.decreasedim();
                         return typehere;
                     }
-                    throw new SemanticException("Semantic Error: Invalid subscript '" + ctx.getText() + "'");
+                    throw new SemanticException(Position + "Semantic Error: Invalid subscript '" + ctx.getText() + "'");
                 }
 
                 if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("size")
@@ -770,53 +857,55 @@ public class TypeAnalyser {
 
             if (identPrimary instanceof StringType) {
                 //int length()
-                if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("length")
-                        && ctx.getChild(1).getChildCount() == 4) {
-                    return new IntType();
-                }
-                //int parseInt()
-                if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("parseInt")
-                        && ctx.getChild(1).getChildCount() == 4) {
-                    return new IntType();
-                }
-                //int substring(int left, int right)
-                if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("substring")) {
-                    if (ctx.getChild(1).getChildCount() > 4) {
-                        RzParser.ArgumentsContext arg =
-                                ((RzParser.Build_in_FuntionContext) ctx.getChild(1)).arguments();
-                        if (arg.assign_expr().size() == 2) {
-                            if ((getTypeofAssignExpr(arg.assign_expr(0), symt) instanceof IntType)
-                                    && (getTypeofAssignExpr(arg.assign_expr(1), symt) instanceof IntType)) {
-                                return new StringType();
-                            } else {
-                                throw new SemanticException("Semantic Error: unmatched argument in" +
-                                        " build-in function substring(int left, int right)");
+                if (ctx.getChild(1) instanceof RzParser.Build_in_FuntionContext) {
+                    if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("length")
+                            && ctx.getChild(1).getChildCount() == 4) {
+                        return new IntType();
+                    }
+                    //int parseInt()
+                    if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("parseInt")
+                            && ctx.getChild(1).getChildCount() == 4) {
+                        return new IntType();
+                    }
+                    //int substring(int left, int right)
+                    if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("substring")) {
+                        if (ctx.getChild(1).getChildCount() > 4) {
+                            RzParser.ArgumentsContext arg =
+                                    ((RzParser.Build_in_FuntionContext) ctx.getChild(1)).arguments();
+                            if (arg.assign_expr().size() == 2) {
+                                if ((getTypeofAssignExpr(arg.assign_expr(0), symt) instanceof IntType)
+                                        && (getTypeofAssignExpr(arg.assign_expr(1), symt) instanceof IntType)) {
+                                    return new StringType();
+                                } else {
+                                    throw new SemanticException(Position + "Semantic Error: unmatched argument in" +
+                                            " build-in function substring(int left, int right)");
+                                }
                             }
                         }
+                        throw new SemanticException(Position + "Semantic Error: number of parameters is not equal to which" +
+                                " in build-in function substring(int left, int right)");
                     }
-                    throw new SemanticException("Semantic Error: number of parameters is not equal to which" +
-                            " in build-in function substring(int left, int right)");
-                }
-                //int ord(int pos)
-                if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("ord")) {
-                    if (ctx.getChild(1).getChildCount() > 4) {
-                        RzParser.ArgumentsContext arg =
-                                ((RzParser.Build_in_FuntionContext) ctx.getChild(1)).arguments();
-                        if (arg.assign_expr().size() == 1) {
-                            if (getTypeofAssignExpr(arg.assign_expr(0), symt) instanceof IntType) {
-                                return new IntType();
-                            } else {
-                                throw new SemanticException("Semantic Error: unmatched argument in build-in" +
-                                        " function ord(int pos)");
+                    //int ord(int pos)
+                    if (((RzParser.Build_in_FuntionContext) ctx.getChild(1)).ident().getText().equals("ord")) {
+                        if (ctx.getChild(1).getChildCount() > 4) {
+                            RzParser.ArgumentsContext arg =
+                                    ((RzParser.Build_in_FuntionContext) ctx.getChild(1)).arguments();
+                            if (arg.assign_expr().size() == 1) {
+                                if (getTypeofAssignExpr(arg.assign_expr(0), symt) instanceof IntType) {
+                                    return new IntType();
+                                } else {
+                                    throw new SemanticException(Position + "Semantic Error: unmatched argument in build-in" +
+                                            " function ord(int pos)");
+                                }
                             }
                         }
+                        throw new SemanticException(Position + "Semantic Error: unmatched argument in " +
+                                "build-in function ord(int pos)");
                     }
-                    throw new SemanticException("Semantic Error: unmatched argument in " +
-                            "build-in function ord(int pos)");
                 }
             }
         }
-        throw new SemanticException("Semantic Error: Invalid post_expression '" + ctx.getText() + "'");
+        throw new SemanticException(Position + "Semantic Error: Invalid post_expression '" + ctx.getText() + "'");
     }
 
     public Identifier getIdentofPrimary(ParseTree ctx, SymbolTable symt) throws SemanticException {
@@ -826,7 +915,9 @@ public class TypeAnalyser {
             if (identPrimary != null) {
                 return identPrimary;
             }
-            throw new SemanticException("Semantic Error: Unknown identifier '" + ctx.getText() + "'");
+            String Position = "line " +  ((RzParser.Primary_exprContext) ctx).start.getLine()
+                    + ":" + ((RzParser.Primary_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+            throw new SemanticException(Position + "Semantic Error: Unknown identifier '" + ctx.getText() + "'");
         }
         if (ctx instanceof RzParser.Primary_const_intContext) {
             return new IntType();
@@ -843,6 +934,8 @@ public class TypeAnalyser {
         if (ctx instanceof RzParser.Primary_PexprPContext) {
             return getIdentofExpr(ctx.getChild(1), symt);
         }
-        throw new SemanticException("Semantic Error: Invalid primary expression '" + ctx.getText() + "'");
+        String Position = "line " +  ((RzParser.Primary_exprContext) ctx).start.getLine()
+                + ":" + ((RzParser.Primary_exprContext)ctx).start.getCharPositionInLine() + " -> ";
+        throw new SemanticException(Position + "Semantic Error: Invalid primary expression '" + ctx.getText() + "'");
     }
 }

@@ -46,11 +46,15 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
 
     @Override
     public Void visitVar_decl(RzParser.Var_declContext ctx) throws SemanticException {
+
+        String Position = "line " +  ctx.start.getLine()
+                + ":" + ctx.start.getCharPositionInLine() + " -> ";
+
         String varname = ctx.init_declarator().ident().getText();
         if (symt.scope_lookup(varname) == null) {
             Type vartype = tpa.getTypeofType(ctx.type(), symt);
             if (vartype instanceof VoidType) {
-                throw new SemanticException("Semantic Error: Cannot assign a variable as 'void' type");
+                throw new SemanticException(Position + "Semantic Error: Cannot assign a variable as 'void' type");
             }
 
             if (/**symt.lookup(varname) instanceof FunctionType ||*/ symt.lookup(varname) instanceof ClassType) {
@@ -66,14 +70,14 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
                 if (!vartype.equals(typeR)
                         && !(!(vartype instanceof IntType || vartype instanceof BoolType || vartype instanceof StringType)
                         && typeR instanceof NullType)) {
-                    throw new SemanticException("Semantic Error: '"
+                    throw new SemanticException(Position + "Semantic Error: '"
                             + ctx.init_declarator().initializer().getText() + "' cannot assign to '"
                             + vartype.toString() + " " + varname  + "'");
                 }
             }
 
         } else {
-            throw new SemanticException("Semantic Error: Repeated definition of the variable '" + varname +"'");
+            throw new SemanticException(Position + "Semantic Error: Repeated definition of the variable '" + varname +"'");
         }
         return null;
     }
@@ -88,9 +92,9 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
         hasReturn = tpa.getCurrentFunc().getReturnType() instanceof VoidType;
         if (visble) System.out.println("<In Func>" + ctx.type().getText() + " " + ctx.ident().getText() + "(" + ")");
         visitChildren(ctx);
-        if (!hasReturn && !ctx.ident().getText().equals("main")) {
+//        if (!hasReturn && !ctx.ident().getText().equals("main")) {
 //            throw new SemanticException("Semantic Error: No return in function '" + ctx.ident().getText() + "'");
-        }
+//        }
         return null;
     }
 
@@ -131,6 +135,10 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
 
     @Override
     public Void visitReturn_jump(RzParser.Return_jumpContext ctx) throws SemanticException {
+
+        String Position = "line " +  ctx.start.getLine()
+                + ":" + ctx.start.getCharPositionInLine() + " -> ";
+
         if (visble) System.out.println("<RETRUN> return " + (ctx.getChildCount() > 2 ?  ctx.expr().getText() : ""));
         if (tpa.getCurrentFunc().getReturnType() instanceof VoidType && ctx.getChildCount() == 2) {
             hasReturn = true;
@@ -138,7 +146,7 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
             if (tpa.getCurrentFunc().getReturnType().equals(tpa.getTypeofExpr(ctx.expr(), symt))) {
                 hasReturn = true;
             } else {
-                throw new SemanticException("Semantic Error: return type should be a '"
+                throw new SemanticException(Position + "Semantic Error: return type should be a '"
                         + tpa.getCurrentFunc().getReturnType().toString() + "' here");
             }
         }
@@ -147,9 +155,13 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
 
     @Override
     public Void visitSelec_stmt(RzParser.Selec_stmtContext ctx) throws SemanticException {
+
+        String Position = "line " +  ctx.start.getLine()
+                + ":" + ctx.start.getCharPositionInLine() + " -> ";
+
         if (visble) System.out.println("\t\t<Selec_Stmt>");
         if (!tpa.getTypeofExpr(ctx.expr(), symt).equals(new BoolType())) {
-            throw new SemanticException("Semantic Error: expression in if () statement should return bool");
+            throw new SemanticException(Position + "Semantic Error: expression in if () statement should return bool");
         }
 
         if (ctx.getChild(4) instanceof RzParser.StmtContext) {
@@ -177,6 +189,10 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
 
     @Override
     public Void visitIteration_stmt(RzParser.Iteration_stmtContext ctx) throws SemanticException {
+
+        String Position = "line " +  ctx.start.getLine()
+                + ":" + ctx.start.getCharPositionInLine() + " -> ";
+
         if (visble) System.out.println("\t\t<Iteration_Stmt> " + ctx.getText());
 
         for (int i = 0; i < ctx.expr().size(); ++i) {
@@ -187,13 +203,13 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
             if (ctx.getChild(2).getText().equals(";")) {
                 if (!ctx.getChild(3).getText().equals(";")) {
                     if (!tpa.getTypeofExpr(ctx.getChild(3), symt).equals(new BoolType())) {
-                        throw new SemanticException("Semantic Error: Middle expression in for(_;_expr_;_) {} should be a bool");
+                        throw new SemanticException(Position + "Semantic Error: Middle expression in for(_;_expr_;_) {} should be a bool");
                     }
                 }
             } else {
                 if (!ctx.getChild(4).getText().equals(";")) {
                     if (!tpa.getTypeofExpr(ctx.getChild(4), symt).equals(new BoolType())) {
-                        throw new SemanticException("Semantic Error: Middle expression in for(_;_expr_;_) {} should be a bool");
+                        throw new SemanticException(Position + "Semantic Error: Middle expression in for(_;_expr_;_) {} should be a bool");
                     }
                 }
             }
@@ -215,7 +231,7 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
 
         if (ctx.getChild(0).getText().equals("while")) {
             if (!(tpa.getTypeofExpr(ctx.expr(0), symt).equals(new BoolType()))) {
-                throw new SemanticException("Semantic Error: Expression in while(_expr_) {} statement should be bool");
+                throw new SemanticException(Position + "Semantic Error: Expression in while(_expr_) {} statement should be bool");
             }
             if (ctx.getChild(4) instanceof RzParser.StmtContext) {
                 inLoop += 1;
@@ -237,16 +253,24 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
 
     @Override
     public Void visitContinue_jump(RzParser.Continue_jumpContext ctx) throws SemanticException {
+
+        String Position = "line " +  ctx.start.getLine()
+                + ":" + ctx.start.getCharPositionInLine() + " -> ";
+
         if (inLoop == 0) {
-            throw new SemanticException("Semantic Error: 'continue' is not in a loop");
+            throw new SemanticException(Position + "Semantic Error: 'continue' is not in a loop");
         }
         return null;
     }
 
     @Override
     public Void visitBreak_jump(RzParser.Break_jumpContext ctx) {
+
+        String Position = "line " +  ctx.start.getLine()
+                + ":" + ctx.start.getCharPositionInLine() + " -> ";
+
         if (inLoop == 0) {
-            throw new SemanticException("Semantic Error: 'break' is not in a loop");
+            throw new SemanticException(Position + "Semantic Error: 'break' is not in a loop");
         }
         return null;
     }

@@ -86,9 +86,9 @@ public class PrettyPrint extends RzBaseVisitor<Void> {
     public Void visitMember_decl_list(RzParser.Member_decl_listContext ctx) {
         for (int i = 0; i < ctx.ident().size(); ++i) {
             System.out.print(ctx.type(i).getText() + " " + ctx.ident(i).getText() + ";");
-            if (i != ctx.ident().size() -1) {
+//            if (i != ctx.ident().size() -1) {
                 System.out.print("\n" + tabIndent);
-            }
+//            }
         }
         return null;
     }
@@ -119,7 +119,7 @@ public class PrettyPrint extends RzBaseVisitor<Void> {
 
     @Override
     public Void visitEnter_scope(RzParser.Enter_scopeContext ctx) {
-        System.out.println("{");
+        System.out.println("{\n");
         enterScope();
         System.out.print(tabIndent);
         return null;
@@ -128,7 +128,7 @@ public class PrettyPrint extends RzBaseVisitor<Void> {
     @Override
     public Void visitExit_scope(RzParser.Exit_scopeContext ctx) {
         exitScope();
-        System.out.println("\n" +  tabIndent + "}");
+        System.out.println("\n" +  tabIndent + "}\n");
         System.out.print(tabIndent);
         return null;
     }
