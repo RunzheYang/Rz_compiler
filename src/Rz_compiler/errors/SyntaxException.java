@@ -1,6 +1,6 @@
 package Rz_compiler.errors;
 
-import Rz_compiler.semantics.SymbolTable;
+import Rz_compiler.frontend.semantics.SymbolTable;
 
 /**
  * Created by YRZ on 3/30/16.
