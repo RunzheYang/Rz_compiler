@@ -5,7 +5,7 @@ import Rz_compiler.backend.controlflow.AbstractGraph;
 /**
  * Created by YRZ on 4/23/16.
  */
-public class MemAddress {
+public class MemAddress implements Operand {
 
     private Register reg;
     private Integer offset = null;
@@ -27,5 +27,10 @@ public class MemAddress {
             return offset + "(" + reg + ")";
         }
         return regOffset + "(" + reg + ")";
+    }
+
+    @Override
+    public <T> T accpet(OperandVisitor<T> visitor) {
+        return visitor.visit(this);
     }
 }

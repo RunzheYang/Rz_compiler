@@ -11,6 +11,8 @@ public interface OperandVisitor<T> {
 
     T visit(ImmediateValue immediate);
 
+    T visit(MemAddress memAddress);
+
     T visit(Label label);
 
     T visit(NoOperand noOperand);
