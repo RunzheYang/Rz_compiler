@@ -2,20 +2,51 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16a51387-6edc-4730-ab64-700e3c74914b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/MipsInstruction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/operands/ImmediateValue.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/operands/Label.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/operands/MemAddress.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/operands/MipsRegister.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/operands/NoOperand.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/operands/Operand.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/operands/OperandVisitor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/operands/Register.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/operands/TemporaryRegister.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/CodeGenerator.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/CodeGenerator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/OptimizedIntermediateCodeGenerator.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/OptimizedIntermediateCodeGenerator.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/AbsInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/AddInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/AndInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/DivInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/MulInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/NegInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/NorInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/NotInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/OrInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/RemInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/RolInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/SllInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/SraInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/SrlInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/SubInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/XorInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BeqInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BgeInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BgtInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BleInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BltInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BneInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/JarInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/JrInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/SeqInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/SgeInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/SgtInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/SleInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/SltInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/SneInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LaINstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LbInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LhInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LiInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LwInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/MoveInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/SbInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/ShInstr.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/SwInstr.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/instructions/MipsInstruction.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/instructions/MipsInstruction.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/operands/OperandVisitor.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/operands/OperandVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/operands/TemporaryRegister.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/operands/TemporaryRegister.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java" />
     </list>
     <ignored path="Rz_compiler.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,126 +69,126 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MRazCompiler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/MRazCompiler.java">
+      <file leaf-file-name="MoveInstr.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/MoveInstr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+            <state relative-caret-position="165">
+              <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#418#419#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CodeGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java">
+      <file leaf-file-name="LaInstr.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LaInstr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="41" column="58" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="58" />
+            <state relative-caret-position="135">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#383#384#0" expanded="true" />
+                <element signature="e#416#417#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Operand.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/Operand.java">
+      <file leaf-file-name="LbInstr.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LbInstr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="44" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
-              <folding />
+            <state relative-caret-position="225">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#383#384#0" expanded="true" />
+                <element signature="e#416#417#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OperandVisitor.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/OperandVisitor.java">
+      <file leaf-file-name="LhInstr.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LhInstr.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#383#384#0" expanded="true" />
+                <element signature="e#416#417#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LwInstr.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LwInstr.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#383#384#0" expanded="true" />
+                <element signature="e#416#417#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SbInstr.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/SbInstr.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="195">
-              <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TemporaryRegister.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/TemporaryRegister.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-              <folding>
-                <element signature="e#191#192#0" expanded="true" />
-                <element signature="e#221#222#0" expanded="true" />
-                <element signature="e#267#268#0" expanded="true" />
-                <element signature="e#300#301#0" expanded="true" />
-                <element signature="e#343#344#0" expanded="true" />
-                <element signature="e#369#370#0" expanded="true" />
-                <element signature="e#437#438#0" expanded="true" />
-                <element signature="e#479#480#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PseudoInstruction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/PseudoInstruction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MipsInstruction.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/MipsInstruction.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#383#384#0" expanded="true" />
+                <element signature="e#416#417#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Label.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/Label.java">
+      <file leaf-file-name="ShInstr.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/ShInstr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+            <state relative-caret-position="225">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding>
-                <element signature="e#275#276#0" expanded="true" />
-                <element signature="e#312#313#0" expanded="true" />
-                <element signature="e#358#359#0" expanded="true" />
-                <element signature="e#390#391#0" expanded="true" />
-                <element signature="e#458#459#0" expanded="true" />
-                <element signature="e#500#501#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#383#384#0" expanded="true" />
+                <element signature="e#416#417#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MemAddress.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/MemAddress.java">
+      <file leaf-file-name="SwInstr.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/SwInstr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
-              <folding />
+            <state relative-caret-position="210">
+              <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#383#384#0" expanded="true" />
+                <element signature="e#416#417#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NoOperand.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/NoOperand.java">
+      <file leaf-file-name="LiInstr.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LiInstr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+            <state relative-caret-position="165">
+              <caret line="11" column="40" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="40" />
               <folding>
-                <element signature="e#186#187#0" expanded="true" />
-                <element signature="e#228#229#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#382#383#0" expanded="true" />
+                <element signature="e#414#415#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -184,37 +215,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Rz_compiler/semantics/GetFuncAndClassMem.java" />
-        <option value="$PROJECT_DIR$/src/Rz.g4" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/semantics/identifier/ClassType.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/semantics/identifier/ArrayType.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/semantics/identifier/FunctionType.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/semantics/PrettyPrint.java" />
-        <option value="$PROJECT_DIR$/test.mraz" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/semantics/identifier/TypeAnalyser.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/semantics/SemanticCheck.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/compiler/MRazCompiler.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instruction/PseudoInstruction.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/PseudoInstruction.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/controlflow/AbstructGraph.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/TypeAnalyser.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/controlflow/AbstractGraph.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/IntermediateCodeGenerator.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/OptimizedIntermediateCodeGenerator.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/operands/Operand.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/operands/Register.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/operands/ImmediateValue.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/operands/MemAddress.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/operands/ArgumentRegister.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/operands/FunctionReturnRegister.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/operands/MipsRegister.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/MRazCompiler.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/operands/NoOperand.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/operands/TemporaryRegister.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/MipsInstruction.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/operands/OperandVisitor.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/operands/Label.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/Abs.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Abs.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Ad.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Add.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/And.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Div.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Mul.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Neg.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Nor.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Not.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Or.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Rem.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Rol.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Sll.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Sla.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Srl.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Sra.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Sub.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Xor.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/Xor.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/seq.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/Seq.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/Sge.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/Sgt.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/Sle.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/Slt.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/Neq.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/Sne.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/Beq.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BranchInstruction.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BLable.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/Bge.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/Bgt.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/Ble.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/Blt.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/Bne.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/Jar.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/Jr.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/MoveInstr.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LiInstr.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/La.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LaINstr.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LaInstr.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LbInstr.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LhInstr.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LwInstr.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/SbInstr.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/ShInstr.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/SwInstr.java" />
       </list>
     </option>
   </component>
@@ -223,10 +274,16 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="724" />
+    <option name="height" value="800" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -254,8 +311,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -328,11 +383,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rz_compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rz_compiler" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="operands" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rz_compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -362,56 +435,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rz_compiler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rz_compiler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rz_compiler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rz_compiler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rz_compiler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rz_compiler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="codegen" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -430,6 +457,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+    <property name="FullScreen" value="true" />
   </component>
   <component name="RunManager" selected="Application.MRazCompiler">
     <configuration default="false" name="MRazCompiler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -898,12 +926,14 @@
       <workItem from="1461240584950" duration="19000" />
       <workItem from="1461240657640" duration="728000" />
       <workItem from="1461242269118" duration="1821000" />
-      <workItem from="1461377253278" duration="5997000" />
+      <workItem from="1461377253278" duration="6048000" />
+      <workItem from="1461387415069" duration="527000" />
+      <workItem from="1461387972471" duration="5045000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42641000" />
+    <option name="totallyTimeSpent" value="48264000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -915,7 +945,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="724" extended-state="0" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -927,12 +957,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32739726" sideWeight="0.503231" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32739726" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28481013" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28356165" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32739726" sideWeight="0.49676898" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -944,7 +975,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -959,7 +989,9 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="antWorkspaceConfiguration">
@@ -967,486 +999,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/GetFuncAndClassMem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/GetClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/identifier/FunctionType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="41" selection-start-line="2" selection-start-column="41" selection-end-line="2" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/MRazCompiler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="53" column="36" selection-start-line="53" selection-start-column="36" selection-end-line="53" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/SemanticCheck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/PrettyPrint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/SemanticCheck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="77" column="9" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="9" column="7" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzBaseListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/Rz.tokens">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/identifier/FunctionType.java" />
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/identifier/ClassType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/GetClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/GetFuncAndClassMem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/identifier/ArrayType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="41" selection-start-line="0" selection-start-column="41" selection-end-line="0" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/identifier/BoolType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/identifier/Identifier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/identifier/VoidType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/errors/SyntaxException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.mraz">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="12" selection-start-line="26" selection-start-column="12" selection-end-line="26" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/identifier/Variable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-          <folding>
-            <element signature="e#188#189#0" expanded="false" />
-            <element signature="e#213#214#0" expanded="false" />
-            <element signature="e#242#243#0" expanded="false" />
-            <element signature="e#269#270#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/identifier/StringType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz.g4">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2115">
-          <caret line="141" column="58" selection-start-line="141" selection-start-column="49" selection-end-line="141" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/TypeAnalyser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/controlflow/AbstractGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="19" column="23" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/local/lib/antlr-4.5.2-complete.jar!/org/antlr/v4/runtime/RuleContext.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="87" column="17" selection-start-line="87" selection-start-column="17" selection-end-line="87" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/local/lib/antlr-4.5.2-complete.jar!/org/antlr/v4/runtime/tree/ParseTree.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/IntermediateCodeGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="20" column="78" selection-start-line="20" selection-start-column="78" selection-end-line="20" selection-end-column="78" />
-          <folding>
-            <element signature="e#463#464#0" expanded="false" />
-            <element signature="e#490#491#0" expanded="false" />
-            <element signature="e#711#712#0" expanded="false" />
-            <element signature="e#738#739#0" expanded="false" />
-            <element signature="e#839#840#0" expanded="false" />
-            <element signature="e#866#867#0" expanded="false" />
-            <element signature="e#967#968#0" expanded="false" />
-            <element signature="e#994#995#0" expanded="false" />
-            <element signature="e#1107#1108#0" expanded="false" />
-            <element signature="e#1134#1135#0" expanded="false" />
-            <element signature="e#1245#1246#0" expanded="false" />
-            <element signature="e#1272#1273#0" expanded="false" />
-            <element signature="e#1375#1376#0" expanded="false" />
-            <element signature="e#1402#1403#0" expanded="false" />
-            <element signature="e#1501#1502#0" expanded="false" />
-            <element signature="e#1528#1529#0" expanded="false" />
-            <element signature="e#1625#1626#0" expanded="false" />
-            <element signature="e#1652#1653#0" expanded="false" />
-            <element signature="e#1751#1752#0" expanded="false" />
-            <element signature="e#1778#1779#0" expanded="false" />
-            <element signature="e#1869#1870#0" expanded="false" />
-            <element signature="e#1896#1897#0" expanded="false" />
-            <element signature="e#1999#2000#0" expanded="false" />
-            <element signature="e#2026#2027#0" expanded="false" />
-            <element signature="e#2127#2128#0" expanded="false" />
-            <element signature="e#2154#2155#0" expanded="false" />
-            <element signature="e#2243#2244#0" expanded="false" />
-            <element signature="e#2270#2271#0" expanded="false" />
-            <element signature="e#2369#2370#0" expanded="false" />
-            <element signature="e#2396#2397#0" expanded="false" />
-            <element signature="e#2503#2504#0" expanded="false" />
-            <element signature="e#2530#2531#0" expanded="false" />
-            <element signature="e#2631#2632#0" expanded="false" />
-            <element signature="e#2658#2659#0" expanded="false" />
-            <element signature="e#2767#2768#0" expanded="false" />
-            <element signature="e#2794#2795#0" expanded="false" />
-            <element signature="e#2901#2902#0" expanded="false" />
-            <element signature="e#2928#2929#0" expanded="false" />
-            <element signature="e#3029#3030#0" expanded="false" />
-            <element signature="e#3056#3057#0" expanded="false" />
-            <element signature="e#3159#3160#0" expanded="false" />
-            <element signature="e#3186#3187#0" expanded="false" />
-            <element signature="e#3275#3276#0" expanded="false" />
-            <element signature="e#3302#3303#0" expanded="false" />
-            <element signature="e#3405#3406#0" expanded="false" />
-            <element signature="e#3432#3433#0" expanded="false" />
-            <element signature="e#3527#3528#0" expanded="false" />
-            <element signature="e#3554#3555#0" expanded="false" />
-            <element signature="e#3659#3660#0" expanded="false" />
-            <element signature="e#3686#3687#0" expanded="false" />
-            <element signature="e#3791#3792#0" expanded="false" />
-            <element signature="e#3818#3819#0" expanded="false" />
-            <element signature="e#3917#3918#0" expanded="false" />
-            <element signature="e#3944#3945#0" expanded="false" />
-            <element signature="e#4041#4042#0" expanded="false" />
-            <element signature="e#4068#4069#0" expanded="false" />
-            <element signature="e#4177#4178#0" expanded="false" />
-            <element signature="e#4204#4205#0" expanded="false" />
-            <element signature="e#4315#4316#0" expanded="false" />
-            <element signature="e#4342#4343#0" expanded="false" />
-            <element signature="e#4443#4444#0" expanded="false" />
-            <element signature="e#4470#4471#0" expanded="false" />
-            <element signature="e#4569#4570#0" expanded="false" />
-            <element signature="e#4596#4597#0" expanded="false" />
-            <element signature="e#4687#4688#0" expanded="false" />
-            <element signature="e#4714#4715#0" expanded="false" />
-            <element signature="e#4819#4820#0" expanded="false" />
-            <element signature="e#4846#4847#0" expanded="false" />
-            <element signature="e#4951#4952#0" expanded="false" />
-            <element signature="e#4978#4979#0" expanded="false" />
-            <element signature="e#5075#5076#0" expanded="false" />
-            <element signature="e#5102#5103#0" expanded="false" />
-            <element signature="e#5199#5200#0" expanded="false" />
-            <element signature="e#5226#5227#0" expanded="false" />
-            <element signature="e#5323#5324#0" expanded="false" />
-            <element signature="e#5350#5351#0" expanded="false" />
-            <element signature="e#5447#5448#0" expanded="false" />
-            <element signature="e#5474#5475#0" expanded="false" />
-            <element signature="e#5561#5562#0" expanded="false" />
-            <element signature="e#5588#5589#0" expanded="false" />
-            <element signature="e#5685#5686#0" expanded="false" />
-            <element signature="e#5712#5713#0" expanded="false" />
-            <element signature="e#5803#5804#0" expanded="false" />
-            <element signature="e#5830#5831#0" expanded="false" />
-            <element signature="e#5935#5936#0" expanded="false" />
-            <element signature="e#5962#5963#0" expanded="false" />
-            <element signature="e#6075#6076#0" expanded="false" />
-            <element signature="e#6102#6103#0" expanded="false" />
-            <element signature="e#6201#6202#0" expanded="false" />
-            <element signature="e#6228#6229#0" expanded="false" />
-            <element signature="e#6333#6334#0" expanded="false" />
-            <element signature="e#6360#6361#0" expanded="false" />
-            <element signature="e#6453#6454#0" expanded="false" />
-            <element signature="e#6480#6481#0" expanded="false" />
-            <element signature="e#6577#6578#0" expanded="false" />
-            <element signature="e#6604#6605#0" expanded="false" />
-            <element signature="e#6705#6706#0" expanded="false" />
-            <element signature="e#6732#6733#0" expanded="false" />
-            <element signature="e#6831#6832#0" expanded="false" />
-            <element signature="e#6858#6859#0" expanded="false" />
-            <element signature="e#6965#6966#0" expanded="false" />
-            <element signature="e#6992#6993#0" expanded="false" />
-            <element signature="e#7107#7108#0" expanded="false" />
-            <element signature="e#7134#7135#0" expanded="false" />
-            <element signature="e#7251#7252#0" expanded="false" />
-            <element signature="e#7278#7279#0" expanded="false" />
-            <element signature="e#7399#7400#0" expanded="false" />
-            <element signature="e#7426#7427#0" expanded="false" />
-            <element signature="e#7531#7532#0" expanded="false" />
-            <element signature="e#7558#7559#0" expanded="false" />
-            <element signature="e#7667#7668#0" expanded="false" />
-            <element signature="e#7694#7695#0" expanded="false" />
-            <element signature="e#7774#7775#0" expanded="false" />
-            <element signature="e#7801#7802#0" expanded="false" />
-            <element signature="e#7887#7888#0" expanded="false" />
-            <element signature="e#7914#7915#0" expanded="false" />
-            <element signature="e#8008#8009#0" expanded="false" />
-            <element signature="e#8035#8036#0" expanded="false" />
-            <element signature="e#8124#8125#0" expanded="false" />
-            <element signature="e#8151#8152#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/OptimizedIntermediateCodeGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="20" column="33" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzBaseVisitor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="6" selection-start-line="29" selection-start-column="6" selection-end-line="29" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/PrettyPrint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="99" column="43" selection-start-line="99" selection-start-column="43" selection-end-line="99" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/SymbolTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/SemanticCheck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/Register.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/ArgumentRegister.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/FunctionReturnRegister.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/ImmediateValue.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-          <folding>
-            <element signature="e#192#193#0" expanded="true" />
-            <element signature="e#223#224#0" expanded="true" />
-            <element signature="e#291#292#0" expanded="true" />
-            <element signature="e#333#334#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/MipsRegister.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="24" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="24" />
-          <folding>
-            <element signature="e#364#365#0" expanded="true" />
-            <element signature="e#406#407#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/MRazCompiler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="41" column="58" selection-start-line="41" selection-start-column="58" selection-end-line="41" selection-end-column="58" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/MemAddress.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/Operand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="44" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/NoOperand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
-          <folding>
-            <element signature="e#186#187#0" expanded="true" />
-            <element signature="e#228#229#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/PseudoInstruction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -1457,18 +1009,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/TemporaryRegister.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
+        <state relative-caret-position="225">
           <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-          <folding>
-            <element signature="e#191#192#0" expanded="true" />
-            <element signature="e#221#222#0" expanded="true" />
-            <element signature="e#267#268#0" expanded="true" />
-            <element signature="e#300#301#0" expanded="true" />
-            <element signature="e#343#344#0" expanded="true" />
-            <element signature="e#369#370#0" expanded="true" />
-            <element signature="e#437#438#0" expanded="true" />
-            <element signature="e#479#480#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1482,25 +1025,534 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/Label.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
+        <state relative-caret-position="225">
           <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-          <folding>
-            <element signature="e#275#276#0" expanded="true" />
-            <element signature="e#312#313#0" expanded="true" />
-            <element signature="e#358#359#0" expanded="true" />
-            <element signature="e#390#391#0" expanded="true" />
-            <element signature="e#458#459#0" expanded="true" />
-            <element signature="e#500#501#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/MipsInstruction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+        <state relative-caret-position="225">
+          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Ad.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/AbsInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#384#385#0" expanded="false" />
+            <element signature="e#416#417#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/AddInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#399#400#0" expanded="false" />
+            <element signature="e#438#439#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/AndInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#400#401#0" expanded="false" />
+            <element signature="e#439#440#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/DivInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#400#401#0" expanded="false" />
+            <element signature="e#439#440#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/MulInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#439#440#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/NegInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#385#386#0" expanded="false" />
+            <element signature="e#417#418#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/NorInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#439#440#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/NotInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="43" selection-start-line="11" selection-start-column="43" selection-end-line="11" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#417#418#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/OrInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="57" selection-start-line="11" selection-start-column="57" selection-end-line="11" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#437#438#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/RemInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#400#401#0" expanded="false" />
+            <element signature="e#439#440#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/RolInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#439#440#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/SraInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#439#440#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/SrlInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#439#440#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/SraInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#439#440#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic/Dasd.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/SllInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#400#401#0" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/SubInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/XorInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/SeqInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#394#395#0" expanded="true" />
+            <element signature="e#433#434#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/SgeInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#433#434#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/SgtInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#433#434#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/SleInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#433#434#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/Neq.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/SltInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="58" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#433#434#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/b.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/comparison/SneInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#394#395#0" expanded="false" />
+            <element signature="e#433#434#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BranchInstruction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#407#408#0" expanded="false" />
+            <element signature="e#441#442#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BneInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#396#397#0" expanded="false" />
+            <element signature="e#436#437#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/JarInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#309#310#0" expanded="false" />
+            <element signature="e#343#344#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/JrInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#311#312#0" expanded="false" />
+            <element signature="e#343#344#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BeqInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="63" selection-start-line="11" selection-start-column="63" selection-end-line="11" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#434#435#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BgtInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="5" selection-start-line="11" selection-start-column="4" selection-end-line="13" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#396#397#0" expanded="false" />
+            <element signature="e#436#437#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BleInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#396#397#0" expanded="false" />
+            <element signature="e#436#437#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BltInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#396#397#0" expanded="false" />
+            <element signature="e#436#437#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/BgeInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#396#397#0" expanded="false" />
+            <element signature="e#436#437#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LiInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="40" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#382#383#0" expanded="true" />
+            <element signature="e#414#415#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/MoveInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="49" selection-start-line="11" selection-start-column="49" selection-end-line="11" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#418#419#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LbInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#383#384#0" expanded="true" />
+            <element signature="e#416#417#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LaInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#383#384#0" expanded="true" />
+            <element signature="e#416#417#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LhInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#383#384#0" expanded="true" />
+            <element signature="e#416#417#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/LwInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#383#384#0" expanded="true" />
+            <element signature="e#416#417#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/SbInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#383#384#0" expanded="true" />
+            <element signature="e#416#417#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/ShInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#383#384#0" expanded="true" />
+            <element signature="e#416#417#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/SwInstr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#383#384#0" expanded="true" />
+            <element signature="e#416#417#0" expanded="true" />
           </folding>
         </state>
       </provider>
