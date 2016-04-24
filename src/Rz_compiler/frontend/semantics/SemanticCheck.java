@@ -84,7 +84,7 @@ public class SemanticCheck extends RzBaseVisitor<Void> {
 
     @Override
     public Void visitFunc_def(RzParser.Func_defContext ctx) throws SemanticException {
-        //renew the outer symbol table fot function
+        //renew the outer symbol table of the function
         tpa.setCurrentFunc((FunctionType) symt.lookup(ctx.ident().getText()));
         tpa.getCurrentFunc().renewOuterSymt(symt);
         symt.add(ctx.ident().getText(), tpa.getCurrentFunc());

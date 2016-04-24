@@ -1,6 +1,7 @@
 package Rz_compiler.backend.codegen;
 
 import Rz_compiler.backend.instructions.PseudoInstruction;
+import Rz_compiler.frontend.semantics.SymbolTable;
 import Rz_compiler.frontend.syntax.RzParser;
 
 import java.util.Deque;
@@ -12,8 +13,11 @@ import java.util.LinkedList;
 public class CodeGenerator {
     private final RzParser.ProgContext program;
 
-    public CodeGenerator(RzParser.ProgContext program) {
+    private SymbolTable symbolTable;
+
+    public CodeGenerator(RzParser.ProgContext program, SymbolTable symbolTable) {
         this.program = program;
+        this.symbolTable = symbolTable;
     }
 
     public String compile(int optLevel) {
@@ -26,11 +30,12 @@ public class CodeGenerator {
             Deque<PseudoInstruction> frame;
             OptimizedIntermediateCodeGenerator codeGen;
             for (RzParser.Func_defContext func : program.func_def()) {
-                codeGen = new OptimizedIntermediateCodeGenerator(func, optLevel);
+                codeGen = new OptimizedIntermediateCodeGenerator(func, symbolTable, optLevel);
                 frame = codeGen.call();
             }
 
         } catch (Exception error) {
+            error.printStackTrace();
             System.err.println(error.getMessage());
             System.exit(1);
         }

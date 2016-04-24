@@ -1,25 +1,69 @@
 package Rz_compiler.backend.codegen;
 
+import Rz_compiler.backend.allocation.TemporaryRegisterGenerator;
 import Rz_compiler.backend.instructions.PseudoInstruction;
+import Rz_compiler.backend.instructions.load_store_move.LwInstr;
+import Rz_compiler.backend.operands.MemAddress;
+import Rz_compiler.backend.operands.MipsRegister;
+import Rz_compiler.backend.operands.TemporaryRegister;
+import Rz_compiler.frontend.semantics.SymbolTable;
+import Rz_compiler.frontend.semantics.TypeAnalyser;
+import Rz_compiler.frontend.semantics.identifier.FunctionType;
 import Rz_compiler.frontend.syntax.RzParser;
 import Rz_compiler.frontend.syntax.RzVisitor;
 import org.antlr.v4.runtime.tree.*;
 
 import java.util.Deque;
+import java.util.LinkedList;
 
 /**
  * Created by YRZ on 4/21/16.
  */
 public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruction>> {
 
+    private TypeAnalyser tpa;
+    private SymbolTable symt;
+
+    private TemporaryRegisterGenerator trg = new TemporaryRegisterGenerator();
+
+    public IntermediateCodeGenerator(SymbolTable symt) {
+        this.symt = symt;
+        tpa = new TypeAnalyser();
+    }
+
     @Override
-    public Deque<PseudoInstruction> visitProg(RzParser.ProgContext ctx) {
-        return null;
+    public Deque<PseudoInstruction> visitProg(RzParser.ProgContext ctx) throws RuntimeException {
+        throw new RuntimeException("Program can not be inside of another program");
     }
 
     @Override
     public Deque<PseudoInstruction> visitFunc_def(RzParser.Func_defContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<PseudoInstruction>();
+
+        int frameOffset = 1;
+        TemporaryRegister temporary;
+
+        tpa.setCurrentFunc((FunctionType) symt.lookup(ctx.ident().getText()));
+        tpa.getCurrentFunc().renewOuterSymt(symt);
+        symt.add(ctx.ident().getText(), tpa.getCurrentFunc());
+        tpa.setCurrentFunc((FunctionType) symt.lookup(ctx.ident().getText()));
+
+        if (ctx.getChildCount() > 5) {
+            for (RzParser.IdentContext p: ctx.param_list().ident()) {
+                temporary = trg.generate();
+                instrList.add(new LwInstr(temporary, new MemAddress(MipsRegister.$sp,
+                        frameOffset * 4)));
+                //TODO: p.getScope().lookup(p.getIdent()).setTemporaryRegister(temporary);
+                frameOffset++;
+            }
+        }
+
+        Deque<PseudoInstruction> body =  ctx.compound_stmt().accept(this);
+        if (body != null) {
+            instrList.addAll(body);
+        }
+
+        return instrList;
     }
 
     @Override

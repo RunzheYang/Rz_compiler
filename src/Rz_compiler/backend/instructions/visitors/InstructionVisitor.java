@@ -5,6 +5,7 @@ import Rz_compiler.backend.instructions.arithmetic_logic.*;
 import Rz_compiler.backend.instructions.branch_jump.*;
 import Rz_compiler.backend.instructions.comparison.*;
 import Rz_compiler.backend.instructions.load_store_move.*;
+import Rz_compiler.backend.operands.Label;
 
 import java.util.List;
 
@@ -94,4 +95,6 @@ public interface InstructionVisitor<T> {
     T visit(SwInstr swInstr);
 
     T visit(AssemblerDirective assemblerDirective);
+
+    T visit(Label label);
 }

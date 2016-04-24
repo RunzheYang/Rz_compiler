@@ -5,15 +5,12 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import Rz_compiler.backend.codegen.CodeGenerator;
-import Rz_compiler.frontend.semantics.GetClass;
-import Rz_compiler.frontend.semantics.PrettyPrint;
-import Rz_compiler.frontend.semantics.SemanticCheck;
+import Rz_compiler.frontend.semantics.*;
 import Rz_compiler.frontend.syntax.RzLexer;
 import Rz_compiler.frontend.syntax.RzParser;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 import org.antlr.v4.runtime.ANTLRInputStream;
-import Rz_compiler.frontend.semantics.GetFuncAndClassMem;
 
 public class MRazCompiler {
 
@@ -32,16 +29,17 @@ public class MRazCompiler {
         RzParser paser = new RzParser(tokens);
         ParseTree program = paser.prog();
 
-        frontendTest(paser, program, true, false);
+        SymbolTable symbolTable = frontendTest(paser, program, true, false);
 
         int optlevel = 0;
-        String mipsCode = new CodeGenerator((RzParser.ProgContext) program).compile(optlevel);
+        String mipsCode = new CodeGenerator((RzParser.ProgContext) program, symbolTable).compile(optlevel);
         System.out.println(mipsCode);
 
         System.exit(0);
     }
 
-    private static void frontendTest(RzParser paser, ParseTree tree, boolean showlog, boolean reprint) {
+    private static SymbolTable frontendTest(RzParser paser, ParseTree tree, boolean showlog, boolean reprint) {
+        SymbolTable preSymt = null;
         if (paser.getNumberOfSyntaxErrors() == 0) {
             GetClass round_1 = new GetClass(showlog);
             try {
@@ -59,6 +57,8 @@ public class MRazCompiler {
                 System.exit(1);
             }
 
+            preSymt = round_2.getSymt();
+
             SemanticCheck round_3 = new SemanticCheck(round_2.getSymt(), showlog);
             try {
                 round_3.visit(tree);
@@ -68,7 +68,7 @@ public class MRazCompiler {
             }
 
         } else {
-            System.out.println("Syntax Error: " + paser.getNumberOfSyntaxErrors());
+            System.err.println("Syntax Error: " + paser.getNumberOfSyntaxErrors());
             System.exit(1);
         }
 
@@ -76,5 +76,7 @@ public class MRazCompiler {
             PrettyPrint pprint = new PrettyPrint();
             pprint.visit(tree);
         }
+
+        return preSymt;
     }
 }
