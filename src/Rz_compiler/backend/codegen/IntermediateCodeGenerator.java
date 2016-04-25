@@ -5,13 +5,17 @@ import Rz_compiler.backend.instructions.PseudoInstruction;
 import Rz_compiler.backend.instructions.load_store_move.LwInstr;
 import Rz_compiler.backend.operands.MemAddress;
 import Rz_compiler.backend.operands.MipsRegister;
+import Rz_compiler.backend.operands.Register;
 import Rz_compiler.backend.operands.TemporaryRegister;
 import Rz_compiler.frontend.semantics.SymbolTable;
 import Rz_compiler.frontend.semantics.TypeAnalyser;
 import Rz_compiler.frontend.semantics.identifier.FunctionType;
+import Rz_compiler.frontend.semantics.identifier.Type;
+import Rz_compiler.frontend.semantics.identifier.Variable;
 import Rz_compiler.frontend.syntax.RzParser;
 import Rz_compiler.frontend.syntax.RzVisitor;
 import org.antlr.v4.runtime.tree.*;
+import sun.print.PeekGraphics;
 
 import java.util.Deque;
 import java.util.LinkedList;
@@ -25,6 +29,8 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     private SymbolTable symt;
 
     private TemporaryRegisterGenerator trg = new TemporaryRegisterGenerator();
+
+    private Register returnRegister = null;
 
     public IntermediateCodeGenerator(SymbolTable symt) {
         this.symt = symt;
@@ -49,7 +55,8 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
         tpa.setCurrentFunc((FunctionType) symt.lookup(ctx.ident().getText()));
 
         if (ctx.getChildCount() > 5) {
-            for (RzParser.IdentContext p: ctx.param_list().ident()) {
+            instrList.addAll(ctx.param_list().accept(this));
+            for (RzParser.IdentContext para: ctx.param_list().ident()) {
                 temporary = trg.generate();
                 instrList.add(new LwInstr(temporary, new MemAddress(MipsRegister.$sp,
                         frameOffset * 4)));
@@ -57,18 +64,24 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                 frameOffset++;
             }
         }
+        instrList.addAll(ctx.compound_stmt().accept(this));
 
-        Deque<PseudoInstruction> body =  ctx.compound_stmt().accept(this);
-        if (body != null) {
-            instrList.addAll(body);
-        }
 
         return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitVar_decl(RzParser.Var_declContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+
+        String varname = ctx.init_declarator().ident().getText();
+        Type vartype = tpa.getTypeofType(ctx.type(), symt);
+        Variable var = new Variable(vartype);
+        symt.add(varname, var);
+
+        instrList.addAll(ctx.init_declarator().accept(this));
+
+        return instrList;
     }
 
     @Override
@@ -78,22 +91,29 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
     @Override
     public Deque<PseudoInstruction> visitParam_list(RzParser.Param_listContext ctx) {
-        return null;
+        return new LinkedList<>();
     }
 
     @Override
     public Deque<PseudoInstruction> visitMember_decl_list(RzParser.Member_decl_listContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitInit_declarator(RzParser.Init_declaratorContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        if (ctx.getChildCount() > 1) {
+            instrList.addAll(ctx.initializer().accept(this));
+        }
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitInitializer(RzParser.InitializerContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.expr().accept(this));
+        return instrList;
     }
 
     @Override
@@ -118,27 +138,50 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
     @Override
     public Deque<PseudoInstruction> visitEnter_scope(RzParser.Enter_scopeContext ctx) {
-        return null;
+        if (tpa.isInFunc()) {
+            SymbolTable symbolTable = new SymbolTable(symt);
+            this.symt = symbolTable;
+        } else {
+            tpa.setInFunc();
+            SymbolTable symbolTable = tpa.getCurrentFunc().getSymTable();
+            this.symt = symbolTable;
+        }
+
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitExit_scope(RzParser.Exit_scopeContext ctx) {
-        return null;
+        SymbolTable symbolTable = symt.getParent();
+        this.symt = symbolTable;
+
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitStmt(RzParser.StmtContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitExpr_stmt(RzParser.Expr_stmtContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitCompound_stmt(RzParser.Compound_stmtContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.enter_scope().accept(this));
+        int statementCnt = ctx.getChildCount() - 2;
+        for (int i = 1; i < statementCnt; ++i) {
+            instrList.addAll(ctx.getChild(i).accept(this));
+        }
+        instrList.addAll(ctx.exit_scope().accept(this));
+        return instrList;
     }
 
     @Override
@@ -168,7 +211,8 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
     @Override
     public Deque<PseudoInstruction> visitExpr(RzParser.ExprContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
