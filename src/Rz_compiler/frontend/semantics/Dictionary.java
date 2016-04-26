@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Created by YRZ on 3/30/16.
  */
-public class Dictionary {
+public class Dictionary implements Cloneable {
 
     Map<String, Identifier> dictionary;
 
@@ -27,5 +27,19 @@ public class Dictionary {
     public Identifier lookup(String name) {
         Identifier idf =  dictionary.get(name);
         return idf;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Dictionary o = (Dictionary) super.clone();
+        o.dictionary = new HashMap<String, Identifier>();
+        if (dictionary.keySet().size() != 0) {
+            for (String name : dictionary.keySet()) {
+                String key = name;
+                Identifier ident = (Identifier) dictionary.get(name).clone();
+                o.add(key, ident);
+            }
+        }
+        return o;
     }
 }

@@ -3,6 +3,7 @@ package Rz_compiler.backend.codegen;
 import Rz_compiler.backend.allocation.TemporaryRegisterGenerator;
 import Rz_compiler.backend.instructions.PseudoInstruction;
 import Rz_compiler.backend.instructions.load_store_move.LwInstr;
+import Rz_compiler.backend.instructions.load_store_move.MoveInstr;
 import Rz_compiler.backend.operands.MemAddress;
 import Rz_compiler.backend.operands.MipsRegister;
 import Rz_compiler.backend.operands.Register;
@@ -10,6 +11,7 @@ import Rz_compiler.backend.operands.TemporaryRegister;
 import Rz_compiler.frontend.semantics.SymbolTable;
 import Rz_compiler.frontend.semantics.TypeAnalyser;
 import Rz_compiler.frontend.semantics.identifier.FunctionType;
+import Rz_compiler.frontend.semantics.identifier.Identifier;
 import Rz_compiler.frontend.semantics.identifier.Type;
 import Rz_compiler.frontend.semantics.identifier.Variable;
 import Rz_compiler.frontend.syntax.RzParser;
@@ -30,7 +32,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
     private TemporaryRegisterGenerator trg = new TemporaryRegisterGenerator();
 
-    private Register returnRegister = null;
+    private Register returnOperand = null;
 
     public IntermediateCodeGenerator(SymbolTable symt) {
         this.symt = symt;
@@ -85,6 +87,32 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     }
 
     @Override
+    public Deque<PseudoInstruction> visitInit_declarator(RzParser.Init_declaratorContext ctx) {
+
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        if (ctx.getChildCount() > 1) {
+            instrList.addAll(ctx.initializer().accept(this));
+            Register rhsReg = returnOperand;
+            Register varReg = symt.lookup(ctx.ident().getText()).getRegister();
+
+            if (varReg == null) {
+                varReg = trg.generate();
+                symt.lookup(ctx.ident().getText()).setRegister((TemporaryRegister) varReg);
+            }
+            instrList.add(new MoveInstr(varReg, rhsReg));
+            returnOperand = varReg;
+        }
+        return instrList;
+    }
+
+    @Override
+    public Deque<PseudoInstruction> visitInitializer(RzParser.InitializerContext ctx) {
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.expr().accept(this));
+        return instrList;
+    }
+
+    @Override
     public Deque<PseudoInstruction> visitClass_decl(RzParser.Class_declContext ctx) {
         return null;
     }
@@ -97,22 +125,6 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitMember_decl_list(RzParser.Member_decl_listContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
-        return instrList;
-    }
-
-    @Override
-    public Deque<PseudoInstruction> visitInit_declarator(RzParser.Init_declaratorContext ctx) {
-        Deque<PseudoInstruction> instrList = new LinkedList<>();
-        if (ctx.getChildCount() > 1) {
-            instrList.addAll(ctx.initializer().accept(this));
-        }
-        return instrList;
-    }
-
-    @Override
-    public Deque<PseudoInstruction> visitInitializer(RzParser.InitializerContext ctx) {
-        Deque<PseudoInstruction> instrList = new LinkedList<>();
-        instrList.addAll(ctx.expr().accept(this));
         return instrList;
     }
 
@@ -212,12 +224,29 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitExpr(RzParser.ExprContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.assign_expr().accept(this));
         return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitAssign_expr(RzParser.Assign_exprContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        if (ctx.getChildCount() > 1) {
+            instrList.addAll(ctx.assign_expr().accept(this));
+            Register rhsReg = returnOperand;
+            Register lhsReg = tpa.getIdentofUnaryExpr(ctx.unary_expr(), symt).getRegister();
+            if (lhsReg == null) {
+                tpa.getIdentofUnaryExpr(ctx.unary_expr(), symt).setRegister(trg.generate());
+            } else {
+                System.err.println(lhsReg.toString());
+                instrList.add(new MoveInstr(lhsReg, rhsReg));
+            }
+            returnOperand = lhsReg;
+        } else {
+            instrList.addAll(ctx.expression().accept(this));
+        }
+
+        return instrList;
     }
 
     @Override
@@ -257,62 +286,74 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
     @Override
     public Deque<PseudoInstruction> visitUnary_expr(RzParser.Unary_exprContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitLOGIC_AND(RzParser.LOGIC_ANDContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitSHIFT(RzParser.SHIFTContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitINCLUSIVE_OR(RzParser.INCLUSIVE_ORContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitEXCLUSIVE_OR(RzParser.EXCLUSIVE_ORContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitADDITIVE(RzParser.ADDITIVEContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitRELATION(RzParser.RELATIONContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitLOGIC_OR(RzParser.LOGIC_ORContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitEQUALITY(RzParser.EQUALITYContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitAND(RzParser.ANDContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitCREATION(RzParser.CREATIONContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitMULTI(RzParser.MULTIContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override

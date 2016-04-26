@@ -5,7 +5,7 @@ import Rz_compiler.frontend.semantics.identifier.Identifier;
 /**
  * Created by YRZ on 3/30/16.
  */
-public class SymbolTable {
+public class SymbolTable implements Cloneable {
     private SymbolTable parent;
     private Dictionary dict;
 
@@ -50,5 +50,16 @@ public class SymbolTable {
             }
         }
         return null;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        SymbolTable o = (SymbolTable) super.clone();
+        o.parent = null;
+        if (parent != null) {
+            o.parent = (SymbolTable) parent.clone();
+        }
+        o.dict = (Dictionary) dict.clone();
+        return o;
     }
 }

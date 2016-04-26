@@ -14,7 +14,7 @@ import org.antlr.v4.runtime.ANTLRInputStream;
 
 public class MRazCompiler {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, CloneNotSupportedException {
 
         String inputFile = null;
         if (args.length > 0)
@@ -38,7 +38,7 @@ public class MRazCompiler {
         System.exit(0);
     }
 
-    private static SymbolTable frontendTest(RzParser paser, ParseTree tree, boolean showlog, boolean reprint) {
+    private static SymbolTable frontendTest(RzParser paser, ParseTree tree, boolean showlog, boolean reprint) throws CloneNotSupportedException {
         SymbolTable preSymt = null;
         if (paser.getNumberOfSyntaxErrors() == 0) {
             GetClass round_1 = new GetClass(showlog);
@@ -57,7 +57,7 @@ public class MRazCompiler {
                 System.exit(1);
             }
 
-            preSymt = round_2.getSymt();
+            preSymt = (SymbolTable) round_2.getSymt().clone();
 
             SemanticCheck round_3 = new SemanticCheck(round_2.getSymt(), showlog);
             try {

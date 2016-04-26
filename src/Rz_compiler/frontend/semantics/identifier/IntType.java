@@ -17,4 +17,9 @@ public class IntType extends Type {
         }
         return false;
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

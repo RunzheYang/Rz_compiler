@@ -37,4 +37,19 @@ public class ClassType extends Type {
     public boolean equals(Object o) {
         return o.toString().equals(classname);
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        ClassType o = (ClassType) super.clone();
+        o.classname = classname;
+        o.members = new HashMap<>();
+        if (members.keySet().size() > 0) {
+            for (String name : members.keySet()) {
+                String newname = name;
+                Variable newvar = (Variable) members.get(name).clone();
+            }
+        }
+
+        return o;
+    }
 }

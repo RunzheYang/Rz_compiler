@@ -55,6 +55,11 @@ Mo xu(Mo m0, RedBoy boys){
 }
 
 int main(){
+
+    int kkk;
+    int jjj;
+    kkk = jjj = 2 + 1;
+
 	//test initialization
 	int a;
 	int b;

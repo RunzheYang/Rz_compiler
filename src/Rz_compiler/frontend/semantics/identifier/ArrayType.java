@@ -74,4 +74,13 @@ public class ArrayType extends Type{
         }
         return false;
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        ArrayType o = (ArrayType) super.clone();
+        o.basedtype = (Type) basedtype.clone();
+        o.dim = dim;
+        o.linetype = (Type) linetype.clone();
+        return o;
+    }
 }

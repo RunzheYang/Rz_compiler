@@ -15,4 +15,10 @@ public class Variable extends Identifier {
     public Type getType() {
         return type;
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Variable o = (Variable) super.clone();
+        return o;
+    }
 }

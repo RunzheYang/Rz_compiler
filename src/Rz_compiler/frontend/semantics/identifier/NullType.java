@@ -9,4 +9,9 @@ public class NullType extends Type {
     public String toString() {
         return "null";
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

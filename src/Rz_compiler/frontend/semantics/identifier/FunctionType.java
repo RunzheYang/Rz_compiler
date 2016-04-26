@@ -58,4 +58,23 @@ public class FunctionType extends Identifier {
     public String toString() {
         return "function";
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        FunctionType o = (FunctionType) super.clone();
+        o.returnType =null;
+        if (returnType != null) {
+            o.returnType = (Type) returnType.clone();
+        }
+        o.symt = new SymbolTable();
+        o.parameters = new ArrayList<>();
+        if (parameters.size() > 0) {
+            for (Type para : parameters) {
+                Type newpara = (Type) para.clone();
+                o.parameters.add(newpara);
+            }
+        }
+
+        return o;
+    }
 }
