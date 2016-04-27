@@ -11,7 +11,7 @@ import Rz_compiler.backend.operands.Operand;
 public class BneInstr extends MipsInstruction implements PseudoInstruction {
 
     public BneInstr(Operand src1, Operand src2, Operand label) {
-        super(label, src1, src2);
+        super(src1, src2, label);
     }
 
     @Override

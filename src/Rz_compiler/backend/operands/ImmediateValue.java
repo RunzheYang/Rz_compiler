@@ -11,6 +11,15 @@ public class ImmediateValue implements Operand {
         this.num = num;
     }
 
+    public ImmediateValue(boolean num) {
+        if (num) this.num = 1;
+        else this.num = 0;
+    }
+
+    public int getValue() {
+        return num;
+    }
+
     @Override
     public String toString() {
         return "" + num;

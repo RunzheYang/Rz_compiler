@@ -1,6 +1,6 @@
 package Rz_compiler.backend.instructions;
 
-import Rz_compiler.backend.operands.MipsRegister;
+import Rz_compiler.backend.operands.ImmediateValue;
 import Rz_compiler.backend.operands.NoOperand;
 import Rz_compiler.backend.operands.Operand;
 

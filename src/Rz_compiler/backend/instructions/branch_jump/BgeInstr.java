@@ -11,7 +11,7 @@ import Rz_compiler.backend.operands.Operand;
 public class BgeInstr extends MipsInstruction implements PseudoInstruction {
 
     public BgeInstr(Operand src1, Operand src2, Operand label) {
-        super(label, src1, src2);
+        super(src1, src2, label);
     }
 
     @Override

@@ -2,8 +2,10 @@ package Rz_compiler.backend.codegen;
 
 import Rz_compiler.backend.allocation.TemporaryRegisterGenerator;
 import Rz_compiler.backend.instructions.PseudoInstruction;
-import Rz_compiler.backend.instructions.arithmetic_logic.AddInstr;
-import Rz_compiler.backend.instructions.arithmetic_logic.SubInstr;
+import Rz_compiler.backend.instructions.arithmetic_logic.*;
+import Rz_compiler.backend.instructions.branch_jump.BeqInstr;
+import Rz_compiler.backend.instructions.branch_jump.BneInstr;
+import Rz_compiler.backend.instructions.comparison.*;
 import Rz_compiler.backend.instructions.load_store_move.LiInstr;
 import Rz_compiler.backend.instructions.load_store_move.LwInstr;
 import Rz_compiler.backend.instructions.load_store_move.MoveInstr;
@@ -19,6 +21,7 @@ import Rz_compiler.frontend.syntax.RzVisitor;
 import org.antlr.v4.runtime.tree.*;
 import sun.print.PeekGraphics;
 
+import java.sql.ResultSet;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -190,6 +193,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitExpr_stmt(RzParser.Expr_stmtContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.assign_expr().accept(this));
         return instrList;
     }
 
@@ -268,26 +272,143 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     }
 
     @Override
-    public Deque<PseudoInstruction> visitLOGIC_AND(RzParser.LOGIC_ANDContext ctx) {
+    public Deque<PseudoInstruction> visitSHIFT(RzParser.SHIFTContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg = returnOperand;
+        instrList.addAll(ctx.expression(0).accept(this));
+        Operand lhsReg = returnOperand;
+
+        if (lhsReg == null) {
+            lhsReg = trg.generate();
+            tpa.getIdentofExpression(ctx.expression(0), symt).setRegister(((TemporaryRegister) lhsReg));
+        }
+
+        if (ctx.op.getText().equals("<<")) {
+            if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+                int combined = ((ImmediateValue) lhsReg).getValue() << ((ImmediateValue) rhsReg).getValue();
+                returnOperand = new ImmediateValue(combined);
+            } else {
+                Register resultReg = trg.generate();
+                if (lhsReg instanceof ImmediateValue) {
+                    instrList.add(new LiInstr(resultReg, lhsReg));
+                    lhsReg = resultReg;
+                }
+                instrList.add(new SllInstr(resultReg, lhsReg, rhsReg));
+                returnOperand = resultReg;
+            }
+        } else {
+            if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+                int combined = ((ImmediateValue) lhsReg).getValue() >> ((ImmediateValue) rhsReg).getValue();
+                returnOperand = new ImmediateValue(combined);
+            } else if (ctx.op.getText().equals(">>")) {
+                Register resultReg = trg.generate();
+                if (lhsReg instanceof ImmediateValue) {
+                    instrList.add(new LiInstr(resultReg, lhsReg));
+                    lhsReg = resultReg;
+                }
+                instrList.add(new SraInstr(resultReg, lhsReg, rhsReg));
+                returnOperand = resultReg;
+            }
+        }
+
         return instrList;
     }
 
     @Override
-    public Deque<PseudoInstruction> visitSHIFT(RzParser.SHIFTContext ctx) {
+    public Deque<PseudoInstruction> visitAND(RzParser.ANDContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg = returnOperand;
+        instrList.addAll(ctx.expression(0).accept(this));
+        Operand lhsReg = returnOperand;
+
+        if (lhsReg == null) {
+            lhsReg = trg.generate();
+            tpa.getIdentofExpression(ctx.expression(0), symt).setRegister((TemporaryRegister) lhsReg);
+        }
+
+        if (ctx.op.getText().equals("&")) {
+            if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+                int combined = ((ImmediateValue) lhsReg).getValue() & ((ImmediateValue) rhsReg).getValue();
+                returnOperand = new ImmediateValue(combined);
+            } else {
+                Register resultReg = trg.generate();
+                if (lhsReg instanceof ImmediateValue) {
+                    Operand swap = lhsReg;
+                    lhsReg = rhsReg;
+                    rhsReg = swap;
+                }
+                instrList.add(new AndInstr(resultReg, lhsReg, rhsReg));
+                returnOperand = resultReg;
+            }
+
+        }
+
         return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitINCLUSIVE_OR(RzParser.INCLUSIVE_ORContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg = returnOperand;
+        instrList.addAll(ctx.expression(0).accept(this));
+        Operand lhsReg = returnOperand;
+
+        if (lhsReg == null) {
+            lhsReg = trg.generate();
+            tpa.getIdentofExpression(ctx.expression(0), symt).setRegister((TemporaryRegister) lhsReg);
+        }
+
+        if (ctx.op.getText().equals("|")) {
+            if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+                int combined = ((ImmediateValue) lhsReg).getValue() | ((ImmediateValue) rhsReg).getValue();
+                returnOperand = new ImmediateValue(combined);
+            } else {
+                Register resultReg = trg.generate();
+                if (lhsReg instanceof ImmediateValue) {
+                    Operand swap = lhsReg;
+                    lhsReg = rhsReg;
+                    rhsReg = swap;
+                }
+                instrList.add(new OrInstr(resultReg, lhsReg, rhsReg));
+                returnOperand = resultReg;
+            }
+        }
+
         return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitEXCLUSIVE_OR(RzParser.EXCLUSIVE_ORContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg = returnOperand;
+        instrList.addAll(ctx.getChild(0).accept(this));
+        Operand lhsReg= returnOperand;
+
+        if (lhsReg == null) {
+            lhsReg = trg.generate();
+            tpa.getIdentofExpression(ctx.expression(0), symt).setRegister((TemporaryRegister) lhsReg);
+        }
+
+        if (ctx.op.getText().equals("^")) {
+            if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+                int combined = ((ImmediateValue) lhsReg).getValue() ^ ((ImmediateValue) rhsReg).getValue();
+                returnOperand = new ImmediateValue(combined);
+            } else {
+                Register resultReg = trg.generate();
+                if (lhsReg instanceof ImmediateValue) {
+                    Operand swap = lhsReg;
+                    lhsReg = rhsReg;
+                    rhsReg = swap;
+                }
+                instrList.add(new XorInstr(resultReg, lhsReg, rhsReg));
+                returnOperand = resultReg;
+            }
+        }
+
         return instrList;
     }
 
@@ -297,22 +418,99 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
         instrList.addAll(ctx.expression(1).accept(this));
         Operand rhsReg = returnOperand;
         instrList.addAll(ctx.expression(0).accept(this));
-        Register lhsReg = tpa.getIdentofExpression(ctx.expression(0), symt).getRegister();
+        Operand lhsReg = returnOperand;
 
         if (lhsReg == null) {
             lhsReg = trg.generate();
-            tpa.getIdentofUnaryExpr(ctx.expression(0), symt).setRegister((TemporaryRegister) lhsReg);
+            tpa.getIdentofExpression(ctx.expression(0), symt).setRegister((TemporaryRegister) lhsReg);
         }
-
-        Register resultReg = trg.generate();
 
         if (ctx.op.getText().equals("+")) {
-            instrList.add(new AddInstr(resultReg, lhsReg, rhsReg));
+            if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+                int combined = (((ImmediateValue) lhsReg).getValue() + ((ImmediateValue) rhsReg).getValue());
+                returnOperand = new ImmediateValue(combined);
+            } else {
+                Register resultReg = trg.generate();
+                if (lhsReg instanceof ImmediateValue) {
+                    Operand swap = lhsReg;
+                    lhsReg = rhsReg;
+                    rhsReg = swap;
+                }
+                instrList.add(new AddInstr(resultReg, lhsReg, rhsReg));
+                returnOperand = resultReg;
+            }
         } else {
-            instrList.add(new SubInstr(resultReg, lhsReg, rhsReg));
+            if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+                int combined = (((ImmediateValue) lhsReg).getValue() - ((ImmediateValue) rhsReg).getValue());
+                returnOperand = new ImmediateValue(combined);
+            } else {
+                Register resultReg = trg.generate();
+                if (lhsReg instanceof ImmediateValue) {
+                    instrList.add(new LiInstr(resultReg, lhsReg));
+                    lhsReg = resultReg;
+                }
+                instrList.add(new SubInstr(resultReg, lhsReg, rhsReg));
+                returnOperand = resultReg;
+            }
         }
 
-        returnOperand = resultReg;
+        return instrList;
+    }
+
+    @Override
+    public Deque<PseudoInstruction> visitMULTI(RzParser.MULTIContext ctx) {
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg = returnOperand;
+        instrList.addAll(ctx.expression(0).accept(this));
+        Operand lhsReg = returnOperand;
+
+        if (lhsReg == null) {
+            lhsReg = trg.generate();
+            tpa.getIdentofExpression(ctx.expression(0), symt).setRegister((TemporaryRegister) lhsReg);
+        }
+
+        if (ctx.op.getText().equals("*")) {
+            if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+                int combined = ((ImmediateValue) lhsReg).getValue() * ((ImmediateValue) rhsReg).getValue();
+                returnOperand = new ImmediateValue(combined);
+            } else {
+                Register resultReg = trg.generate();
+                if (lhsReg instanceof ImmediateValue) {
+                    Operand swap = lhsReg;
+                    lhsReg = rhsReg;
+                    rhsReg = swap;
+                }
+                instrList.add(new MulInstr(resultReg, lhsReg, rhsReg));
+                returnOperand = resultReg;
+            }
+        } else if (ctx.op.getText().equals("/")) {
+            if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+                int combined = ((ImmediateValue) lhsReg).getValue() / ((ImmediateValue) rhsReg).getValue();
+                returnOperand = new ImmediateValue(combined);
+            } else {
+                Register resultReg = trg.generate();
+                if (lhsReg instanceof ImmediateValue) {
+                    instrList.add(new LiInstr(resultReg, lhsReg));
+                    lhsReg = resultReg;
+                }
+                instrList.add(new DivInstr(resultReg, lhsReg, rhsReg));
+                returnOperand = resultReg;
+            }
+        } else if (ctx.op.getText().equals("%")) {
+            if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+                int combined = ((ImmediateValue) lhsReg).getValue() % ((ImmediateValue) rhsReg).getValue();
+                returnOperand = new ImmediateValue(combined);
+            } else {
+                Register resultReg = trg.generate();
+                if (lhsReg instanceof ImmediateValue) {
+                    instrList.add(new LiInstr(resultReg, lhsReg));
+                    lhsReg = resultReg;
+                }
+                instrList.add(new RemInstr(resultReg, lhsReg, rhsReg));
+                returnOperand = resultReg;
+            }
+        }
 
         return instrList;
     }
@@ -320,32 +518,197 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitRELATION(RzParser.RELATIONContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
-        return instrList;
-    }
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg =  returnOperand;
+        instrList.addAll(ctx.expression(0).accept(this));
+        Operand lhsReg = returnOperand;
 
-    @Override
-    public Deque<PseudoInstruction> visitLOGIC_OR(RzParser.LOGIC_ORContext ctx) {
-        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        if (lhsReg == null) {
+            lhsReg = trg.generate();
+            tpa.getIdentofExpression(ctx.expression(0), symt).setRegister((TemporaryRegister) lhsReg);
+        }
+
+        if (ctx.op.getText().equals("<")) {
+            if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+                boolean combined = ((ImmediateValue) lhsReg).getValue() < ((ImmediateValue) rhsReg).getValue();
+                returnOperand = new ImmediateValue(combined);
+            } else {
+                Register resultReg = trg.generate();
+                if (lhsReg instanceof ImmediateValue) {
+                    Operand swap = lhsReg;
+                    lhsReg = rhsReg;
+                    rhsReg = swap;
+                    instrList.add(new SgtInstr(resultReg, lhsReg, rhsReg));
+                } else {
+                    instrList.add(new SltInstr(resultReg, lhsReg, rhsReg));
+                }
+                returnOperand = resultReg;
+            }
+        } else if (ctx.op.getText().equals(">")) {
+            if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+                boolean combined = ((ImmediateValue) lhsReg).getValue() > ((ImmediateValue) rhsReg).getValue();
+                returnOperand = new ImmediateValue(combined);
+            } else {
+                Register resultReg = trg.generate();
+                if (lhsReg instanceof ImmediateValue) {
+                    Operand swap = lhsReg;
+                    lhsReg = rhsReg;
+                    rhsReg = swap;
+                    instrList.add(new SltInstr(resultReg, lhsReg, rhsReg));
+                } else {
+                    instrList.add(new SgtInstr(resultReg, lhsReg, rhsReg));
+                }
+                returnOperand = resultReg;
+            }
+        } else if (ctx.op.getText().equals("<=")) {
+            if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+                boolean combined = ((ImmediateValue) lhsReg).getValue() <= ((ImmediateValue) rhsReg).getValue();
+                returnOperand = new ImmediateValue(combined);
+            } else {
+                Register resultReg = trg.generate();
+                if (lhsReg instanceof ImmediateValue) {
+                    Operand swap = lhsReg;
+                    lhsReg = rhsReg;
+                    rhsReg = swap;
+                    instrList.add(new SgeInstr(resultReg, lhsReg, rhsReg));
+                } else {
+                    instrList.add(new SleInstr(resultReg, lhsReg, rhsReg));
+                }
+                returnOperand = resultReg;
+            }
+        } else if (ctx.op.getText().equals(">=")) {
+            if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+                boolean combined = ((ImmediateValue) lhsReg).getValue() >= ((ImmediateValue) rhsReg).getValue();
+                returnOperand = new ImmediateValue(combined);
+            } else {
+                Register resultReg = trg.generate();
+                if (lhsReg instanceof ImmediateValue) {
+                    Operand swap = lhsReg;
+                    lhsReg = rhsReg;
+                    rhsReg = swap;
+                    instrList.add(new SleInstr(resultReg, lhsReg, rhsReg));
+                } else {
+                    instrList.add(new SgeInstr(resultReg, lhsReg, rhsReg));
+                }
+                returnOperand = resultReg;
+            }
+        }
+
         return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitEQUALITY(RzParser.EQUALITYContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg = returnOperand;
+        instrList.addAll(ctx.expression(0).accept(this));
+        Operand lhsReg = returnOperand;
+
+        if (lhsReg == null) {
+            lhsReg = trg.generate();
+            tpa.getIdentofExpression(ctx.expression(0), symt).setRegister((TemporaryRegister) lhsReg);
+        }
+
+        if (ctx.op.getText().equals("==")) {
+            if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+                boolean combined = ((ImmediateValue) lhsReg).getValue() == ((ImmediateValue) rhsReg).getValue();
+                returnOperand = new ImmediateValue(combined);
+            } else {
+                Register resultReg = trg.generate();
+                if (lhsReg instanceof ImmediateValue) {
+                    Operand swap = lhsReg;
+                    lhsReg = rhsReg;
+                    rhsReg = swap;
+                }
+
+                instrList.add(new SeqInstr(resultReg, lhsReg, rhsReg));
+
+                returnOperand = resultReg;
+            }
+        } else if (ctx.op.getText().equals("!=")) {
+            if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+                boolean combined = ((ImmediateValue) lhsReg).getValue() != ((ImmediateValue) rhsReg).getValue();
+                returnOperand = new ImmediateValue(combined);
+            } else {
+                Register resultReg = trg.generate();
+                if (lhsReg instanceof ImmediateValue) {
+                    Operand swap = lhsReg;
+                    lhsReg = rhsReg;
+                    rhsReg = swap;
+                }
+
+                instrList.add(new SneInstr(resultReg, lhsReg, rhsReg));
+
+                returnOperand = resultReg;
+            }
+        }
+
         return instrList;
     }
 
     @Override
-    public Deque<PseudoInstruction> visitAND(RzParser.ANDContext ctx) {
+    public Deque<PseudoInstruction> visitLOGIC_AND(RzParser.LOGIC_ANDContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.expression(0).accept(this));
+        Operand lhsReg = returnOperand;
+        Label isfalse = new Label();
+
+        instrList.add(new BeqInstr(MipsRegister.$zero, lhsReg, isfalse));
+
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg = returnOperand;
+
+        if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+            int combined = ((ImmediateValue) lhsReg).getValue() & ((ImmediateValue) rhsReg).getValue();
+            returnOperand = new ImmediateValue(combined);
+        } else {
+            Operand resultReg = trg.generate();
+            if (lhsReg instanceof ImmediateValue) {
+                Operand swap = lhsReg;
+                lhsReg = rhsReg;
+                rhsReg = swap;
+            }
+            instrList.add(new AndInstr(resultReg, lhsReg, rhsReg));
+            returnOperand = resultReg;
+        }
+
+        instrList.add(isfalse);
+
         return instrList;
     }
 
     @Override
-    public Deque<PseudoInstruction> visitMULTI(RzParser.MULTIContext ctx) {
+    public Deque<PseudoInstruction> visitLOGIC_OR(RzParser.LOGIC_ORContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.expression(0).accept(this));
+        Operand lhsReg = returnOperand;
+        Label istrue = new Label();
+
+        instrList.add(new BneInstr(MipsRegister.$zero, lhsReg, istrue));
+
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg = returnOperand;
+
+        if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
+            int combined = ((ImmediateValue) lhsReg).getValue() | ((ImmediateValue) rhsReg).getValue();
+            returnOperand = new ImmediateValue(combined);
+        } else {
+            Operand resultReg = trg.generate();
+            if (lhsReg instanceof ImmediateValue) {
+                Operand swap = lhsReg;
+                lhsReg = rhsReg;
+                rhsReg = swap;
+            }
+            instrList.add(new OrInstr(resultReg, lhsReg, rhsReg));
+            returnOperand = resultReg;
+        }
+
+        instrList.add(istrue);
+
         return instrList;
     }
+
 
     @Override
     public Deque<PseudoInstruction> visitCREATION(RzParser.CREATIONContext ctx) {
@@ -450,6 +813,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitPrimary_ident(RzParser.Primary_identContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        returnOperand = tpa.getIdentofPrimary(ctx, symt).getRegister();
         return instrList;
     }
 
@@ -462,7 +826,13 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
     @Override
     public Deque<PseudoInstruction> visitPrimary_const_bool(RzParser.Primary_const_boolContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        if (ctx.BOOLCONST().getText().equals("true")) {
+            returnOperand = new ImmediateValue(1);
+        } else {
+            returnOperand = new ImmediateValue(0);
+        }
+        return instrList;
     }
 
     @Override
@@ -477,7 +847,9 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
     @Override
     public Deque<PseudoInstruction> visitPrimary_PexprP(RzParser.Primary_PexprPContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.expr().accept(this));
+        return instrList;
     }
 
     @Override
