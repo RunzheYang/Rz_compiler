@@ -2,12 +2,12 @@ package Rz_compiler.backend.codegen;
 
 import Rz_compiler.backend.allocation.TemporaryRegisterGenerator;
 import Rz_compiler.backend.instructions.PseudoInstruction;
+import Rz_compiler.backend.instructions.arithmetic_logic.AddInstr;
+import Rz_compiler.backend.instructions.arithmetic_logic.SubInstr;
+import Rz_compiler.backend.instructions.load_store_move.LiInstr;
 import Rz_compiler.backend.instructions.load_store_move.LwInstr;
 import Rz_compiler.backend.instructions.load_store_move.MoveInstr;
-import Rz_compiler.backend.operands.MemAddress;
-import Rz_compiler.backend.operands.MipsRegister;
-import Rz_compiler.backend.operands.Register;
-import Rz_compiler.backend.operands.TemporaryRegister;
+import Rz_compiler.backend.operands.*;
 import Rz_compiler.frontend.semantics.SymbolTable;
 import Rz_compiler.frontend.semantics.TypeAnalyser;
 import Rz_compiler.frontend.semantics.identifier.FunctionType;
@@ -32,7 +32,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
     private TemporaryRegisterGenerator trg = new TemporaryRegisterGenerator();
 
-    private Register returnOperand = null;
+    private Operand returnOperand = null;
 
     public IntermediateCodeGenerator(SymbolTable symt) {
         this.symt = symt;
@@ -58,16 +58,15 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
         if (ctx.getChildCount() > 5) {
             instrList.addAll(ctx.param_list().accept(this));
-            for (RzParser.IdentContext para: ctx.param_list().ident()) {
-                temporary = trg.generate();
-                instrList.add(new LwInstr(temporary, new MemAddress(MipsRegister.$sp,
-                        frameOffset * 4)));
+//            for (RzParser.IdentContext para: ctx.param_list().ident()) {
+//                temporary = trg.generate();
+//                instrList.add(new LwInstr(temporary, new MemAddress(MipsRegister.$sp,
+//                        frameOffset * 4)));
                 //TODO: p.getScope().lookup(p.getIdent()).setTemporaryRegister(temporary);
-                frameOffset++;
-            }
+//                frameOffset++;
+//            }
         }
         instrList.addAll(ctx.compound_stmt().accept(this));
-
 
         return instrList;
     }
@@ -92,14 +91,18 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
         Deque<PseudoInstruction> instrList = new LinkedList<>();
         if (ctx.getChildCount() > 1) {
             instrList.addAll(ctx.initializer().accept(this));
-            Register rhsReg = returnOperand;
             Register varReg = symt.lookup(ctx.ident().getText()).getRegister();
 
             if (varReg == null) {
                 varReg = trg.generate();
                 symt.lookup(ctx.ident().getText()).setRegister((TemporaryRegister) varReg);
             }
-            instrList.add(new MoveInstr(varReg, rhsReg));
+            Operand rhsReg = returnOperand;
+            if (rhsReg instanceof Register) {
+                instrList.add(new MoveInstr(varReg, rhsReg));
+            } else {
+                instrList.add(new LiInstr(varReg, rhsReg));
+            }
             returnOperand = varReg;
         }
         return instrList;
@@ -165,6 +168,11 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
     @Override
     public Deque<PseudoInstruction> visitExit_scope(RzParser.Exit_scopeContext ctx) {
+
+        System.err.println("a = " + symt.lookup("a").getRegister().toString());
+        System.err.println("b = " + symt.lookup("b").getRegister().toString());
+        System.err.println("c = " + symt.lookup("c").getRegister().toString());
+
         SymbolTable symbolTable = symt.getParent();
         this.symt = symbolTable;
 
@@ -175,6 +183,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitStmt(RzParser.StmtContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.getChild(0).accept(this));
         return instrList;
     }
 
@@ -198,27 +207,32 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
     @Override
     public Deque<PseudoInstruction> visitSelec_stmt(RzParser.Selec_stmtContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitIteration_stmt(RzParser.Iteration_stmtContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitContinue_jump(RzParser.Continue_jumpContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitBreak_jump(RzParser.Break_jumpContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitReturn_jump(RzParser.Return_jumpContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
@@ -233,60 +247,23 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
         Deque<PseudoInstruction> instrList = new LinkedList<>();
         if (ctx.getChildCount() > 1) {
             instrList.addAll(ctx.assign_expr().accept(this));
-            Register rhsReg = returnOperand;
             Register lhsReg = tpa.getIdentofUnaryExpr(ctx.unary_expr(), symt).getRegister();
             if (lhsReg == null) {
-                tpa.getIdentofUnaryExpr(ctx.unary_expr(), symt).setRegister(trg.generate());
-            } else {
-                System.err.println(lhsReg.toString());
-                instrList.add(new MoveInstr(lhsReg, rhsReg));
+                lhsReg = trg.generate();
+                tpa.getIdentofUnaryExpr(ctx.unary_expr(), symt).setRegister((TemporaryRegister) lhsReg);
             }
+            Operand rhsReg = returnOperand;
+            if (rhsReg instanceof Register) {
+                instrList.add(new MoveInstr(lhsReg, rhsReg));
+            } else {
+                instrList.add(new LiInstr(lhsReg, rhsReg));
+            }
+
             returnOperand = lhsReg;
         } else {
             instrList.addAll(ctx.expression().accept(this));
         }
 
-        return instrList;
-    }
-
-    @Override
-    public Deque<PseudoInstruction> visitNEWTYPE(RzParser.NEWTYPEContext ctx) {
-        return null;
-    }
-
-    @Override
-    public Deque<PseudoInstruction> visitNEWCLASSTYPE(RzParser.NEWCLASSTYPEContext ctx) {
-        return null;
-    }
-
-    @Override
-    public Deque<PseudoInstruction> visitNEWARRAYTYPE(RzParser.NEWARRAYTYPEContext ctx) {
-        return null;
-    }
-
-    @Override
-    public Deque<PseudoInstruction> visitUNARYEXPR(RzParser.UNARYEXPRContext ctx) {
-        return null;
-    }
-
-    @Override
-    public Deque<PseudoInstruction> visitARR_MORE(RzParser.ARR_MOREContext ctx) {
-        return null;
-    }
-
-    @Override
-    public Deque<PseudoInstruction> visitARR_FINAL_BASE(RzParser.ARR_FINAL_BASEContext ctx) {
-        return null;
-    }
-
-    @Override
-    public Deque<PseudoInstruction> visitARR_FINAL_CLASS(RzParser.ARR_FINAL_CLASSContext ctx) {
-        return null;
-    }
-
-    @Override
-    public Deque<PseudoInstruction> visitUnary_expr(RzParser.Unary_exprContext ctx) {
-        Deque<PseudoInstruction> instrList = new LinkedList<>();
         return instrList;
     }
 
@@ -317,6 +294,26 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitADDITIVE(RzParser.ADDITIVEContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg = returnOperand;
+        instrList.addAll(ctx.expression(0).accept(this));
+        Register lhsReg = tpa.getIdentofExpression(ctx.expression(0), symt).getRegister();
+
+        if (lhsReg == null) {
+            lhsReg = trg.generate();
+            tpa.getIdentofUnaryExpr(ctx.expression(0), symt).setRegister((TemporaryRegister) lhsReg);
+        }
+
+        Register resultReg = trg.generate();
+
+        if (ctx.op.getText().equals("+")) {
+            instrList.add(new AddInstr(resultReg, lhsReg, rhsReg));
+        } else {
+            instrList.add(new SubInstr(resultReg, lhsReg, rhsReg));
+        }
+
+        returnOperand = resultReg;
+
         return instrList;
     }
 
@@ -345,20 +342,74 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     }
 
     @Override
-    public Deque<PseudoInstruction> visitCREATION(RzParser.CREATIONContext ctx) {
-        Deque<PseudoInstruction> instrList = new LinkedList<>();
-        return instrList;
-    }
-
-    @Override
     public Deque<PseudoInstruction> visitMULTI(RzParser.MULTIContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
         return instrList;
     }
 
     @Override
-    public Deque<PseudoInstruction> visitPostfix_expr(RzParser.Postfix_exprContext ctx) {
+    public Deque<PseudoInstruction> visitCREATION(RzParser.CREATIONContext ctx) {
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.creation_expr().accept(this));
+        return instrList;
+    }
+
+    @Override
+    public Deque<PseudoInstruction> visitNEWTYPE(RzParser.NEWTYPEContext ctx) {
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
+    }
+
+    @Override
+    public Deque<PseudoInstruction> visitNEWCLASSTYPE(RzParser.NEWCLASSTYPEContext ctx) {
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
+    }
+
+    @Override
+    public Deque<PseudoInstruction> visitNEWARRAYTYPE(RzParser.NEWARRAYTYPEContext ctx) {
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
+    }
+
+    @Override
+    public Deque<PseudoInstruction> visitUNARYEXPR(RzParser.UNARYEXPRContext ctx) {
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.unary_expr().accept(this));
+        return instrList;
+    }
+
+    @Override
+    public Deque<PseudoInstruction> visitARR_MORE(RzParser.ARR_MOREContext ctx) {
         return null;
+    }
+
+    @Override
+    public Deque<PseudoInstruction> visitARR_FINAL_BASE(RzParser.ARR_FINAL_BASEContext ctx) {
+        return null;
+    }
+
+    @Override
+    public Deque<PseudoInstruction> visitARR_FINAL_CLASS(RzParser.ARR_FINAL_CLASSContext ctx) {
+        return null;
+    }
+
+    @Override
+    public Deque<PseudoInstruction> visitUnary_expr(RzParser.Unary_exprContext ctx) {
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        if (ctx.getChildCount() == 1) {
+            instrList.addAll(ctx.postfix_expr().accept(this));
+        }
+        return instrList;
+    }
+
+    @Override
+    public Deque<PseudoInstruction> visitPostfix_expr(RzParser.Postfix_exprContext ctx) {
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        if (ctx.getChildCount() == 1) {
+            instrList.addAll(ctx.primary_expr().accept(this));
+        }
+        return instrList;
     }
 
     @Override
@@ -398,12 +449,15 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
     @Override
     public Deque<PseudoInstruction> visitPrimary_ident(RzParser.Primary_identContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitPrimary_const_int(RzParser.Primary_const_intContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        returnOperand = new ImmediateValue(Integer.parseInt(ctx.INT().getText()));
+        return instrList;
     }
 
     @Override

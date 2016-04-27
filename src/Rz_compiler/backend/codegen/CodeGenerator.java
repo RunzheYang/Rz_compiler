@@ -27,11 +27,11 @@ public class CodeGenerator {
             // TODO: add instructions here.
 //            instrList.add(...);
 
-            Deque<PseudoInstruction> frame;
+            Deque<PseudoInstruction> fbody;
             OptimizedIntermediateCodeGenerator codeGen;
             for (RzParser.Func_defContext func : program.func_def()) {
                 codeGen = new OptimizedIntermediateCodeGenerator(func, symbolTable, optLevel);
-                frame = codeGen.call();
+                fbody = codeGen.call();
             }
 
         } catch (Exception error) {
@@ -39,6 +39,7 @@ public class CodeGenerator {
             System.err.println(error.getMessage());
             System.exit(1);
         }
+
         return printInstr(instrList, optLevel);
     }
 

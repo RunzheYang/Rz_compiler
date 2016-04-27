@@ -7,6 +7,10 @@ public class ImmediateValue implements Operand {
 
     private int num;
 
+    public ImmediateValue(int num) {
+        this.num = num;
+    }
+
     @Override
     public String toString() {
         return "" + num;

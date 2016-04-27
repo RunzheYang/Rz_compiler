@@ -22,4 +22,16 @@ public abstract class MipsInstruction {
         this.src1 = src1;
         this.src2 = src2;
     }
+
+    public Operand getDest() {
+        return dest;
+    }
+
+    public Operand getSrc1() {
+        return src1;
+    }
+
+    public Operand getSrc2() {
+        return src2;
+    }
 }
