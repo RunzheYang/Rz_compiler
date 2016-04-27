@@ -212,6 +212,25 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitSelec_stmt(RzParser.Selec_stmtContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.expr().accept(this));
+        Operand condReg = returnOperand;
+
+        Label noif = new Label();
+
+        instrList.add(new BeqInstr(MipsRegister.$zero, condReg, noif));
+
+        if (ctx.getChild(4) instanceof RzParser.StmtContext) {
+            instrList.addAll(ctx.getChild(4).accept(this));
+        }
+
+        instrList.add(noif);
+
+        if (ctx.getChildCount() > 5) {
+            if (ctx.getChild(6) instanceof RzParser.StmtContext) {
+                instrList.addAll(ctx.getChild(6).accept(this));
+            }
+        }
+
         return instrList;
     }
 
