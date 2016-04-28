@@ -9,8 +9,7 @@ import Rz_compiler.backend.instructions.branch_jump.BeqInstr;
 import Rz_compiler.backend.instructions.branch_jump.BneInstr;
 import Rz_compiler.backend.instructions.branch_jump.JarInstr;
 import Rz_compiler.backend.instructions.comparison.*;
-import Rz_compiler.backend.instructions.load_store_move.LiInstr;
-import Rz_compiler.backend.instructions.load_store_move.MoveInstr;
+import Rz_compiler.backend.instructions.load_store_move.*;
 import Rz_compiler.backend.operands.Label;
 import Rz_compiler.frontend.semantics.SymbolTable;
 import Rz_compiler.frontend.syntax.RzParser;
@@ -55,6 +54,18 @@ public class OptimizedIntermediateCodeGenerator implements Callable<Deque<Pseudo
             if (instr instanceof LiInstr) {
                 System.err.println("\tli " + ((LiInstr) instr).getDest().toString() + ", "
                         + ((LiInstr) instr).getSrc1().toString());
+            }
+            if (instr instanceof LaInstr) {
+                System.err.println("\tla " + ((LaInstr) instr).getDest().toString() + ", "
+                        + ((LaInstr) instr).getSrc1().toString());
+            }
+            if (instr instanceof LwInstr) {
+                System.err.println("\tlw " + ((LwInstr) instr).getDest().toString() + ", "
+                        + ((LwInstr) instr).getSrc1().toString());
+            }
+            if (instr instanceof SwInstr) {
+                System.err.println("\tsw " + ((SwInstr) instr).getDest().toString() + ", "
+                        + ((SwInstr) instr).getSrc1().toString());
             }
             if (instr instanceof AndInstr) {
                 System.err.println("\tand " + ((AndInstr) instr).getDest().toString() + ", "

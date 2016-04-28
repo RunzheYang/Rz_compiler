@@ -11,22 +11,16 @@ import Rz_compiler.backend.instructions.branch_jump.BeqInstr;
 import Rz_compiler.backend.instructions.branch_jump.BneInstr;
 import Rz_compiler.backend.instructions.branch_jump.JarInstr;
 import Rz_compiler.backend.instructions.comparison.*;
-import Rz_compiler.backend.instructions.load_store_move.LiInstr;
-import Rz_compiler.backend.instructions.load_store_move.LwInstr;
-import Rz_compiler.backend.instructions.load_store_move.MoveInstr;
+import Rz_compiler.backend.instructions.load_store_move.*;
 import Rz_compiler.backend.operands.*;
 import Rz_compiler.frontend.semantics.SymbolTable;
 import Rz_compiler.frontend.semantics.TypeAnalyser;
-import Rz_compiler.frontend.semantics.identifier.FunctionType;
-import Rz_compiler.frontend.semantics.identifier.Identifier;
-import Rz_compiler.frontend.semantics.identifier.Type;
-import Rz_compiler.frontend.semantics.identifier.Variable;
+import Rz_compiler.frontend.semantics.identifier.*;
 import Rz_compiler.frontend.syntax.RzParser;
 import Rz_compiler.frontend.syntax.RzVisitor;
 import org.antlr.v4.runtime.tree.*;
-import sun.print.PeekGraphics;
 
-import java.sql.ResultSet;
+import javax.management.relation.RoleUnresolved;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -34,6 +28,8 @@ import java.util.LinkedList;
  * Created by YRZ on 4/21/16.
  */
 public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruction>> {
+
+    private final int WORD_SIZE = 4;
 
     private TypeAnalyser tpa;
     private SymbolTable symt;
@@ -44,6 +40,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     private Label loopOutLabel = null;
 
     private Operand returnOperand = null;
+    private Register returnOperandAddress = null;
 
     public IntermediateCodeGenerator(SymbolTable symt) {
         this.symt = symt;
@@ -102,18 +99,44 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
         Deque<PseudoInstruction> instrList = new LinkedList<>();
         if (ctx.getChildCount() > 1) {
             instrList.addAll(ctx.initializer().accept(this));
+            Operand rhsReg = returnOperand;
             Register varReg = symt.lookup(ctx.ident().getText()).getRegister();
 
             if (varReg == null) {
-                varReg = trg.generate();
+                if (symt.lookup(ctx.ident().getText()) instanceof Variable) {
+                    if (((Variable) symt.lookup(ctx.ident().getText())).getType() instanceof IntType
+                            || ((Variable) symt.lookup(ctx.ident().getText())).getType() instanceof BoolType) {
+                        varReg = trg.generate();
+                    } else {
+                        varReg = trg.generate().setMem();
+                    }
+                }
+
                 symt.lookup(ctx.ident().getText()).setRegister((TemporaryRegister) varReg);
             }
-            Operand rhsReg = returnOperand;
+
             if (rhsReg instanceof Register) {
-                instrList.add(new MoveInstr(varReg, rhsReg));
+                assert varReg != null;
+                if (varReg.isContainValue() == ((Register) rhsReg).isContainValue()) {
+                    instrList.add(new MoveInstr(varReg, rhsReg));
+                } else if (varReg.isContainValue()) {
+                    throw new RuntimeException("Runtime Error: Assign memory address to value or vise");
+                }
             } else {
-                instrList.add(new LiInstr(varReg, rhsReg));
+                assert varReg != null;
+                if (varReg.isContainValue()) {
+                    instrList.add(new LiInstr(varReg, rhsReg));
+                } else {
+                    if (((ImmediateValue) rhsReg).getValue() == 0) {
+                        instrList.add(new LiInstr(varReg, rhsReg));
+                    }
+                }
             }
+
+            if (returnOperandAddress != null) {
+                instrList.add(new SwInstr(varReg, new MemAddress(returnOperandAddress, 0)));
+            }
+
             returnOperand = varReg;
         }
         return instrList;
@@ -180,10 +203,6 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitExit_scope(RzParser.Exit_scopeContext ctx) {
 
-        System.err.println("a = " + symt.lookup("a").getRegister().toString());
-        System.err.println("b = " + symt.lookup("b").getRegister().toString());
-//        System.err.println("c = " + symt.lookup("c").getRegister().toString());
-
         SymbolTable symbolTable = symt.getParent();
         this.symt = symbolTable;
 
@@ -222,6 +241,11 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
         Operand condReg = returnOperand;
 
         Label noif = new Label();
+
+        if (condReg instanceof Register && !((Register) condReg).isContainValue()) {
+            Operand tempReg = trg.generate();
+            instrList.add(new LwInstr(tempReg, condReg));
+        }
 
         instrList.add(new BeqInstr(MipsRegister.$zero, condReg, noif));
 
@@ -296,9 +320,6 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                     notfor = new Label();
                     loopOutLabel = notfor;
                     instrList.add(new BeqInstr(MipsRegister.$zero, condReg, notfor));
-                    if (!ctx.getChild(5).getText().equals(";")) {
-                        instrList.addAll(ctx.getChild(5).accept(this));
-                    }
                 } else {
                     infor = new Label();
                     loopBodyLabel = infor;
@@ -432,16 +453,25 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
         Deque<PseudoInstruction> instrList = new LinkedList<>();
         if (ctx.getChildCount() > 1) {
             instrList.addAll(ctx.assign_expr().accept(this));
-            Register lhsReg = tpa.getIdentofUnaryExpr(ctx.unary_expr(), symt).getRegister();
+            Operand rhsReg = returnOperand;
+
+            instrList.addAll(ctx.unary_expr().accept(this));
+            Operand lhsReg = returnOperand;
+
             if (lhsReg == null) {
                 lhsReg = trg.generate();
                 tpa.getIdentofUnaryExpr(ctx.unary_expr(), symt).setRegister((TemporaryRegister) lhsReg);
             }
-            Operand rhsReg = returnOperand;
-            if (rhsReg instanceof Register) {
+
+            if (rhsReg instanceof Register
+                    && ((Register) rhsReg).isContainValue() == ((Register) lhsReg).isContainValue() ) {
                 instrList.add(new MoveInstr(lhsReg, rhsReg));
             } else {
                 instrList.add(new LiInstr(lhsReg, rhsReg));
+            }
+
+            if (returnOperandAddress != null) {
+                instrList.add(new SwInstr(lhsReg, new MemAddress(returnOperandAddress, 0)));
             }
 
             returnOperand = lhsReg;
@@ -913,6 +943,16 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitNEWARRAYTYPE(RzParser.NEWARRAYTYPEContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        if (ctx.array().getChild(2) == null)
+            throw new RuntimeException("Runtime Error: Invalid creation of array");
+        instrList.addAll(ctx.array().getChild(2).accept(this));
+        Operand expReg = returnOperand;
+        instrList.add(new AddInstr(MipsRegister.$a0, MipsRegister.$zero, expReg));
+        instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(9)));
+        instrList.add(new Syscall());
+        MipsRegister.$v0.setMem();
+        returnOperand = MipsRegister.$v0;
+        returnOperandAddress = null;
         return instrList;
     }
 
@@ -1002,6 +1042,45 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                 instrList.add(new SubInstr(returnOperand, returnOperand, new ImmediateValue(1)));
                 returnOperand = newplace;
             }
+
+            if (ctx.postfix() instanceof RzParser.SubscriptContext) {
+                instrList.addAll(ctx.postfix_expr().accept(this));
+                Operand startAddress = returnOperand;
+                instrList.addAll(((RzParser.SubscriptContext) ctx.postfix()).expr().accept(this));
+                Operand offSetReg = returnOperand;
+
+                if (startAddress instanceof ImmediateValue) {
+                    throw new RuntimeException("Runtime Error: An immediate number has a subscript.");
+                } else if (startAddress instanceof Register && ((Register) startAddress).isContainValue()) {
+                    throw new RuntimeException("Runtime Error: A non-reference type has a subscript.");
+                }
+
+                Operand resultAddress = trg.generate();
+
+                if (offSetReg instanceof Register && !((Register) offSetReg).isContainValue()) {
+                    throw new RuntimeException("Runtime Error: A memory address cannot be used as a index");
+                } else if (offSetReg instanceof Register) {
+                    Operand tempReg = trg.generate();
+                    instrList.add(new MulInstr(tempReg, offSetReg, new ImmediateValue(WORD_SIZE)));
+                    offSetReg = tempReg;
+                    instrList.add(new AddInstr(resultAddress,startAddress, offSetReg));
+                } else if (offSetReg instanceof ImmediateValue) {
+                    offSetReg = new ImmediateValue(((ImmediateValue) offSetReg).getValue() * WORD_SIZE);
+                    instrList.add(new LaInstr(resultAddress, new MemAddress((Register) startAddress, ((ImmediateValue) offSetReg).getValue())));
+                }
+
+                returnOperandAddress = (Register) resultAddress;
+
+                Operand resultReg = trg.generate();
+
+                instrList.add(new LwInstr(resultReg, new MemAddress((Register) resultAddress, 0)));
+
+                if (!tpa.getTypeofPostExpr(ctx, symt).equals(new IntType())) {
+                    ((TemporaryRegister) resultReg).setMem();
+                }
+
+                returnOperand = resultReg;
+            }
         }
         return instrList;
     }
@@ -1047,6 +1126,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     public Deque<PseudoInstruction> visitPrimary_ident(RzParser.Primary_identContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
         returnOperand = tpa.getIdentofPrimary(ctx, symt).getRegister();
+        returnOperandAddress = null;
         return instrList;
     }
 
@@ -1075,7 +1155,9 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
     @Override
     public Deque<PseudoInstruction> visitPrimary_null(RzParser.Primary_nullContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        returnOperand = new ImmediateValue(0);
+        return instrList;
     }
 
     @Override

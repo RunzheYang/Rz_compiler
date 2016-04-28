@@ -7,6 +7,23 @@ public class TemporaryRegister implements Register {
 
     private int cnt;
 
+    private boolean containValue = true;
+
+    public Register setMem() {
+        this.containValue = false;
+        return this;
+    }
+
+    public Register setValue() {
+        this.containValue = true;
+        return this;
+    }
+
+    @Override
+    public boolean isContainValue() {
+        return containValue;
+    }
+
     public TemporaryRegister(int cnt) {
         this.cnt = cnt;
     }
