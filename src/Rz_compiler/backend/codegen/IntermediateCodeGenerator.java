@@ -1,6 +1,7 @@
 package Rz_compiler.backend.codegen;
 
 import Rz_compiler.backend.allocation.TemporaryRegisterGenerator;
+import Rz_compiler.backend.instructions.MipsInstruction;
 import Rz_compiler.backend.instructions.PseudoInstruction;
 import Rz_compiler.backend.instructions.arithmetic_logic.*;
 import Rz_compiler.backend.instructions.branch_jump.BeqInstr;
@@ -200,12 +201,10 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitCompound_stmt(RzParser.Compound_stmtContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
-        instrList.addAll(ctx.enter_scope().accept(this));
-        int statementCnt = ctx.getChildCount() - 2;
-        for (int i = 1; i < statementCnt; ++i) {
+        int statementCnt = ctx.getChildCount();
+        for (int i = 0; i < statementCnt; ++i) {
             instrList.addAll(ctx.getChild(i).accept(this));
         }
-        instrList.addAll(ctx.exit_scope().accept(this));
         return instrList;
     }
 
@@ -221,6 +220,12 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
         if (ctx.getChild(4) instanceof RzParser.StmtContext) {
             instrList.addAll(ctx.getChild(4).accept(this));
+        }  else if (ctx.getChild(4) instanceof RzParser.Var_declContext) {
+            SymbolTable symbolTable = new SymbolTable(symt);
+            this.symt = symbolTable;
+            instrList.addAll(ctx.getChild(4).accept(this));
+            symbolTable = symt.getParent();
+            this.symt = symbolTable;
         }
 
         instrList.add(noif);
@@ -228,6 +233,12 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
         if (ctx.getChildCount() > 5) {
             if (ctx.getChild(6) instanceof RzParser.StmtContext) {
                 instrList.addAll(ctx.getChild(6).accept(this));
+            } else if (ctx.getChild(6) instanceof RzParser.Var_declContext) {
+                SymbolTable symbolTable = new SymbolTable(symt);
+                this.symt = symbolTable;
+                instrList.addAll(ctx.getChild(4).accept(this));
+                symbolTable = symt.getParent();
+                this.symt = symbolTable;
             }
         }
 
@@ -293,10 +304,10 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitSHIFT(RzParser.SHIFTContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
-        instrList.addAll(ctx.expression(1).accept(this));
-        Operand rhsReg = returnOperand;
         instrList.addAll(ctx.expression(0).accept(this));
         Operand lhsReg = returnOperand;
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg = returnOperand;
 
         if (lhsReg == null) {
             lhsReg = trg.generate();
@@ -337,10 +348,10 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitAND(RzParser.ANDContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
-        instrList.addAll(ctx.expression(1).accept(this));
-        Operand rhsReg = returnOperand;
         instrList.addAll(ctx.expression(0).accept(this));
         Operand lhsReg = returnOperand;
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg = returnOperand;
 
         if (lhsReg == null) {
             lhsReg = trg.generate();
@@ -370,10 +381,10 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitINCLUSIVE_OR(RzParser.INCLUSIVE_ORContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
-        instrList.addAll(ctx.expression(1).accept(this));
-        Operand rhsReg = returnOperand;
         instrList.addAll(ctx.expression(0).accept(this));
         Operand lhsReg = returnOperand;
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg = returnOperand;
 
         if (lhsReg == null) {
             lhsReg = trg.generate();
@@ -402,10 +413,10 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitEXCLUSIVE_OR(RzParser.EXCLUSIVE_ORContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.addAll(ctx.expression(0).accept(this));
+        Operand lhsReg = returnOperand;
         instrList.addAll(ctx.expression(1).accept(this));
         Operand rhsReg = returnOperand;
-        instrList.addAll(ctx.getChild(0).accept(this));
-        Operand lhsReg= returnOperand;
 
         if (lhsReg == null) {
             lhsReg = trg.generate();
@@ -434,10 +445,10 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitADDITIVE(RzParser.ADDITIVEContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
-        instrList.addAll(ctx.expression(1).accept(this));
-        Operand rhsReg = returnOperand;
         instrList.addAll(ctx.expression(0).accept(this));
         Operand lhsReg = returnOperand;
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg = returnOperand;
 
         if (lhsReg == null) {
             lhsReg = trg.generate();
@@ -479,10 +490,10 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitMULTI(RzParser.MULTIContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
-        instrList.addAll(ctx.expression(1).accept(this));
-        Operand rhsReg = returnOperand;
         instrList.addAll(ctx.expression(0).accept(this));
         Operand lhsReg = returnOperand;
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg = returnOperand;
 
         if (lhsReg == null) {
             lhsReg = trg.generate();
@@ -537,10 +548,10 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitRELATION(RzParser.RELATIONContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
-        instrList.addAll(ctx.expression(1).accept(this));
-        Operand rhsReg =  returnOperand;
         instrList.addAll(ctx.expression(0).accept(this));
         Operand lhsReg = returnOperand;
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg = returnOperand;
 
         if (lhsReg == null) {
             lhsReg = trg.generate();
@@ -619,10 +630,10 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitEQUALITY(RzParser.EQUALITYContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
-        instrList.addAll(ctx.expression(1).accept(this));
-        Operand rhsReg = returnOperand;
         instrList.addAll(ctx.expression(0).accept(this));
         Operand lhsReg = returnOperand;
+        instrList.addAll(ctx.expression(1).accept(this));
+        Operand rhsReg = returnOperand;
 
         if (lhsReg == null) {
             lhsReg = trg.generate();
@@ -781,6 +792,41 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
         Deque<PseudoInstruction> instrList = new LinkedList<>();
         if (ctx.getChildCount() == 1) {
             instrList.addAll(ctx.postfix_expr().accept(this));
+        } else {
+            if (ctx.getChild(0).getText().equals("++")) {
+                instrList.addAll(ctx.unary_expr().accept(this));
+                instrList.add(new AddInstr(returnOperand, returnOperand, new ImmediateValue(1)));
+            } else if (ctx.getChild(0).getText().equals("--")) {
+                instrList.addAll(ctx.unary_expr().accept(this));
+                instrList.add(new SubInstr(returnOperand, returnOperand, new ImmediateValue(1)));
+            } else if (ctx.getChild(0).getText().equals("~")) {
+                instrList.addAll(ctx.unary_expr().accept(this));
+                if (returnOperand instanceof ImmediateValue) {
+                    int notvalue = ~((ImmediateValue) returnOperand).getValue();
+                    returnOperand = new ImmediateValue(notvalue);
+                } else {
+                    instrList.add(new NotInstr(returnOperand, returnOperand));
+                }
+            } else if (ctx.getChild(0).getText().equals("-")) {
+                instrList.addAll(ctx.unary_expr().accept(this));
+                if (returnOperand instanceof ImmediateValue) {
+                    int notvalue = -((ImmediateValue) returnOperand).getValue();
+                    returnOperand = new ImmediateValue(notvalue);
+                } else {
+                    instrList.add(new NegInstr(returnOperand, returnOperand));
+                }
+            } else if (ctx.getChild(0).getText().equals("+")) {
+                instrList.addAll(ctx.unary_expr().accept(this));
+            } else if (ctx.getChild(0).getText().equals("!")) {
+                instrList.addAll(ctx.unary_expr().accept(this));
+                if (returnOperand instanceof ImmediateValue) {
+                    boolean notvalue = (((ImmediateValue) returnOperand).getValue() == 0);
+                    returnOperand = new ImmediateValue(notvalue);
+                } else {
+                    instrList.add(new SeqInstr(returnOperand, MipsRegister.$zero, returnOperand));
+                }
+            }
+
         }
         return instrList;
     }
@@ -790,6 +836,19 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
         Deque<PseudoInstruction> instrList = new LinkedList<>();
         if (ctx.getChildCount() == 1) {
             instrList.addAll(ctx.primary_expr().accept(this));
+        } else {
+            if (ctx.postfix() instanceof RzParser.PlusPlusContext) {
+                instrList.addAll(ctx.postfix_expr().accept(this));
+                Register newplace = trg.generate();
+                tpa.getIdentofPostExpr(ctx.postfix_expr(), symt).setRegister((TemporaryRegister) newplace);
+                instrList.add(new AddInstr(newplace, returnOperand, new ImmediateValue(1)));
+            }
+            if (ctx.postfix() instanceof RzParser.MinusMinusContext) {
+                instrList.addAll(ctx.postfix_expr().accept(this));
+                Register newplace = trg.generate();
+                tpa.getIdentofPostExpr(ctx.postfix_expr(), symt).setRegister((TemporaryRegister) newplace);
+                instrList.add(new SubInstr(newplace, returnOperand, new ImmediateValue(1)));
+            }
         }
         return instrList;
     }
@@ -816,12 +875,14 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
     @Override
     public Deque<PseudoInstruction> visitPlusPlus(RzParser.PlusPlusContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitMinusMinus(RzParser.MinusMinusContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        return instrList;
     }
 
     @Override

@@ -11,6 +11,7 @@ import Rz_compiler.backend.operands.Label;
 import Rz_compiler.frontend.semantics.SymbolTable;
 import Rz_compiler.frontend.syntax.RzParser;
 import com.sun.org.apache.xpath.internal.operations.And;
+import com.sun.org.apache.xpath.internal.operations.Neg;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.Deque;
@@ -142,6 +143,14 @@ public class OptimizedIntermediateCodeGenerator implements Callable<Deque<Pseudo
                 System.err.println("\tbne " + ((BneInstr) instr).getDest().toString() + ", "
                         + ((BneInstr) instr).getSrc1().toString() + ", "
                         + ((BneInstr) instr).getSrc2().toString());
+            }
+            if (instr instanceof NegInstr) {
+                System.err.println("\tneg " + ((NegInstr) instr).getDest().toString() + ", "
+                        + ((NegInstr) instr).getSrc1().toString());
+            }
+            if (instr instanceof NotInstr) {
+                System.err.println("\tnot " + ((NotInstr) instr).getDest().toString() + ", "
+                        + ((NotInstr) instr).getSrc1().toString());
             }
             if (instr instanceof Label) {
                 System.err.println(instr.toString() + ":");
