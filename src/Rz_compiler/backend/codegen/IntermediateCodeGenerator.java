@@ -41,6 +41,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     private TemporaryRegisterGenerator trg = new TemporaryRegisterGenerator();
 
     private Label loopBodyLabel = null;
+    private Label loopOutLabel = null;
 
     private Operand returnOperand = null;
 
@@ -255,6 +256,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     public Deque<PseudoInstruction> visitIteration_stmt(RzParser.Iteration_stmtContext ctx) {
 
         Label outerLoopBodyLabel =  loopBodyLabel;
+        Label outerLoopOutLabel = loopOutLabel;
 
         Deque<PseudoInstruction> instrList = new LinkedList<>();
         if (ctx.getChild(0).getText().equals("while")) {
@@ -264,6 +266,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
             instrList.addAll(ctx.expr(0).accept(this));
             Operand condReg = returnOperand;
             Label notwhile = new Label();
+            loopOutLabel = notwhile;
             instrList.add(new BeqInstr(MipsRegister.$zero, condReg, notwhile));
             if (ctx.stmt() != null) {
                 instrList.addAll(ctx.stmt().accept(this));
@@ -276,6 +279,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
             }
             instrList.add(new BInstr(inwhile));
             loopBodyLabel = outerLoopBodyLabel;
+            loopOutLabel = outerLoopOutLabel;
             instrList.add(notwhile);
         } else {
             // for statement
@@ -290,6 +294,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                     instrList.addAll(ctx.getChild(3).accept(this));
                     Operand condReg = returnOperand;
                     notfor = new Label();
+                    loopOutLabel = notfor;
                     instrList.add(new BeqInstr(MipsRegister.$zero, condReg, notfor));
                     if (!ctx.getChild(5).getText().equals(";")) {
                         instrList.addAll(ctx.getChild(5).accept(this));
@@ -299,6 +304,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                     loopBodyLabel = infor;
                     instrList.add(infor);
                     notfor = new Label();
+                    loopOutLabel = notfor;
                 }
             } else {
                 if (!ctx.getChild(4).getText().equals(";")) {
@@ -309,6 +315,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                     instrList.addAll(ctx.getChild(4).accept(this));
                     Operand condReg = returnOperand;
                     notfor = new Label();
+                    loopOutLabel = notfor;
                     instrList.add(new BeqInstr(MipsRegister.$zero, condReg, notfor));
                 }
             }
@@ -338,6 +345,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                 }
                 instrList.add(new BInstr(infor));
                 loopBodyLabel = outerLoopBodyLabel;
+                loopOutLabel = outerLoopOutLabel;
                 instrList.add(notfor);
             } else if (ctx.getChild(toStmtInd) instanceof RzParser.Var_declContext) {
                 SymbolTable symbolTable = new SymbolTable(symt);
@@ -365,6 +373,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                 }
                 instrList.add(new BInstr(infor));
                 loopBodyLabel = outerLoopBodyLabel;
+                loopOutLabel = outerLoopOutLabel;
                 instrList.add(notfor);
                 symbolTable = symt.getParent();
                 this.symt = symbolTable;
@@ -384,6 +393,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitBreak_jump(RzParser.Break_jumpContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.add(new BInstr(loopOutLabel));
         return instrList;
     }
 

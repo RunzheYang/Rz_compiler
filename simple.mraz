@@ -22,9 +22,14 @@ int main() {
 //	}
 
     b = 0;
+    int c;
 	for (a = 1; a <= 10; a++) {
+	    for (c = 1; c < 10; ++c) {
+        	b = 0;
+        	break;
+        	b = b + 1;
+        }
 	    b = b + a;
-	    continue;
 	}
 
 	return b;
