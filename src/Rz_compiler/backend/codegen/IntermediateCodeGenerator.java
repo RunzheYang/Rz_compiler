@@ -947,7 +947,15 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
             throw new RuntimeException("Runtime Error: Invalid creation of array");
         instrList.addAll(ctx.array().getChild(2).accept(this));
         Operand expReg = returnOperand;
-        instrList.add(new AddInstr(MipsRegister.$a0, MipsRegister.$zero, expReg));
+
+        if (expReg instanceof ImmediateValue) {
+            int combined = ((ImmediateValue) expReg).getValue() * WORD_SIZE;
+            instrList.add(new AddInstr(MipsRegister.$a0, MipsRegister.$zero, new ImmediateValue(combined)));
+        } else {
+            Operand tempReg = trg.generate();
+            instrList.add(new MulInstr(tempReg, expReg, new ImmediateValue(WORD_SIZE)));
+            instrList.add(new AddInstr(MipsRegister.$a0, MipsRegister.$zero, tempReg));
+        }
         instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(9)));
         instrList.add(new Syscall());
         MipsRegister.$v0.setMem();
@@ -1063,10 +1071,11 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                     Operand tempReg = trg.generate();
                     instrList.add(new MulInstr(tempReg, offSetReg, new ImmediateValue(WORD_SIZE)));
                     offSetReg = tempReg;
-                    instrList.add(new AddInstr(resultAddress,startAddress, offSetReg));
+                    instrList.add(new AddInstr(resultAddress, startAddress, offSetReg));
                 } else if (offSetReg instanceof ImmediateValue) {
                     offSetReg = new ImmediateValue(((ImmediateValue) offSetReg).getValue() * WORD_SIZE);
-                    instrList.add(new LaInstr(resultAddress, new MemAddress((Register) startAddress, ((ImmediateValue) offSetReg).getValue())));
+                    instrList.add(new LaInstr(resultAddress,
+                            new MemAddress((Register) startAddress, ((ImmediateValue) offSetReg).getValue())));
                 }
 
                 returnOperandAddress = (Register) resultAddress;
