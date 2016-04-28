@@ -1,6 +1,7 @@
 package Rz_compiler.backend.instructions.visitors;
 
 import Rz_compiler.backend.instructions.AssemblerDirective;
+import Rz_compiler.backend.instructions.Syscall;
 import Rz_compiler.backend.instructions.arithmetic_logic.*;
 import Rz_compiler.backend.instructions.branch_jump.*;
 import Rz_compiler.backend.instructions.comparison.*;
@@ -93,6 +94,8 @@ public interface InstructionVisitor<T> {
     T visit(ShInstr shInstr);
 
     T visit(SwInstr swInstr);
+
+    T visit(Syscall syscall);
 
     T visit(AssemblerDirective assemblerDirective);
 

@@ -1,11 +1,14 @@
 package Rz_compiler.backend.codegen;
 
 import Rz_compiler.backend.allocation.TemporaryRegisterGenerator;
+import Rz_compiler.backend.instructions.AssemblerDirective;
 import Rz_compiler.backend.instructions.MipsInstruction;
 import Rz_compiler.backend.instructions.PseudoInstruction;
+import Rz_compiler.backend.instructions.Syscall;
 import Rz_compiler.backend.instructions.arithmetic_logic.*;
 import Rz_compiler.backend.instructions.branch_jump.BeqInstr;
 import Rz_compiler.backend.instructions.branch_jump.BneInstr;
+import Rz_compiler.backend.instructions.branch_jump.JarInstr;
 import Rz_compiler.backend.instructions.comparison.*;
 import Rz_compiler.backend.instructions.load_store_move.LiInstr;
 import Rz_compiler.backend.instructions.load_store_move.LwInstr;
@@ -248,6 +251,77 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitIteration_stmt(RzParser.Iteration_stmtContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        if (ctx.getChild(0).getText().equals("while")) {
+            Label inwhile = new Label();
+            instrList.add(inwhile);
+            instrList.addAll(ctx.expr(0).accept(this));
+            Operand condReg = returnOperand;
+            Label notwhile = new Label();
+            instrList.add(new BeqInstr(MipsRegister.$zero, condReg, notwhile));
+            if (ctx.stmt() != null) {
+                instrList.addAll(ctx.stmt().accept(this));
+            } else {
+                SymbolTable symbolTable = new SymbolTable(symt);
+                this.symt = symbolTable;
+                instrList.addAll(ctx.var_decl().accept(this));
+                symbolTable = symt.getParent();
+                this.symt = symbolTable;
+            }
+            instrList.add(new JarInstr(inwhile));
+            instrList.add(notwhile);
+        } else {
+            // for statement
+            Label infor = null;
+            Label notfor = null;
+            if (ctx.getChild(2).getText().equals(";")) {
+                if (!ctx.getChild(3).getText().equals(";")) {
+                    infor = new Label();
+                    instrList.add(infor);
+                    instrList.addAll(ctx.getChild(3).accept(this));
+                    Operand condReg = returnOperand;
+                    notfor = new Label();
+                    instrList.add(new BeqInstr(MipsRegister.$zero, condReg, notfor));
+                    if (!ctx.getChild(5).getText().equals(";")) {
+                        instrList.addAll(ctx.getChild(5).accept(this));
+                    }
+                } else if (!ctx.getChild(4).getText().equals(";")) {
+                    instrList.addAll(ctx.getChild(4).accept(this));
+                } else {
+                    infor = new Label();
+                    instrList.add(infor);
+                    notfor = new Label();
+                }
+            } else {
+                if (!ctx.getChild(4).getText().equals(";")) {
+                    instrList.addAll(ctx.getChild(2).accept(this));
+                    infor = new Label();
+                    instrList.add(infor);
+                    instrList.addAll(ctx.getChild(4).accept(this));
+                    Operand condReg = returnOperand;
+                    notfor = new Label();
+                    instrList.add(new BeqInstr(MipsRegister.$zero, condReg, notfor));
+                    if (!ctx.getChild(6).getText().equals(";")) {
+                        instrList.addAll(ctx.getChild(6).accept(this));
+                    }
+                } else if (!ctx.getChild(5).getText().equals(";")) {
+                    instrList.addAll(ctx.getChild(5).accept(this));
+                }
+            }
+            int toStmtInd = 5 + ctx.expr().size();
+            if (ctx.getChild(toStmtInd) instanceof RzParser.StmtContext) {
+                instrList.addAll(ctx.getChild(toStmtInd).accept(this));
+                instrList.add(new JarInstr(infor));
+                instrList.add(notfor);
+            } else if (ctx.getChild(toStmtInd) instanceof RzParser.Var_declContext) {
+                SymbolTable symbolTable = new SymbolTable(symt);
+                this.symt = symbolTable;
+                instrList.addAll(ctx.getChild(toStmtInd).accept(this));
+                instrList.add(new JarInstr(infor));
+                instrList.add(notfor);
+                symbolTable = symt.getParent();
+                this.symt = symbolTable;
+            }
+        }
         return instrList;
     }
 
@@ -266,6 +340,23 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitReturn_jump(RzParser.Return_jumpContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        if (ctx.expr() != null) {
+            instrList.addAll(ctx.expr().accept(this));
+            Operand tempReg = returnOperand;
+            if (tempReg instanceof ImmediateValue) {
+                instrList.add(new LiInstr(MipsRegister.$v0, tempReg));
+            } else {
+                instrList.add(new MoveInstr(MipsRegister.$v0, tempReg));
+            }
+        }
+        Label returnhere = new Label();
+        instrList.add(new JarInstr(returnhere));
+        instrList.add(returnhere);
+        instrList.add(new MoveInstr(MipsRegister.$a0, MipsRegister.$v0));
+        instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(1)));
+        instrList.add(new Syscall());
+        instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(10)));
+        instrList.add(new Syscall());
         return instrList;
     }
 

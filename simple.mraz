@@ -13,5 +13,13 @@ int main() {
 	    c = -c - 1;
 	}
 
+	while (a > 1) {
+	    --a;
+	}
+
+	for (a = 1; a < 10; ++a) {
+	    b = a;
+	}
+
 	return 0;
 }
