@@ -17,6 +17,10 @@ public class BInstr implements PseudoInstruction {
         this.label = label;
     }
 
+    public Label getLabel() {
+        return label;
+    }
+
     @Override
     public <T> T accept(InstructionVisitor<T> visitor) {
         return visitor.visit(this);

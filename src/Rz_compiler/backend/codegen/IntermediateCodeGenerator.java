@@ -6,6 +6,7 @@ import Rz_compiler.backend.instructions.MipsInstruction;
 import Rz_compiler.backend.instructions.PseudoInstruction;
 import Rz_compiler.backend.instructions.Syscall;
 import Rz_compiler.backend.instructions.arithmetic_logic.*;
+import Rz_compiler.backend.instructions.branch_jump.BInstr;
 import Rz_compiler.backend.instructions.branch_jump.BeqInstr;
 import Rz_compiler.backend.instructions.branch_jump.BneInstr;
 import Rz_compiler.backend.instructions.branch_jump.JarInstr;
@@ -38,6 +39,8 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     private SymbolTable symt;
 
     private TemporaryRegisterGenerator trg = new TemporaryRegisterGenerator();
+
+    private Label loopBodyLabel = null;
 
     private Operand returnOperand = null;
 
@@ -178,7 +181,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
         System.err.println("a = " + symt.lookup("a").getRegister().toString());
         System.err.println("b = " + symt.lookup("b").getRegister().toString());
-        System.err.println("c = " + symt.lookup("c").getRegister().toString());
+//        System.err.println("c = " + symt.lookup("c").getRegister().toString());
 
         SymbolTable symbolTable = symt.getParent();
         this.symt = symbolTable;
@@ -250,9 +253,13 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
     @Override
     public Deque<PseudoInstruction> visitIteration_stmt(RzParser.Iteration_stmtContext ctx) {
+
+        Label outerLoopBodyLabel =  loopBodyLabel;
+
         Deque<PseudoInstruction> instrList = new LinkedList<>();
         if (ctx.getChild(0).getText().equals("while")) {
             Label inwhile = new Label();
+            loopBodyLabel = inwhile;
             instrList.add(inwhile);
             instrList.addAll(ctx.expr(0).accept(this));
             Operand condReg = returnOperand;
@@ -267,15 +274,18 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                 symbolTable = symt.getParent();
                 this.symt = symbolTable;
             }
-            instrList.add(new JarInstr(inwhile));
+            instrList.add(new BInstr(inwhile));
+            loopBodyLabel = outerLoopBodyLabel;
             instrList.add(notwhile);
         } else {
             // for statement
             Label infor = null;
+            Label forItStmt;
             Label notfor = null;
             if (ctx.getChild(2).getText().equals(";")) {
                 if (!ctx.getChild(3).getText().equals(";")) {
                     infor = new Label();
+                    loopBodyLabel = infor;
                     instrList.add(infor);
                     instrList.addAll(ctx.getChild(3).accept(this));
                     Operand condReg = returnOperand;
@@ -284,10 +294,9 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                     if (!ctx.getChild(5).getText().equals(";")) {
                         instrList.addAll(ctx.getChild(5).accept(this));
                     }
-                } else if (!ctx.getChild(4).getText().equals(";")) {
-                    instrList.addAll(ctx.getChild(4).accept(this));
                 } else {
                     infor = new Label();
+                    loopBodyLabel = infor;
                     instrList.add(infor);
                     notfor = new Label();
                 }
@@ -295,39 +304,80 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                 if (!ctx.getChild(4).getText().equals(";")) {
                     instrList.addAll(ctx.getChild(2).accept(this));
                     infor = new Label();
+                    loopBodyLabel = infor;
                     instrList.add(infor);
                     instrList.addAll(ctx.getChild(4).accept(this));
                     Operand condReg = returnOperand;
                     notfor = new Label();
                     instrList.add(new BeqInstr(MipsRegister.$zero, condReg, notfor));
-                    if (!ctx.getChild(6).getText().equals(";")) {
-                        instrList.addAll(ctx.getChild(6).accept(this));
-                    }
-                } else if (!ctx.getChild(5).getText().equals(";")) {
-                    instrList.addAll(ctx.getChild(5).accept(this));
                 }
             }
             int toStmtInd = 5 + ctx.expr().size();
             if (ctx.getChild(toStmtInd) instanceof RzParser.StmtContext) {
+                forItStmt = new Label();
+                loopBodyLabel = forItStmt;
                 instrList.addAll(ctx.getChild(toStmtInd).accept(this));
-                instrList.add(new JarInstr(infor));
+                // Will declaring the same variable cause problem? - Of course not.
+                instrList.add(forItStmt);
+                if (ctx.getChild(2).getText().equals(";")) {
+                    if (!ctx.getChild(3).getText().equals(";")) {
+                        if (!ctx.getChild(5).getText().equals(";")) {
+                            instrList.addAll(ctx.getChild(5).accept(this));
+                        }
+                    } else if (!ctx.getChild(4).getText().equals(")")) {
+                        instrList.addAll(ctx.getChild(4).accept(this));
+                    }
+                } else {
+                    if (!ctx.getChild(4).getText().equals(";")) {
+                        if (!ctx.getChild(6).getText().equals(";")) {
+                            instrList.addAll(ctx.getChild(6).accept(this));
+                        }
+                    } else if (!ctx.getChild(5).getText().equals(")")) {
+                        instrList.addAll(ctx.getChild(5).accept(this));
+                    }
+                }
+                instrList.add(new BInstr(infor));
+                loopBodyLabel = outerLoopBodyLabel;
                 instrList.add(notfor);
             } else if (ctx.getChild(toStmtInd) instanceof RzParser.Var_declContext) {
                 SymbolTable symbolTable = new SymbolTable(symt);
                 this.symt = symbolTable;
+                forItStmt = new Label();
+                loopBodyLabel = forItStmt;
                 instrList.addAll(ctx.getChild(toStmtInd).accept(this));
-                instrList.add(new JarInstr(infor));
+                instrList.add(forItStmt);
+                if (ctx.getChild(2).getText().equals(";")) {
+                    if (!ctx.getChild(3).getText().equals(";")) {
+                        if (!ctx.getChild(5).getText().equals(";")) {
+                            instrList.addAll(ctx.getChild(5).accept(this));
+                        }
+                    } else if (!ctx.getChild(4).getText().equals(")")) {
+                        instrList.addAll(ctx.getChild(4).accept(this));
+                    }
+                } else {
+                    if (!ctx.getChild(4).getText().equals(";")) {
+                        if (!ctx.getChild(6).getText().equals(";")) {
+                            instrList.addAll(ctx.getChild(6).accept(this));
+                        }
+                    } else if (!ctx.getChild(5).getText().equals(")")) {
+                        instrList.addAll(ctx.getChild(5).accept(this));
+                    }
+                }
+                instrList.add(new BInstr(infor));
+                loopBodyLabel = outerLoopBodyLabel;
                 instrList.add(notfor);
                 symbolTable = symt.getParent();
                 this.symt = symbolTable;
             }
         }
+
         return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitContinue_jump(RzParser.Continue_jumpContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        instrList.add(new BInstr(loopBodyLabel));
         return instrList;
     }
 
@@ -350,7 +400,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
             }
         }
         Label returnhere = new Label();
-        instrList.add(new JarInstr(returnhere));
+        instrList.add(new BInstr(returnhere));
         instrList.add(returnhere);
         instrList.add(new MoveInstr(MipsRegister.$a0, MipsRegister.$v0));
         instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(1)));
@@ -931,14 +981,16 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
             if (ctx.postfix() instanceof RzParser.PlusPlusContext) {
                 instrList.addAll(ctx.postfix_expr().accept(this));
                 Register newplace = trg.generate();
-                tpa.getIdentofPostExpr(ctx.postfix_expr(), symt).setRegister((TemporaryRegister) newplace);
-                instrList.add(new AddInstr(newplace, returnOperand, new ImmediateValue(1)));
+                instrList.add(new MoveInstr(newplace, returnOperand));
+                instrList.add(new AddInstr(returnOperand, returnOperand, new ImmediateValue(1)));
+                returnOperand = newplace;
             }
             if (ctx.postfix() instanceof RzParser.MinusMinusContext) {
                 instrList.addAll(ctx.postfix_expr().accept(this));
                 Register newplace = trg.generate();
-                tpa.getIdentofPostExpr(ctx.postfix_expr(), symt).setRegister((TemporaryRegister) newplace);
-                instrList.add(new SubInstr(newplace, returnOperand, new ImmediateValue(1)));
+                instrList.add(new MoveInstr(newplace, returnOperand));
+                instrList.add(new SubInstr(returnOperand, returnOperand, new ImmediateValue(1)));
+                returnOperand = newplace;
             }
         }
         return instrList;

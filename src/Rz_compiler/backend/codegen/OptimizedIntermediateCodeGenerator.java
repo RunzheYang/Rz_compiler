@@ -4,6 +4,7 @@ import Rz_compiler.backend.instructions.AssemblerDirective;
 import Rz_compiler.backend.instructions.PseudoInstruction;
 import Rz_compiler.backend.instructions.Syscall;
 import Rz_compiler.backend.instructions.arithmetic_logic.*;
+import Rz_compiler.backend.instructions.branch_jump.BInstr;
 import Rz_compiler.backend.instructions.branch_jump.BeqInstr;
 import Rz_compiler.backend.instructions.branch_jump.BneInstr;
 import Rz_compiler.backend.instructions.branch_jump.JarInstr;
@@ -155,6 +156,9 @@ public class OptimizedIntermediateCodeGenerator implements Callable<Deque<Pseudo
             if (instr instanceof NotInstr) {
                 System.err.println("\tnot " + ((NotInstr) instr).getDest().toString() + ", "
                         + ((NotInstr) instr).getSrc1().toString());
+            }
+            if (instr instanceof BInstr) {
+                System.err.println("\tb " + ((BInstr) instr).getLabel().toString());
             }
             if (instr instanceof AssemblerDirective) {
                 System.err.println(instr.toString());
