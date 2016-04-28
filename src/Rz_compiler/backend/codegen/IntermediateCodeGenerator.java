@@ -18,6 +18,7 @@ import Rz_compiler.frontend.semantics.TypeAnalyser;
 import Rz_compiler.frontend.semantics.identifier.*;
 import Rz_compiler.frontend.syntax.RzParser;
 import Rz_compiler.frontend.syntax.RzVisitor;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.*;
 
 import javax.management.relation.RoleUnresolved;
@@ -941,11 +942,13 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     }
 
     @Override
-    public Deque<PseudoInstruction> visitNEWARRAYTYPE(RzParser.NEWARRAYTYPEContext ctx) {
+    public Deque<PseudoInstruction> visitNEWARRAYTYPE(RzParser.NEWARRAYTYPEContext ctx) throws RuntimeException {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
-        if (ctx.array().getChild(2) == null)
-            throw new RuntimeException("Runtime Error: Invalid creation of array");
-        instrList.addAll(ctx.array().getChild(2).accept(this));
+        RzParser.ArrayContext tempCtx = ctx.array();
+        while (tempCtx instanceof RzParser.ARR_MOREContext) {
+            tempCtx = ((RzParser.ARR_MOREContext) tempCtx).array();
+        }
+        instrList.addAll(tempCtx.getChild(2).accept(this));
         Operand expReg = returnOperand;
 
         if (expReg instanceof ImmediateValue) {

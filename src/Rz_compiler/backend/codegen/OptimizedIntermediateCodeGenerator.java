@@ -38,9 +38,15 @@ public class OptimizedIntermediateCodeGenerator implements Callable<Deque<Pseudo
     public Deque<PseudoInstruction> call() throws Exception {
 
         System.out.println(((RzParser.Func_defContext) ctx).ident().getText());
-
         IntermediateCodeGenerator visitor = new IntermediateCodeGenerator(symbolTable);
-        Deque<PseudoInstruction> intermediateCode = ctx.accept(visitor);
+        Deque<PseudoInstruction> intermediateCode = null;
+        try {
+            intermediateCode = ctx.accept(visitor);
+        } catch (Exception err) {
+            err.printStackTrace();
+            System.err.println(err.getMessage());
+        }
+
 
         // TODO: doOptimization(intermediateCode, optLevel);
 
