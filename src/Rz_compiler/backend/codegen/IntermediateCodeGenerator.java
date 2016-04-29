@@ -18,10 +18,8 @@ import Rz_compiler.frontend.semantics.TypeAnalyser;
 import Rz_compiler.frontend.semantics.identifier.*;
 import Rz_compiler.frontend.syntax.RzParser;
 import Rz_compiler.frontend.syntax.RzVisitor;
-import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.*;
 
-import javax.management.relation.RoleUnresolved;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -1073,7 +1071,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                     throw new RuntimeException("Runtime Error: A non-reference type has a subscript.");
                 }
 
-                Operand resultAddress = trg.generate();
+                Operand resultAddress = trg.generate().setMem();
 
                 if (offSetReg instanceof Register && !((Register) offSetReg).isContainValue()) {
                     throw new RuntimeException("Runtime Error: A memory address cannot be used as a index");
@@ -1105,6 +1103,22 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                 instrList.addAll(ctx.postfix_expr().accept(this));
                 Operand startAddress = returnOperand;
                 // TODO
+                ClassType classType = (ClassType) tpa.getTypeofPostExpr(ctx.postfix_expr(), symt);
+                int offset = classType.getMemberOffsets().get(((RzParser.MemberContext) ctx.postfix()).ident().getText());
+                Operand resultAddress = trg.generate().setMem();
+                instrList.add(new LaInstr(resultAddress, new MemAddress((Register) startAddress, offset)));
+
+                returnOperandAddress = (Register) resultAddress;
+
+                Operand resultReg = trg.generate();
+                instrList.add(new LwInstr(resultReg, new MemAddress((Register) resultAddress, 0)));
+
+                if (!classType.getMembers().get(
+                        ((RzParser.MemberContext) ctx.postfix()).ident().getText()).getType().equals(new IntType())) {
+                    ((TemporaryRegister) resultReg).setMem();
+                }
+
+                returnOperand = resultReg;
             }
         }
         return instrList;

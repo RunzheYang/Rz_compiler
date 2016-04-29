@@ -1,12 +1,13 @@
-int main() {
-    int[][] a = new int[10][];
-    a[1] = new int[10];
+class M {
+    int a;
+    int b;
+}
 
-    int[] b = new int[10];
-    int i;
-    for (i = 0; i < 10; ++i) {
-        b[i] = i;
-    }
-    int s = a[1][b[2]] = 1;
-    return s;
+int main() {
+    M m = new M;
+    m.a = 1;
+    m.b = m.a + 1;
+    int[] s = new int[10];
+    s[m.b] = m.a;
+    return s[m.b];
 }
