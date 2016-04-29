@@ -7,6 +7,8 @@ import java.util.HashMap;
  */
 public class ClassType extends Type {
 
+    private final int WORD_SIZE = 4;
+
     private String classname;
     private HashMap<String, Variable> members;
 
@@ -26,6 +28,10 @@ public class ClassType extends Type {
 
     public HashMap<String, Variable> getMembers() {
         return members;
+    }
+
+    public int getOffSet() {
+        return members.keySet().size() * WORD_SIZE;
     }
 
     @Override

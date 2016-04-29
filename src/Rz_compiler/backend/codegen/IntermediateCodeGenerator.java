@@ -938,6 +938,13 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     @Override
     public Deque<PseudoInstruction> visitNEWCLASSTYPE(RzParser.NEWCLASSTYPEContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        Type classType =  tpa.getTypeofIdent(ctx.ident().getText(), symt);
+        instrList.add(new LiInstr(MipsRegister.$a0, new ImmediateValue(((ClassType) classType).getOffSet())));
+        instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(9)));
+        instrList.add(new Syscall());
+        MipsRegister.$v0.setMem();
+        returnOperand = MipsRegister.$v0;
+        returnOperandAddress = null;
         return instrList;
     }
 
@@ -953,7 +960,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
 
         if (expReg instanceof ImmediateValue) {
             int combined = ((ImmediateValue) expReg).getValue() * WORD_SIZE;
-            instrList.add(new AddInstr(MipsRegister.$a0, MipsRegister.$zero, new ImmediateValue(combined)));
+            instrList.add(new LiInstr(MipsRegister.$a0, new ImmediateValue(combined)));
         } else {
             Operand tempReg = trg.generate();
             instrList.add(new MulInstr(tempReg, expReg, new ImmediateValue(WORD_SIZE)));
@@ -1092,6 +1099,12 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                 }
 
                 returnOperand = resultReg;
+            }
+
+            if (ctx.postfix() instanceof RzParser.MemberContext) {
+                instrList.addAll(ctx.postfix_expr().accept(this));
+                Operand startAddress = returnOperand;
+                // TODO
             }
         }
         return instrList;
