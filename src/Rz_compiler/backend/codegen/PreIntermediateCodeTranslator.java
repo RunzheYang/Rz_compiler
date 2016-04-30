@@ -125,8 +125,9 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
                 }
                 assert varReg != null;
                 if (varReg.isContainValue() == ((Register) rhsReg).isContainValue()) {
+                    preList.a.add(new AssemblerDirective(var.getName() + ":\t.word\t" + 0));
                     preList.b.add(new MoveInstr(varReg, rhsReg));
-                    preList.b.add(new SwInstr(varReg, new Label(var.getName())));
+                    returnOperandAddress = new Label(var.getName());
                 } else if (varReg.isContainValue()) {
                     throw new RuntimeException("Runtime Error: Assign memory address to value or vise");
                 }

@@ -48,8 +48,6 @@ public class CodeGenerator {
             codeGen = new OptimizedIntermediateCodeTranslator(program, symbolTable, optLevel);
             Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> preList = codeGen.predata();
 
-            System.err.println(preList == null);
-
             globalVar = preList.a;
             preInstr = preList.b;
 
@@ -59,10 +57,14 @@ public class CodeGenerator {
                 fbody.put(func.ident().getText(), codeGen.call());
             }
 
+            if (preInstr.size() != 0) {
+                preInstr.addAll(fbody.get("main"));
+                fbody.put("main", preInstr);
+            }
+
             instrList.add(new AssemblerDirective(".data"));
             instrList.addAll(globalVar);
             instrList.add(new AssemblerDirective(".text"));
-            instrList.addAll(preInstr);
             for (String funcname : fbody.keySet()) {
                 instrList.add(new AssemblerDirective(funcname + ":"));
                 instrList.addAll(fbody.get(funcname));
