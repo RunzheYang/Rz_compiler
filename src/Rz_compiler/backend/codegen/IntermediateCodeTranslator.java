@@ -1204,7 +1204,10 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                     var.setRegister((TemporaryRegister) trg.generate().setMem());
                 }
             }
-            instrList.add(new LwInstr(var.getRegister(), new Label(var.getName())));
+            if (((Variable) var).getType().equals(new IntType()))
+                instrList.add(new LwInstr(var.getRegister(), new Label(var.getName())));
+            else
+                instrList.add(new LaInstr(var.getRegister(), new Label(var.getName())));
             returnOperand = var.getRegister();
             returnOperandAddress = new Label(var.getName());
         } else {
