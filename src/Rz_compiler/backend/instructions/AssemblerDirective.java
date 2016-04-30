@@ -15,6 +15,11 @@ public class AssemblerDirective implements PseudoInstruction {
     }
 
     @Override
+    public String toString() {
+        return directive;
+    }
+
+    @Override
     public <T> T accept(InstructionVisitor<T> visitor) {
         return visitor.visit(this);
     }

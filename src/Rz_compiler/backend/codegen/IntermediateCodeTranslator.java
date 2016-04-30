@@ -26,7 +26,7 @@ import java.util.LinkedList;
 /**
  * Created by YRZ on 4/21/16.
  */
-public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruction>> {
+public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruction>> {
 
     private final int WORD_SIZE = 4;
 
@@ -41,7 +41,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
     private Operand returnOperand = null;
     private Register returnOperandAddress = null;
 
-    public IntermediateCodeGenerator(SymbolTable symt) {
+    public IntermediateCodeTranslator(SymbolTable symt) {
         this.symt = symt;
         tpa = new TypeAnalyser();
     }
@@ -85,8 +85,8 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
         String varname = ctx.init_declarator().ident().getText();
         Type vartype = tpa.getTypeofType(ctx.type(), symt);
         Variable var = new Variable(vartype);
+        if (symt.scope_lookup(varname) != null) throw new  RuntimeException("multi-thread conflict");
         symt.add(varname, var);
-
         instrList.addAll(ctx.init_declarator().accept(this));
 
         return instrList;
@@ -128,6 +128,7 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                 } else {
                     if (((ImmediateValue) rhsReg).getValue() == 0) {
                         instrList.add(new LiInstr(varReg, rhsReg));
+                        ((TemporaryRegister) varReg).setMem();
                     }
                 }
             }
@@ -466,7 +467,14 @@ public class IntermediateCodeGenerator implements RzVisitor<Deque<PseudoInstruct
                     && ((Register) rhsReg).isContainValue() == ((Register) lhsReg).isContainValue() ) {
                 instrList.add(new MoveInstr(lhsReg, rhsReg));
             } else {
-                instrList.add(new LiInstr(lhsReg, rhsReg));
+                if (((Register) lhsReg).isContainValue()) {
+                    instrList.add(new LiInstr(lhsReg, rhsReg));
+                } else {
+                    if (((ImmediateValue) rhsReg).getValue() == 0) {
+                        instrList.add(new LiInstr(lhsReg, rhsReg));
+                        ((TemporaryRegister) lhsReg).setMem();
+                    }
+                }
             }
 
             if (returnOperandAddress != null) {
