@@ -1,13 +1,6 @@
-class M {
-    int a;
-    int b;
-}
-
-M s = new M;
-M t = s;
-
+int[] a = new int[10];
+int[] b = a;
 int main() {
-    s.a = 1;
-    t.b = 2;
-    return s.a + t.b;
+    a[1] = 1;
+    return b[1];
 }

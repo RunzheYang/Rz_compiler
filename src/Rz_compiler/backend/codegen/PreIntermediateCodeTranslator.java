@@ -41,11 +41,16 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
     private Operand returnOperand = null;
     private Operand returnOperandAddress = null;
 
+    private int new_space = 0;
+
     public PreIntermediateCodeTranslator(SymbolTable symt) {
         this.symt = symt;
         tpa = new TypeAnalyser();
     }
 
+    private String generate_space() {
+        return "pool_" + new_space++;
+    }
 
     @Override
     public Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> visitProg(RzParser.ProgContext ctx) {
@@ -75,7 +80,7 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
         String varname = ctx.init_declarator().ident().getText();
         Type vartype = tpa.getTypeofType(ctx.type(), symt);
 
-        Variable var = (Variable) (new Variable(vartype)).setGlobal("var" + (varcnt++));
+        Variable var = (Variable) (new Variable(vartype)).setGlobal("var_" + (varcnt++));
 
         symt.add(varname, var);
         Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> next
@@ -115,11 +120,15 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
                     && ((Variable) var).getType() instanceof ClassType
                     && ((RzParser.CREATIONContext) ctx.initializer().expr()
                     .assign_expr().expression()).creation_expr() instanceof RzParser.NEWCLASSTYPEContext) {
-                preList.a.add(new AssemblerDirective(var.getName() + ":\t.space\t"
+                String pool = generate_space();
+                preList.a.add(new AssemblerDirective(pool + ":\t.space\t"
                         + ((ClassType) ((Variable) var).getType()).getOffSet()));
+                preList.a.add(new AssemblerDirective(var.getName() + ":\t.word\t"
+                        + pool));
                 returnOperandAddress = new Label(var.getName());
                 return preList;
-            } else {
+
+            }  else {
                 preList.b.addAll(ctx.initializer().accept(this).b);
             }
 
@@ -148,14 +157,17 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
                                 && ((RzParser.CREATIONContext) ctx.initializer().expr()
                                 .assign_expr().expression()).creation_expr() instanceof RzParser.NEWCLASSTYPEContext) {
                             if (((Variable) var).getType() instanceof ClassType) {
-                                preList.a.add(new AssemblerDirective(var.getName() + ":\t.space\t"
+                                String pool = generate_space();
+                                preList.a.add(new AssemblerDirective(pool + ":\t.space\t"
                                         + ((ClassType) ((Variable) var).getType()).getOffSet()));
+                                preList.a.add(new AssemblerDirective(var.getName() + ":\t.word\t"
+                                        + pool));
                             } else {
-                                preList.a.add(new AssemblerDirective(var.getName() + ":\t.space\t" + 0));
+                                preList.a.add(new AssemblerDirective(var.getName() + ":\t.word\t" + 0));
                                 preList.b.add(new MoveInstr(varReg, rhsReg));
                             }
                         } else {
-                            preList.a.add(new AssemblerDirective(var.getName() + ":\t.space\t" + 0));
+                            preList.a.add(new AssemblerDirective(var.getName() + ":\t.word\t" + 0));
                             preList.b.add(new MoveInstr(varReg, rhsReg));
                         }
                     }
@@ -192,12 +204,7 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
         } else {
             Identifier var = symt.lookup(ctx.ident().getText());
             if (var instanceof Variable) {
-                if (((Variable) var).getType() instanceof IntType
-                        || ((Variable) var).getType() instanceof BoolType) {
-                    preList.a.add(new AssemblerDirective(var.getName() + ":\t.word\t" + 0));
-                } else {
-                    //TODO
-                }
+                preList.a.add(new AssemblerDirective(var.getName() + ":\t.word\t" + 0));
             }
         }
 
@@ -819,7 +826,29 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
 
     @Override
     public Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> visitNEWARRAYTYPE(RzParser.NEWARRAYTYPEContext ctx) {
-        return null;
+        Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> preList
+                = new Pair<>(new LinkedList<>(), new LinkedList<>());
+        RzParser.ArrayContext tempCtx = ctx.array();
+        while (tempCtx instanceof RzParser.ARR_MOREContext) {
+            tempCtx = ((RzParser.ARR_MOREContext) tempCtx).array();
+        }
+        preList.b.addAll(tempCtx.getChild(2).accept(this).b);
+        Operand expReg = returnOperand;
+
+        if (expReg instanceof ImmediateValue) {
+            int combined = ((ImmediateValue) expReg).getValue() * WORD_SIZE;
+            preList.b.add(new LiInstr(MipsRegister.$a0, new ImmediateValue(combined)));
+        } else {
+            Operand tempReg = trg.generate();
+            preList.b.add(new MulInstr(tempReg, expReg, new ImmediateValue(WORD_SIZE)));
+            preList.b.add(new AddInstr(MipsRegister.$a0, MipsRegister.$zero, tempReg));
+        }
+        preList.b.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(9)));
+        preList.b.add(new Syscall());
+        MipsRegister.$v0.setMem();
+        returnOperand = MipsRegister.$v0;
+        returnOperandAddress = null;
+        return preList;
     }
 
     @Override
@@ -1039,10 +1068,7 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
                     var.setRegister((TemporaryRegister) trg.generate().setMem());
                 }
             }
-            if (((Variable) var).getType().equals(new IntType()))
-                preList.b.add(new LwInstr(var.getRegister(), new Label(var.getName())));
-            else
-                preList.b.add(new LaInstr(var.getRegister(), new Label(var.getName())));
+            preList.b.add(new LwInstr(var.getRegister(), new Label(var.getName())));
             returnOperand = var.getRegister();
             returnOperandAddress = new Label(var.getName());
         } else {
