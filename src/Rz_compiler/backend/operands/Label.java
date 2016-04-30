@@ -10,14 +10,23 @@ public class Label implements Operand, PseudoInstruction {
 
     private static int totLabel = 0;
     private int cnt;
+    private String name = null;
 
     public Label() {
         this.cnt = ++totLabel;
     }
 
+    public Label(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
-        return "L" + cnt;
+        if (name == null) {
+            return "L" + cnt;
+        } else {
+            return name;
+        }
     }
 
     @Override

@@ -39,7 +39,7 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
     private Label loopOutLabel = null;
 
     private Operand returnOperand = null;
-    private Register returnOperandAddress = null;
+    private Operand returnOperandAddress = null;
 
     public IntermediateCodeTranslator(SymbolTable symt) {
         this.symt = symt;
@@ -134,7 +134,11 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
             }
 
             if (returnOperandAddress != null) {
-                instrList.add(new SwInstr(varReg, new MemAddress(returnOperandAddress, 0)));
+                if (returnOperandAddress instanceof Register) {
+                    instrList.add(new SwInstr(varReg, new MemAddress((Register) returnOperandAddress, 0)));
+                } else if (returnOperandAddress instanceof Label) {
+                    instrList.add(new SwInstr(varReg, returnOperandAddress));
+                }
             }
 
             returnOperand = varReg;
@@ -478,7 +482,11 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
             }
 
             if (returnOperandAddress != null) {
-                instrList.add(new SwInstr(lhsReg, new MemAddress(returnOperandAddress, 0)));
+                if (returnOperandAddress instanceof Register) {
+                    instrList.add(new SwInstr(lhsReg, new MemAddress((Register) returnOperandAddress, 0)));
+                } else if (returnOperandAddress instanceof Label) {
+                    instrList.add(new SwInstr(lhsReg, returnOperandAddress));
+                }
             }
 
             returnOperand = lhsReg;
@@ -1011,9 +1019,15 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
             if (ctx.getChild(0).getText().equals("++")) {
                 instrList.addAll(ctx.unary_expr().accept(this));
                 instrList.add(new AddInstr(returnOperand, returnOperand, new ImmediateValue(1)));
+                if (returnOperandAddress != null) {
+                    instrList.add(new SwInstr(returnOperand, returnOperandAddress));
+                }
             } else if (ctx.getChild(0).getText().equals("--")) {
                 instrList.addAll(ctx.unary_expr().accept(this));
                 instrList.add(new SubInstr(returnOperand, returnOperand, new ImmediateValue(1)));
+                if (returnOperandAddress != null) {
+                    instrList.add(new SwInstr(returnOperand, returnOperandAddress));
+                }
             } else if (ctx.getChild(0).getText().equals("~")) {
                 instrList.addAll(ctx.unary_expr().accept(this));
                 if (returnOperand instanceof ImmediateValue) {
@@ -1057,6 +1071,9 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                 Register newplace = trg.generate();
                 instrList.add(new MoveInstr(newplace, returnOperand));
                 instrList.add(new AddInstr(returnOperand, returnOperand, new ImmediateValue(1)));
+                if (returnOperandAddress != null) {
+                    instrList.add(new SwInstr(returnOperand, returnOperandAddress));
+                }
                 returnOperand = newplace;
             }
             if (ctx.postfix() instanceof RzParser.MinusMinusContext) {
@@ -1064,6 +1081,9 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                 Register newplace = trg.generate();
                 instrList.add(new MoveInstr(newplace, returnOperand));
                 instrList.add(new SubInstr(returnOperand, returnOperand, new ImmediateValue(1)));
+                if (returnOperandAddress != null) {
+                    instrList.add(new SwInstr(returnOperand, returnOperandAddress));
+                }
                 returnOperand = newplace;
             }
 
@@ -1169,11 +1189,28 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
         return null;
     }
 
+
+    //Special! FOR VARIABLES IN THE EXPRESSION
     @Override
     public Deque<PseudoInstruction> visitPrimary_ident(RzParser.Primary_identContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
-        returnOperand = tpa.getIdentofPrimary(ctx, symt).getRegister();
-        returnOperandAddress = null;
+
+        Identifier var =  tpa.getIdentofPrimary(ctx, symt);
+        if (var.isGlobal()) {
+            if (var.getRegister() == null && var instanceof Variable) {
+                if (((Variable) var).getType().equals(new IntType())) {
+                    var.setRegister(trg.generate());
+                } else {
+                    var.setRegister((TemporaryRegister) trg.generate().setMem());
+                }
+            }
+            instrList.add(new LwInstr(var.getRegister(), new Label(var.getName())));
+            returnOperand = var.getRegister();
+            returnOperandAddress = new Label(var.getName());
+        } else {
+            returnOperand = var.getRegister();
+            returnOperandAddress = null;
+        }
         return instrList;
     }
 
