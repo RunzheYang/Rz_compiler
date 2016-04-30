@@ -112,7 +112,9 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
             Identifier var = symt.lookup(ctx.ident().getText());
 
             if (ctx.initializer().expr().assign_expr().expression() instanceof RzParser.CREATIONContext
-                    && ((Variable) var).getType() instanceof ClassType) {
+                    && ((Variable) var).getType() instanceof ClassType
+                    && ((RzParser.CREATIONContext) ctx.initializer().expr()
+                    .assign_expr().expression()).creation_expr() instanceof RzParser.NEWCLASSTYPEContext) {
                 preList.a.add(new AssemblerDirective(var.getName() + ":\t.space\t"
                         + ((ClassType) ((Variable) var).getType()).getOffSet()));
                 returnOperandAddress = new Label(var.getName());
@@ -142,7 +144,9 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
                         preList.a.add(new AssemblerDirective(var.getName() + ":\t.word\t" + 0));
                         preList.b.add(new MoveInstr(varReg, rhsReg));
                     } else {
-                        if (ctx.initializer().expr().assign_expr().expression() instanceof RzParser.CREATIONContext) {
+                        if (ctx.initializer().expr().assign_expr().expression() instanceof RzParser.CREATIONContext
+                                && ((RzParser.CREATIONContext) ctx.initializer().expr()
+                                .assign_expr().expression()).creation_expr() instanceof RzParser.NEWCLASSTYPEContext) {
                             if (((Variable) var).getType() instanceof ClassType) {
                                 preList.a.add(new AssemblerDirective(var.getName() + ":\t.space\t"
                                         + ((ClassType) ((Variable) var).getType()).getOffSet()));
