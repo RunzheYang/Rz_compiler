@@ -22,6 +22,7 @@ import org.antlr.v4.runtime.tree.*;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * Created by YRZ on 4/21/16.
@@ -32,6 +33,7 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
 
     private TypeAnalyser tpa;
     private SymbolTable symt;
+    private Map<String, String> stringDic;
 
     private TemporaryRegisterGenerator trg = new TemporaryRegisterGenerator();
 
@@ -41,8 +43,9 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
     private Operand returnOperand = null;
     private Operand returnOperandAddress = null;
 
-    public IntermediateCodeTranslator(SymbolTable symt) {
+    public IntermediateCodeTranslator(SymbolTable symt, Map<String, String> stringDic) {
         this.symt = symt;
+        this.stringDic = stringDic;
         tpa = new TypeAnalyser();
     }
 
@@ -126,8 +129,11 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                 if (varReg.isContainValue()) {
                     instrList.add(new LiInstr(varReg, rhsReg));
                 } else {
-                    if (((ImmediateValue) rhsReg).getValue() == 0) {
+                    if (rhsReg instanceof ImmediateValue && ((ImmediateValue) rhsReg).getValue() == 0) {
                         instrList.add(new LiInstr(varReg, rhsReg));
+                        ((TemporaryRegister) varReg).setMem();
+                    } else if (rhsReg instanceof Label) {
+                        instrList.add(new LaInstr(varReg, rhsReg));
                         ((TemporaryRegister) varReg).setMem();
                     }
                 }
@@ -475,8 +481,11 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                 if (((Register) lhsReg).isContainValue()) {
                     instrList.add(new LiInstr(lhsReg, rhsReg));
                 } else {
-                    if (((ImmediateValue) rhsReg).getValue() == 0) {
+                    if (rhsReg instanceof ImmediateValue && ((ImmediateValue) rhsReg).getValue() == 0) {
                         instrList.add(new LiInstr(lhsReg, rhsReg));
+                        ((TemporaryRegister) lhsReg).setMem();
+                    } else if (rhsReg instanceof Label) {
+                        instrList.add(new LaInstr(lhsReg, rhsReg));
                         ((TemporaryRegister) lhsReg).setMem();
                     }
                 }
@@ -1237,7 +1246,8 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
     @Override
     public Deque<PseudoInstruction> visitPrimary_const_string(RzParser.Primary_const_stringContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
-        returnOperand = new ImmediateValue(0);
+        String msg = stringDic.get(ctx.STRING().getText());
+        returnOperand = new Label(msg);
         return instrList;
     }
 

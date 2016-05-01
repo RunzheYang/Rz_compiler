@@ -27,6 +27,10 @@ public class StringConstGetter implements RzVisitor<Deque<PseudoInstruction>> {
 
     private Map<String, String> stringConsts = new HashMap<String, String>();
 
+    public Map<String, String> getStringConsts() {
+        return stringConsts;
+    }
+
     @Override
     public Deque<PseudoInstruction> visitProg(RzParser.ProgContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
@@ -457,7 +461,7 @@ public class StringConstGetter implements RzVisitor<Deque<PseudoInstruction>> {
 
         if (!stringConsts.containsKey(ctx.STRING().getText())) {
             String varname = string_generate();
-            instrList.add(new AssemblerDirective(varname + ":\t.asciiz \"" + ctx.STRING().getText() + "\"\t.align 2"));
+            instrList.add(new AssemblerDirective(varname + ":\t.asciiz\t" + ctx.STRING().getText()));
             stringConsts.put(ctx.STRING().getText(), varname);
         }
 

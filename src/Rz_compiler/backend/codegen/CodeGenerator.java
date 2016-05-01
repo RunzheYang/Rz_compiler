@@ -45,12 +45,13 @@ public class CodeGenerator {
             Deque<PseudoInstruction> globalString;
             StringConstGetter scGet = new StringConstGetter();
             globalString = program.accept(scGet);
+            Map<String, String> stringDic = scGet.getStringConsts();
 
             OptimizedIntermediateCodeTranslator codeGen;
             Deque<PseudoInstruction> globalVar;
             Deque<PseudoInstruction> preInstr;
 
-            codeGen = new OptimizedIntermediateCodeTranslator(program, symbolTable, optLevel);
+            codeGen = new OptimizedIntermediateCodeTranslator(program, symbolTable, stringDic, optLevel);
             Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> preList = codeGen.predata();
 
             globalVar = preList.a;
@@ -58,7 +59,7 @@ public class CodeGenerator {
 
             Map<String, Deque<PseudoInstruction>> fbody = new HashMap<>();
             for (RzParser.Func_defContext func : program.func_def()) {
-                codeGen = new OptimizedIntermediateCodeTranslator(func, symbolTable, optLevel);
+                codeGen = new OptimizedIntermediateCodeTranslator(func, symbolTable, stringDic, optLevel);
                 fbody.put(func.ident().getText(), codeGen.call());
             }
 
@@ -68,6 +69,7 @@ public class CodeGenerator {
             }
 
             instrList.add(new AssemblerDirective(".data"));
+            instrList.add(new AssemblerDirective(".align 2"));
             instrList.addAll(globalString);
             instrList.addAll(globalVar);
             instrList.add(new AssemblerDirective(".text"));

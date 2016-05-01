@@ -18,6 +18,7 @@ import org.antlr.v4.runtime.misc.Pair;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.Deque;
+import java.util.Map;
 import java.util.concurrent.Callable;
 
 /**
@@ -30,15 +31,19 @@ public class OptimizedIntermediateCodeTranslator implements Callable<Deque<Pseud
 
     private SymbolTable symbolTable;
 
-    public OptimizedIntermediateCodeTranslator(ParseTree ctx, SymbolTable symbolTable , int optLevel) {
+    private Map<String, String> stringDic;
+
+    public OptimizedIntermediateCodeTranslator(ParseTree ctx, SymbolTable symbolTable,
+                                               Map<String, String> stringDic, int optLevel) {
         this.ctx = ctx;
         this.symbolTable = symbolTable;
+        this.stringDic = stringDic;
         this.optLevel = optLevel;
     }
 
     @Override
     public Deque<PseudoInstruction> call() throws Exception {
-        IntermediateCodeTranslator visitor = new IntermediateCodeTranslator(symbolTable);
+        IntermediateCodeTranslator visitor = new IntermediateCodeTranslator(symbolTable, stringDic);
         Deque<PseudoInstruction> intermediateCode = null;
         try {
             intermediateCode = ctx.accept(visitor);
@@ -54,7 +59,7 @@ public class OptimizedIntermediateCodeTranslator implements Callable<Deque<Pseud
 
     public Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> predata() {
         Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> preList = null;
-        PreIntermediateCodeTranslator visitor = new PreIntermediateCodeTranslator(symbolTable);
+        PreIntermediateCodeTranslator visitor = new PreIntermediateCodeTranslator(symbolTable, stringDic);
         try {
             preList = ctx.accept(visitor);
         } catch (Exception err) {

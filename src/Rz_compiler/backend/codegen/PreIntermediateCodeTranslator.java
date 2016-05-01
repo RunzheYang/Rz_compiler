@@ -23,6 +23,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Map;
 
 /**
  * Created by YRZ on 4/30/16.
@@ -33,6 +34,7 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
 
     private TypeAnalyser tpa;
     private SymbolTable symt;
+    private Map<String, String> stringDic;
 
     private int varcnt = 0;
 
@@ -43,8 +45,9 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
 
     private int new_space = 0;
 
-    public PreIntermediateCodeTranslator(SymbolTable symt) {
+    public PreIntermediateCodeTranslator(SymbolTable symt, Map<String, String>  stringDic) {
         this.symt = symt;
+        this. stringDic = stringDic;
         tpa = new TypeAnalyser();
     }
 
@@ -181,11 +184,14 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
                     preList.a.add(new AssemblerDirective(var.getName() + ":\t.word\t"
                             + ((ImmediateValue) rhsReg).getValue()));
                 } else {
-                    if (((ImmediateValue) rhsReg).getValue() == 0) {
+                    if (rhsReg instanceof ImmediateValue && ((ImmediateValue) rhsReg).getValue() == 0) {
                         preList.a.add(new AssemblerDirective(var.getName() + ":\t.word\t" + 0));
                         if (varReg != null) {
                             ((TemporaryRegister) varReg).setMem();
                         }
+                    }
+                    if (rhsReg instanceof Label) {
+                        preList.a.add(new AssemblerDirective(var.getName() + ":\t.word\t" + rhsReg.toString()));
                     }
                 }
             }
@@ -324,8 +330,11 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
                 if (((Register) lhsReg).isContainValue()) {
                     preList.b.add(new LiInstr(lhsReg, rhsReg));
                 } else {
-                    if (((ImmediateValue) rhsReg).getValue() == 0) {
+                    if (rhsReg instanceof ImmediateValue && ((ImmediateValue) rhsReg).getValue() == 0) {
                         preList.b.add(new LiInstr(lhsReg, rhsReg));
+                        ((TemporaryRegister) lhsReg).setMem();
+                    } else if (rhsReg instanceof Label) {
+                        preList.b.add(new LaInstr(lhsReg, rhsReg));
                         ((TemporaryRegister) lhsReg).setMem();
                     }
                 }
@@ -1100,7 +1109,11 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
 
     @Override
     public Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> visitPrimary_const_string(RzParser.Primary_const_stringContext ctx) {
-        return null;
+        Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> preList
+                = new Pair<>(new LinkedList<>(), new LinkedList<>());
+        String msg = stringDic.get(ctx.STRING().getText());
+        returnOperand = new Label(msg);
+        return preList;
     }
 
     @Override
