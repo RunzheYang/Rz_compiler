@@ -1,6 +1,7 @@
 int[] a = new int[10];
-int[] b = a;
+int[] b = null;
 int main() {
+    b = a;
     a[1] = 1;
     return b[1];
 }

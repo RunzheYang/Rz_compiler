@@ -182,7 +182,7 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
                             + ((ImmediateValue) rhsReg).getValue()));
                 } else {
                     if (((ImmediateValue) rhsReg).getValue() == 0) {
-                        preList.a.add(new AssemblerDirective(var.getName() + ":\t.space\t" + 0));
+                        preList.a.add(new AssemblerDirective(var.getName() + ":\t.word\t" + 0));
                         if (varReg != null) {
                             ((TemporaryRegister) varReg).setMem();
                         }
@@ -190,7 +190,7 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
                 }
             }
 
-            if (returnOperandAddress != null) {
+            if (returnOperandAddress != null && varReg != null) {
                 if (returnOperandAddress instanceof Register) {
                     preList.b.add(new SwInstr(varReg, new MemAddress((Register) returnOperandAddress, 0)));
                 } else if (returnOperandAddress instanceof Label) {
@@ -1105,7 +1105,10 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
 
     @Override
     public Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> visitPrimary_null(RzParser.Primary_nullContext ctx) {
-        return null;
+        Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> preList
+                = new Pair<>(new LinkedList<>(), new LinkedList<>());
+        returnOperand = new ImmediateValue(0);
+        return preList;
     }
 
     @Override
