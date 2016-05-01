@@ -224,7 +224,8 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
     @Override
     public Deque<PseudoInstruction> visitExpr_stmt(RzParser.Expr_stmtContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
-        instrList.addAll(ctx.assign_expr().accept(this));
+        if (ctx.getChildCount() > 1)
+            instrList.addAll(ctx.assign_expr().accept(this));
         return instrList;
     }
 
@@ -1235,7 +1236,9 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
 
     @Override
     public Deque<PseudoInstruction> visitPrimary_const_string(RzParser.Primary_const_stringContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        returnOperand = new ImmediateValue(0);
+        return instrList;
     }
 
     @Override

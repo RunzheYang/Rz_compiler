@@ -42,6 +42,10 @@ public class CodeGenerator {
 //            instrList.add(...);
 
             // TODO add global variables and string constant here.
+            Deque<PseudoInstruction> globalString;
+            StringConstGetter scGet = new StringConstGetter();
+            globalString = program.accept(scGet);
+
             OptimizedIntermediateCodeTranslator codeGen;
             Deque<PseudoInstruction> globalVar;
             Deque<PseudoInstruction> preInstr;
@@ -64,6 +68,7 @@ public class CodeGenerator {
             }
 
             instrList.add(new AssemblerDirective(".data"));
+            instrList.addAll(globalString);
             instrList.addAll(globalVar);
             instrList.add(new AssemblerDirective(".text"));
             for (String funcname : fbody.keySet()) {

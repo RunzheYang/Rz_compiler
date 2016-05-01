@@ -1,7 +1,6 @@
 int[] a = new int[10];
-int[] b = null;
+int[] b = a = null;
 int main() {
-    b = a;
-    a[1] = 1;
-    return b[1];
+    string k = "Hello Word";
+    return (a == null);
 }

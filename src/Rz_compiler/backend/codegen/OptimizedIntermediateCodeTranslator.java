@@ -13,6 +13,7 @@ import Rz_compiler.backend.instructions.comparison.*;
 import Rz_compiler.backend.instructions.load_store_move.*;
 import Rz_compiler.backend.operands.Label;
 import Rz_compiler.frontend.semantics.SymbolTable;
+import com.sun.javafx.binding.StringFormatter;
 import org.antlr.v4.runtime.misc.Pair;
 import org.antlr.v4.runtime.tree.ParseTree;
 
@@ -52,8 +53,8 @@ public class OptimizedIntermediateCodeTranslator implements Callable<Deque<Pseud
     }
 
     public Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> predata() {
-        PreIntermediateCodeTranslator visitor = new PreIntermediateCodeTranslator(symbolTable);
         Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> preList = null;
+        PreIntermediateCodeTranslator visitor = new PreIntermediateCodeTranslator(symbolTable);
         try {
             preList = ctx.accept(visitor);
         } catch (Exception err) {
