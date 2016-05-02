@@ -133,7 +133,7 @@ public class RegisterAllocator implements InstructionVisitor<Deque<PseudoInstruc
     }
 
     @Override
-    public Deque<PseudoInstruction> visit(JarInstr jarInstr) {
+    public Deque<PseudoInstruction> visit(JalInstr jalInstr) {
         return null;
     }
 

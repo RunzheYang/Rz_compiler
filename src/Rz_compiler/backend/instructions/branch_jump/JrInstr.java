@@ -15,6 +15,10 @@ public class JrInstr implements PseudoInstruction {
         this.rSrc = rSrc;
     }
 
+    public Operand getrSrc() {
+        return rSrc;
+    }
+
     @Override
     public <T> T accept(InstructionVisitor<T> visitor) {
         return visitor.visit(this);

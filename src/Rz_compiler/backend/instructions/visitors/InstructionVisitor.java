@@ -8,8 +8,6 @@ import Rz_compiler.backend.instructions.comparison.*;
 import Rz_compiler.backend.instructions.load_store_move.*;
 import Rz_compiler.backend.operands.Label;
 
-import java.util.List;
-
 /**
  * Created by YRZ on 4/23/16.
  */
@@ -61,7 +59,7 @@ public interface InstructionVisitor<T> {
 
     T visit(BneInstr bneInstr);
 
-    T visit(JarInstr jarInstr);
+    T visit(JalInstr jalInstr);
 
     T visit(JrInstr jrInstr);
 

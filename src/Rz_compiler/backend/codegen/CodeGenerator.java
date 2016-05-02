@@ -4,17 +4,13 @@ import Rz_compiler.backend.instructions.AssemblerDirective;
 import Rz_compiler.backend.instructions.PseudoInstruction;
 import Rz_compiler.backend.instructions.Syscall;
 import Rz_compiler.backend.instructions.arithmetic_logic.*;
-import Rz_compiler.backend.instructions.branch_jump.BInstr;
-import Rz_compiler.backend.instructions.branch_jump.BeqInstr;
-import Rz_compiler.backend.instructions.branch_jump.BneInstr;
-import Rz_compiler.backend.instructions.branch_jump.JarInstr;
+import Rz_compiler.backend.instructions.branch_jump.*;
 import Rz_compiler.backend.instructions.comparison.*;
 import Rz_compiler.backend.instructions.load_store_move.*;
 import Rz_compiler.backend.operands.Label;
 import Rz_compiler.frontend.semantics.SymbolTable;
 import Rz_compiler.frontend.syntax.RzParser;
 import org.antlr.v4.runtime.misc.Pair;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.util.Deque;
 import java.util.HashMap;
@@ -208,8 +204,11 @@ public class CodeGenerator {
                         + ((BneInstr) instr).getSrc1().toString() + ", "
                         + ((BneInstr) instr).getSrc2().toString());
             }
-            if (instr instanceof JarInstr) {
-                System.err.println("\tjar " + ((JarInstr) instr).getLabel().toString());
+            if (instr instanceof JalInstr) {
+                System.err.println("\tjal " + ((JalInstr) instr).getLabel().toString());
+            }
+            if (instr instanceof JrInstr) {
+                System.err.println("\tjr " + ((JrInstr) instr).getrSrc().toString());
             }
             if (instr instanceof NegInstr) {
                 System.err.println("\tneg " + ((NegInstr) instr).getDest().toString() + ", "

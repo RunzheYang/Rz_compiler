@@ -1,15 +1,10 @@
 package Rz_compiler.backend.codegen;
 
 import Rz_compiler.backend.allocation.TemporaryRegisterGenerator;
-import Rz_compiler.backend.instructions.AssemblerDirective;
-import Rz_compiler.backend.instructions.MipsInstruction;
 import Rz_compiler.backend.instructions.PseudoInstruction;
 import Rz_compiler.backend.instructions.Syscall;
 import Rz_compiler.backend.instructions.arithmetic_logic.*;
-import Rz_compiler.backend.instructions.branch_jump.BInstr;
-import Rz_compiler.backend.instructions.branch_jump.BeqInstr;
-import Rz_compiler.backend.instructions.branch_jump.BneInstr;
-import Rz_compiler.backend.instructions.branch_jump.JarInstr;
+import Rz_compiler.backend.instructions.branch_jump.*;
 import Rz_compiler.backend.instructions.comparison.*;
 import Rz_compiler.backend.instructions.load_store_move.*;
 import Rz_compiler.backend.operands.*;
@@ -19,6 +14,7 @@ import Rz_compiler.frontend.semantics.TypeAnalyser;
 import Rz_compiler.frontend.semantics.identifier.*;
 import Rz_compiler.frontend.syntax.RzParser;
 import Rz_compiler.frontend.syntax.RzVisitor;
+import com.sun.deploy.security.ValidationState;
 import org.antlr.v4.runtime.tree.*;
 
 import java.util.ArrayList;
@@ -67,18 +63,11 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
         FunctionType functype = new FunctionType(tpa.getTypeofType(ctx.type(), symt));
         functype.addSymbolTable(symt);
         if (ctx.getChildCount() > 5) {
-            if (funcname.equals("main")) {
-                throw new SemanticException("Semantic Error: function 'main()' can not have any argument");
-            }
             ArrayList<String> param_names =  new ArrayList<String>();
             for (int i = 0; i < (ctx.param_list().getChildCount() + 1) / 3; ++i) {
                 String paramname = ctx.param_list().ident(i).getText();
-                if (param_names.contains(paramname)) {
-                    throw new SemanticException("Semantic Error: Repeated function parameter name '" + paramname + "'");
-                } else {
-                    param_names.add(paramname);
-                    functype.addParameter(paramname, tpa.getTypeofType(ctx.param_list().type(i), symt));
-                }
+                param_names.add(paramname);
+                functype.addParameter(paramname, tpa.getTypeofType(ctx.param_list().type(i), symt));
             }
         }
         symt.add(funcname, functype);
@@ -88,18 +77,53 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
         symt.add(ctx.ident().getText(), tpa.getCurrentFunc());
         tpa.setCurrentFunc((FunctionType) symt.lookup(ctx.ident().getText()));
 
+        // prologue
+        instrList.add(new SubInstr(MipsRegister.$sp, MipsRegister.$sp, new ImmediateValue(4)));
+        instrList.add(new SwInstr(MipsRegister.$ra, new MemAddress(MipsRegister.$sp, 0)));
+
+        // body part
         if (ctx.getChildCount() > 5) {
             instrList.addAll(ctx.param_list().accept(this));
-//            for (RzParser.IdentContext para: ctx.param_list().ident()) {
-//                temporary = trg.generate();
-//                instrList.add(new LwInstr(temporary, new MemAddress(MipsRegister.$sp,
-//                        frameOffset * 4)));
-                //TODO: p.getScope().lookup(p.getIdent()).setTemporaryRegister(temporary);
-//                frameOffset++;
-//            }
         }
+
         instrList.addAll(ctx.compound_stmt().accept(this));
 
+        if (functype.equals(new VoidType())) {
+            instrList.add(new LwInstr(MipsRegister.$ra, new MemAddress(MipsRegister.$sp, 0)));
+            instrList.add(new AddInstr(MipsRegister.$sp, MipsRegister.$sp, new ImmediateValue(4)));
+            instrList.add(new JrInstr(MipsRegister.$ra));
+        }
+
+        if (funcname.equals("main")) {
+            Label returnhere = new Label("MAIN_END");
+            instrList.add(new BInstr(returnhere));
+            instrList.add(returnhere);
+            instrList.add(new MoveInstr(MipsRegister.$a0, MipsRegister.$v0));
+            instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(1)));
+            instrList.add(new Syscall());
+            instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(10)));
+            instrList.add(new Syscall());
+        }
+
+        return instrList;
+    }
+
+    @Override
+    public Deque<PseudoInstruction> visitParam_list(RzParser.Param_listContext ctx) {
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        for (int i = 0; i < ctx.ident().size(); ++i) {
+            String varname = ctx.ident(i).getText();
+            Type vartype = tpa.getTypeofType(ctx.type(i), symt);
+            Register varReg;
+            if (vartype.equals(new IntType())) {
+                varReg = trg.generate();
+            } else {
+                varReg = trg.generate().setMem();
+            }
+            tpa.getCurrentFunc().getSymTable().lookup(varname).setRegister((TemporaryRegister) varReg);
+            instrList.add(new MoveInstr(varReg, getArgReg(i)));
+            returnOperand = varReg;
+        }
         return instrList;
     }
 
@@ -184,11 +208,6 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
     @Override
     public Deque<PseudoInstruction> visitClass_decl(RzParser.Class_declContext ctx) {
         return null;
-    }
-
-    @Override
-    public Deque<PseudoInstruction> visitParam_list(RzParser.Param_listContext ctx) {
-        return new LinkedList<>();
     }
 
     @Override
@@ -459,18 +478,21 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
             Operand tempReg = returnOperand;
             if (tempReg instanceof ImmediateValue) {
                 instrList.add(new LiInstr(MipsRegister.$v0, tempReg));
-            } else {
+            } else if (tempReg instanceof Register) {
                 instrList.add(new MoveInstr(MipsRegister.$v0, tempReg));
+            } else if (tempReg instanceof Label) {
+                instrList.add(new LaInstr(MipsRegister.$v0, tempReg));
+            }
+            Type type = tpa.getTypeofExpr(ctx.expr(), symt);
+            if (type.equals(new IntType())) {
+                MipsRegister.$v0.setValue();
+            } else {
+                MipsRegister.$v0.setMem();
             }
         }
-        Label returnhere = new Label();
-        instrList.add(new BInstr(returnhere));
-        instrList.add(returnhere);
-        instrList.add(new MoveInstr(MipsRegister.$a0, MipsRegister.$v0));
-        instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(1)));
-        instrList.add(new Syscall());
-        instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(10)));
-        instrList.add(new Syscall());
+        instrList.add(new LwInstr(MipsRegister.$ra, new MemAddress(MipsRegister.$sp, 0)));
+        instrList.add(new AddInstr(MipsRegister.$sp, MipsRegister.$sp, new ImmediateValue(4)));
+        instrList.add(new JrInstr(MipsRegister.$ra));
         return instrList;
     }
 
@@ -1182,13 +1204,34 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
             }
 
             if (ctx.postfix() instanceof RzParser.FunctionCallContext) {
-                if (ctx.postfix_expr().getText().equals("print")) {
+                String funcname = ctx.postfix_expr().getText();
+                if (funcname.equals("print")) {
                     instrList.addAll(((RzParser.FunctionCallContext) ctx.postfix()).arguments().accept(this));
                     if (returnOperand instanceof Register) {
                         instrList.add(new MoveInstr(MipsRegister.$a0, returnOperand));
                         instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(4)));
                         instrList.add(new Syscall());
                     }
+                } else {
+                    int argCnt = 0;
+                    for (RzParser.Assign_exprContext arg
+                            : ((RzParser.FunctionCallContext) ctx.postfix()).arguments().assign_expr()) {
+                        instrList.addAll(arg.accept(this));
+                        if (returnOperand instanceof Register) {
+                            instrList.add(new MoveInstr(getArgReg(argCnt), returnOperand));
+                        } else if (returnOperand instanceof ImmediateValue) {
+                            instrList.add(new LiInstr(getArgReg(argCnt), returnOperand));
+                        } else if (returnOperand instanceof Label) {
+                            instrList.add(new LaInstr(getArgReg(argCnt), returnOperand));
+                        }
+                        argCnt++;
+                    }
+                    instrList.add(new JalInstr(new Label("f_" + funcname)));
+                }
+                if (((FunctionType)symt.lookup(funcname)).getReturnType().equals(new IntType())) {
+                    returnOperand = MipsRegister.$v0;
+                } else {
+                    returnOperand = MipsRegister.$v0.setMem();
                 }
             }
         }
@@ -1320,5 +1363,19 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
     @Override
     public Deque<PseudoInstruction> visitErrorNode(ErrorNode errorNode) {
         return null;
+    }
+
+    private MipsRegister getArgReg(int index) {
+        if (index == 0) {
+            return MipsRegister.$a0;
+        } else if (index == 1) {
+            return MipsRegister.$a1;
+        } else if (index == 2) {
+            return MipsRegister.$a2;
+        } else if (index == 3) {
+            return MipsRegister.$a3;
+        } else {
+            throw new RuntimeException("Runtime Error: Too many arguments!");
+        }
     }
 }

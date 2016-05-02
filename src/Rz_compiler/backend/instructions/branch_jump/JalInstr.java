@@ -7,11 +7,11 @@ import Rz_compiler.backend.operands.Label;
 /**
  * Created by YRZ on 4/23/16.
  */
-public class JarInstr implements PseudoInstruction {
+public class JalInstr implements PseudoInstruction {
 
     private Label label;
 
-    public JarInstr(Label label) {
+    public JalInstr(Label label) {
         this.label = label;
     }
 
