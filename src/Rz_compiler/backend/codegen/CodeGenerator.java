@@ -74,7 +74,11 @@ public class CodeGenerator {
             instrList.addAll(globalVar);
             instrList.add(new AssemblerDirective(".text"));
             for (String funcname : fbody.keySet()) {
-                instrList.add(new AssemblerDirective(funcname + ":"));
+                if (!funcname.equals("main")) {
+                    instrList.add(new AssemblerDirective("f_" + funcname + ":"));
+                } else {
+                    instrList.add(new AssemblerDirective(funcname + ":"));
+                }
                 instrList.addAll(fbody.get(funcname));
             }
 

@@ -31,7 +31,7 @@ public class MRazCompiler {
 
         SymbolTable symbolTable = frontendTest(paser, program, true, false);
 
-        int optlevel = 0;
+        int optlevel = -1;
         String mipsCode = new CodeGenerator((RzParser.ProgContext) program, symbolTable).compile(optlevel);
         System.out.println(mipsCode);
 

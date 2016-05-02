@@ -289,7 +289,7 @@ public class TypeAnalyser {
         }
         if (ctx.getChild(0) instanceof RzParser.Postfix_exprContext) {
 
-            Identifier identPrimary = getIdentofPostExpr (ctx.getChild(0), symt);
+            Identifier identPrimary = getIdentofPostExpr(ctx.getChild(0), symt);
             if (identPrimary instanceof Variable) {
                 Type typePrimary = ((Variable) identPrimary).getType();
 

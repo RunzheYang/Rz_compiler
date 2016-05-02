@@ -1,22 +1,13 @@
 package Rz_compiler.backend.codegen;
 
-import Rz_compiler.backend.allocation.TemporaryRegisterGenerator;
+import Rz_compiler.backend.allocation.RegisterAllocator;
 import Rz_compiler.backend.instructions.AssemblerDirective;
 import Rz_compiler.backend.instructions.PseudoInstruction;
-import Rz_compiler.backend.instructions.Syscall;
-import Rz_compiler.backend.instructions.arithmetic_logic.*;
-import Rz_compiler.backend.instructions.branch_jump.BInstr;
-import Rz_compiler.backend.instructions.branch_jump.BeqInstr;
-import Rz_compiler.backend.instructions.branch_jump.BneInstr;
-import Rz_compiler.backend.instructions.branch_jump.JarInstr;
-import Rz_compiler.backend.instructions.comparison.*;
-import Rz_compiler.backend.instructions.load_store_move.*;
-import Rz_compiler.backend.operands.Label;
 import Rz_compiler.frontend.semantics.SymbolTable;
-import com.sun.javafx.binding.StringFormatter;
 import org.antlr.v4.runtime.misc.Pair;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -33,6 +24,8 @@ public class OptimizedIntermediateCodeTranslator implements Callable<Deque<Pseud
 
     private Map<String, String> stringDic;
 
+    private RegisterAllocator registerAllocator = new RegisterAllocator();
+
     public OptimizedIntermediateCodeTranslator(ParseTree ctx, SymbolTable symbolTable,
                                                Map<String, String> stringDic, int optLevel) {
         this.ctx = ctx;
@@ -47,6 +40,9 @@ public class OptimizedIntermediateCodeTranslator implements Callable<Deque<Pseud
         Deque<PseudoInstruction> intermediateCode = null;
         try {
             intermediateCode = ctx.accept(visitor);
+
+            intermediateCode = doOptimization(intermediateCode, optLevel);
+            
         } catch (Exception err) {
             err.printStackTrace();
 //            System.err.println(err.getMessage());
@@ -55,6 +51,24 @@ public class OptimizedIntermediateCodeTranslator implements Callable<Deque<Pseud
         // TODO: doOptimization(intermediateCode, optLevel);
 
         return intermediateCode;
+    }
+
+    private Deque<PseudoInstruction> doOptimization(Deque<PseudoInstruction> intermediateCode, int optLevel) {
+
+        if (optLevel == 0) {
+            return simpleRegisterAllocation(intermediateCode);
+        }
+
+        return intermediateCode;
+    }
+
+    private Deque<PseudoInstruction> simpleRegisterAllocation(Deque<PseudoInstruction> intermediateCode) {
+        Deque<PseudoInstruction> finalCode = new ArrayDeque<PseudoInstruction>();
+        for (PseudoInstruction ps : intermediateCode) {
+            finalCode.addAll(ps.accept(registerAllocator));
+            finalCode.add(new AssemblerDirective("\n")); // for debugging
+        }
+        return finalCode;
     }
 
     public Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> predata() {

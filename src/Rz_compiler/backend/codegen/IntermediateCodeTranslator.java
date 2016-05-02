@@ -13,6 +13,7 @@ import Rz_compiler.backend.instructions.branch_jump.JarInstr;
 import Rz_compiler.backend.instructions.comparison.*;
 import Rz_compiler.backend.instructions.load_store_move.*;
 import Rz_compiler.backend.operands.*;
+import Rz_compiler.errors.SemanticException;
 import Rz_compiler.frontend.semantics.SymbolTable;
 import Rz_compiler.frontend.semantics.TypeAnalyser;
 import Rz_compiler.frontend.semantics.identifier.*;
@@ -20,6 +21,7 @@ import Rz_compiler.frontend.syntax.RzParser;
 import Rz_compiler.frontend.syntax.RzVisitor;
 import org.antlr.v4.runtime.tree.*;
 
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Map;
@@ -60,6 +62,26 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
 
         int frameOffset = 1;
         TemporaryRegister temporary;
+
+        String funcname = ctx.ident().getText();
+        FunctionType functype = new FunctionType(tpa.getTypeofType(ctx.type(), symt));
+        functype.addSymbolTable(symt);
+        if (ctx.getChildCount() > 5) {
+            if (funcname.equals("main")) {
+                throw new SemanticException("Semantic Error: function 'main()' can not have any argument");
+            }
+            ArrayList<String> param_names =  new ArrayList<String>();
+            for (int i = 0; i < (ctx.param_list().getChildCount() + 1) / 3; ++i) {
+                String paramname = ctx.param_list().ident(i).getText();
+                if (param_names.contains(paramname)) {
+                    throw new SemanticException("Semantic Error: Repeated function parameter name '" + paramname + "'");
+                } else {
+                    param_names.add(paramname);
+                    functype.addParameter(paramname, tpa.getTypeofType(ctx.param_list().type(i), symt));
+                }
+            }
+        }
+        symt.add(funcname, functype);
 
         tpa.setCurrentFunc((FunctionType) symt.lookup(ctx.ident().getText()));
         tpa.getCurrentFunc().renewOuterSymt(symt);
@@ -1158,6 +1180,17 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
 
                 returnOperand = resultReg;
             }
+
+            if (ctx.postfix() instanceof RzParser.FunctionCallContext) {
+                if (ctx.postfix_expr().getText().equals("print")) {
+                    instrList.addAll(((RzParser.FunctionCallContext) ctx.postfix()).arguments().accept(this));
+                    if (returnOperand instanceof Register) {
+                        instrList.add(new MoveInstr(MipsRegister.$a0, returnOperand));
+                        instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(4)));
+                        instrList.add(new Syscall());
+                    }
+                }
+            }
         }
         return instrList;
     }
@@ -1196,7 +1229,11 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
 
     @Override
     public Deque<PseudoInstruction> visitArguments(RzParser.ArgumentsContext ctx) {
-        return null;
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        for (int i = 0; i < ctx.getChildCount(); ++i) {
+            instrList.addAll(ctx.getChild(i).accept(this));
+        }
+        return instrList;
     }
 
 
