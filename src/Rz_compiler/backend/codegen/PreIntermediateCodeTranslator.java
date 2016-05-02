@@ -7,6 +7,7 @@ import Rz_compiler.backend.instructions.Syscall;
 import Rz_compiler.backend.instructions.arithmetic_logic.*;
 import Rz_compiler.backend.instructions.branch_jump.BeqInstr;
 import Rz_compiler.backend.instructions.branch_jump.BneInstr;
+import Rz_compiler.backend.instructions.branch_jump.JalInstr;
 import Rz_compiler.backend.instructions.comparison.*;
 import Rz_compiler.backend.instructions.load_store_move.*;
 import Rz_compiler.backend.operands.*;
@@ -896,13 +897,21 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
                 preList.b.addAll(ctx.unary_expr().accept(this).b);
                 preList.b.add(new AddInstr(returnOperand, returnOperand, new ImmediateValue(1)));
                 if (returnOperandAddress != null) {
-                    preList.b.add(new SwInstr(returnOperand, returnOperandAddress));
+                    if (returnOperandAddress instanceof Register) {
+                        preList.b.add(new SwInstr(returnOperand, new MemAddress((Register) returnOperandAddress, 0)));
+                    } else if (returnOperandAddress instanceof Label) {
+                        preList.b.add(new SwInstr(returnOperand, returnOperandAddress));
+                    }
                 }
             } else if (ctx.getChild(0).getText().equals("--")) {
                 preList.b.addAll(ctx.unary_expr().accept(this).b);
                 preList.b.add(new SubInstr(returnOperand, returnOperand, new ImmediateValue(1)));
                 if (returnOperandAddress != null) {
-                    preList.b.add(new SwInstr(returnOperand, returnOperandAddress));
+                    if (returnOperandAddress instanceof Register) {
+                        preList.b.add(new SwInstr(returnOperand, new MemAddress((Register) returnOperandAddress, 0)));
+                    } else if (returnOperandAddress instanceof Label) {
+                        preList.b.add(new SwInstr(returnOperand, returnOperandAddress));
+                    }
                 }
             } else if (ctx.getChild(0).getText().equals("~")) {
                 preList.b.addAll(ctx.unary_expr().accept(this).b);
@@ -948,7 +957,11 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
                 preList.b.add(new MoveInstr(newplace, returnOperand));
                 preList.b.add(new AddInstr(returnOperand, returnOperand, new ImmediateValue(1)));
                 if (returnOperandAddress != null) {
-                    preList.b.add(new SwInstr(returnOperand, returnOperandAddress));
+                    if (returnOperandAddress instanceof Register) {
+                        preList.b.add(new SwInstr(returnOperand, new MemAddress((Register) returnOperandAddress, 0)));
+                    } else if (returnOperandAddress instanceof Label) {
+                        preList.b.add(new SwInstr(returnOperand, returnOperandAddress));
+                    }
                 }
                 returnOperand = newplace;
             }
@@ -958,7 +971,11 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
                 preList.b.add(new MoveInstr(newplace, returnOperand));
                 preList.b.add(new SubInstr(returnOperand, returnOperand, new ImmediateValue(1)));
                 if (returnOperandAddress != null) {
-                    preList.b.add(new SwInstr(returnOperand, returnOperandAddress));
+                    if (returnOperandAddress instanceof Register) {
+                        preList.b.add(new SwInstr(returnOperand, new MemAddress((Register) returnOperandAddress, 0)));
+                    } else if (returnOperandAddress instanceof Label) {
+                        preList.b.add(new SwInstr(returnOperand, returnOperandAddress));
+                    }
                 }
                 returnOperand = newplace;
             }
@@ -1024,6 +1041,39 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
 
                 returnOperand = resultReg;
             }
+
+            if (ctx.postfix() instanceof RzParser.FunctionCallContext) {
+                String funcname = ctx.postfix_expr().getText();
+                if (funcname.equals("print")) {
+                    preList.b.addAll(((RzParser.FunctionCallContext) ctx.postfix()).arguments().accept(this).b);
+                    if (returnOperand instanceof Register) {
+                        preList.b.add(new MoveInstr(MipsRegister.$a0, returnOperand));
+                        preList.b.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(4)));
+                        preList.b.add(new Syscall());
+                    }
+                } else {
+                    int argCnt = 0;
+                    for (RzParser.Assign_exprContext arg
+                            : ((RzParser.FunctionCallContext) ctx.postfix()).arguments().assign_expr()) {
+                        preList.b.addAll(arg.accept(this).b);
+                        if (returnOperand instanceof Register) {
+                            preList.b.add(new MoveInstr(getArgReg(argCnt), returnOperand));
+                        } else if (returnOperand instanceof ImmediateValue) {
+                            preList.b.add(new LiInstr(getArgReg(argCnt), returnOperand));
+                        } else if (returnOperand instanceof Label) {
+                            preList.b.add(new LaInstr(getArgReg(argCnt), returnOperand));
+                        }
+                        argCnt++;
+                    }
+                    preList.b.add(new JalInstr(new Label("f_" + funcname)));
+                }
+                if (((FunctionType)symt.lookup(funcname)).getReturnType().equals(new IntType())) {
+                    returnOperand = MipsRegister.$v0;
+                } else {
+                    returnOperand = MipsRegister.$v0.setMem();
+                }
+            }
+
         }
         return preList;
     }
@@ -1147,5 +1197,19 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
     @Override
     public Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> visitErrorNode(ErrorNode errorNode) {
         return null;
+    }
+
+    private MipsRegister getArgReg(int index) {
+        if (index == 0) {
+            return MipsRegister.$a0;
+        } else if (index == 1) {
+            return MipsRegister.$a1;
+        } else if (index == 2) {
+            return MipsRegister.$a2;
+        } else if (index == 3) {
+            return MipsRegister.$a3;
+        } else {
+            throw new RuntimeException("Runtime Error: Too many arguments!");
+        }
     }
 }

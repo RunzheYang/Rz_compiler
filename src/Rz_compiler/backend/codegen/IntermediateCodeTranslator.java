@@ -95,7 +95,7 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
         }
 
         if (funcname.equals("main")) {
-            Label returnhere = new Label("MAIN_END");
+            Label returnhere = new Label("main_end");
             instrList.add(new BInstr(returnhere));
             instrList.add(returnhere);
             instrList.add(new MoveInstr(MipsRegister.$a0, MipsRegister.$v0));
@@ -1074,13 +1074,21 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                 instrList.addAll(ctx.unary_expr().accept(this));
                 instrList.add(new AddInstr(returnOperand, returnOperand, new ImmediateValue(1)));
                 if (returnOperandAddress != null) {
-                    instrList.add(new SwInstr(returnOperand, returnOperandAddress));
+                    if (returnOperandAddress instanceof Register) {
+                        instrList.add(new SwInstr(returnOperand, new MemAddress((Register) returnOperandAddress, 0)));
+                    } else if (returnOperandAddress instanceof Label) {
+                        instrList.add(new SwInstr(returnOperand, returnOperandAddress));
+                    }
                 }
             } else if (ctx.getChild(0).getText().equals("--")) {
                 instrList.addAll(ctx.unary_expr().accept(this));
                 instrList.add(new SubInstr(returnOperand, returnOperand, new ImmediateValue(1)));
                 if (returnOperandAddress != null) {
-                    instrList.add(new SwInstr(returnOperand, returnOperandAddress));
+                    if (returnOperandAddress instanceof Register) {
+                        instrList.add(new SwInstr(returnOperand, new MemAddress((Register) returnOperandAddress, 0)));
+                    } else if (returnOperandAddress instanceof Label) {
+                        instrList.add(new SwInstr(returnOperand, returnOperandAddress));
+                    }
                 }
             } else if (ctx.getChild(0).getText().equals("~")) {
                 instrList.addAll(ctx.unary_expr().accept(this));
@@ -1126,7 +1134,11 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                 instrList.add(new MoveInstr(newplace, returnOperand));
                 instrList.add(new AddInstr(returnOperand, returnOperand, new ImmediateValue(1)));
                 if (returnOperandAddress != null) {
-                    instrList.add(new SwInstr(returnOperand, returnOperandAddress));
+                    if (returnOperandAddress instanceof Register) {
+                        instrList.add(new SwInstr(returnOperand, new MemAddress((Register) returnOperandAddress, 0)));
+                    } else if (returnOperandAddress instanceof Label) {
+                        instrList.add(new SwInstr(returnOperand, returnOperandAddress));
+                    }
                 }
                 returnOperand = newplace;
             }
@@ -1136,7 +1148,11 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                 instrList.add(new MoveInstr(newplace, returnOperand));
                 instrList.add(new SubInstr(returnOperand, returnOperand, new ImmediateValue(1)));
                 if (returnOperandAddress != null) {
-                    instrList.add(new SwInstr(returnOperand, returnOperandAddress));
+                    if (returnOperandAddress instanceof Register) {
+                        instrList.add(new SwInstr(returnOperand, new MemAddress((Register) returnOperandAddress, 0)));
+                    } else if (returnOperandAddress instanceof Label) {
+                        instrList.add(new SwInstr(returnOperand, returnOperandAddress));
+                    }
                 }
                 returnOperand = newplace;
             }

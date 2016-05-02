@@ -1,15 +1,14 @@
-int main() {
-    int i;
-    int s = 0;
-    for (i = 1; i < 10; ++i) {
-        s = s + i;
-    }
-
-    s = f(s);
-
-    return s;
+class M {
+    int a;
+    int b;
 }
 
-int f(int s) {
-	return s + 1;
+int main() {
+    M m = new M;
+    m.a = m.b = 10;
+    return first(m);
+}
+
+int first(M m) {
+    return ++m.a;
 }
