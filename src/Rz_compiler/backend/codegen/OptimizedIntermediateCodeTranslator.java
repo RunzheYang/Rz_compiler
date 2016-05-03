@@ -62,7 +62,8 @@ public class OptimizedIntermediateCodeTranslator implements Callable<Deque<Pseud
 
         if (optLevel == -1) {
             ControlFlowGraph cfg = new ControlFlowGraph(intermediateCode);
-            System.err.println(cfg);
+            //System.err.println(cfg);
+            
         }
 
         return intermediateCode;

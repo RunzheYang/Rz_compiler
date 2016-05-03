@@ -132,14 +132,12 @@ public class ControlFlowGraph extends AbstractGraph<CFGNode> {
             if (preNode != null && curInstr.accept(isNextInstructionExecuted)) {
                 sucNodes.add(preNode);
             }
-            Label toLabel = curInstr.accept(getLabelofJump);
-            if (toLabel != null) {
-                sucNodes.add(labelDic.get(toLabel));
-            }
             dictionary.add(curNode, sucNodes);
             this.addNode(curNode, sucNodes);
             preNode = curNode;
             id++;
         }
+
+        dictionary.addAllJump();
     }
 }

@@ -60,6 +60,55 @@ public class LabelDictionary {
         }
     };
 
+    private final SelectedInstructionVisitor<Label> getLabelofJump = new SelectedInstructionVisitor<Label>(
+            new Callable<Label>(){
+                @Override
+                public Label call() throws Exception {
+                    return null;
+                }
+            }
+    ){
+        @Override
+        public Label visit(BInstr bInstr) {
+            return bInstr.getLabel();
+        }
+
+        @Override
+        public Label visit(BeqInstr beqInstr) {
+            return (Label) beqInstr.getSrc2();
+        }
+
+        @Override
+        public Label visit(BgeInstr bgeInstr) {
+            return (Label) bgeInstr.getSrc2();
+        }
+
+        @Override
+        public Label visit(BgtInstr bgtInstr) {
+            return (Label) bgtInstr.getSrc2();
+        }
+
+        @Override
+        public Label visit(BleInstr bleInstr) {
+            return (Label) bleInstr.getSrc2();
+        }
+
+        @Override
+        public Label visit(BltInstr bltInstr) {
+            return (Label) bltInstr.getSrc2();
+        }
+
+        @Override
+        public Label visit(BneInstr bneInstr) {
+            return (Label) bneInstr.getSrc2();
+        }
+
+        @Override
+        public Label visit(JalInstr jalInstr) {
+            return jalInstr.getLabel();
+        }
+    };
+
     private final Map<Label, CFGNode> labelDic;
     private final Map<CFGNode,Set<CFGNode>> instrs = new HashMap<>();
 
@@ -70,6 +119,16 @@ public class LabelDictionary {
     public void add(CFGNode curNode, Set<CFGNode> sucNodes) {
         if (curNode.getInstr().accept(boolVisitor)) {
             instrs.put(curNode, sucNodes);
+        }
+    }
+
+    public void addAllJump() {
+        CFGNode next;
+        int cnt = 0;
+        for (CFGNode node : instrs.keySet()) {
+            next = labelDic.get(node.getInstr().accept(getLabelofJump));
+            if (next != null)
+                instrs.get(node).add(next);
         }
     }
 }

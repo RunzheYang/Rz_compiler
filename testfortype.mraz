@@ -1,7 +1,9 @@
 int main() {
     int i = 0;
-    if (i ==0) {
-        return 1;
+    for (; i < 10; ++i) {
+        while(true) {
+            i--;
+            for (;;i++) break;
+        }
     }
-    return 0;
 }
