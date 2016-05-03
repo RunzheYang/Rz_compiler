@@ -193,116 +193,149 @@ public class UsedRegisterGetter implements InstructionVisitor<List<Register>> {
 
     @Override
     public List<Register> visit(BleInstr bleInstr) {
-        return null;
+        List<Register> regList = bleInstr.getDest().accpet(new RegisterGetter());
+        regList.addAll(bleInstr.getSrc1().accpet(new RegisterGetter()));
+        regList.addAll(bleInstr.getSrc2().accpet(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(BltInstr bltInstr) {
-        return null;
+        List<Register> regList = bltInstr.getDest().accpet(new RegisterGetter());
+        regList.addAll(bltInstr.getSrc1().accpet(new RegisterGetter()));
+        regList.addAll(bltInstr.getSrc2().accpet(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(BneInstr bneInstr) {
-        return null;
+        List<Register> regList = bneInstr.getDest().accpet(new RegisterGetter());
+        regList.addAll(bneInstr.getSrc1().accpet(new RegisterGetter()));
+        regList.addAll(bneInstr.getSrc2().accpet(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(JalInstr jalInstr) {
-        return null;
+        return new LinkedList<>();
     }
 
     @Override
     public List<Register> visit(JrInstr jrInstr) {
-        return null;
+        return jrInstr.getrSrc().accpet(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(SeqInstr seqInstr) {
-        return null;
+        List<Register> regList = seqInstr.getSrc1().accpet(new RegisterGetter());
+        regList.addAll(seqInstr.getSrc2().accpet(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(SgeInstr sgeInstr) {
-        return null;
+        List<Register> regList = sgeInstr.getSrc1().accpet(new RegisterGetter());
+        regList.addAll(sgeInstr.getSrc2().accpet(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(SgtInstr sgtInstr) {
-        return null;
+        List<Register> regList = sgtInstr.getSrc1().accpet(new RegisterGetter());
+        regList.addAll(sgtInstr.getSrc2().accpet(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(SleInstr sleInstr) {
-        return null;
+        List<Register> regList = sleInstr.getSrc1().accpet(new RegisterGetter());
+        regList.addAll(sleInstr.getSrc2().accpet(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(SltInstr sltInstr) {
-        return null;
+        List<Register> regList = sltInstr.getSrc1().accpet(new RegisterGetter());
+        regList.addAll(sltInstr.getSrc2().accpet(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(SneInstr sneInstr) {
-        return null;
+        List<Register> regList = sneInstr.getSrc1().accpet(new RegisterGetter());
+        regList.addAll(sneInstr.getSrc2().accpet(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(LaInstr laInstr) {
-        return null;
+        List<Register> regList = laInstr.getSrc1().accpet(new RegisterGetter());
+        regList.addAll(laInstr.getSrc2().accpet(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(LbInstr lbInstr) {
-        return null;
+        List<Register> regList = lbInstr.getSrc1().accpet(new RegisterGetter());
+        regList.addAll(lbInstr.getSrc2().accpet(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(LhInstr lhInstr) {
-        return null;
+        List<Register> regList = lhInstr.getSrc1().accpet(new RegisterGetter());
+        regList.addAll(lhInstr.getSrc2().accpet(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(LiInstr liInstr) {
-        return null;
+        List<Register> regList = liInstr.getSrc1().accpet(new RegisterGetter());
+        regList.addAll(liInstr.getSrc2().accpet(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(LwInstr lwInstr) {
-        return null;
+        List<Register> regList = lwInstr.getSrc1().accpet(new RegisterGetter());
+        regList.addAll(lwInstr.getSrc2().accpet(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(MoveInstr moveInstr) {
-        return null;
+        List<Register> regList = moveInstr.getSrc1().accpet(new RegisterGetter());
+        regList.addAll(moveInstr.getSrc2().accpet(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(SbInstr sbInstr) {
-        return null;
+        return sbInstr.getDest().accpet(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(ShInstr shInstr) {
-        return null;
+        return shInstr.getDest().accpet(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(SwInstr swInstr) {
-        return null;
+        return swInstr.getDest().accpet(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(Syscall syscall) {
-        return null;
+        return new LinkedList<>();
     }
 
     @Override
     public List<Register> visit(AssemblerDirective assemblerDirective) {
-        return null;
+        return new LinkedList<>();
     }
 
     @Override
     public List<Register> visit(Label label) {
-        return null;
+        return new LinkedList<>();
     }
 }
