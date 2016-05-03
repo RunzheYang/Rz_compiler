@@ -7,6 +7,7 @@ import Rz_compiler.backend.instructions.arithmetic_logic.*;
 import Rz_compiler.backend.instructions.branch_jump.*;
 import Rz_compiler.backend.instructions.comparison.*;
 import Rz_compiler.backend.instructions.load_store_move.*;
+import Rz_compiler.backend.instructions.visitors.InstructionPrinter;
 import Rz_compiler.backend.operands.Label;
 import Rz_compiler.frontend.semantics.SymbolTable;
 import Rz_compiler.frontend.syntax.RzParser;
@@ -94,142 +95,7 @@ public class CodeGenerator {
         System.err.println("Total #instr = " + instrList.size() + "\n");
 
         for (PseudoInstruction instr : instrList) {
-            if (instr instanceof MoveInstr) {
-                System.err.println("\tmove " + ((MoveInstr) instr).getDest().toString() + ", "
-                        + ((MoveInstr) instr).getSrc1().toString());
-            }
-            if (instr instanceof LiInstr) {
-                System.err.println("\tli " + ((LiInstr) instr).getDest().toString() + ", "
-                        + ((LiInstr) instr).getSrc1().toString());
-            }
-            if (instr instanceof LaInstr) {
-                System.err.println("\tla " + ((LaInstr) instr).getDest().toString() + ", "
-                        + ((LaInstr) instr).getSrc1().toString());
-            }
-            if (instr instanceof LwInstr) {
-                System.err.println("\tlw " + ((LwInstr) instr).getDest().toString() + ", "
-                        + ((LwInstr) instr).getSrc1().toString());
-            }
-            if (instr instanceof SwInstr) {
-                System.err.println("\tsw " + ((SwInstr) instr).getDest().toString() + ", "
-                        + ((SwInstr) instr).getSrc1().toString());
-            }
-            if (instr instanceof AndInstr) {
-                System.err.println("\tand " + ((AndInstr) instr).getDest().toString() + ", "
-                        + ((AndInstr) instr).getSrc1().toString() + ", "
-                        + ((AndInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof OrInstr) {
-                System.err.println("\tor " + ((OrInstr) instr).getDest().toString() + ", "
-                        + ((OrInstr) instr).getSrc1().toString() + ", "
-                        + ((OrInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof XorInstr) {
-                System.err.println("\txor " + ((XorInstr) instr).getDest().toString() + ", "
-                        + ((XorInstr) instr).getSrc1().toString() + ", "
-                        + ((XorInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof AddInstr) {
-                System.err.println("\tadd " + ((AddInstr) instr).getDest().toString() + ", "
-                        + ((AddInstr) instr).getSrc1().toString() + ", "
-                        + ((AddInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof SubInstr) {
-                System.err.println("\tsub " + ((SubInstr) instr).getDest().toString() + ", "
-                        + ((SubInstr) instr).getSrc1().toString() + ", "
-                        + ((SubInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof MulInstr) {
-                System.err.println("\tmul " + ((MulInstr) instr).getDest().toString() + ", "
-                        + ((MulInstr) instr).getSrc1().toString() + ", "
-                        + ((MulInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof DivInstr) {
-                System.err.println("\tdiv " + ((DivInstr) instr).getDest().toString() + ", "
-                        + ((DivInstr) instr).getSrc1().toString() + ", "
-                        + ((DivInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof RemInstr) {
-                System.err.println("\trem " + ((RemInstr) instr).getDest().toString() + ", "
-                        + ((RemInstr) instr).getSrc1().toString() + ", "
-                        + ((RemInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof SllInstr) {
-                System.err.println("\tsll " + ((SllInstr) instr).getDest().toString() + ", "
-                        + ((SllInstr) instr).getSrc1().toString() + ", "
-                        + ((SllInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof SraInstr) {
-                System.err.println("\tsra " + ((SraInstr) instr).getDest().toString() + ", "
-                        + ((SraInstr) instr).getSrc1().toString() + ", "
-                        + ((SraInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof SgeInstr) {
-                System.err.println("\tsge " + ((SgeInstr) instr).getDest().toString() + ", "
-                        + ((SgeInstr) instr).getSrc1().toString() + ", "
-                        + ((SgeInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof SgtInstr) {
-                System.err.println("\tsgt " + ((SgtInstr) instr).getDest().toString() + ", "
-                        + ((SgtInstr) instr).getSrc1().toString() + ", "
-                        + ((SgtInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof SleInstr) {
-                System.err.println("\tsle " + ((SleInstr) instr).getDest().toString() + ", "
-                        + ((SleInstr) instr).getSrc1().toString() + ", "
-                        + ((SleInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof SltInstr) {
-                System.err.println("\tslt " + ((SltInstr) instr).getDest().toString() + ", "
-                        + ((SltInstr) instr).getSrc1().toString() + ", "
-                        + ((SltInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof SeqInstr) {
-                System.err.println("\tseq " + ((SeqInstr) instr).getDest().toString() + ", "
-                        + ((SeqInstr) instr).getSrc1().toString() + ", "
-                        + ((SeqInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof SneInstr) {
-                System.err.println("\tsne " + ((SneInstr) instr).getDest().toString() + ", "
-                        + ((SneInstr) instr).getSrc1().toString() + ", "
-                        + ((SneInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof BeqInstr) {
-                System.err.println("\tbeq " + ((BeqInstr) instr).getDest().toString() + ", "
-                        + ((BeqInstr) instr).getSrc1().toString() + ", "
-                        + ((BeqInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof BneInstr) {
-                System.err.println("\tbne " + ((BneInstr) instr).getDest().toString() + ", "
-                        + ((BneInstr) instr).getSrc1().toString() + ", "
-                        + ((BneInstr) instr).getSrc2().toString());
-            }
-            if (instr instanceof JalInstr) {
-                System.err.println("\tjal " + ((JalInstr) instr).getLabel().toString());
-            }
-            if (instr instanceof JrInstr) {
-                System.err.println("\tjr " + ((JrInstr) instr).getrSrc().toString());
-            }
-            if (instr instanceof NegInstr) {
-                System.err.println("\tneg " + ((NegInstr) instr).getDest().toString() + ", "
-                        + ((NegInstr) instr).getSrc1().toString());
-            }
-            if (instr instanceof NotInstr) {
-                System.err.println("\tnot " + ((NotInstr) instr).getDest().toString() + ", "
-                        + ((NotInstr) instr).getSrc1().toString());
-            }
-            if (instr instanceof BInstr) {
-                System.err.println("\tb " + ((BInstr) instr).getLabel().toString());
-            }
-            if (instr instanceof AssemblerDirective) {
-                System.err.println(instr.toString());
-            }
-            if (instr instanceof Syscall) {
-                System.err.println("\t" + instr.toString());
-            }
-            if (instr instanceof Label) {
-                System.err.println(instr.toString() + ":");
-            }
+            System.err.println(instr.accept(new InstructionPrinter()));
         }
 
         return "\n----mips assembler directives here----\n";

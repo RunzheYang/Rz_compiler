@@ -40,4 +40,9 @@ public class CFGNode {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
