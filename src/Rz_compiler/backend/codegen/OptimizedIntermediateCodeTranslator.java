@@ -1,6 +1,7 @@
 package Rz_compiler.backend.codegen;
 
 import Rz_compiler.backend.allocation.RegisterAllocator;
+import Rz_compiler.backend.controlflow.ControlFlowGraph;
 import Rz_compiler.backend.instructions.AssemblerDirective;
 import Rz_compiler.backend.instructions.PseudoInstruction;
 import Rz_compiler.frontend.semantics.SymbolTable;
@@ -57,6 +58,11 @@ public class OptimizedIntermediateCodeTranslator implements Callable<Deque<Pseud
 
         if (optLevel == 0) {
             return simpleRegisterAllocation(intermediateCode);
+        }
+
+        if (optLevel == -1) {
+            ControlFlowGraph cfg = new ControlFlowGraph(intermediateCode);
+            System.err.println(cfg);
         }
 
         return intermediateCode;

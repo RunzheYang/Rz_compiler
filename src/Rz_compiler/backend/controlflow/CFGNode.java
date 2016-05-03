@@ -1,6 +1,7 @@
 package Rz_compiler.backend.controlflow;
 
 import Rz_compiler.backend.instructions.PseudoInstruction;
+import Rz_compiler.backend.instructions.visitors.InstructionPrinter;
 import Rz_compiler.backend.operands.Register;
 
 import java.util.LinkedList;
@@ -43,6 +44,6 @@ public class CFGNode {
 
     @Override
     public String toString() {
-        return super.toString();
+        return instr.accept(new InstructionPrinter());
     }
 }

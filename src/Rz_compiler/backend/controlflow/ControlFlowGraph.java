@@ -2,7 +2,7 @@ package Rz_compiler.backend.controlflow;
 
 import Rz_compiler.backend.instructions.AssemblerDirective;
 import Rz_compiler.backend.instructions.PseudoInstruction;
-import Rz_compiler.backend.instructions.branch_jump.BInstr;
+import Rz_compiler.backend.instructions.branch_jump.*;
 import Rz_compiler.backend.instructions.visitors.SelectedInstructionVisitor;
 import Rz_compiler.backend.operands.Label;
 
@@ -39,6 +39,60 @@ public class ControlFlowGraph extends AbstractGraph<CFGNode> {
         @Override
         public Boolean visit(BInstr bInstr) {
             return false;
+        }
+
+        @Override
+        public Boolean visit(JrInstr jrInstr) {
+            return false;
+        }
+    };
+
+    private final SelectedInstructionVisitor<Label> getLabelofJump = new SelectedInstructionVisitor<Label>(
+            new Callable<Label>(){
+                @Override
+                public Label call() throws Exception {
+                    return null;
+                }
+            }
+    ){
+        @Override
+        public Label visit(BInstr bInstr) {
+            return bInstr.getLabel();
+        }
+
+        @Override
+        public Label visit(BeqInstr beqInstr) {
+            return (Label) beqInstr.getSrc2();
+        }
+
+        @Override
+        public Label visit(BgeInstr bgeInstr) {
+            return (Label) bgeInstr.getSrc2();
+        }
+
+        @Override
+        public Label visit(BgtInstr bgtInstr) {
+            return (Label) bgtInstr.getSrc2();
+        }
+
+        @Override
+        public Label visit(BleInstr bleInstr) {
+            return (Label) bleInstr.getSrc2();
+        }
+
+        @Override
+        public Label visit(BltInstr bltInstr) {
+            return (Label) bltInstr.getSrc2();
+        }
+
+        @Override
+        public Label visit(BneInstr bneInstr) {
+            return (Label) bneInstr.getSrc2();
+        }
+
+        @Override
+        public Label visit(JalInstr jalInstr) {
+            return jalInstr.getLabel();
         }
     };
 
@@ -77,6 +131,10 @@ public class ControlFlowGraph extends AbstractGraph<CFGNode> {
             sucNodes = new HashSet<>();
             if (preNode != null && curInstr.accept(isNextInstructionExecuted)) {
                 sucNodes.add(preNode);
+            }
+            Label toLabel = curInstr.accept(getLabelofJump);
+            if (toLabel != null) {
+                sucNodes.add(labelDic.get(toLabel));
             }
             dictionary.add(curNode, sucNodes);
             this.addNode(curNode, sucNodes);
