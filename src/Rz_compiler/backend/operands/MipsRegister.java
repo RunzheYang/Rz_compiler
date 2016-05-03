@@ -1,5 +1,8 @@
 package Rz_compiler.backend.operands;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * Created by YRZ on 4/23/16.
  */
@@ -9,6 +12,29 @@ public enum MipsRegister implements Register {
     $t8, $t9, $k0, $k1, $gp, $sp, $fp, $ra;
 
     private boolean containValue = true;
+
+    public Set<Register> getRealTemporaryRegisters() {
+        Set<Register> realTemp = new HashSet<>();
+        realTemp.add($t0);
+        realTemp.add($t1);
+        realTemp.add($t2);
+        realTemp.add($t3);
+        realTemp.add($t4);
+        realTemp.add($t5);
+        realTemp.add($t6);
+        realTemp.add($t7);
+        realTemp.add($t8);
+        realTemp.add($t9);
+        realTemp.add($s0);
+        realTemp.add($s1);
+        realTemp.add($s2);
+        realTemp.add($s3);
+        realTemp.add($s4);
+        realTemp.add($s5);
+        realTemp.add($s6);
+        realTemp.add($s7);
+        return realTemp;
+    }
 
     public Register setMem() {
         this.containValue = false;

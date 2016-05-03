@@ -17,10 +17,7 @@ import Rz_compiler.frontend.syntax.RzVisitor;
 import com.sun.deploy.security.ValidationState;
 import org.antlr.v4.runtime.tree.*;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by YRZ on 4/21/16.
@@ -1261,17 +1258,21 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                     returnOperand = MipsRegister.$v0.setValue();
                 } else {
                     int argCnt = 0;
-                    for (RzParser.Assign_exprContext arg
-                            : ((RzParser.FunctionCallContext) ctx.postfix()).arguments().assign_expr()) {
-                        instrList.addAll(arg.accept(this));
-                        if (returnOperand instanceof Register) {
-                            instrList.add(new MoveInstr(getArgReg(argCnt), returnOperand));
-                        } else if (returnOperand instanceof ImmediateValue) {
-                            instrList.add(new LiInstr(getArgReg(argCnt), returnOperand));
-                        } else if (returnOperand instanceof Label) {
-                            instrList.add(new LaInstr(getArgReg(argCnt), returnOperand));
+                    RzParser.ArgumentsContext argumentsContext =
+                            ((RzParser.FunctionCallContext) ctx.postfix()).arguments();
+                    if (argumentsContext != null) {
+                        for (RzParser.Assign_exprContext arg
+                                : argumentsContext.assign_expr()) {
+                            instrList.addAll(arg.accept(this));
+                            if (returnOperand instanceof Register) {
+                                instrList.add(new MoveInstr(getArgReg(argCnt), returnOperand));
+                            } else if (returnOperand instanceof ImmediateValue) {
+                                instrList.add(new LiInstr(getArgReg(argCnt), returnOperand));
+                            } else if (returnOperand instanceof Label) {
+                                instrList.add(new LaInstr(getArgReg(argCnt), returnOperand));
+                            }
+                            argCnt++;
                         }
-                        argCnt++;
                     }
                     instrList.add(new JalInstr(new Label("f_" + funcname)));
                 }

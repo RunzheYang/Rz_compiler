@@ -4,6 +4,8 @@ import Rz_compiler.backend.allocation.RegisterAllocator;
 import Rz_compiler.backend.controlflow.ControlFlowGraph;
 import Rz_compiler.backend.instructions.AssemblerDirective;
 import Rz_compiler.backend.instructions.PseudoInstruction;
+import Rz_compiler.backend.interference.IGColouration;
+import Rz_compiler.backend.interference.InterferenceGraph;
 import Rz_compiler.frontend.semantics.SymbolTable;
 import org.antlr.v4.runtime.misc.Pair;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -63,7 +65,10 @@ public class OptimizedIntermediateCodeTranslator implements Callable<Deque<Pseud
         if (optLevel == -1) {
             ControlFlowGraph cfg = new ControlFlowGraph(intermediateCode);
             //System.err.println(cfg);
-            
+            InterferenceGraph ig = new InterferenceGraph(cfg);
+            //System.err.println(ig);
+            IGColouration igc = new IGColouration(ig);
+
         }
 
         return intermediateCode;
