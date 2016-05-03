@@ -30,7 +30,8 @@ public class TemporaryRegister implements Register {
 
     @Override
     public String toString() {
-        return "$t" + cnt;
+        if (cnt < 10) return "$t" + cnt;
+        else return "$s" + (cnt - 10);
     }
 
     @Override

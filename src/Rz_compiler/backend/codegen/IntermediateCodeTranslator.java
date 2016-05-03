@@ -390,6 +390,13 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                     notfor = new Label();
                     loopOutLabel = notfor;
                     instrList.add(new BeqInstr(MipsRegister.$zero, condReg, notfor));
+                } else {
+                    instrList.addAll(ctx.getChild(2).accept(this));
+                    infor = new Label();
+                    loopBodyLabel = infor;
+                    instrList.add(infor);
+                    notfor = new Label();
+                    loopOutLabel = notfor;
                 }
             }
             int toStmtInd = 5 + ctx.expr().size();
@@ -401,7 +408,7 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                 instrList.add(forItStmt);
                 if (ctx.getChild(2).getText().equals(";")) {
                     if (!ctx.getChild(3).getText().equals(";")) {
-                        if (!ctx.getChild(5).getText().equals(";")) {
+                        if (!ctx.getChild(5).getText().equals(")")) {
                             instrList.addAll(ctx.getChild(5).accept(this));
                         }
                     } else if (!ctx.getChild(4).getText().equals(")")) {
@@ -1227,7 +1234,31 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                         instrList.add(new MoveInstr(MipsRegister.$a0, returnOperand));
                         instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(4)));
                         instrList.add(new Syscall());
+                    } else if (returnOperand instanceof Label) {
+                        instrList.add(new LiInstr(MipsRegister.$a0, returnOperand));
+                        instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(4)));
+                        instrList.add(new Syscall());
                     }
+                } else if (funcname.equals("println")) {
+                    instrList.addAll(((RzParser.FunctionCallContext) ctx.postfix()).arguments().accept(this));
+                    if (returnOperand instanceof Register) {
+                        instrList.add(new MoveInstr(MipsRegister.$a0, returnOperand));
+                        instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(4)));
+                        instrList.add(new Syscall());
+                    } else if (returnOperand instanceof Label) {
+                        instrList.add(new LiInstr(MipsRegister.$a0, returnOperand));
+                        instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(4)));
+                        instrList.add(new Syscall());
+                    }
+                    String msg = stringDic.get("\"\\n\"");
+                    instrList.add(new LaInstr(MipsRegister.$a0, new Label(msg)));
+                    instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(4)));
+                    instrList.add(new Syscall());
+
+                } else if (funcname.equals("getInt")) {
+                    instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(5)));
+                    instrList.add(new Syscall());
+                    returnOperand = MipsRegister.$v0.setValue();
                 } else {
                     int argCnt = 0;
                     for (RzParser.Assign_exprContext arg

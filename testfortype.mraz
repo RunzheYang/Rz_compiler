@@ -1,14 +1,5 @@
-class M {
-    int a;
-    int b;
-}
-
 int main() {
-    M m = new M;
-    m.a = m.b = 10;
-    return first(m);
-}
-
-int first(M m) {
-    return ++m.a;
+    string name = "Hello world!";
+    println(name);
+    return 0;
 }

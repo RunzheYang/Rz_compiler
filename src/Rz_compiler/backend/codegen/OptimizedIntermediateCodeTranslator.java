@@ -66,7 +66,6 @@ public class OptimizedIntermediateCodeTranslator implements Callable<Deque<Pseud
         Deque<PseudoInstruction> finalCode = new ArrayDeque<PseudoInstruction>();
         for (PseudoInstruction ps : intermediateCode) {
             finalCode.addAll(ps.accept(registerAllocator));
-            finalCode.add(new AssemblerDirective("\n")); // for debugging
         }
         return finalCode;
     }

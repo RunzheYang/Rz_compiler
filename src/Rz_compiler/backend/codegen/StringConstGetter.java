@@ -405,6 +405,13 @@ public class StringConstGetter implements RzVisitor<Deque<PseudoInstruction>> {
     @Override
     public Deque<PseudoInstruction> visitFunctionCall(RzParser.FunctionCallContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        if (((RzParser.Postfix_exprContext) ctx.parent).postfix_expr().getText().equals("println")) {
+            if (!stringConsts.containsKey("\"\\n\"")) {
+                String varname = string_generate();
+                instrList.add(new AssemblerDirective(varname + ":\t.asciiz\t" + "\"\\n\""));
+                stringConsts.put("\"\\n\"", varname);
+            }
+        }
         int statementCnt = ctx.getChildCount();
         for (int i = 0; i < statementCnt; ++i) {
             instrList.addAll(ctx.getChild(i).accept(this));

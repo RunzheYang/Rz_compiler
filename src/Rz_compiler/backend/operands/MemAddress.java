@@ -15,6 +15,10 @@ public class MemAddress implements Operand {
         this.offset = offset;
     }
 
+    public Register getReg() {
+        return reg;
+    }
+
     @Override
     public String toString() {
         return offset + "(" + reg + ")";
