@@ -63,21 +63,58 @@ public class RegisterAllocator implements InstructionVisitor<Deque<PseudoInstruc
                 }
             }
 
+            Register history = tempReg.getHistoryRegister();
             if (available.size() > 0) {
-                MipsRegister real = (MipsRegister) available.iterator().next();
-                Deque<PseudoInstruction> instructions = new LinkedList<>();
-                if (tempReg.isInMem()) {
-                    instructions.add(frameManager.BackFromMem(tempReg, real));
+                // first time alloc, available
+                if (history == null) {
+                    MipsRegister real = (MipsRegister) available.iterator().next();
+                    Deque<PseudoInstruction> instructions = new LinkedList<>();
+                    if (tempReg.isInMem()) {
+                        instructions.add(frameManager.BackFromMem(tempReg, real));
+                    }
+                    tempReg.setInRegister(real);
+                    result = new Pair<>(real, instructions);
+                    return result;
+
+                    // another time alloc, available
+                } else {
+                    Deque<PseudoInstruction> instructions = new LinkedList<>();
+                    // another time alloc, history is available
+                    if (available.contains(history)) {
+                        if (tempReg.isInMem()) {
+                            instructions.add(frameManager.BackFromMem(tempReg, history));
+                        }
+                        tempReg.setInRegister((MipsRegister) history);
+                        result = new Pair<>(history, instructions);
+                        return result;
+
+                        // another time alloc, history is not available
+                    } else {
+                        for (IGNode node : adjacent) {
+                            Register register = node.getReg();
+                            if (register instanceof TemporaryRegister) {
+                                Register real = ((TemporaryRegister) register).isInRegister();
+                                if (real != null && real.toString().equals(history.toString())) {
+                                    // if it is cast to mem before
+                                    instructions = new LinkedList<>();
+                                    if (tempReg.isInMem()) {
+                                        instructions.add(frameManager.BackFromMem(tempReg, real));
+                                    }
+                                    tempReg.setInRegister((MipsRegister) real);
+                                    instructions.add(frameManager.CastToMem(register));
+                                    return new Pair<>(real, instructions);
+                                }
+                            }
+                        }
+                    }
                 }
-                tempReg.setInRegister(real);
-                result = new Pair<>(real, instructions) ;
-                return result;
+
             } else {
                 for (IGNode node : adjacent) {
                     Register register = node.getReg();
                     if (register instanceof TemporaryRegister) {
                         Register real = ((TemporaryRegister) register).isInRegister();
-                        if (real != null) {
+                        if (real != null && real.toString().equals(history.toString())) {
                             // if it is cast to mem before
                             Deque<PseudoInstruction> instructions = new LinkedList<>();
                             if (tempReg.isInMem()) {
@@ -662,7 +699,9 @@ public class RegisterAllocator implements InstructionVisitor<Deque<PseudoInstruc
         Operand operand1 = result.a;
         instructions.addAll(result.b);
 
-        instructions.addAll(jalInstr.getNeedSave().stream().filter(reg -> reg instanceof TemporaryRegister).map(reg -> frameManager.CastToMem(reg)).collect(Collectors.toList()));
+        instructions.addAll(jalInstr.getNeedSave().stream().filter(reg
+                -> reg instanceof TemporaryRegister).map(reg
+                -> frameManager.CastToMem(reg)).collect(Collectors.toList()));
 
         instructions.add(new JalInstr((Label) operand1));
 

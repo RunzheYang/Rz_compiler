@@ -11,6 +11,7 @@ public class TemporaryRegister implements Register {
 
     private boolean global = false;
     private MipsRegister inRegister = null;
+    private MipsRegister historyRegister = null;
     private int offset = 0;
     private Label GLMem = null;
 
@@ -28,6 +29,7 @@ public class TemporaryRegister implements Register {
     public void setInRegister(MipsRegister register) {
         this.inMem = false;
         this.inRegister = register;
+        this.historyRegister = register;
     }
 
     public MipsRegister isInRegister() {
@@ -35,8 +37,13 @@ public class TemporaryRegister implements Register {
     }
 
     public void leaveRegister() {
+        historyRegister = inRegister;
         inRegister = null;
         inMem = true;
+    }
+
+    public MipsRegister getHistoryRegister() {
+        return historyRegister;
     }
 
     public boolean isInMem() {
