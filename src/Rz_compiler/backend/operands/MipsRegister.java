@@ -13,7 +13,9 @@ public enum MipsRegister implements Register {
 
     private boolean containValue = true;
 
-    public Set<Register> getRealTemporaryRegisters() {
+    private boolean global = false;
+
+    public static Set<Register> getRealTemporaryRegisters() {
         Set<Register> realTemp = new HashSet<>();
         realTemp.add($t0);
         realTemp.add($t1);
@@ -46,9 +48,19 @@ public enum MipsRegister implements Register {
         return this;
     }
 
+    public Register setGlobal() {
+        this.global = global;
+        return this;
+    }
+
     @Override
     public boolean isContainValue() {
         return containValue;
+    }
+
+    @Override
+    public boolean isGlobal() {
+        return global;
     }
 
     @Override

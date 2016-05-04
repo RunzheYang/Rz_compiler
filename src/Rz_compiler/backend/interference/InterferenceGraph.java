@@ -47,4 +47,8 @@ public class InterferenceGraph extends AbstractGraph<IGNode> {
         }
         return igNodes;
     }
+
+    private boolean isConstrained(IGNode node, int k) {
+        return getAdjacent(node).size() > k;
+    }
 }

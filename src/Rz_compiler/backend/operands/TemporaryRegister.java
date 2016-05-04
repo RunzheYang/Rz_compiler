@@ -9,6 +9,33 @@ public class TemporaryRegister implements Register {
 
     private boolean containValue = true;
 
+    private boolean global = false;
+    private MipsRegister inRegister = null;
+    private int offset = 0;
+    private Label GLMem = null;
+
+    private boolean inMem = false;
+
+    public void setGlobalMem(Label label) {
+        this.GLMem = label;
+    }
+
+    public Label getGlobalMem() {
+        return GLMem;
+    }
+
+    public void setInRegister(MipsRegister register) {
+        this.inRegister = register;
+    }
+
+    public MipsRegister isInRegister() {
+        return inRegister;
+    }
+
+    public void leaveRegister() {
+        inRegister = null;
+    }
+
     public Register setMem() {
         this.containValue = false;
         return this;
@@ -16,6 +43,11 @@ public class TemporaryRegister implements Register {
 
     public Register setValue() {
         this.containValue = true;
+        return this;
+    }
+
+    public Register setGlobal() {
+        this.global = global;
         return this;
     }
 
@@ -30,8 +62,12 @@ public class TemporaryRegister implements Register {
 
     @Override
     public String toString() {
-        if (cnt < 10) return "$t" + cnt;
-        else return "$s" + (cnt - 10);
+        return "$u" + cnt;
+    }
+
+    @Override
+    public boolean isGlobal() {
+        return global;
     }
 
     @Override

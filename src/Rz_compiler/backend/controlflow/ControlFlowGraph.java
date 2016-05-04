@@ -185,7 +185,7 @@ public class ControlFlowGraph extends AbstractGraph<CFGNode> {
                 liveInN.addAll(tmp);
 
                 //	LiveOut(n) = Us elem succ(n) LiveIn(s);
-                succN = this.getAdjecent(n);
+                succN = this.getAdjacent(n);
                 for(CFGNode sn : succN) {
                     liveOutN.addAll(liveIn.get(sn));
                 }

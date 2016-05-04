@@ -8,227 +8,608 @@ import Rz_compiler.backend.instructions.branch_jump.*;
 import Rz_compiler.backend.instructions.comparison.*;
 import Rz_compiler.backend.instructions.load_store_move.*;
 import Rz_compiler.backend.instructions.visitors.InstructionVisitor;
-import Rz_compiler.backend.operands.Label;
+import Rz_compiler.backend.interference.IGNode;
+import Rz_compiler.backend.interference.InterferenceGraph;
+import Rz_compiler.backend.operands.*;
 
-import java.util.Deque;
+import java.util.*;
 
 /**
  * Created by YRZ on 5/1/16.
  */
 public class RegisterAllocator implements InstructionVisitor<Deque<PseudoInstruction>> {
 
+    InterferenceGraph ig;
+
+    Set<Register> mipsTempReg = MipsRegister.getRealTemporaryRegisters();
+
+    public RegisterAllocator(InterferenceGraph ig) {
+        this.ig = ig;
+    }
+
+    private class RegisterMapper implements OperandVisitor<Operand> {
+        @Override
+        public Operand visit(MipsRegister mipsReg) {
+            return mipsReg;
+        }
+
+        @Override
+        public Operand visit(TemporaryRegister tempReg) {
+
+            if (tempReg.isInRegister() != null) {
+                return tempReg.isInRegister();
+            }
+
+            Set<IGNode> adjacent = ig.getAdjacent(IGNode.getIGNodeforRegister(tempReg));
+            Set<Register> available = new HashSet<Register>(mipsTempReg);
+            for (IGNode node : adjacent) {
+                Register reg = node.getReg();
+                if (reg instanceof TemporaryRegister) {
+                    Register real =  ((TemporaryRegister) reg).isInRegister();
+                    if (real != null) {
+                        available.remove(real);
+                    }
+                }
+            }
+
+            if (available.size() > 0) {
+                MipsRegister register = (MipsRegister) available.iterator().next();
+                tempReg.setInRegister(register);
+                return register;
+            }
+
+            return null;
+        }
+
+        @Override
+        public Operand visit(ImmediateValue immediate) {
+            return immediate;
+        }
+
+        @Override
+        public Operand visit(MemAddress memAddress) {
+            return memAddress;
+        }
+
+        @Override
+        public Operand visit(Label label) {
+            return label;
+        }
+
+        @Override
+        public Operand visit(NoOperand noOperand) {
+            return noOperand;
+        }
+    }
+
     @Override
     public Deque<PseudoInstruction> visit(AbsInstr absInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = absInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = absInstr.getSrc1().accpet(new RegisterMapper());
+
+        instructions.add(new AbsInstr(operand1, operand2));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(AddInstr addInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = addInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = addInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = addInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new AddInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(AndInstr andInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = andInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = andInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = andInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new AndInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(DivInstr divInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = divInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = divInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = divInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new DivInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(MulInstr mulInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = mulInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = mulInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = mulInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new MulInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(NegInstr negInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = negInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = negInstr.getSrc1().accpet(new RegisterMapper());
+
+        instructions.add(new NegInstr(operand1, operand2));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(NorInstr norInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = norInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = norInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = norInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new NorInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(NotInstr notInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = notInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = notInstr.getSrc1().accpet(new RegisterMapper());
+
+        instructions.add(new NotInstr(operand1, operand2));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(OrInstr orInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 =  orInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 =  orInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 =  orInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new OrInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(RemInstr remInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = remInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = remInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = remInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new RemInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(RolInstr rolInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = rolInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = rolInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = rolInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new RolInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(SllInstr sllInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = sllInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = sllInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = sllInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new SllInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(SraInstr sraInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = sraInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = sraInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = sraInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new SraInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(SrlInstr srlInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = srlInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = srlInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = srlInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new SrlInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(SubInstr subInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = subInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = subInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = subInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new SubInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(XorInstr xorInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = xorInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = xorInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = xorInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new XorInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(BeqInstr beqInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = beqInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = beqInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = beqInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new BeqInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(BgeInstr bgeInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = bgeInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = bgeInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = bgeInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new BgeInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(BgtInstr bgtInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = bgtInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = bgtInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = bgtInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new BgtInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(BInstr bInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = bInstr.getLabel().accpet(new RegisterMapper());
+
+        instructions.add(new BInstr((Label) operand1));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(BleInstr bleInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = bleInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = bleInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = bleInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new BleInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(BltInstr bltInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = bltInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = bltInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = bltInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new BltInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(BneInstr bneInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = bneInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = bneInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = bneInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new BneInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(JalInstr jalInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = jalInstr.getLabel().accpet(new RegisterMapper());
+
+        instructions.add(new JalInstr((Label) operand1));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(JrInstr jrInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 =  jrInstr.getrSrc().accpet(new RegisterMapper());
+
+        instructions.add(new JrInstr(operand1));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(SeqInstr seqInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = seqInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = seqInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = seqInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new SeqInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(SgeInstr sgeInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = sgeInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = sgeInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = sgeInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new SgeInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(SgtInstr sgtInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = sgtInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = sgtInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = sgtInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new SgtInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(SleInstr sleInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = sleInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = sleInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = sleInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new SleInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(SltInstr sltInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = sltInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = sltInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = sltInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new SltInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(SneInstr sneInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = sneInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = sneInstr.getSrc1().accpet(new RegisterMapper());
+        Operand operand3 = sneInstr.getSrc2().accpet(new RegisterMapper());
+
+        instructions.add(new SneInstr(operand1, operand2, operand3));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(LaInstr laInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 =  laInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 =  laInstr.getSrc1().accpet(new RegisterMapper());
+
+        instructions.add(new LaInstr (operand1, operand2));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(LbInstr lbInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 =  lbInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 =  lbInstr.getSrc1().accpet(new RegisterMapper());
+
+        instructions.add(new LbInstr (operand1, operand2));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(LhInstr lhInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 =  lhInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 =  lhInstr.getSrc1().accpet(new RegisterMapper());
+
+        instructions.add(new LhInstr (operand1, operand2));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(LiInstr liInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 =  liInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 =  liInstr.getSrc1().accpet(new RegisterMapper());
+
+        instructions.add(new LiInstr (operand1, operand2));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(LwInstr lwInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 =  lwInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 =  lwInstr.getSrc1().accpet(new RegisterMapper());
+
+        instructions.add(new LwInstr (operand1, operand2));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(MoveInstr moveInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 = moveInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 = moveInstr.getSrc1().accpet(new RegisterMapper());
+
+        if (!operand1.toString().equals(operand2.toString())) {
+            instructions.add(new MoveInstr(operand1, operand2));
+        }
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(SbInstr sbInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 =  sbInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 =  sbInstr.getSrc1().accpet(new RegisterMapper());
+
+        instructions.add(new SbInstr (operand1, operand2));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(ShInstr shInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 =  shInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 =  shInstr.getSrc1().accpet(new RegisterMapper());
+
+        instructions.add(new ShInstr (operand1, operand2));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(SwInstr swInstr) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        Operand operand1 =  swInstr.getDest().accpet(new RegisterMapper());
+        Operand operand2 =  swInstr.getSrc1().accpet(new RegisterMapper());
+
+        instructions.add(new SwInstr (operand1, operand2));
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(Syscall syscall) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        instructions.add(syscall);
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(AssemblerDirective assemblerDirective) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        instructions.add(assemblerDirective);
+
+        return instructions;
     }
 
     @Override
     public Deque<PseudoInstruction> visit(Label label) {
-        return null;
+        Deque<PseudoInstruction> instructions = new LinkedList<>();
+
+        instructions.add(label);
+
+        return instructions;
     }
 }

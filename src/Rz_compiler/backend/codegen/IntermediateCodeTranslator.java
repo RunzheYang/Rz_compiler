@@ -1335,17 +1335,21 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
 
         Identifier var =  tpa.getIdentofPrimary(ctx, symt);
         if (var.isGlobal()) {
+            Register reg =  trg.generate().setGlobal();
             if (var.getRegister() == null && var instanceof Variable) {
                 if (((Variable) var).getType().equals(new IntType())) {
-                    var.setRegister(trg.generate());
+                    var.setRegister((TemporaryRegister) reg);
                 } else {
-                    var.setRegister((TemporaryRegister) trg.generate().setMem());
+                    reg =  trg.generate().setGlobal();
+                    var.setRegister((TemporaryRegister) ((TemporaryRegister) reg).setMem());
                 }
             }
             instrList.add(new LwInstr(var.getRegister(), new Label(var.getName())));
 
             returnOperand = var.getRegister();
-            returnOperandAddress = new Label(var.getName());
+            Label label = new Label(var.getName());
+            returnOperandAddress = label;
+            ((TemporaryRegister) reg).setGlobalMem(label);
         } else {
             returnOperand = var.getRegister();
             returnOperandAddress = null;

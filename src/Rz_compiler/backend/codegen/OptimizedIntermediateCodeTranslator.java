@@ -27,8 +27,6 @@ public class OptimizedIntermediateCodeTranslator implements Callable<Deque<Pseud
 
     private Map<String, String> stringDic;
 
-    private RegisterAllocator registerAllocator = new RegisterAllocator();
-
     public OptimizedIntermediateCodeTranslator(ParseTree ctx, SymbolTable symbolTable,
                                                Map<String, String> stringDic, int optLevel) {
         this.ctx = ctx;
@@ -58,24 +56,22 @@ public class OptimizedIntermediateCodeTranslator implements Callable<Deque<Pseud
 
     private Deque<PseudoInstruction> doOptimization(Deque<PseudoInstruction> intermediateCode, int optLevel) {
 
-        if (optLevel == 0) {
-            return simpleRegisterAllocation(intermediateCode);
-        }
-
         if (optLevel == -1) {
             ControlFlowGraph cfg = new ControlFlowGraph(intermediateCode);
             //System.err.println(cfg);
             InterferenceGraph ig = new InterferenceGraph(cfg);
             //System.err.println(ig);
-            IGColouration igc = new IGColouration(ig);
-
+            //IGColouration igc = new IGColouration(ig);
+            intermediateCode = simpleRegisterAllocation(intermediateCode, ig);
         }
 
         return intermediateCode;
     }
 
-    private Deque<PseudoInstruction> simpleRegisterAllocation(Deque<PseudoInstruction> intermediateCode) {
+    private Deque<PseudoInstruction> simpleRegisterAllocation(Deque<PseudoInstruction> intermediateCode,
+                                                              InterferenceGraph ig) {
         Deque<PseudoInstruction> finalCode = new ArrayDeque<PseudoInstruction>();
+        RegisterAllocator registerAllocator = new RegisterAllocator(ig);
         for (PseudoInstruction ps : intermediateCode) {
             finalCode.addAll(ps.accept(registerAllocator));
         }

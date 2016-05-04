@@ -16,7 +16,7 @@ public abstract class AbstractGraph<NODE> implements Iterable<NODE> {
         return graph.keySet();
     }
 
-    public Set<NODE> getAdjecent(NODE node) {
+    public Set<NODE> getAdjacent(NODE node) {
         return graph.get(node);
     }
 

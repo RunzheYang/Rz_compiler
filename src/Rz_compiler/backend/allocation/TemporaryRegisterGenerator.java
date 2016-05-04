@@ -1,5 +1,7 @@
 package Rz_compiler.backend.allocation;
 
+import Rz_compiler.backend.operands.MipsRegister;
+import Rz_compiler.backend.operands.Register;
 import Rz_compiler.backend.operands.TemporaryRegister;
 
 /**
