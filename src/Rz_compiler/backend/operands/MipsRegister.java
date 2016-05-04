@@ -64,7 +64,7 @@ public enum MipsRegister implements Register {
     }
 
     @Override
-    public <T> T accpet(OperandVisitor<T> visitor) {
+    public <T> T accept(OperandVisitor<T> visitor) {
         return visitor.visit(this);
     }
 }

@@ -43,7 +43,7 @@ public class IGColouration {
     }
 
     private boolean isMipsRegister(IGNode node) {
-        return node.getReg().accpet(new OperandVisitor<Boolean>() {
+        return node.getReg().accept(new OperandVisitor<Boolean>() {
             @Override
             public Boolean visit(MipsRegister mipsReg) {
                 return true;
@@ -61,7 +61,7 @@ public class IGColouration {
 
             @Override
             public Boolean visit(MemAddress memAddress) {
-                return memAddress.getReg().accpet(this);
+                return memAddress.getReg().accept(this);
             }
 
             @Override

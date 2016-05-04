@@ -8,7 +8,6 @@ import Rz_compiler.backend.instructions.comparison.*;
 import Rz_compiler.backend.instructions.load_store_move.*;
 import Rz_compiler.backend.instructions.visitors.InstructionVisitor;
 import Rz_compiler.backend.operands.*;
-import com.sun.org.apache.bcel.internal.generic.LNEG;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -37,7 +36,7 @@ public class DefinedRegisterGetter implements InstructionVisitor<List<Register>>
 
         @Override
         public List<Register> visit(MemAddress memAddress) {
-            return memAddress.getReg().accpet(this);
+            return memAddress.getReg().accept(this);
         }
 
         @Override
@@ -53,82 +52,82 @@ public class DefinedRegisterGetter implements InstructionVisitor<List<Register>>
 
     @Override
     public List<Register> visit(AbsInstr absInstr) {
-        return absInstr.getDest().accpet(new RegisterGetter());
+        return absInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(AddInstr addInstr) {
-        return addInstr.getDest().accpet(new RegisterGetter());
+        return addInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(AndInstr andInstr) {
-        return andInstr.getDest().accpet(new RegisterGetter());
+        return andInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(DivInstr divInstr) {
-        return divInstr.getDest().accpet(new RegisterGetter());
+        return divInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(MulInstr mulInstr) {
-        return mulInstr.getDest().accpet(new RegisterGetter());
+        return mulInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(NegInstr negInstr) {
-        return negInstr.getDest().accpet(new RegisterGetter());
+        return negInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(NorInstr norInstr) {
-        return norInstr.getDest().accpet(new RegisterGetter());
+        return norInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(NotInstr notInstr) {
-        return notInstr.getDest().accpet(new RegisterGetter());
+        return notInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(OrInstr orInstr) {
-        return orInstr.getDest().accpet(new RegisterGetter());
+        return orInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(RemInstr remInstr) {
-        return remInstr.getDest().accpet(new RegisterGetter());
+        return remInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(RolInstr rolInstr) {
-        return rolInstr.getDest().accpet(new RegisterGetter());
+        return rolInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(SllInstr sllInstr) {
-        return sllInstr.getDest().accpet(new RegisterGetter());
+        return sllInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(SraInstr sraInstr) {
-        return sraInstr.getDest().accpet(new RegisterGetter());
+        return sraInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(SrlInstr srlInstr) {
-        return srlInstr.getDest().accpet(new RegisterGetter());
+        return srlInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(SubInstr subInstr) {
-        return subInstr.getDest().accpet(new RegisterGetter());
+        return subInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(XorInstr xorInstr) {
-        return xorInstr.getDest().accpet(new RegisterGetter());
+        return xorInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
@@ -178,77 +177,77 @@ public class DefinedRegisterGetter implements InstructionVisitor<List<Register>>
 
     @Override
     public List<Register> visit(SeqInstr seqInstr) {
-        return seqInstr.getDest().accpet(new RegisterGetter());
+        return seqInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(SgeInstr sgeInstr) {
-        return sgeInstr.getDest().accpet(new RegisterGetter());
+        return sgeInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(SgtInstr sgtInstr) {
-        return sgtInstr.getDest().accpet(new RegisterGetter());
+        return sgtInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(SleInstr sleInstr) {
-        return sleInstr.getDest().accpet(new RegisterGetter());
+        return sleInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(SltInstr sltInstr) {
-        return sltInstr.getDest().accpet(new RegisterGetter());
+        return sltInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(SneInstr sneInstr) {
-        return sneInstr.getDest().accpet(new RegisterGetter());
+        return sneInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(LaInstr laInstr) {
-        return laInstr.getDest().accpet(new RegisterGetter());
+        return laInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(LbInstr lbInstr) {
-        return lbInstr.getDest().accpet(new RegisterGetter());
+        return lbInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(LhInstr lhInstr) {
-        return lhInstr.getDest().accpet(new RegisterGetter());
+        return lhInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(LiInstr liInstr) {
-        return liInstr.getDest().accpet(new RegisterGetter());
+        return liInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(LwInstr lwInstr) {
-        return lwInstr.getDest().accpet(new RegisterGetter());
+        return lwInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(MoveInstr moveInstr) {
-        return moveInstr.getDest().accpet(new RegisterGetter());
+        return moveInstr.getDest().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(SbInstr sbInstr) {
-        return sbInstr.getSrc1().accpet(new RegisterGetter());
+        return sbInstr.getSrc1().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(ShInstr shInstr) {
-        return shInstr.getSrc1().accpet(new RegisterGetter());
+        return shInstr.getSrc1().accept(new RegisterGetter());
     }
 
     @Override
     public List<Register> visit(SwInstr swInstr) {
-        return swInstr.getSrc1().accpet(new RegisterGetter());
+        return swInstr.getSrc1().accept(new RegisterGetter());
     }
 
     @Override

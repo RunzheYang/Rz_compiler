@@ -518,7 +518,13 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
             Operand lhsReg = returnOperand;
 
             if (lhsReg == null) {
-                lhsReg = trg.generate();
+                Type type = tpa.getTypeofUnaryExpr(ctx.unary_expr(), symt);
+                if (type.equals(new IntType())) {
+                    lhsReg = trg.generate();
+                } else {
+                    lhsReg = trg.generate().setMem();
+                }
+
                 tpa.getIdentofUnaryExpr(ctx.unary_expr(), symt).setRegister((TemporaryRegister) lhsReg);
             }
 

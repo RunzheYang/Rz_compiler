@@ -5,7 +5,7 @@ package Rz_compiler.backend.operands;
  */
 public class NoOperand implements Operand {
     @Override
-    public <T> T accpet(OperandVisitor<T> visitor) {
+    public <T> T accept(OperandVisitor<T> visitor) {
         return visitor.visit(this);
     }
 }

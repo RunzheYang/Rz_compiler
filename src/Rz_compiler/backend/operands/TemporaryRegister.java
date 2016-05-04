@@ -14,6 +14,7 @@ public class TemporaryRegister implements Register {
     private int offset = 0;
     private Label GLMem = null;
 
+    // inMem indicates whether should be load
     private boolean inMem = false;
 
     public void setGlobalMem(Label label) {
@@ -25,6 +26,7 @@ public class TemporaryRegister implements Register {
     }
 
     public void setInRegister(MipsRegister register) {
+        this.inMem = false;
         this.inRegister = register;
     }
 
@@ -81,7 +83,7 @@ public class TemporaryRegister implements Register {
     }
 
     @Override
-    public <T> T accpet(OperandVisitor<T> visitor) {
+    public <T> T accept(OperandVisitor<T> visitor) {
         return visitor.visit(this);
     }
 }

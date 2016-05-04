@@ -38,9 +38,12 @@ public class FrameManager {
 
             ((TemporaryRegister) reg).leaveRegister();
             Operand memAddress = varMemDic.get(reg);
+
+            //if not be cast before
             if (memAddress == null || !(memAddress instanceof MemAddress)) {
-                memAddress = new MemAddress(MipsRegister.$sp, 4 * (offset++));
+                memAddress = new MemAddress(MipsRegister.$sp, 4 * (this.offset++));
             }
+
             varMemDic.put(reg, memAddress);
 
             return new SwInstr(real, memAddress);
@@ -51,6 +54,7 @@ public class FrameManager {
 
 
     public PseudoInstruction BackFromMem(Register reg, Register newTarget) {
+
         Operand memAdd = varMemDic.get(reg);
         if (memAdd instanceof Label) {
             return new LaInstr(newTarget, memAdd);
