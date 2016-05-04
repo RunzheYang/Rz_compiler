@@ -311,17 +311,23 @@ public class UsedRegisterGetter implements InstructionVisitor<List<Register>> {
 
     @Override
     public List<Register> visit(SbInstr sbInstr) {
-        return sbInstr.getDest().accept(new RegisterGetter());
+        List<Register> regList = sbInstr.getDest().accept(new RegisterGetter());
+        regList.addAll(sbInstr.getSrc1().accept(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(ShInstr shInstr) {
-        return shInstr.getDest().accept(new RegisterGetter());
+        List<Register> regList = shInstr.getDest().accept(new RegisterGetter());
+        regList.addAll(shInstr.getSrc1().accept(new RegisterGetter()));
+        return regList;
     }
 
     @Override
     public List<Register> visit(SwInstr swInstr) {
-        return swInstr.getDest().accept(new RegisterGetter());
+        List<Register> regList = swInstr.getDest().accept(new RegisterGetter());
+        regList.addAll(swInstr.getSrc1().accept(new RegisterGetter()));
+        return regList;
     }
 
     @Override

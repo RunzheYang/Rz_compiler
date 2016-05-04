@@ -11,6 +11,16 @@ public abstract class MipsInstruction {
     protected Operand dest;
     protected Operand src1, src2;
 
+    private boolean isUseful = true;
+
+    public boolean isUseful() {
+        return isUseful;
+    }
+
+    public void unUseful() {
+        isUseful = false;
+    }
+
     public MipsInstruction(Operand dest, Operand src) {
         this.dest = dest;
         this.src1 = src;

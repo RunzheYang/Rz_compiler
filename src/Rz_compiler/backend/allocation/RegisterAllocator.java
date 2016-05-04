@@ -63,7 +63,6 @@ public class RegisterAllocator implements InstructionVisitor<Deque<PseudoInstruc
             }
 
             if (available.size() > 0) {
-System.err.println("NO ENOUGH?" + available.size());
                 MipsRegister real = (MipsRegister) available.iterator().next();
                 Deque<PseudoInstruction> instructions = new LinkedList<>();
                 if (tempReg.isInMem()) {

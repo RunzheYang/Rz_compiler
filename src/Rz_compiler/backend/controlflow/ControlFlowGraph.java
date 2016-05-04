@@ -1,11 +1,13 @@
 package Rz_compiler.backend.controlflow;
 
 import Rz_compiler.backend.instructions.AssemblerDirective;
+import Rz_compiler.backend.instructions.MipsInstruction;
 import Rz_compiler.backend.instructions.PseudoInstruction;
 import Rz_compiler.backend.instructions.branch_jump.*;
 import Rz_compiler.backend.instructions.visitors.SelectedInstructionVisitor;
 import Rz_compiler.backend.operands.Label;
 import Rz_compiler.backend.operands.Register;
+import Rz_compiler.backend.operands.TemporaryRegister;
 
 import java.util.*;
 import java.util.concurrent.Callable;
@@ -195,6 +197,15 @@ public class ControlFlowGraph extends AbstractGraph<CFGNode> {
                 allRegisters.addAll(n.uses);
             }
         } while (isChanged(liveIn, prevLiveIn) || isChanged(liveOut, prevLiveOut));
+
+        // lable unuseful instruction
+        for(CFGNode n : this) {
+            if (n.defs.size() == 1 && n.getInstr() instanceof MipsInstruction) {
+                if (n.defs.get(0) instanceof TemporaryRegister && !liveOut.get(n).contains(n.defs.get(0))) {
+                    ((MipsInstruction) n.getInstr()).unUseful();
+                }
+            }
+        }
 
         return liveOut;
     }

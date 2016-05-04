@@ -237,17 +237,17 @@ public class DefinedRegisterGetter implements InstructionVisitor<List<Register>>
 
     @Override
     public List<Register> visit(SbInstr sbInstr) {
-        return sbInstr.getSrc1().accept(new RegisterGetter());
+        return new LinkedList<>();
     }
 
     @Override
     public List<Register> visit(ShInstr shInstr) {
-        return shInstr.getSrc1().accept(new RegisterGetter());
+        return new LinkedList<>();
     }
 
     @Override
     public List<Register> visit(SwInstr swInstr) {
-        return swInstr.getSrc1().accept(new RegisterGetter());
+        return new LinkedList<>();
     }
 
     @Override
