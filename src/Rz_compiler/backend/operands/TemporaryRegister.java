@@ -34,6 +34,11 @@ public class TemporaryRegister implements Register {
 
     public void leaveRegister() {
         inRegister = null;
+        inMem = true;
+    }
+
+    public boolean isInMem() {
+        return inMem;
     }
 
     public Register setMem() {

@@ -1,11 +1,17 @@
 package Rz_compiler.backend.codegen;
 
+import Rz_compiler.backend.allocation.FrameManager;
 import Rz_compiler.backend.allocation.RegisterAllocator;
 import Rz_compiler.backend.controlflow.ControlFlowGraph;
 import Rz_compiler.backend.instructions.AssemblerDirective;
 import Rz_compiler.backend.instructions.PseudoInstruction;
+import Rz_compiler.backend.instructions.arithmetic_logic.AbsInstr;
+import Rz_compiler.backend.instructions.arithmetic_logic.AddInstr;
+import Rz_compiler.backend.instructions.arithmetic_logic.SubInstr;
 import Rz_compiler.backend.interference.IGColouration;
 import Rz_compiler.backend.interference.InterferenceGraph;
+import Rz_compiler.backend.operands.ImmediateValue;
+import Rz_compiler.backend.operands.MipsRegister;
 import Rz_compiler.frontend.semantics.SymbolTable;
 import org.antlr.v4.runtime.misc.Pair;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -26,6 +32,8 @@ public class OptimizedIntermediateCodeTranslator implements Callable<Deque<Pseud
     private SymbolTable symbolTable;
 
     private Map<String, String> stringDic;
+
+    private FrameManager frameManager = new FrameManager(1);
 
     public OptimizedIntermediateCodeTranslator(ParseTree ctx, SymbolTable symbolTable,
                                                Map<String, String> stringDic, int optLevel) {
@@ -70,11 +78,28 @@ public class OptimizedIntermediateCodeTranslator implements Callable<Deque<Pseud
 
     private Deque<PseudoInstruction> simpleRegisterAllocation(Deque<PseudoInstruction> intermediateCode,
                                                               InterferenceGraph ig) {
-        Deque<PseudoInstruction> finalCode = new ArrayDeque<PseudoInstruction>();
-        RegisterAllocator registerAllocator = new RegisterAllocator(ig);
+        Deque<PseudoInstruction> alloCode = new ArrayDeque<>();
+        RegisterAllocator registerAllocator = new RegisterAllocator(ig, frameManager);
         for (PseudoInstruction ps : intermediateCode) {
-            finalCode.addAll(ps.accept(registerAllocator));
+            alloCode.addAll(ps.accept(registerAllocator));
         }
+
+        //Correct the SP MOVE
+        Deque<PseudoInstruction> finalCode = new ArrayDeque<>();
+        for (PseudoInstruction ps : alloCode) {
+            if (ps instanceof AddInstr
+                    && ((AddInstr) ps).getDest().toString().equals("$sp")
+                    && ((AddInstr) ps).getSrc1().toString().equals("$sp")) {
+                ps = new AddInstr(MipsRegister.$sp, MipsRegister.$sp, new ImmediateValue(frameManager.getOffset()));
+            } else if (ps instanceof SubInstr
+                    && ((SubInstr) ps).getDest().toString().equals("$sp")
+                    && ((SubInstr) ps).getSrc1().toString().equals("$sp")) {
+                ps = new SubInstr(MipsRegister.$sp, MipsRegister.$sp, new ImmediateValue(frameManager.getOffset()));
+            }
+            finalCode.add(ps);
+        }
+
+
         return finalCode;
     }
 
