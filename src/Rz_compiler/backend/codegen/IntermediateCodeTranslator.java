@@ -147,6 +147,9 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
             Operand rhsReg = returnOperand;
             Register varReg = symt.lookup(ctx.ident().getText()).getRegister();
 
+            // !!
+            returnOperandAddress = null;
+
             if (varReg == null) {
                 if (symt.lookup(ctx.ident().getText()) instanceof Variable) {
                     if (((Variable) symt.lookup(ctx.ident().getText())).getType() instanceof IntType

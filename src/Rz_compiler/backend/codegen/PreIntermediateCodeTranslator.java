@@ -138,6 +138,9 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
 
             Operand rhsReg = returnOperand;
 
+            // !!
+            returnOperandAddress = null;
+
             Register varReg = symt.lookup(ctx.ident().getText()).getRegister();
 
             if (rhsReg instanceof Register) {
