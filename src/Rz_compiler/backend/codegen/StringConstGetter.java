@@ -422,30 +422,50 @@ public class StringConstGetter implements RzVisitor<Deque<PseudoInstruction>> {
     @Override
     public Deque<PseudoInstruction> visitMember(RzParser.MemberContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        int statementCnt = ctx.getChildCount();
+        for (int i = 0; i < statementCnt; ++i) {
+            instrList.addAll(ctx.getChild(i).accept(this));
+        }
         return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitPlusPlus(RzParser.PlusPlusContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        int statementCnt = ctx.getChildCount();
+        for (int i = 0; i < statementCnt; ++i) {
+            instrList.addAll(ctx.getChild(i).accept(this));
+        }
         return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitMinusMinus(RzParser.MinusMinusContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        int statementCnt = ctx.getChildCount();
+        for (int i = 0; i < statementCnt; ++i) {
+            instrList.addAll(ctx.getChild(i).accept(this));
+        }
         return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitArguments(RzParser.ArgumentsContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        int statementCnt = ctx.getChildCount();
+        for (int i = 0; i < statementCnt; ++i) {
+            instrList.addAll(ctx.getChild(i).accept(this));
+        }
         return instrList;
     }
 
     @Override
     public Deque<PseudoInstruction> visitPrimary_ident(RzParser.Primary_identContext ctx) {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
+        int statementCnt = ctx.getChildCount();
+        for (int i = 0; i < statementCnt; ++i) {
+            instrList.addAll(ctx.getChild(i).accept(this));
+        }
         return instrList;
     }
 

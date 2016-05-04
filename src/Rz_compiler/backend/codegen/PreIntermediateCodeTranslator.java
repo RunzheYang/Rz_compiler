@@ -1076,7 +1076,7 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
                     preList.b.add(new JalInstr(new Label("f_" + funcname)));
                 }
                 if (((FunctionType)symt.lookup(funcname)).getReturnType().equals(new IntType())) {
-                    returnOperand = MipsRegister.$v0;
+                    returnOperand = MipsRegister.$v0.setValue();
                 } else {
                     returnOperand = MipsRegister.$v0.setMem();
                 }

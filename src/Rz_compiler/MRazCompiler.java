@@ -29,7 +29,7 @@ public class MRazCompiler {
         RzParser paser = new RzParser(tokens);
         ParseTree program = paser.prog();
 
-        SymbolTable symbolTable = frontendTest(paser, program, true, false);
+        SymbolTable symbolTable = frontendTest(paser, program, false, false);
 
         int optlevel = -1;
         String mipsCode = new CodeGenerator((RzParser.ProgContext) program, symbolTable).compile(optlevel);

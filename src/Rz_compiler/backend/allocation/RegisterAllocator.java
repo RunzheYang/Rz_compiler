@@ -11,6 +11,7 @@ import Rz_compiler.backend.instructions.visitors.InstructionVisitor;
 import Rz_compiler.backend.interference.IGNode;
 import Rz_compiler.backend.interference.InterferenceGraph;
 import Rz_compiler.backend.operands.*;
+import Rz_compiler.frontend.semantics.SymbolTable;
 import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.*;
@@ -101,7 +102,9 @@ public class RegisterAllocator implements InstructionVisitor<Deque<PseudoInstruc
                                         instructions.add(frameManager.BackFromMem(tempReg, real));
                                     }
                                     tempReg.setInRegister((MipsRegister) real);
+
                                     instructions.add(frameManager.CastToMem(register));
+
                                     return new Pair<>(real, instructions);
                                 }
                             }
@@ -114,15 +117,29 @@ public class RegisterAllocator implements InstructionVisitor<Deque<PseudoInstruc
                     Register register = node.getReg();
                     if (register instanceof TemporaryRegister) {
                         Register real = ((TemporaryRegister) register).isInRegister();
-                        if (real != null && real.toString().equals(history.toString())) {
-                            // if it is cast to mem before
-                            Deque<PseudoInstruction> instructions = new LinkedList<>();
-                            if (tempReg.isInMem()) {
-                                instructions.add(frameManager.BackFromMem(tempReg, real));
+                        Deque<PseudoInstruction> instructions = new LinkedList<>();
+                        if (history == null) {
+                            if (real != null) {
+                                // if it is cast to mem before
+
+                                if (tempReg.isInMem()) {
+                                    instructions.add(frameManager.BackFromMem(tempReg, real));
+                                }
+                                tempReg.setInRegister((MipsRegister) real);
+                                instructions.add(frameManager.CastToMem(register));
+                                return new Pair<>(real, instructions);
                             }
-                            tempReg.setInRegister((MipsRegister) real);
-                            instructions.add(frameManager.CastToMem(register));
-                            return new Pair<>(real, instructions);
+                        } else {
+                            if (real != null && real.toString().equals(history.toString())) {
+                                // if it is cast to mem before
+                                if (tempReg.isInMem()) {
+                                    instructions.add(frameManager.BackFromMem(tempReg, real));
+                                }
+                                tempReg.setInRegister((MipsRegister) real);
+
+                                instructions.add(frameManager.CastToMem(register));
+                                return new Pair<>(real, instructions);
+                            }
                         }
                     }
                 }
@@ -700,13 +717,16 @@ public class RegisterAllocator implements InstructionVisitor<Deque<PseudoInstruc
         instructions.addAll(result.b);
 
         instructions.addAll(jalInstr.getNeedSave().stream().filter(reg
-                -> reg instanceof TemporaryRegister).map(reg
+                -> reg instanceof TemporaryRegister
+                && ((TemporaryRegister) reg).isInRegister() != null).map(reg
                 -> frameManager.CastToMem(reg)).collect(Collectors.toList()));
 
         instructions.add(new JalInstr((Label) operand1));
 
-        jalInstr.getNeedSave().stream().filter(reg -> reg instanceof TemporaryRegister).forEach(reg -> {
-            instructions.addAll(reg.accept(new RegisterMapper()).b);
+        jalInstr.getNeedSave().stream().filter(reg
+                -> reg instanceof TemporaryRegister
+                && ((TemporaryRegister) reg).getHistoryRegister() != null).forEach(reg
+                -> {instructions.addAll(reg.accept(new RegisterMapper()).b);
         });
 
         return instructions;

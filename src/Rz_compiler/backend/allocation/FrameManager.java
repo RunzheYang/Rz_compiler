@@ -5,6 +5,7 @@ import Rz_compiler.backend.instructions.load_store_move.LaInstr;
 import Rz_compiler.backend.instructions.load_store_move.LwInstr;
 import Rz_compiler.backend.instructions.load_store_move.SwInstr;
 import Rz_compiler.backend.operands.*;
+import Rz_compiler.frontend.semantics.SymbolTable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,29 +25,33 @@ public class FrameManager {
         if (reg instanceof TemporaryRegister && reg.isGlobal()) {
 
             Register real  = ((TemporaryRegister) reg).isInRegister();
-            if (real != null)
+            if (real != null) {
+                ((TemporaryRegister) reg).leaveRegister();
+                varMemDic.put(reg, ((TemporaryRegister) reg).getGlobalMem());
 
-            ((TemporaryRegister) reg).leaveRegister();
-            varMemDic.put(reg, ((TemporaryRegister) reg).getGlobalMem());
-
-            return new SwInstr(real, ((TemporaryRegister) reg).getGlobalMem());
+                return new SwInstr(real, ((TemporaryRegister) reg).getGlobalMem());
+            } else {
+                throw new RuntimeException("CANNOT!");
+            }
 
         } else if (reg instanceof TemporaryRegister) {
 
             Register real  = ((TemporaryRegister) reg).isInRegister();
-            if (real != null)
+            if (real != null) {
+                ((TemporaryRegister) reg).leaveRegister();
+                Operand memAddress = varMemDic.get(reg);
 
-            ((TemporaryRegister) reg).leaveRegister();
-            Operand memAddress = varMemDic.get(reg);
+                //if not be cast before
+                if (memAddress == null || !(memAddress instanceof MemAddress)) {
+                    memAddress = new MemAddress(MipsRegister.$sp, 4 * (this.offset++));
+                }
 
-            //if not be cast before
-            if (memAddress == null || !(memAddress instanceof MemAddress)) {
-                memAddress = new MemAddress(MipsRegister.$sp, 4 * (this.offset++));
+                varMemDic.put(reg, memAddress);
+
+                return new SwInstr(real, memAddress);
+            } else {
+                throw new RuntimeException("CANNOT!");
             }
-
-            varMemDic.put(reg, memAddress);
-
-            return new SwInstr(real, memAddress);
         }
         // return null if there is a real register to be cast;
         return null;

@@ -85,13 +85,19 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
 
         instrList.addAll(ctx.compound_stmt().accept(this));
 
-        if (functype.equals(new VoidType())) {
+        if (functype.toString().equals("void")) {
             instrList.add(new LwInstr(MipsRegister.$ra, new MemAddress(MipsRegister.$sp, 0)));
             instrList.add(new AddInstr(MipsRegister.$sp, MipsRegister.$sp, new ImmediateValue(4)));
             instrList.add(new JrInstr(MipsRegister.$ra));
         }
 
         if (funcname.equals("main")) {
+            if (!(instrList.getLast() instanceof JrInstr
+                    && ((JrInstr) instrList.getLast()).getrSrc().toString().equals("$ra"))) {
+                instrList.add(new LwInstr(MipsRegister.$ra, new MemAddress(MipsRegister.$sp, 0)));
+                instrList.add(new AddInstr(MipsRegister.$sp, MipsRegister.$sp, new ImmediateValue(4)));
+                instrList.add(new JrInstr(MipsRegister.$ra));
+            }
             Label returnhere = new Label("main_end");
             instrList.add(new BInstr(returnhere));
             instrList.add(returnhere);
@@ -1241,7 +1247,7 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                         instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(4)));
                         instrList.add(new Syscall());
                     } else if (returnOperand instanceof Label) {
-                        instrList.add(new LiInstr(MipsRegister.$a0, returnOperand));
+                        instrList.add(new LaInstr(MipsRegister.$a0, returnOperand));
                         instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(4)));
                         instrList.add(new Syscall());
                     }
@@ -1252,7 +1258,7 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                         instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(4)));
                         instrList.add(new Syscall());
                     } else if (returnOperand instanceof Label) {
-                        instrList.add(new LiInstr(MipsRegister.$a0, returnOperand));
+                        instrList.add(new LaInstr(MipsRegister.$a0, returnOperand));
                         instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(4)));
                         instrList.add(new Syscall());
                     }
@@ -1290,7 +1296,7 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                     instrList.add(new JalInstr(new Label("f_" + funcname)));
                 }
                 if (((FunctionType)symt.lookup(funcname)).getReturnType().equals(new IntType())) {
-                    returnOperand = MipsRegister.$v0;
+                    returnOperand = MipsRegister.$v0.setValue();
                 } else {
                     returnOperand = MipsRegister.$v0.setMem();
                 }
