@@ -1267,6 +1267,10 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                     returnOperand = MipsRegister.$v0.setValue();
                 } else {
                     int argCnt = 0;
+
+                    if (funcname.equals("toString"))
+                        CodeGenerator.hasToString = true;
+
                     RzParser.ArgumentsContext argumentsContext =
                             ((RzParser.FunctionCallContext) ctx.postfix()).arguments();
                     if (argumentsContext != null) {

@@ -22,9 +22,12 @@ import java.util.Map;
  * Created by YRZ on 4/21/16.
  */
 public class CodeGenerator {
+
     private final RzParser.ProgContext program;
 
     private SymbolTable symbolTable;
+
+    public static boolean hasToString = false;
 
     public CodeGenerator(RzParser.ProgContext program, SymbolTable symbolTable) {
         this.program = program;
@@ -79,7 +82,6 @@ public class CodeGenerator {
                 instrList.addAll(fbody.get(funcname));
             }
 
-
         } catch (Exception error) {
             error.printStackTrace();
 //            System.err.println(error.getMessage());
@@ -96,6 +98,10 @@ public class CodeGenerator {
 
         for (PseudoInstruction instr : instrList) {
             System.err.println(instr.accept(new InstructionPrinter()));
+        }
+
+        if (hasToString) {
+            System.err.println(new MipsLibrary().func_toString);
         }
 
         return "\n----mips assembler directives here----\n";

@@ -14,6 +14,7 @@ import Rz_compiler.backend.operands.*;
 import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by YRZ on 5/1/16.
@@ -661,8 +662,13 @@ public class RegisterAllocator implements InstructionVisitor<Deque<PseudoInstruc
         Operand operand1 = result.a;
         instructions.addAll(result.b);
 
+        instructions.addAll(jalInstr.getNeedSave().stream().filter(reg -> reg instanceof TemporaryRegister).map(reg -> frameManager.CastToMem(reg)).collect(Collectors.toList()));
 
         instructions.add(new JalInstr((Label) operand1));
+
+        jalInstr.getNeedSave().stream().filter(reg -> reg instanceof TemporaryRegister).forEach(reg -> {
+            instructions.addAll(reg.accept(new RegisterMapper()).b);
+        });
 
         return instructions;
     }

@@ -198,12 +198,15 @@ public class ControlFlowGraph extends AbstractGraph<CFGNode> {
             }
         } while (isChanged(liveIn, prevLiveIn) || isChanged(liveOut, prevLiveOut));
 
-        // lable unuseful instruction
+        // lable unuseful instruction && prepare for smart caller
         for(CFGNode n : this) {
             if (n.defs.size() == 1 && n.getInstr() instanceof MipsInstruction) {
                 if (n.defs.get(0) instanceof TemporaryRegister && !liveOut.get(n).contains(n.defs.get(0))) {
                     ((MipsInstruction) n.getInstr()).unUseful();
                 }
+            }
+            if (n.getInstr() instanceof JalInstr) {
+                ((JalInstr) n.getInstr()).setNeedSave(liveIn.get(n));
             }
         }
 
