@@ -9,10 +9,10 @@ var_0:	.word	0
 var_1:	.word	10000
 .text
 f_qsrt:
-	sub $sp, $sp, 12
-	sw $ra, 0($sp)
 	move $s3, $a0
 	move $s5, $a1
+	sub $sp, $sp, 12
+	sw $ra, 0($sp)
 	move $s2, $s3
 	move $t6, $s5
 	lw $t9, var_0
@@ -22,31 +22,31 @@ f_qsrt:
 	add $t9, $t9, $s0
 	lw $t9, 0($t9)
 	move $s0, $t9
-L424:
+L476:
 	sle $t9, $s2, $t6
-	beq $zero, $t9, L425
-L426:
+	beq $zero, $t9, L477
+L478:
 	lw $t9, var_0
 	mul $s7, $s2, 4
 	add $t9, $t9, $s7
 	lw $t9, 0($t9)
 	slt $t9, $t9, $s0
-	beq $zero, $t9, L427
+	beq $zero, $t9, L479
 	add $s2, $s2, 1
-	b L426
-L427:
-L428:
+	b L478
+L479:
+L480:
 	lw $t9, var_0
 	mul $s7, $t6, 4
 	add $t9, $t9, $s7
 	lw $t9, 0($t9)
 	sgt $t9, $t9, $s0
-	beq $zero, $t9, L429
+	beq $zero, $t9, L481
 	sub $t6, $t6, 1
-	b L428
-L429:
+	b L480
+L481:
 	sle $t9, $s2, $t6
-	beq $zero, $t9, L430
+	beq $zero, $t9, L482
 	lw $t9, var_0
 	mul $s7, $s2, 4
 	add $t9, $t9, $s7
@@ -66,13 +66,13 @@ L429:
 	sw $s7, 0($t9)
 	add $s2, $s2, 1
 	sub $t6, $t6, 1
-	b L431
-L430:
-L431:
-	b L424
-L425:
+	b L483
+L482:
+L483:
+	b L476
+L477:
 	slt $t9, $s3, $t6
-	beq $zero, $t9, L432
+	beq $zero, $t9, L484
 	move $a0, $s3
 	move $a1, $t6
 	sw $s5, 4($sp)
@@ -80,17 +80,17 @@ L425:
 	jal f_qsrt
 	lw $s5, 4($sp)
 	lw $s2, 8($sp)
-	b L433
-L432:
-L433:
+	b L485
+L484:
+L485:
 	slt $s3, $s2, $s5
-	beq $zero, $s3, L434
+	beq $zero, $s3, L486
 	move $a0, $s2
 	move $a1, $s5
 	jal f_qsrt
-	b L435
-L434:
-L435:
+	b L487
+L486:
+L487:
 	li $v0, 0
 	lw $ra, 0($sp)
 	add $sp, $sp, 12
@@ -110,10 +110,10 @@ main:
 	sub $sp, $sp, 8
 	sw $ra, 0($sp)
 	li $s3, 1
-L436:
+L488:
 	lw $s5, var_1
 	sle $s5, $s3, $s5
-	beq $zero, $s5, L437
+	beq $zero, $s5, L489
 	lw $s5, var_1
 	add $s5, $s5, 1
 	sub $s5, $s5, $s3
@@ -121,20 +121,20 @@ L436:
 	mul $s2, $s3, 4
 	add $s2, $t9, $s2
 	sw $s5, 0($s2)
-L438:
+L490:
 	add $s3, $s3, 1
-	b L436
-L437:
+	b L488
+L489:
 	li $s3, 1
 	lw $s5, var_1
 	move $a0, $s3
 	move $a1, $s5
 	jal f_qsrt
 	li $s3, 1
-L439:
+L491:
 	lw $s5, var_1
 	sle $s5, $s3, $s5
-	beq $zero, $s5, L440
+	beq $zero, $s5, L492
 	lw $t9, var_0
 	mul $s5, $s3, 4
 	add $s5, $t9, $s5
@@ -150,10 +150,10 @@ L439:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-L441:
+L493:
 	add $s3, $s3, 1
-	b L439
-L440:
+	b L491
+L492:
 	la $a0, msg_1
 	li $v0, 4
 	syscall

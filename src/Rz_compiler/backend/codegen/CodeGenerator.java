@@ -26,6 +26,8 @@ public class CodeGenerator {
 
     private SymbolTable symbolTable;
 
+    private HashMap<String, Integer> startOffSet = new HashMap<>();
+
     public static boolean hasToString = false;
 
     public static boolean hasStringAdd = false;
@@ -74,6 +76,7 @@ public class CodeGenerator {
             for (RzParser.Func_defContext func : program.func_def()) {
                 codeGen = new SeparateIntermediateCodeTranslator(func, symbolTable, stringDic);
                 fbody.put(func.ident().getText(), codeGen.call());
+                startOffSet.put(func.ident().getText(), codeGen.getArgOff());
             }
 
             if (preInstr.size() != 0) {
@@ -93,7 +96,7 @@ public class CodeGenerator {
                 } else {
                     instrList.add(new AssemblerDirective(funcname + ":"));
                 }
-                instrList.addAll(allocateRegisters(fbody.get(funcname), optLevel));
+                instrList.addAll(allocateRegisters(fbody.get(funcname), optLevel, funcname));
             }
 
         } catch (Exception error) {
@@ -150,7 +153,7 @@ public class CodeGenerator {
         return finalcode;
     }
 
-    private Deque<PseudoInstruction> allocateRegisters(Deque<PseudoInstruction> intermediateCode, int optLevel) {
+    private Deque<PseudoInstruction> allocateRegisters(Deque<PseudoInstruction> intermediateCode, int optLevel, String funcname) {
 
         if (optLevel == -1) {
             ControlFlowGraph cfg = new ControlFlowGraph(intermediateCode);
@@ -158,14 +161,14 @@ public class CodeGenerator {
             InterferenceGraph ig = new InterferenceGraph(cfg);
             //System.err.println(ig);
             //IGColouration igc = new IGColouration(ig);
-            intermediateCode = simpleRegisterAllocation(intermediateCode, ig);
+            intermediateCode = simpleRegisterAllocation(intermediateCode, ig, funcname);
         }
         return intermediateCode;
     }
 
     private Deque<PseudoInstruction> simpleRegisterAllocation(Deque<PseudoInstruction> intermediateCode,
-                                                              InterferenceGraph ig) {
-        FrameManager frameManager = new FrameManager(1);
+                                                              InterferenceGraph ig, String funcname) {
+        FrameManager frameManager = new FrameManager(1 + startOffSet.get(funcname));
         Deque<PseudoInstruction> alloCode = new ArrayDeque<>();
         RegisterAllocator registerAllocator = new RegisterAllocator(ig, frameManager);
 

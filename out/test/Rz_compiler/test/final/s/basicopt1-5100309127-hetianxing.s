@@ -61,48 +61,52 @@ L31:
 	sgt $t6, $s5, 20
 	beq $zero, $t6, L34
 	slt $t9, $s5, 80
-	and $s7, $t6, $t9
+	and $t6, $t6, $t9
+	b L35
 L34:
-	beq $zero, $s7, L35
 	li $t6, 0
-L37:
+L35:
+	beq $zero, $t6, L36
+	li $t6, 0
+L38:
 	slt $t9, $t6, 100
-	beq $zero, $t9, L38
+	beq $zero, $t9, L39
 	sgt $t9, $t6, 5
-	bne $zero, $t9, L40
+	bne $zero, $t9, L41
 	slt $s0, $s5, 90
-	or $t0, $t9, $s0
-L40:
-	beq $zero, $t0, L41
+L41:
+	li $t9, 1
+L42:
+	beq $zero, $t9, L43
 	add $t9, $t6, 50
 	mul $s0, $s5, 4
 	add $s0, $s3, $s0
 	lw $s0, 0($s0)
-	mul $t3, $t6, 4
-	add $s0, $s0, $t3
+	mul $s7, $t6, 4
+	add $s0, $s0, $s7
 	sw $t9, 0($s0)
-	b L42
-L41:
-L42:
-L39:
+	b L44
+L43:
+L44:
+L40:
 	add $t6, $t6, 1
+	b L38
+L39:
 	b L37
-L38:
-	b L36
-L35:
 L36:
+L37:
 L33:
 	add $s5, $s5, 1
 	b L31
 L32:
 	li $s5, 0
-L43:
+L45:
 	slt $t6, $s5, 100
-	beq $zero, $t6, L44
+	beq $zero, $t6, L46
 	li $t6, 0
-L46:
+L48:
 	slt $t9, $t6, 100
-	beq $zero, $t9, L47
+	beq $zero, $t9, L49
 	mul $t9, $s5, 4
 	add $t9, $s3, $t9
 	lw $t9, 0($t9)
@@ -110,14 +114,14 @@ L46:
 	add $t9, $t9, $s0
 	lw $t9, 0($t9)
 	add $s2, $s2, $t9
-L48:
+L50:
 	add $t6, $t6, 1
-	b L46
+	b L48
+L49:
 L47:
-L45:
 	add $s5, $s5, 1
-	b L43
-L44:
+	b L45
+L46:
 	move $a0, $s2
 	jal f_toString
 	move $s3, $v0

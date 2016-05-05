@@ -19,86 +19,81 @@ main:
 	sw $s3, 0($v0)
 	add $s3, $v0, 4
 	sw $s3, var_1
-	sub $sp, $sp, 20
+	sub $sp, $sp, 16
 	sw $ra, 0($sp)
 	li $s5, 1
-L473:
+L648:
 	lw $s3, var_0
 	sle $s3, $s5, $s3
-	beq $zero, $s3, L474
+	beq $zero, $s3, L649
 	lw $s3, var_1
 	mul $s2, $s5, 4
 	add $s3, $s3, $s2
 	li $s2, 1
 	sw $s2, 0($s3)
-L475:
+L650:
 	add $s5, $s5, 1
-	b L473
-L474:
+	b L648
+L649:
 	li $s5, 2
-L476:
+L651:
 	lw $s3, var_0
 	sle $s3, $s5, $s3
-	beq $zero, $s3, L477
+	beq $zero, $s3, L652
 	lw $s3, var_1
 	mul $s2, $s5, 4
 	add $s3, $s3, $s2
 	lw $s3, 0($s3)
-	beq $zero, $s3, L479
+	beq $zero, $s3, L654
 	li $s2, 2
 	sgt $t6, $s5, 3
-	beq $zero, $t6, L481
+	beq $zero, $t6, L656
 	lw $s3, var_1
 	sub $t9, $s5, 2
 	mul $t9, $t9, 4
 	add $s3, $s3, $t9
 	lw $s3, 0($s3)
-	and $t9, $t6, $s3
-L481:
-	beq $zero, $t9, L482
+	and $s3, $t6, $s3
+	b L657
+L656:
+	li $s3, 0
+L657:
+	beq $zero, $s3, L658
 	lw $s3, var_2
 	add $s3, $s3, 1
 	sw $s3, var_2
 	sub $s3, $s5, 2
 	move $a0, $s3
-	sw $t9, 4($sp)
-	sw $s2, 8($sp)
-	sw $s5, 12($sp)
+	sw $s2, 4($sp)
+	sw $s5, 8($sp)
 	jal f_toString
-	lw $t9, 4($sp)
-	lw $s2, 8($sp)
-	lw $s5, 12($sp)
+	lw $s2, 4($sp)
+	lw $s5, 8($sp)
 	move $s3, $v0
 	move $a0, $s3
 	la $a1, msg_1
-	sw $t9, 4($sp)
-	sw $s2, 8($sp)
-	sw $s5, 12($sp)
+	sw $s2, 4($sp)
+	sw $s5, 8($sp)
 	jal f_str.stringConcatenate
-	lw $t9, 4($sp)
-	lw $s2, 8($sp)
-	lw $s5, 12($sp)
+	lw $s2, 4($sp)
+	lw $s5, 8($sp)
 	move $s3, $v0
 	move $a0, $s5
-	sw $t9, 4($sp)
-	sw $s3, 16($sp)
-	sw $s2, 8($sp)
-	sw $s5, 12($sp)
+	sw $s3, 12($sp)
+	sw $s2, 4($sp)
+	sw $s5, 8($sp)
 	jal f_toString
-	lw $t9, 4($sp)
-	lw $s3, 16($sp)
-	lw $s2, 8($sp)
-	lw $s5, 12($sp)
+	lw $s3, 12($sp)
+	lw $s2, 4($sp)
+	lw $s5, 8($sp)
 	move $t6, $v0
 	move $a0, $s3
 	move $a1, $t6
-	sw $t9, 4($sp)
-	sw $s2, 8($sp)
-	sw $s5, 12($sp)
+	sw $s2, 4($sp)
+	sw $s5, 8($sp)
 	jal f_str.stringConcatenate
-	lw $t9, 4($sp)
-	lw $s2, 8($sp)
-	lw $s5, 12($sp)
+	lw $s2, 4($sp)
+	lw $s5, 8($sp)
 	move $s3, $v0
 	move $a0, $s3
 	li $v0, 4
@@ -106,14 +101,14 @@ L481:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-	b L483
-L482:
-L483:
-L484:
+	b L659
+L658:
+L659:
+L660:
 	mul $t6, $s5, $s2
 	lw $s3, var_0
 	sle $s3, $t6, $s3
-	beq $zero, $s3, L485
+	beq $zero, $s3, L661
 	lw $s3, var_1
 	mul $t6, $s5, $s2
 	mul $t6, $t6, 4
@@ -121,15 +116,15 @@ L484:
 	li $t6, 0
 	sw $t6, 0($s3)
 	add $s2, $s2, 1
-	b L484
-L485:
-	b L480
-L479:
-L480:
-L478:
+	b L660
+L661:
+	b L655
+L654:
+L655:
+L653:
 	add $s5, $s5, 1
-	b L476
-L477:
+	b L651
+L652:
 	lw $s3, var_2
 	move $a0, $s3
 	jal f_toString
@@ -146,10 +141,10 @@ L477:
 	syscall
 	li $v0, 0
 	lw $ra, 0($sp)
-	add $sp, $sp, 20
+	add $sp, $sp, 16
 	jr $ra
 	lw $ra, 0($sp)
-	add $sp, $sp, 20
+	add $sp, $sp, 16
 	jr $ra
 	b main_end
 main_end:

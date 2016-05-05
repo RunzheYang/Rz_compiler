@@ -5,19 +5,19 @@ _buffer:	.space	256
 msg_0:	.asciiz	"\n"
 .text
 f_gcd:
-	sub $sp, $sp, 4
-	sw $ra, 0($sp)
 	move $s3, $a0
 	move $s5, $a1
+	sub $sp, $sp, 4
+	sw $ra, 0($sp)
 	rem $s2, $s3, $s5
 	seq $s2, $s2, 0
-	beq $zero, $s2, L127
+	beq $zero, $s2, L130
 	move $v0, $s5
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
-	b L128
-L127:
+	b L131
+L130:
 	rem $s3, $s3, $s5
 	move $a0, $s5
 	move $a1, $s3
@@ -27,7 +27,7 @@ L127:
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
-L128:
+L131:
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra

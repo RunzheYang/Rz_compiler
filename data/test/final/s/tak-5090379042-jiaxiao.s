@@ -45,13 +45,13 @@ main_end:
 	li $v0, 10
 	syscall
 f_tak:
-	sub $sp, $sp, 24
-	sw $ra, 0($sp)
 	move $s3, $a0
 	move $s5, $a1
 	move $s2, $a2
+	sub $sp, $sp, 24
+	sw $ra, 0($sp)
 	slt $t6, $s5, $s3
-	beq $zero, $t6, L471
+	beq $zero, $t6, L646
 	sub $t6, $s3, 1
 	move $a0, $t6
 	move $a1, $s5
@@ -98,13 +98,13 @@ f_tak:
 	lw $ra, 0($sp)
 	add $sp, $sp, 24
 	jr $ra
-	b L472
-L471:
+	b L647
+L646:
 	move $v0, $s2
 	lw $ra, 0($sp)
 	add $sp, $sp, 24
 	jr $ra
-L472:
+L647:
 	lw $ra, 0($sp)
 	add $sp, $sp, 24
 	jr $ra

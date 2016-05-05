@@ -18,6 +18,7 @@ import Rz_compiler.backend.operands.MipsRegister;
 import Rz_compiler.backend.operands.Operand;
 import Rz_compiler.backend.operands.Register;
 import Rz_compiler.frontend.semantics.SymbolTable;
+import Rz_compiler.frontend.syntax.RzParser;
 import org.antlr.v4.runtime.misc.Pair;
 import org.antlr.v4.runtime.tree.ParseTree;
 
@@ -37,6 +38,8 @@ public class SeparateIntermediateCodeTranslator implements Callable<Deque<Pseudo
 
     private FrameManager frameManager = new FrameManager(1);
 
+    private int argOff = 0;
+
     public SeparateIntermediateCodeTranslator(ParseTree ctx, SymbolTable symbolTable,
                                               Map<String, String> stringDic) {
         this.ctx = ctx;
@@ -54,9 +57,14 @@ public class SeparateIntermediateCodeTranslator implements Callable<Deque<Pseudo
             err.printStackTrace();
         }
 
+        argOff = visitor.getSpillArgCnt();
+
         return intermediateCode;
     }
 
+    public int getArgOff() {
+        return argOff;
+    }
 
     public Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> predata() {
         Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> preList = null;

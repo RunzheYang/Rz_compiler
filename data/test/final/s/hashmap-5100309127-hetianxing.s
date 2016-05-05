@@ -9,9 +9,9 @@ var_0:	.word	100
 var_1:	.word	0
 .text
 f_getHash:
+	move $s3, $a0
 	sub $sp, $sp, 4
 	sw $ra, 0($sp)
-	move $s3, $a0
 	mul $s3, $s3, 237
 	lw $s5, var_0
 	rem $s3, $s3, $s5
@@ -23,9 +23,9 @@ f_getHash:
 	add $sp, $sp, 4
 	jr $ra
 f_get:
+	move $s3, $a0
 	sub $sp, $sp, 12
 	sw $ra, 0($sp)
-	move $s3, $a0
 	lw $s5, var_1
 	move $a0, $s3
 	sw $s5, 4($sp)
@@ -37,15 +37,15 @@ f_get:
 	mul $s2, $s2, 4
 	add $s5, $s5, $s2
 	lw $s5, 0($s5)
-L135:
+L140:
 	la $s2, 0($s5)
 	lw $s2, 0($s2)
 	sne $s2, $s2, $s3
-	beq $zero, $s2, L136
+	beq $zero, $s2, L141
 	la $s5, 8($s5)
 	lw $s5, 0($s5)
-	b L135
-L136:
+	b L140
+L141:
 	la $s3, 4($s5)
 	lw $s3, 0($s3)
 	move $v0, $s3
@@ -67,36 +67,36 @@ main:
 	move $s5, $s3
 	sw $s5, var_1
 	li $s3, 0
-L137:
+L142:
 	lw $s5, var_0
 	slt $s5, $s3, $s5
-	beq $zero, $s5, L138
+	beq $zero, $s5, L143
 	lw $s5, var_1
 	mul $s2, $s3, 4
 	add $s5, $s5, $s2
 	li $s2, 0
 	sw $s2, 0($s5)
-L139:
+L144:
 	add $s3, $s3, 1
-	b L137
-L138:
+	b L142
+L143:
 	li $s3, 0
-L140:
+L145:
 	slt $s5, $s3, 1000
-	beq $zero, $s5, L141
+	beq $zero, $s5, L146
 	move $a0, $s3
 	move $a1, $s3
 	sw $s3, 4($sp)
 	jal f_put
 	lw $s3, 4($sp)
-L142:
+L147:
 	add $s3, $s3, 1
-	b L140
-L141:
+	b L145
+L146:
 	li $s3, 0
-L143:
+L148:
 	slt $s5, $s3, 1000
-	beq $zero, $s5, L144
+	beq $zero, $s5, L149
 	move $a0, $s3
 	sw $s3, 4($sp)
 	jal f_toString
@@ -134,10 +134,10 @@ L143:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-L145:
+L150:
 	add $s3, $s3, 1
-	b L143
-L144:
+	b L148
+L149:
 	li $v0, 0
 	lw $ra, 0($sp)
 	add $sp, $sp, 12
@@ -153,16 +153,16 @@ main_end:
 	li $v0, 10
 	syscall
 f_put:
-	sub $sp, $sp, 12
-	sw $ra, 0($sp)
 	move $s3, $a0
 	move $s2, $a1
+	sub $sp, $sp, 12
+	sw $ra, 0($sp)
 	move $a0, $s3
-	sw $s2, 4($sp)
-	sw $s3, 8($sp)
+	sw $s3, 4($sp)
+	sw $s2, 8($sp)
 	jal f_getHash
-	lw $s2, 4($sp)
-	lw $s3, 8($sp)
+	lw $s3, 4($sp)
+	lw $s2, 8($sp)
 	move $s5, $v0
 	move $t6, $s5
 	lw $s5, var_1
@@ -170,7 +170,7 @@ f_put:
 	add $s5, $s5, $t9
 	lw $s5, 0($s5)
 	seq $s5, $s5, 0
-	beq $zero, $s5, L129
+	beq $zero, $s5, L134
 	li $a0, 12
 	li $v0, 9
 	syscall
@@ -202,22 +202,22 @@ f_put:
 	lw $ra, 0($sp)
 	add $sp, $sp, 12
 	jr $ra
-	b L130
-L129:
-L130:
+	b L135
+L134:
+L135:
 	lw $s5, var_1
 	mul $t6, $t6, 4
 	add $s5, $s5, $t6
 	lw $s5, 0($s5)
-L131:
+L136:
 	la $t6, 0($s5)
 	lw $t6, 0($t6)
 	sne $t6, $t6, $s3
-	beq $zero, $t6, L132
+	beq $zero, $t6, L137
 	la $t6, 8($s5)
 	lw $t6, 0($t6)
 	seq $t6, $t6, 0
-	beq $zero, $t6, L133
+	beq $zero, $t6, L138
 	li $a0, 12
 	li $v0, 9
 	syscall
@@ -234,13 +234,13 @@ L131:
 	la $t6, 8($t6)
 	li $t9, 0
 	sw $t9, 0($t6)
-	b L134
-L133:
-L134:
+	b L139
+L138:
+L139:
 	la $s5, 8($s5)
 	lw $s5, 0($s5)
-	b L131
-L132:
+	b L136
+L137:
 	la $s3, 4($s5)
 	move $s5, $s2
 	sw $s5, 0($s3)

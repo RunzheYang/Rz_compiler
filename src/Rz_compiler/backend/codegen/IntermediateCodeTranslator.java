@@ -1,5 +1,6 @@
 package Rz_compiler.backend.codegen;
 
+import Rz_compiler.backend.allocation.FrameManager;
 import Rz_compiler.backend.allocation.TemporaryRegisterGenerator;
 import Rz_compiler.backend.instructions.PseudoInstruction;
 import Rz_compiler.backend.instructions.Syscall;
@@ -38,6 +39,8 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
     private Operand returnOperand = null;
     private Operand returnOperandAddress = null;
 
+    private int spillArgCnt = 0;
+
     public IntermediateCodeTranslator(SymbolTable symt, Map<String, String> stringDic) {
         this.symt = symt;
         this.stringDic = stringDic;
@@ -75,13 +78,15 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
         tpa.setCurrentFunc((FunctionType) symt.lookup(ctx.ident().getText()));
 
         // prologue
+
+        if (ctx.getChildCount() > 5) {
+            instrList.addAll(ctx.param_list().accept(this));
+        }
+
         instrList.add(new SubInstr(MipsRegister.$sp, MipsRegister.$sp, new ImmediateValue(4)));
         instrList.add(new SwInstr(MipsRegister.$ra, new MemAddress(MipsRegister.$sp, 0)));
 
         // body part
-        if (ctx.getChildCount() > 5) {
-            instrList.addAll(ctx.param_list().accept(this));
-        }
 
         instrList.addAll(ctx.compound_stmt().accept(this));
 
@@ -124,8 +129,13 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                 varReg = trg.generate().setMem();
             }
             tpa.getCurrentFunc().getSymTable().lookup(varname).setRegister((TemporaryRegister) varReg);
-            instrList.add(new MoveInstr(varReg, getArgReg(i)));
-            returnOperand = varReg;
+            if (i < 4) {
+                instrList.add(new MoveInstr(varReg, getArgReg(i)));
+                returnOperand = varReg;
+            } else {
+                instrList.add(new LwInstr(varReg, new MemAddress(MipsRegister.$sp, (i - 3) * 4)));
+                returnOperand = varReg;
+            }
         }
         return instrList;
     }
@@ -1151,17 +1161,20 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
         instrList.addAll(ctx.expression(0).accept(this));
         Operand lhsReg = returnOperand;
         Label isfalse = new Label();
+        Label goOn = new Label();
 
         instrList.add(new BeqInstr(MipsRegister.$zero, lhsReg, isfalse));
 
         instrList.addAll(ctx.expression(1).accept(this));
         Operand rhsReg = returnOperand;
 
+        Operand resultReg = trg.generate();
+
         if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
             int combined = ((ImmediateValue) lhsReg).getValue() & ((ImmediateValue) rhsReg).getValue();
             returnOperand = new ImmediateValue(combined);
+            instrList.add(new BInstr(goOn));
         } else {
-            Operand resultReg = trg.generate();
             if (lhsReg instanceof ImmediateValue) {
                 Operand swap = lhsReg;
                 lhsReg = rhsReg;
@@ -1169,9 +1182,12 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
             }
             instrList.add(new AndInstr(resultReg, lhsReg, rhsReg));
             returnOperand = resultReg;
+            instrList.add(new BInstr(goOn));
         }
 
         instrList.add(isfalse);
+        instrList.add(new LiInstr(resultReg, new ImmediateValue(0)));
+        instrList.add(goOn);
 
         return instrList;
     }
@@ -1182,17 +1198,18 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
         instrList.addAll(ctx.expression(0).accept(this));
         Operand lhsReg = returnOperand;
         Label istrue = new Label();
+        Label goOn = new Label();
 
         instrList.add(new BneInstr(MipsRegister.$zero, lhsReg, istrue));
 
         instrList.addAll(ctx.expression(1).accept(this));
         Operand rhsReg = returnOperand;
 
+        Operand resultReg = trg.generate();
         if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
             int combined = ((ImmediateValue) lhsReg).getValue() | ((ImmediateValue) rhsReg).getValue();
             returnOperand = new ImmediateValue(combined);
         } else {
-            Operand resultReg = trg.generate();
             if (lhsReg instanceof ImmediateValue) {
                 Operand swap = lhsReg;
                 lhsReg = rhsReg;
@@ -1203,6 +1220,8 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
         }
 
         instrList.add(istrue);
+        instrList.add(new LiInstr(resultReg, new ImmediateValue(1)));
+        instrList.add(goOn);
 
         return instrList;
     }
@@ -1528,7 +1547,10 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                         }
 
                         for (Register temp : tempRegs) {
-                            instrList.add(new MoveInstr(getArgReg(argCnt++), temp));
+                            if (argCnt < 4) instrList.add(new MoveInstr(getArgReg(argCnt++), temp));
+                            else {
+                                instrList.add(new SwInstr(temp, getSpilledRegPos(argCnt++)));
+                            }
                         }
 
                     }
@@ -1790,5 +1812,15 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
         } else {
             throw new RuntimeException("Runtime Error: Too many arguments!");
         }
+    }
+
+    private MemAddress getSpilledRegPos(int index) {
+        index -= 3;
+        spillArgCnt = spillArgCnt > index ? spillArgCnt : index;
+        return new MemAddress(MipsRegister.$sp, index * 4);
+    }
+
+    public int getSpillArgCnt() {
+        return spillArgCnt;
     }
 }

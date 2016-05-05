@@ -21,14 +21,14 @@ var_0:	.word	100
 var_1:	.word	10
 .text
 f_work:
-	sub $sp, $sp, 8
-	sw $ra, 0($sp)
 	move $s3, $a0
 	move $s5, $a1
+	sub $sp, $sp, 8
+	sw $ra, 0($sp)
 	la $s2, 4($s5)
 	lw $s2, 0($s2)
 	sle $s2, $s2, 100
-	beq $zero, $s2, L104
+	beq $zero, $s2, L106
 	move $a0, $s3
 	la $a1, msg_1
 	sw $s5, 4($sp)
@@ -55,8 +55,8 @@ f_work:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-	b L105
-L104:
+	b L107
+L106:
 	move $a0, $s3
 	la $a1, msg_1
 	sw $s5, 4($sp)
@@ -83,7 +83,7 @@ L104:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-L105:
+L107:
 	la $s3, 4($s5)
 	lw $s3, 0($s3)
 	lw $s2, var_1

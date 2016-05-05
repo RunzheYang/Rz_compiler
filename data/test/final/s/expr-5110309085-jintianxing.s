@@ -12,1537 +12,1540 @@ var_2:	.word	1
 main:
 	sub $sp, $sp, 12
 	sw $ra, 0($sp)
-L106:
+L108:
 	lw $s3, var_2
 	slt $s5, $s3, 536870912
-	beq $zero, $s5, L107
+	beq $zero, $s5, L109
 	lw $s3, var_2
 	sgt $s3, $s3, -536870912
-	and $s2, $s5, $s3
-L107:
-	beq $zero, $s2, L108
+	and $s3, $s5, $s3
+	b L110
+L109:
+	li $s3, 0
+L110:
+	beq $zero, $s3, L111
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $t6, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	add $t6, $t6, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $t9, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $t9, $s3
+	add $t6, $t6, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $t9, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $t9, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $t9, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	add $s3, $t9, $s3
+	sub $t6, $t6, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $t9, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $t9, $t9, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s0, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	sub $t9, $t9, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s0, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	sub $t9, $t9, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s0, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s7, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	sub $s3, $s0, $s3
+	add $s3, $t9, $s3
+	sub $t6, $t6, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $t9, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s3, $s3, $s5
 	add $t9, $t9, $s3
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s0, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $s0, $s3
 	add $t9, $t9, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s0, $s5, $t6
+	lw $s2, var_1
+	add $s0, $s5, $s2
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $s0, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s0, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s7, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $s7, $s3
 	add $s3, $s0, $s3
 	sub $t9, $t9, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s0, $s5, $t6
+	lw $s2, var_1
+	add $s0, $s5, $s2
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s0, $s0, $s3
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s7, $s3
-	sub $s0, $s0, $s3
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	sub $s0, $s0, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s7, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s7, $s7, $s3
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	add $s0, $s0, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
+	lw $s2, var_1
+	add $s7, $s5, $s2
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s7, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $t0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $t0, $s3
+	add $s3, $s7, $s3
+	sub $s3, $s0, $s3
+	sub $s3, $t9, $s3
+	add $t6, $t6, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $t9, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $t9, $t9, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s0, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	sub $t9, $t9, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s0, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	sub $t9, $t9, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s0, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s7, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	sub $s3, $s0, $s3
+	add $t9, $t9, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s0, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s7, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	sub $s0, $s0, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s7, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s7, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $t0, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $t0, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s3, $s3, $s5
 	sub $s3, $s7, $s3
 	add $s3, $s0, $s3
-	sub $t9, $t9, $s3
+	add $t9, $t9, $s3
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s0, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s3, $s3, $s5
 	add $s0, $s0, $s3
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s7, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $s7, $s3
 	add $s0, $s0, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
+	lw $s2, var_1
+	add $s7, $s5, $s2
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $s7, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s7, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $t0, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $t0, $s3
 	add $s3, $s7, $s3
 	sub $s0, $s0, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
+	lw $s2, var_1
+	add $s7, $s5, $s2
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $s7, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s7, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $t0, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $t0, $s3
 	add $s7, $s7, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
+	lw $s2, var_1
+	add $t0, $s5, $s2
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $t0, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $t0, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $t3, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $t3, $s3
 	add $s3, $t0, $s3
 	sub $s3, $s7, $s3
 	sub $s3, $s0, $s3
-	add $t9, $t9, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s0, $s0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s7, $s3
-	sub $s0, $s0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	sub $s0, $s0, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s7, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s7, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	sub $s3, $s7, $s3
-	add $s0, $s0, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s7, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s7, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	sub $s7, $s7, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $t0, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t3, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t3, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	sub $s3, $t0, $s3
-	add $s3, $s7, $s3
-	add $s0, $s0, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s7, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	add $s7, $s7, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	add $s7, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t3, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t3, $s3
-	add $s3, $t0, $s3
-	sub $s7, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t3, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t3, $s3
-	add $t0, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t3, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t3, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t3, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s4, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s4, $s3
-	add $s3, $t3, $s3
-	sub $s3, $t0, $s3
-	sub $s3, $s7, $s3
-	add $s3, $s0, $s3
-	sub $s3, $t9, $s3
+	add $s3, $t9, $s3
+	sub $s3, $t6, $s3
 	move $s5, $s3
 	sw $s5, var_0
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $t6, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	add $t6, $t6, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $t9, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $t9, $s3
+	add $t6, $t6, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	add $t9, $t9, $s3
+	lw $s2, var_1
+	add $t9, $s5, $s2
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s0, $s3
-	add $t9, $t9, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s7, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s7, $s3
-	add $s3, $s0, $s3
-	sub $t9, $t9, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s0, $s0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s7, $s3
-	sub $s0, $s0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	sub $s0, $s0, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s7, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s7, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	sub $s3, $s7, $s3
-	add $s3, $s0, $s3
-	sub $t9, $t9, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	add $s0, $s0, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s7, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s7, $s3
-	add $s0, $s0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s7, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	add $s3, $s7, $s3
-	sub $s0, $s0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s7, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	add $s7, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t3, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t3, $s3
-	add $s3, $t0, $s3
-	sub $s3, $s7, $s3
-	sub $s3, $s0, $s3
-	add $t9, $t9, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s0, $s0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s7, $s3
-	sub $s0, $s0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	sub $s0, $s0, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s7, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s7, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	sub $s3, $s7, $s3
-	add $s0, $s0, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s7, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s7, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	sub $s7, $s7, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $t0, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t3, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t3, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	sub $s3, $t0, $s3
-	add $s3, $s7, $s3
-	add $s0, $s0, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s7, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	add $s7, $s7, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	add $s7, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t3, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t3, $s3
-	add $s3, $t0, $s3
-	sub $s7, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t3, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t3, $s3
-	add $t0, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t3, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t3, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t3, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s4, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s4, $s3
-	add $s3, $t3, $s3
-	sub $s3, $t0, $s3
-	sub $s3, $s7, $s3
-	add $s3, $s0, $s3
-	sub $s3, $t9, $s3
-	move $t6, $s3
-	sw $t6, var_1
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $t9, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $t9, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	add $s3, $t9, $s3
+	sub $t6, $t6, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $t9, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $t9, $t9, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s0, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	sub $t9, $t9, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s0, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	sub $t9, $t9, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s0, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s7, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	sub $s3, $s0, $s3
+	add $s3, $t9, $s3
+	sub $t6, $t6, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $t9, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s3, $s3, $s5
 	add $t9, $t9, $s3
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s0, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $s0, $s3
 	add $t9, $t9, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s0, $s5, $t6
+	lw $s2, var_1
+	add $s0, $s5, $s2
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $s0, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s0, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s7, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $s7, $s3
 	add $s3, $s0, $s3
 	sub $t9, $t9, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s0, $s5, $t6
+	lw $s2, var_1
+	add $s0, $s5, $s2
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s0, $s0, $s3
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s7, $s3
-	sub $s0, $s0, $s3
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	sub $s0, $s0, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s7, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s7, $s7, $s3
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	add $s0, $s0, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
+	lw $s2, var_1
+	add $s7, $s5, $s2
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s7, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $t0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $t0, $s3
+	add $s3, $s7, $s3
+	sub $s3, $s0, $s3
+	sub $s3, $t9, $s3
+	add $t6, $t6, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $t9, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $t9, $t9, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s0, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	sub $t9, $t9, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s0, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	sub $t9, $t9, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s0, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s7, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	sub $s3, $s0, $s3
+	add $t9, $t9, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s0, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s7, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	sub $s0, $s0, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s7, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s7, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $t0, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $t0, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s3, $s3, $s5
 	sub $s3, $s7, $s3
 	add $s3, $s0, $s3
-	sub $t9, $t9, $s3
+	add $t9, $t9, $s3
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s0, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s3, $s3, $s5
 	add $s0, $s0, $s3
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s7, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $s7, $s3
 	add $s0, $s0, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
+	lw $s2, var_1
+	add $s7, $s5, $s2
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $s7, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s7, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $t0, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $t0, $s3
 	add $s3, $s7, $s3
 	sub $s0, $s0, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
+	lw $s2, var_1
+	add $s7, $s5, $s2
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $s7, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s7, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $t0, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $t0, $s3
 	add $s7, $s7, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
+	lw $s2, var_1
+	add $t0, $s5, $s2
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $t0, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $t0, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $t3, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $t3, $s3
 	add $s3, $t0, $s3
 	sub $s3, $s7, $s3
 	sub $s3, $s0, $s3
+	add $s3, $t9, $s3
+	sub $s3, $t6, $s3
+	move $s2, $s3
+	sw $s2, var_1
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $t6, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	add $t6, $t6, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $t9, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $t9, $s3
+	add $t6, $t6, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $t9, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $t9, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $t9, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	add $s3, $t9, $s3
+	sub $t6, $t6, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $t9, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $t9, $t9, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s0, $s5, $t6
+	lw $s2, var_1
+	add $s0, $s5, $s2
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	sub $t9, $t9, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s0, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	sub $t9, $t9, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s0, $s0, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
+	lw $s2, var_1
+	add $s7, $s5, $s2
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	sub $s3, $s0, $s3
+	add $s3, $t9, $s3
+	sub $t6, $t6, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $t9, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	add $t9, $t9, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	add $t9, $t9, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s0, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s7, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	add $s3, $s0, $s3
+	sub $t9, $t9, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s0, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s7, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	add $s0, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s7, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s7, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $t0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $t0, $s3
+	add $s3, $s7, $s3
+	sub $s3, $s0, $s3
+	sub $s3, $t9, $s3
+	add $t6, $t6, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $t9, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $t9, $t9, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s0, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	sub $t9, $t9, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s0, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	sub $t9, $t9, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s0, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s7, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	sub $s3, $s0, $s3
+	add $t9, $t9, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s0, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s7, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
 	sub $s0, $s0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s7, $s5, $t6
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s7, $s3
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	sub $s0, $s0, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s7, $s3, $s5
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s7, $s7, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
+	lw $s2, var_1
+	add $t0, $s5, $s2
 	lw $s3, var_2
 	lw $s5, var_0
 	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
+	lw $s2, var_1
+	add $s3, $s3, $s2
 	add $s3, $t0, $s3
 	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
+	lw $s2, var_1
+	add $s5, $s5, $s2
 	sub $s3, $s3, $s5
-	sub $s3, $s7, $s3
-	add $s0, $s0, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s7, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s7, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	sub $s7, $s7, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $t0, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t3, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t3, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	sub $s3, $t0, $s3
-	add $s3, $s7, $s3
-	add $s0, $s0, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s7, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s3, $s3, $s5
-	add $s7, $s7, $s3
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	add $s7, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t3, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t3, $s3
-	add $s3, $t0, $s3
-	sub $s7, $s7, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t0, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t0, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t3, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t3, $s3
-	add $t0, $t0, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $t3, $s5, $t6
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $t3, $s3
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $t3, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	lw $s5, var_0
-	lw $t6, var_1
-	add $s5, $s5, $t6
-	sub $s4, $s3, $s5
-	lw $s3, var_2
-	lw $s5, var_0
-	sub $s3, $s3, $s5
-	lw $t6, var_1
-	add $s3, $s3, $t6
-	add $s3, $s4, $s3
-	add $s3, $t3, $s3
-	sub $s3, $t0, $s3
 	sub $s3, $s7, $s3
 	add $s3, $s0, $s3
-	sub $s3, $t9, $s3
+	add $t9, $t9, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s3, $s3, $s5
+	add $s0, $s0, $s3
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s7, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	add $s0, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s7, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s7, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $t0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $t0, $s3
+	add $s3, $s7, $s3
+	sub $s0, $s0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s7, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $s7, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $t0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $t0, $s3
+	add $s7, $s7, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $t0, $s5, $s2
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $t0, $s3
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $t0, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	lw $s5, var_0
+	lw $s2, var_1
+	add $s5, $s5, $s2
+	sub $t3, $s3, $s5
+	lw $s3, var_2
+	lw $s5, var_0
+	sub $s3, $s3, $s5
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	add $s3, $t3, $s3
+	add $s3, $t0, $s3
+	sub $s3, $s7, $s3
+	sub $s3, $s0, $s3
+	add $s3, $t9, $s3
+	sub $s3, $t6, $s3
 	sw $s3, var_2
-	b L106
-L108:
+	b L108
+L111:
 	lw $s5, var_0
 	move $a0, $s5
 	jal f_toString
@@ -1551,8 +1554,8 @@ L108:
 	la $a1, msg_1
 	jal f_str.stringConcatenate
 	move $s3, $v0
-	lw $t6, var_1
-	move $a0, $t6
+	lw $s2, var_1
+	move $a0, $s2
 	sw $s3, 4($sp)
 	jal f_toString
 	lw $s3, 4($sp)
