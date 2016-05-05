@@ -24,7 +24,7 @@ main:
 	sw $t5, var_3
 	lw $t5, var_3
 	slt $t5, $t5, $t5
-	beq $zero, $t5, L387
+	beq $zero, $t5, L459
 	la $a0, msg_2
 	li $v0, 4
 	syscall
@@ -35,7 +35,9 @@ main:
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
-L387:
+	b L460
+L459:
+L460:
 	li $a0, 0
 	jal f_calc
 	move $t5, $v0

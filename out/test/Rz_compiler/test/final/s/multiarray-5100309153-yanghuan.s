@@ -10,10 +10,11 @@ var_3:	.word	0
 f_printNum:
 	sub $sp, $sp, 4
 	sw $ra, 0($sp)
-	move $t0, $a0
-	move $a0, $t0
+	move $t5, $a0
+	move $a0, $t5
 	jal f_toString
-	move $a0, $v0
+	move $t5, $v0
+	move $a0, $t5
 	li $v0, 4
 	syscall
 	la $a0, msg_0
@@ -26,222 +27,222 @@ main:
 	li $a0, 16
 	li $v0, 9
 	syscall
-	move $t0, $v0
-	sw $t0, var_0
+	move $t5, $v0
+	sw $t5, var_0
 	li $a0, 20
 	li $v0, 9
 	syscall
-	move $s0, $v0
-	sw $s0, var_3
+	move $s2, $v0
+	sw $s2, var_3
 	sub $sp, $sp, 4
 	sw $ra, 0($sp)
-	li $t4, 0
-	sw $t4, var_1
+	li $s3, 0
+	sw $s3, var_1
 L286:
-	lw $t4, var_1
-	slt $t0, $t4, 4
-	beq $zero, $t0, L287
+	lw $s3, var_1
+	slt $t5, $s3, 4
+	beq $zero, $t5, L287
 	li $a0, 44
 	li $v0, 9
 	syscall
-	lw $t0, var_0
-	lw $t4, var_1
-	mul $s0, $t4, 4
-	add $t0, $t0, $s0
-	move $s0, $v0
-	sw $s0, 0($t0)
+	lw $t5, var_0
+	lw $s3, var_1
+	mul $s2, $s3, 4
+	add $t5, $t5, $s2
+	move $s2, $v0
+	sw $s2, 0($t5)
 L288:
-	lw $t4, var_1
-	add $t4, $t4, 1
-	sw $t4, var_1
+	lw $s3, var_1
+	add $s3, $s3, 1
+	sw $s3, var_1
 	b L286
 L287:
-	li $t4, 0
-	sw $t4, var_1
+	li $s3, 0
+	sw $s3, var_1
 L289:
-	lw $t4, var_1
-	slt $t0, $t4, 4
-	beq $zero, $t0, L290
-	li $t0, 0
-	sw $t0, var_2
+	lw $s3, var_1
+	slt $t5, $s3, 4
+	beq $zero, $t5, L290
+	li $t5, 0
+	sw $t5, var_2
 L292:
-	lw $t0, var_2
-	slt $t0, $t0, 10
-	beq $zero, $t0, L293
-	lw $t0, var_0
-	lw $t4, var_1
-	mul $s0, $t4, 4
-	add $t0, $t0, $s0
-	lw $s0, 0($t0)
-	lw $t0, var_2
-	mul $t0, $t0, 4
-	add $t0, $s0, $t0
-	li $s0, 888
-	sw $s0, 0($t0)
+	lw $t5, var_2
+	slt $t5, $t5, 10
+	beq $zero, $t5, L293
+	lw $t5, var_0
+	lw $s3, var_1
+	mul $s2, $s3, 4
+	add $t5, $t5, $s2
+	lw $s2, 0($t5)
+	lw $t5, var_2
+	mul $t5, $t5, 4
+	add $t5, $s2, $t5
+	li $s2, 888
+	sw $s2, 0($t5)
 L294:
-	lw $t0, var_2
-	add $t0, $t0, 1
-	sw $t0, var_2
+	lw $t5, var_2
+	add $t5, $t5, 1
+	sw $t5, var_2
 	b L292
 L293:
 L291:
-	lw $t4, var_1
-	add $t4, $t4, 1
-	sw $t4, var_1
+	lw $s3, var_1
+	add $s3, $s3, 1
+	sw $s3, var_1
 	b L289
 L290:
-	li $t4, 0
-	sw $t4, var_1
+	li $s3, 0
+	sw $s3, var_1
 L295:
-	lw $t4, var_1
-	slt $t0, $t4, 5
-	beq $zero, $t0, L296
+	lw $s3, var_1
+	slt $t5, $s3, 5
+	beq $zero, $t5, L296
 	li $a0, 8
 	li $v0, 9
 	syscall
-	lw $s0, var_3
-	lw $t4, var_1
-	mul $t0, $t4, 4
-	add $t0, $s0, $t0
-	move $s0, $v0
-	sw $s0, 0($t0)
-	lw $s0, var_3
-	lw $t4, var_1
-	mul $t0, $t4, 4
-	add $t0, $s0, $t0
-	lw $t0, 0($t0)
-	la $t0, 0($t0)
-	li $s0, -1
-	sw $s0, 0($t0)
+	lw $s2, var_3
+	lw $s3, var_1
+	mul $t5, $s3, 4
+	add $t5, $s2, $t5
+	move $s2, $v0
+	sw $s2, 0($t5)
+	lw $s2, var_3
+	lw $s3, var_1
+	mul $t5, $s3, 4
+	add $t5, $s2, $t5
+	lw $t5, 0($t5)
+	la $t5, 0($t5)
+	li $s2, -1
+	sw $s2, 0($t5)
 L297:
-	lw $t4, var_1
-	add $t4, $t4, 1
-	sw $t4, var_1
+	lw $s3, var_1
+	add $s3, $s3, 1
+	sw $s3, var_1
 	b L295
 L296:
-	lw $t0, var_0
-	la $t0, 12($t0)
-	lw $t0, 0($t0)
-	la $t0, 36($t0)
-	lw $t0, 0($t0)
-	move $a0, $t0
+	lw $t5, var_0
+	la $t5, 12($t5)
+	lw $t5, 0($t5)
+	la $t5, 36($t5)
+	lw $t5, 0($t5)
+	move $a0, $t5
 	jal f_printNum
-	li $t4, 0
-	sw $t4, var_1
+	li $s3, 0
+	sw $s3, var_1
 L298:
-	lw $t4, var_1
-	sle $t0, $t4, 3
-	beq $zero, $t0, L299
-	li $t0, 0
-	sw $t0, var_2
+	lw $s3, var_1
+	sle $t5, $s3, 3
+	beq $zero, $t5, L299
+	li $t5, 0
+	sw $t5, var_2
 L301:
-	lw $t0, var_2
-	sle $t0, $t0, 9
-	beq $zero, $t0, L302
-	lw $t4, var_1
-	mul $s0, $t4, 10
-	lw $t0, var_2
-	add $s0, $s0, $t0
-	lw $t0, var_0
-	lw $t4, var_1
-	mul $t4, $t4, 4
-	add $t0, $t0, $t4
-	lw $t4, 0($t0)
-	lw $t0, var_2
-	mul $t0, $t0, 4
-	add $t0, $t4, $t0
-	sw $s0, 0($t0)
+	lw $t5, var_2
+	sle $t5, $t5, 9
+	beq $zero, $t5, L302
+	lw $s3, var_1
+	mul $s2, $s3, 10
+	lw $t5, var_2
+	add $s2, $s2, $t5
+	lw $t5, var_0
+	lw $s3, var_1
+	mul $s3, $s3, 4
+	add $t5, $t5, $s3
+	lw $s3, 0($t5)
+	lw $t5, var_2
+	mul $t5, $t5, 4
+	add $t5, $s3, $t5
+	sw $s2, 0($t5)
 L303:
-	lw $t0, var_2
-	add $t0, $t0, 1
-	sw $t0, var_2
+	lw $t5, var_2
+	add $t5, $t5, 1
+	sw $t5, var_2
 	b L301
 L302:
 L300:
-	lw $t4, var_1
-	add $t4, $t4, 1
-	sw $t4, var_1
+	lw $s3, var_1
+	add $s3, $s3, 1
+	sw $s3, var_1
 	b L298
 L299:
-	li $t4, 0
-	sw $t4, var_1
+	li $s3, 0
+	sw $s3, var_1
 L304:
-	lw $t4, var_1
-	sle $t0, $t4, 3
-	beq $zero, $t0, L305
-	li $t0, 0
-	sw $t0, var_2
+	lw $s3, var_1
+	sle $t5, $s3, 3
+	beq $zero, $t5, L305
+	li $t5, 0
+	sw $t5, var_2
 L307:
-	lw $t0, var_2
-	sle $t0, $t0, 9
-	beq $zero, $t0, L308
-	lw $t0, var_0
-	lw $t4, var_1
-	mul $s0, $t4, 4
-	add $t0, $t0, $s0
-	lw $s0, 0($t0)
-	lw $t0, var_2
-	mul $t0, $t0, 4
-	add $t0, $s0, $t0
-	lw $t0, 0($t0)
-	move $a0, $t0
+	lw $t5, var_2
+	sle $t5, $t5, 9
+	beq $zero, $t5, L308
+	lw $t5, var_0
+	lw $s3, var_1
+	mul $s2, $s3, 4
+	add $t5, $t5, $s2
+	lw $s2, 0($t5)
+	lw $t5, var_2
+	mul $t5, $t5, 4
+	add $t5, $s2, $t5
+	lw $t5, 0($t5)
+	move $a0, $t5
 	jal f_printNum
 L309:
-	lw $t0, var_2
-	add $t0, $t0, 1
-	sw $t0, var_2
+	lw $t5, var_2
+	add $t5, $t5, 1
+	sw $t5, var_2
 	b L307
 L308:
 L306:
-	lw $t4, var_1
-	add $t4, $t4, 1
-	sw $t4, var_1
+	lw $s3, var_1
+	add $s3, $s3, 1
+	sw $s3, var_1
 	b L304
 L305:
-	lw $t0, var_0
-	la $t0, 8($t0)
-	lw $t0, 0($t0)
-	la $t0, 40($t0)
-	li $s0, 0
-	sw $s0, 0($t0)
-	lw $t0, var_0
-	la $t0, 8($t0)
-	lw $t0, 0($t0)
-	la $t0, 40($t0)
-	lw $t0, 0($t0)
-	move $a0, $t0
+	lw $t5, var_0
+	la $t5, 8($t5)
+	lw $t5, 0($t5)
+	la $t5, 40($t5)
+	li $s2, 0
+	sw $s2, 0($t5)
+	lw $t5, var_0
+	la $t5, 8($t5)
+	lw $t5, 0($t5)
+	la $t5, 40($t5)
+	lw $t5, 0($t5)
+	move $a0, $t5
 	jal f_printNum
-	lw $s0, var_3
-	la $t0, 0($s0)
-	lw $t0, 0($t0)
-	la $t0, 0($t0)
-	li $s0, -2
-	sw $s0, 0($t0)
-	lw $s0, var_3
-	lw $t0, var_0
-	la $t0, 8($t0)
-	lw $t0, 0($t0)
-	la $t0, 40($t0)
-	lw $t0, 0($t0)
-	mul $t0, $t0, 4
-	add $t0, $s0, $t0
-	lw $t0, 0($t0)
-	la $t0, 0($t0)
-	li $s0, -10
-	sw $s0, 0($t0)
-	lw $s0, var_3
-	la $t0, 0($s0)
-	lw $t0, 0($t0)
-	la $t0, 0($t0)
-	lw $t0, 0($t0)
-	move $a0, $t0
+	lw $s2, var_3
+	la $t5, 0($s2)
+	lw $t5, 0($t5)
+	la $t5, 0($t5)
+	li $s2, -2
+	sw $s2, 0($t5)
+	lw $s2, var_3
+	lw $t5, var_0
+	la $t5, 8($t5)
+	lw $t5, 0($t5)
+	la $t5, 40($t5)
+	lw $t5, 0($t5)
+	mul $t5, $t5, 4
+	add $t5, $s2, $t5
+	lw $t5, 0($t5)
+	la $t5, 0($t5)
+	li $s2, -10
+	sw $s2, 0($t5)
+	lw $s2, var_3
+	la $t5, 0($s2)
+	lw $t5, 0($t5)
+	la $t5, 0($t5)
+	lw $t5, 0($t5)
+	move $a0, $t5
 	jal f_printNum
-	lw $s0, var_3
-	la $t0, 4($s0)
-	lw $t0, 0($t0)
-	la $t0, 0($t0)
-	lw $t0, 0($t0)
-	move $a0, $t0
+	lw $s2, var_3
+	la $t5, 4($s2)
+	lw $t5, 0($t5)
+	la $t5, 0($t5)
+	lw $t5, 0($t5)
+	move $a0, $t5
 	jal f_printNum
 	li $v0, 0
 	lw $ra, 0($sp)
@@ -337,4 +338,15 @@ f_stringConcatenate:
 	move $v0, $t4
 	lw $ra, 0($sp)
 	addu $sp, $sp, 4
+	jr $ra
+_string_copy:
+	_begin_string_copy:
+	lb $v0, 0($a0)
+	beqz $v0, _exit_string_copy
+	sb $v0, 0($a1)
+	add $a0, $a0, 1
+	add $a1, $a1, 1
+	j _begin_string_copy
+	_exit_string_copy:
+	sb $zero, 0($a1)
 	jr $ra

@@ -50,7 +50,7 @@ f_tak:
 	move $s2, $a1
 	move $s3, $a2
 	slt $t6, $s2, $t5
-	beq $zero, $t6, L388
+	beq $zero, $t6, L461
 	sub $t6, $t5, 1
 	move $a0, $t6
 	move $a1, $s2
@@ -91,11 +91,13 @@ f_tak:
 	lw $ra, 0($sp)
 	add $sp, $sp, 16
 	jr $ra
-L388:
+	b L462
+L461:
 	move $v0, $s3
 	lw $ra, 0($sp)
 	add $sp, $sp, 16
 	jr $ra
+L462:
 	lw $ra, 0($sp)
 	add $sp, $sp, 16
 	jr $ra

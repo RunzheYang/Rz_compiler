@@ -10,27 +10,27 @@ var_1:	.word	0
 f_exchange:
 	sub $sp, $sp, 4
 	sw $ra, 0($sp)
-	move $t0, $a0
-	move $s0, $a1
-	lw $t4, var_1
-	mul $t9, $t0, 4
-	add $t4, $t4, $t9
-	lw $t4, 0($t4)
-	move $t9, $t4
-	lw $t4, var_1
-	mul $s4, $s0, 4
-	add $t4, $t4, $s4
-	lw $s4, 0($t4)
-	lw $t4, var_1
-	mul $t0, $t0, 4
-	add $t0, $t4, $t0
-	move $t4, $s4
-	sw $t4, 0($t0)
-	lw $t4, var_1
-	mul $t0, $s0, 4
-	add $t0, $t4, $t0
-	move $s0, $t9
-	sw $s0, 0($t0)
+	move $t5, $a0
+	move $s2, $a1
+	lw $s3, var_1
+	mul $t6, $t5, 4
+	add $s3, $s3, $t6
+	lw $s3, 0($s3)
+	move $t6, $s3
+	lw $s3, var_1
+	mul $s4, $s2, 4
+	add $s3, $s3, $s4
+	lw $s4, 0($s3)
+	lw $s3, var_1
+	mul $t5, $t5, 4
+	add $t5, $s3, $t5
+	move $s3, $s4
+	sw $s3, 0($t5)
+	lw $s3, var_1
+	mul $t5, $s2, 4
+	add $t5, $s3, $t5
+	move $s2, $t6
+	sw $s2, 0($t5)
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
@@ -115,4 +115,15 @@ f_stringConcatenate:
 	move $v0, $t4
 	lw $ra, 0($sp)
 	addu $sp, $sp, 4
+	jr $ra
+_string_copy:
+	_begin_string_copy:
+	lb $v0, 0($a0)
+	beqz $v0, _exit_string_copy
+	sb $v0, 0($a1)
+	add $a0, $a0, 1
+	add $a1, $a1, 1
+	j _begin_string_copy
+	_exit_string_copy:
+	sb $zero, 0($a1)
 	jr $ra

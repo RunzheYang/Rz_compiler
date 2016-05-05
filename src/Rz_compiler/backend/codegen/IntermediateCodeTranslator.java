@@ -299,6 +299,7 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
         Operand condReg = returnOperand;
 
         Label noif = new Label();
+        Label endif = new Label();
 
         if (condReg instanceof Register && !((Register) condReg).isContainValue()) {
             Operand tempReg = trg.generate();
@@ -317,6 +318,7 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
             this.symt = symbolTable;
         }
 
+        instrList.add(new BInstr(endif));
         instrList.add(noif);
 
         if (ctx.getChildCount() > 5) {
@@ -330,6 +332,8 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                 this.symt = symbolTable;
             }
         }
+
+        instrList.add(endif);
 
         return instrList;
     }

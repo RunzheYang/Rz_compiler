@@ -6,15 +6,15 @@ main:
 	li $a0, 16
 	li $v0, 9
 	syscall
-	move $t0, $v0
-	sw $t0, var_0
+	move $t5, $v0
+	sw $t5, var_0
 	sub $sp, $sp, 4
 	sw $ra, 0($sp)
 	li $a0, 16
 	li $v0, 9
 	syscall
-	move $t0, $v0
-	sw $t0, var_0
+	move $t5, $v0
+	sw $t5, var_0
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
@@ -105,4 +105,15 @@ f_stringConcatenate:
 	move $v0, $t4
 	lw $ra, 0($sp)
 	addu $sp, $sp, 4
+	jr $ra
+_string_copy:
+	_begin_string_copy:
+	lb $v0, 0($a0)
+	beqz $v0, _exit_string_copy
+	sb $v0, 0($a1)
+	add $a0, $a0, 1
+	add $a1, $a1, 1
+	j _begin_string_copy
+	_exit_string_copy:
+	sb $zero, 0($a1)
 	jr $ra

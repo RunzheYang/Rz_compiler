@@ -23,12 +23,16 @@ main:
 	syscall
 	la $a0, msg_0
 	jal f_toString
+	move $t5, $v0
 	la $a0, msg_0
-	move $a1, $v0
+	move $a1, $t5
 	jal f_stringConcatenate
-	move $a0, $v0
+	move $t5, $v0
+	move $a0, $t5
+	la $a1, msg_1
 	jal f_stringConcatenate
-	la $a0, msg_1
+	move $t5, $v0
+	move $a0, $t5
 	li $v0, 4
 	syscall
 	la $a0, msg_3
@@ -37,25 +41,32 @@ main:
 	la $a0, msg_2
 	li $v0, 4
 	syscall
-	move $a0, $v0
+	move $t5, $v0
+	move $a0, $t5
 	jal f_toString
-	move $a0, $v0
+	move $t5, $v0
+	move $a0, $t5
 	li $v0, 4
 	syscall
-	move $a0, $v0
+	move $t5, $v0
+	move $a0, $t5
 	li $v0, 4
 	syscall
 	la $a0, msg_2
 	li $v0, 4
 	syscall
-	move $a0, $v0
+	move $t5, $v0
+	move $a0, $t5
 	jal f_toString
-	move $a0, $v0
+	move $t5, $v0
+	move $a0, $t5
 	li $v0, 4
 	syscall
 	la $a0, msg_2
 	li $v0, 4
 	syscall
+	move $t5, $v0
+	move $v0, $t5
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
@@ -149,4 +160,15 @@ f_stringConcatenate:
 	move $v0, $t4
 	lw $ra, 0($sp)
 	addu $sp, $sp, 4
+	jr $ra
+_string_copy:
+	_begin_string_copy:
+	lb $v0, 0($a0)
+	beqz $v0, _exit_string_copy
+	sb $v0, 0($a1)
+	add $a0, $a0, 1
+	add $a1, $a1, 1
+	j _begin_string_copy
+	_exit_string_copy:
+	sb $zero, 0($a1)
 	jr $ra

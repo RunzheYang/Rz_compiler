@@ -10,12 +10,13 @@ f_gcd:
 	move $s2, $a1
 	rem $s3, $t5, $s2
 	seq $s3, $s3, 0
-	beq $zero, $s3, L112
+	beq $zero, $s3, L127
 	move $v0, $s2
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
-L112:
+	b L128
+L127:
 	move $a0, $s2
 	rem $t5, $t5, $s2
 	move $a1, $t5
@@ -25,6 +26,7 @@ L112:
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
+L128:
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra

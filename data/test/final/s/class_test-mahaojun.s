@@ -20,66 +20,33 @@ var_0:	.word	100
 var_1:	.word	10
 .text
 f_work:
-	sub $sp, $sp, 12
+	sub $sp, $sp, 8
 	sw $ra, 0($sp)
 	move $t5, $a0
 	move $s2, $a1
 	la $s3, 4($s2)
 	lw $s3, 0($s3)
 	sle $s3, $s3, 100
-	beq $zero, $s3, L93
+	beq $zero, $s3, L104
 	move $a0, $t5
 	la $a1, msg_1
-	sw $t5, 4($sp)
-	sw $s2, 8($sp)
+	sw $s2, 4($sp)
 	jal f_stringConcatenate
-	lw $t5, 4($sp)
-	lw $s2, 8($sp)
-	move $s3, $v0
-	la $t6, 0($s2)
-	lw $t6, 0($t6)
-	move $a0, $s3
-	move $a1, $t6
-	sw $t5, 4($sp)
-	sw $s2, 8($sp)
-	jal f_stringConcatenate
-	lw $t5, 4($sp)
-	lw $s2, 8($sp)
-	move $s3, $v0
-	move $a0, $s3
-	la $a1, msg_2
-	sw $t5, 4($sp)
-	sw $s2, 8($sp)
-	jal f_stringConcatenate
-	lw $t5, 4($sp)
-	lw $s2, 8($sp)
-	move $s3, $v0
-	move $a0, $s3
-	li $v0, 4
-	syscall
-	la $a0, msg_0
-	li $v0, 4
-	syscall
-L93:
-	move $a0, $t5
-	la $a1, msg_1
-	sw $s2, 8($sp)
-	jal f_stringConcatenate
-	lw $s2, 8($sp)
+	lw $s2, 4($sp)
 	move $t5, $v0
 	la $s3, 0($s2)
 	lw $s3, 0($s3)
 	move $a0, $t5
 	move $a1, $s3
-	sw $s2, 8($sp)
+	sw $s2, 4($sp)
 	jal f_stringConcatenate
-	lw $s2, 8($sp)
+	lw $s2, 4($sp)
 	move $t5, $v0
 	move $a0, $t5
-	la $a1, msg_3
-	sw $s2, 8($sp)
+	la $a1, msg_2
+	sw $s2, 4($sp)
 	jal f_stringConcatenate
-	lw $s2, 8($sp)
+	lw $s2, 4($sp)
 	move $t5, $v0
 	move $a0, $t5
 	li $v0, 4
@@ -87,6 +54,35 @@ L93:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
+	b L105
+L104:
+	move $a0, $t5
+	la $a1, msg_1
+	sw $s2, 4($sp)
+	jal f_stringConcatenate
+	lw $s2, 4($sp)
+	move $t5, $v0
+	la $s3, 0($s2)
+	lw $s3, 0($s3)
+	move $a0, $t5
+	move $a1, $s3
+	sw $s2, 4($sp)
+	jal f_stringConcatenate
+	lw $s2, 4($sp)
+	move $t5, $v0
+	move $a0, $t5
+	la $a1, msg_3
+	sw $s2, 4($sp)
+	jal f_stringConcatenate
+	lw $s2, 4($sp)
+	move $t5, $v0
+	move $a0, $t5
+	li $v0, 4
+	syscall
+	la $a0, msg_0
+	li $v0, 4
+	syscall
+L105:
 	la $t5, 4($s2)
 	lw $t5, 0($t5)
 	lw $s3, var_1
@@ -94,7 +90,7 @@ L93:
 	la $s2, 4($s2)
 	sw $t5, 0($s2)
 	lw $ra, 0($sp)
-	add $sp, $sp, 12
+	add $sp, $sp, 8
 	jr $ra
 main:
 	sub $sp, $sp, 8

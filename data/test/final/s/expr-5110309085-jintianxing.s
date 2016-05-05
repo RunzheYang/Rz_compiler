@@ -11,15 +11,15 @@ var_2:	.word	1
 main:
 	sub $sp, $sp, 12
 	sw $ra, 0($sp)
-L94:
+L106:
 	lw $t5, var_2
 	slt $s2, $t5, 536870912
-	beq $zero, $s2, L95
+	beq $zero, $s2, L107
 	lw $t5, var_2
 	sgt $t5, $t5, -536870912
 	and $s3, $s2, $t5
-L95:
-	beq $zero, $s3, L96
+L107:
+	beq $zero, $s3, L108
 	lw $t5, var_2
 	lw $s2, var_0
 	sub $t5, $t5, $s2
@@ -1540,8 +1540,8 @@ L95:
 	add $t5, $s5, $t5
 	sub $t5, $s4, $t5
 	sw $t5, var_2
-	b L94
-L96:
+	b L106
+L108:
 	lw $s2, var_0
 	move $a0, $s2
 	jal f_toString

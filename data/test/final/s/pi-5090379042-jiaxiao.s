@@ -14,29 +14,31 @@ main:
 	li $v0, 9
 	syscall
 	move $s4, $v0
-L310:
+L366:
 	sub $s5, $s2, $s3
 	sne $s5, $s5, 0
-	beq $zero, $s5, L311
+	beq $zero, $s5, L367
 	div $s5, $t5, 5
 	move $t4, $s2
 	add $s2, $s2, 1
 	mul $t4, $t4, 4
 	add $t4, $s4, $t4
 	sw $s5, 0($t4)
-L312:
-	b L310
-L311:
-L313:
+L368:
+	b L366
+L367:
+L369:
 	li $s5, 0
 	mul $s2, $s3, 2
 	move $t4, $s2
 	seq $s2, $t4, 0
-	beq $zero, $s2, L316
-	b L314
-L316:
+	beq $zero, $s2, L372
+	b L370
+	b L373
+L372:
+L373:
 	move $s2, $s3
-L317:
+L374:
 	mul $t1, $s2, 4
 	add $t1, $s4, $t1
 	lw $t1, 0($t1)
@@ -52,13 +54,15 @@ L317:
 	div $s5, $s5, $t1
 	sub $s2, $s2, 1
 	seq $t1, $s2, 0
-	beq $zero, $t1, L320
-	b L318
-L320:
-L319:
+	beq $zero, $t1, L377
+	b L375
+	b L378
+L377:
+L378:
+L376:
 	mul $s5, $s5, $s2
-	b L317
-L318:
+	b L374
+L375:
 	sub $s2, $s3, 14
 	move $s3, $s2
 	div $s2, $s5, $t5
@@ -77,11 +81,11 @@ L318:
 	move $a0, $s2
 	li $v0, 4
 	syscall
-L315:
+L371:
 	rem $s2, $s5, $t5
 	move $t6, $s2
-	b L313
-L314:
+	b L369
+L370:
 	la $a0, msg_0
 	li $v0, 4
 	syscall

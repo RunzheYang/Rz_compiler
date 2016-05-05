@@ -17,19 +17,23 @@ f_merge:
 	move $t5, $a0
 	move $s2, $a1
 	seq $s3, $t5, 0
-	beq $zero, $s3, L97
+	beq $zero, $s3, L109
 	move $v0, $s2
 	lw $ra, 0($sp)
 	add $sp, $sp, 8
 	jr $ra
-L97:
+	b L110
+L109:
+L110:
 	seq $s3, $s2, 0
-	beq $zero, $s3, L98
+	beq $zero, $s3, L111
 	move $v0, $t5
 	lw $ra, 0($sp)
 	add $sp, $sp, 8
 	jr $ra
-L98:
+	b L112
+L111:
+L112:
 	lw $s3, var_5
 	mul $t6, $t5, 4
 	add $s3, $s3, $t6
@@ -39,11 +43,13 @@ L98:
 	add $s3, $s3, $s4
 	lw $s3, 0($s3)
 	slt $s3, $t6, $s3
-	beq $zero, $s3, L99
+	beq $zero, $s3, L113
 	move $s3, $t5
 	move $t5, $s2
 	move $s2, $s3
-L99:
+	b L114
+L113:
+L114:
 	lw $s3, var_4
 	mul $t6, $t5, 4
 	add $s3, $s3, $t6
@@ -129,10 +135,10 @@ main:
 	move $s3, $v0
 	sw $s3, var_5
 	li $t6, 1
-L100:
+L115:
 	lw $t5, var_0
 	sle $t5, $t6, $t5
-	beq $zero, $t5, L101
+	beq $zero, $t5, L116
 	li $v0, 5
 	syscall
 	move $t5, $v0
@@ -150,15 +156,15 @@ L100:
 	add $t5, $s3, $t5
 	li $s2, 0
 	sw $s2, 0($t5)
-L102:
+L117:
 	add $t6, $t6, 1
-	b L100
-L101:
+	b L115
+L116:
 	li $t6, 1
-L103:
+L118:
 	lw $s2, var_1
 	sle $s2, $t6, $s2
-	beq $zero, $s2, L104
+	beq $zero, $s2, L119
 	lw $s3, var_5
 	lw $t5, var_0
 	add $t5, $t6, $t5
@@ -179,19 +185,19 @@ L103:
 	add $t5, $s3, $t5
 	li $s2, 0
 	sw $s2, 0($t5)
-L105:
+L120:
 	add $t6, $t6, 1
-	b L103
-L104:
+	b L118
+L119:
 	li $s4, 1
 	lw $t5, var_0
 	add $t5, $t5, 1
 	move $s5, $t5
 	li $t6, 2
-L106:
+L121:
 	lw $t5, var_0
 	sle $t5, $t6, $t5
-	beq $zero, $t5, L107
+	beq $zero, $t5, L122
 	move $a0, $s4
 	move $a1, $t6
 	sw $s5, 4($sp)
@@ -201,19 +207,19 @@ L106:
 	lw $t6, 8($sp)
 	move $t5, $v0
 	move $s4, $t5
-L108:
+L123:
 	add $t6, $t6, 1
-	b L106
-L107:
+	b L121
+L122:
 	lw $t5, var_0
 	add $t5, $t5, 2
 	move $t6, $t5
-L109:
+L124:
 	lw $t5, var_0
 	lw $s2, var_1
 	add $t5, $t5, $s2
 	sle $t5, $t6, $t5
-	beq $zero, $t5, L110
+	beq $zero, $t5, L125
 	move $a0, $s5
 	move $a1, $t6
 	sw $s4, 12($sp)
@@ -223,10 +229,10 @@ L109:
 	lw $t6, 8($sp)
 	move $t5, $v0
 	move $s5, $t5
-L111:
+L126:
 	add $t6, $t6, 1
-	b L109
-L110:
+	b L124
+L125:
 	lw $s3, var_5
 	mul $t5, $s4, 4
 	add $t5, $s3, $t5

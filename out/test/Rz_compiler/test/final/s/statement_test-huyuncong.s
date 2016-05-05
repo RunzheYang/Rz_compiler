@@ -11,159 +11,160 @@ main:
 	sw $ra, 0($sp)
 	li $v0, 5
 	syscall
-	move $t0, $v0
-	sw $t0, var_0
-	lw $t0, var_0
-	add $t0, $t0, 5
-	mul $t0, $t0, 4
-	add $a0, $zero, $t0
+	move $t5, $v0
+	sw $t5, var_0
+	lw $t5, var_0
+	add $t5, $t5, 5
+	mul $t5, $t5, 4
+	add $a0, $zero, $t5
 	li $v0, 9
 	syscall
-	move $t0, $v0
-	sw $t0, var_2
-	li $s0, 0
+	move $t5, $v0
+	sw $t5, var_2
+	li $s2, 0
 L374:
-	lw $t0, var_0
-	sle $t0, $s0, $t0
-	beq $zero, $t0, L375
-	lw $t0, var_2
-	move $t4, $s0
-	add $s0, $s0, 1
-	mul $t4, $t4, 4
-	add $t0, $t0, $t4
-	li $t4, 1
-	sw $t4, 0($t0)
+	lw $t5, var_0
+	sle $t5, $s2, $t5
+	beq $zero, $t5, L375
+	lw $t5, var_2
+	move $s3, $s2
+	add $s2, $s2, 1
+	mul $s3, $s3, 4
+	add $t5, $t5, $s3
+	li $s3, 1
+	sw $s3, 0($t5)
 	b L374
 L375:
-	lw $t0, var_0
-	add $t0, $t0, 5
-	mul $t0, $t0, 4
-	add $a0, $zero, $t0
+	lw $t5, var_0
+	add $t5, $t5, 5
+	mul $t5, $t5, 4
+	add $a0, $zero, $t5
 	li $v0, 9
 	syscall
-	move $t4, $v0
-	lw $t0, var_0
-	add $t0, $t0, 5
-	mul $t0, $t0, 4
-	add $a0, $zero, $t0
+	move $s3, $v0
+	lw $t5, var_0
+	add $t5, $t5, 5
+	mul $t5, $t5, 4
+	add $a0, $zero, $t5
 	li $v0, 9
 	syscall
-	move $t9, $v0
-	la $t0, 4($t4)
-	li $s0, 1
-	sw $s0, 0($t0)
-	li $s0, 2
+	move $t6, $v0
+	la $t5, 4($s3)
+	li $s2, 1
+	sw $s2, 0($t5)
+	li $s2, 2
 L376:
-	lw $t0, var_0
-	sgt $t0, $s0, $t0
-	beq $zero, $t0, L379
+	lw $t5, var_0
+	sgt $t5, $s2, $t5
+	beq $zero, $t5, L379
 	b L377
 L379:
-	lw $t0, var_2
-	mul $s4, $s0, 4
-	add $t0, $t0, $s4
-	lw $t0, 0($t0)
-	beq $zero, $t0, L380
-	lw $t0, var_1
-	add $t0, $t0, 1
-	sw $t0, var_1
-	mul $t0, $t0, 4
-	add $t0, $t9, $t0
-	move $s4, $s0
-	sw $s4, 0($t0)
-	sub $t0, $s0, 1
-	mul $s4, $s0, 4
-	add $s4, $t4, $s4
-	sw $t0, 0($s4)
+	lw $t5, var_2
+	mul $s4, $s2, 4
+	add $t5, $t5, $s4
+	lw $t5, 0($t5)
+	beq $zero, $t5, L380
+	lw $t5, var_1
+	add $t5, $t5, 1
+	sw $t5, var_1
+	mul $t5, $t5, 4
+	add $t5, $t6, $t5
+	move $s4, $s2
+	sw $s4, 0($t5)
+	sub $t5, $s2, 1
+	mul $s4, $s2, 4
+	add $s4, $s3, $s4
+	sw $t5, 0($s4)
 L380:
-	move $s4, $s0
-	li $t2, 1
+	move $s4, $s2
+	li $s5, 1
 L381:
-	lw $t0, var_1
-	sle $t7, $t2, $t0
-	beq $zero, $t7, L382
-	mul $t0, $t2, 4
-	add $t0, $t9, $t0
-	lw $t0, 0($t0)
-	mul $s5, $s4, $t0
-	lw $t0, var_0
-	sle $t0, $s5, $t0
-	and $s5, $t7, $t0
+	lw $t5, var_1
+	sle $t4, $s5, $t5
+	beq $zero, $t4, L382
+	mul $t5, $s5, 4
+	add $t5, $t6, $t5
+	lw $t5, 0($t5)
+	mul $t1, $s4, $t5
+	lw $t5, var_0
+	sle $t5, $t1, $t5
+	and $t1, $t4, $t5
 L382:
-	beq $zero, $s5, L383
-	mul $t0, $t2, 4
-	add $t0, $t9, $t0
-	lw $t0, 0($t0)
-	mul $t0, $s4, $t0
-	move $t7, $t0
-	lw $t0, var_0
-	sgt $t0, $t7, $t0
-	beq $zero, $t0, L385
+	beq $zero, $t1, L383
+	mul $t5, $s5, 4
+	add $t5, $t6, $t5
+	lw $t5, 0($t5)
+	mul $t5, $s4, $t5
+	move $t4, $t5
+	lw $t5, var_0
+	sgt $t5, $t4, $t5
+	beq $zero, $t5, L385
 	b L384
 L385:
-	lw $t0, var_2
-	mul $s1, $t7, 4
-	add $t0, $t0, $s1
-	li $s1, 0
-	sw $s1, 0($t0)
-	mul $t0, $t2, 4
-	add $t0, $t9, $t0
-	lw $t0, 0($t0)
-	rem $t0, $s4, $t0
-	seq $t0, $t0, 0
-	beq $zero, $t0, L386
-	mul $t0, $s4, 4
-	add $t0, $t4, $t0
-	lw $t0, 0($t0)
-	mul $t2, $t2, 4
-	add $t2, $t9, $t2
-	lw $t2, 0($t2)
-	mul $t0, $t0, $t2
-	mul $t2, $t7, 4
-	add $t2, $t4, $t2
-	sw $t0, 0($t2)
+	lw $t5, var_2
+	mul $t0, $t4, 4
+	add $t5, $t5, $t0
+	li $t0, 0
+	sw $t0, 0($t5)
+	mul $t5, $s5, 4
+	add $t5, $t6, $t5
+	lw $t5, 0($t5)
+	rem $t5, $s4, $t5
+	seq $t5, $t5, 0
+	beq $zero, $t5, L386
+	mul $t5, $s4, 4
+	add $t5, $s3, $t5
+	lw $t5, 0($t5)
+	mul $s5, $s5, 4
+	add $s5, $t6, $s5
+	lw $s5, 0($s5)
+	mul $t5, $t5, $s5
+	mul $s5, $t4, 4
+	add $s5, $s3, $s5
+	sw $t5, 0($s5)
 	b L383
 L386:
-	mul $t0, $s4, 4
-	add $t0, $t4, $t0
-	lw $t0, 0($t0)
-	mul $t7, $t2, 4
-	add $t7, $t9, $t7
-	lw $t7, 0($t7)
-	sub $t7, $t7, 1
-	mul $t0, $t0, $t7
-	mul $t7, $t2, 4
-	add $t7, $t9, $t7
-	lw $t7, 0($t7)
-	mul $t7, $s4, $t7
-	mul $t7, $t7, 4
-	add $t7, $t4, $t7
-	sw $t0, 0($t7)
+	mul $t5, $s4, 4
+	add $t5, $s3, $t5
+	lw $t5, 0($t5)
+	mul $t4, $s5, 4
+	add $t4, $t6, $t4
+	lw $t4, 0($t4)
+	sub $t4, $t4, 1
+	mul $t5, $t5, $t4
+	mul $t4, $s5, 4
+	add $t4, $t6, $t4
+	lw $t4, 0($t4)
+	mul $t4, $s4, $t4
+	mul $t4, $t4, 4
+	add $t4, $s3, $t4
+	sw $t5, 0($t4)
 L384:
-	add $t2, $t2, 1
+	add $s5, $s5, 1
 	b L381
 L383:
-	mul $t0, $s4, 4
-	add $t0, $t4, $t0
-	lw $t0, 0($t0)
-	move $a0, $t0
-	sw $s5, 4($sp)
-	sw $t4, 8($sp)
-	sw $t9, 12($sp)
-	sw $s0, 16($sp)
+	mul $t5, $s4, 4
+	add $t5, $s3, $t5
+	lw $t5, 0($t5)
+	move $a0, $t5
+	sw $t1, 4($sp)
+	sw $s3, 8($sp)
+	sw $t6, 12($sp)
+	sw $s2, 16($sp)
 	jal f_toString
-	lw $s5, 4($sp)
-	lw $t4, 8($sp)
-	lw $t9, 12($sp)
-	lw $s0, 16($sp)
-	move $a0, $v0
+	lw $t1, 4($sp)
+	lw $s3, 8($sp)
+	lw $t6, 12($sp)
+	lw $s2, 16($sp)
+	move $t5, $v0
+	move $a0, $t5
 	li $v0, 4
 	syscall
 	la $a0, msg_0
 	li $v0, 4
 	syscall
 L378:
-	add $s0, $s0, 1
+	add $s2, $s2, 1
 	b L376
 L377:
 	li $v0, 0
@@ -260,4 +261,15 @@ f_stringConcatenate:
 	move $v0, $t4
 	lw $ra, 0($sp)
 	addu $sp, $sp, 4
+	jr $ra
+_string_copy:
+	_begin_string_copy:
+	lb $v0, 0($a0)
+	beqz $v0, _exit_string_copy
+	sb $v0, 0($a1)
+	add $a0, $a0, 1
+	add $a1, $a1, 1
+	j _begin_string_copy
+	_exit_string_copy:
+	sb $zero, 0($a1)
 	jr $ra

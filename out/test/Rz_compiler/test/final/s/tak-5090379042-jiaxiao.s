@@ -8,20 +8,22 @@ main:
 	sw $ra, 0($sp)
 	li $v0, 5
 	syscall
-	move $t0, $v0
+	move $t5, $v0
 	li $v0, 5
 	syscall
-	move $s0, $v0
+	move $s2, $v0
 	li $v0, 5
 	syscall
-	move $t4, $v0
-	move $a0, $t0
-	move $a1, $s0
-	move $a2, $t4
+	move $s3, $v0
+	move $a0, $t5
+	move $a1, $s2
+	move $a2, $s3
 	jal f_tak
-	move $a0, $v0
+	move $t5, $v0
+	move $a0, $t5
 	jal f_toString
-	move $a0, $v0
+	move $t5, $v0
+	move $a0, $t5
 	li $v0, 4
 	syscall
 	la $a0, msg_0
@@ -44,49 +46,53 @@ main_end:
 f_tak:
 	sub $sp, $sp, 16
 	sw $ra, 0($sp)
-	move $t0, $a0
-	move $s0, $a1
-	move $t4, $a2
-	slt $t9, $s0, $t0
-	beq $zero, $t9, L388
-	sub $t9, $t0, 1
-	move $a0, $t9
-	move $a1, $s0
-	move $a2, $t4
-	sw $t0, 4($sp)
-	sw $s0, 8($sp)
-	sw $t4, 12($sp)
+	move $t5, $a0
+	move $s2, $a1
+	move $s3, $a2
+	slt $t6, $s2, $t5
+	beq $zero, $t6, L388
+	sub $t6, $t5, 1
+	move $a0, $t6
+	move $a1, $s2
+	move $a2, $s3
+	sw $t5, 4($sp)
+	sw $s2, 8($sp)
+	sw $s3, 12($sp)
 	jal f_tak
-	lw $t0, 4($sp)
-	lw $s0, 8($sp)
-	lw $t4, 12($sp)
-	move $a0, $v0
-	sub $t9, $s0, 1
-	move $a0, $t9
-	move $a1, $t4
-	move $a2, $t0
-	sw $t0, 4($sp)
-	sw $s0, 8($sp)
-	sw $t4, 12($sp)
+	lw $t5, 4($sp)
+	lw $s2, 8($sp)
+	lw $s3, 12($sp)
+	move $t6, $v0
+	move $a0, $t6
+	sub $t6, $s2, 1
+	move $a0, $t6
+	move $a1, $s3
+	move $a2, $t5
+	sw $t5, 4($sp)
+	sw $s2, 8($sp)
+	sw $s3, 12($sp)
 	jal f_tak
-	lw $t0, 4($sp)
-	lw $s0, 8($sp)
-	lw $t4, 12($sp)
-	move $a1, $v0
-	sub $t4, $t4, 1
-	move $a0, $t4
-	move $a1, $t0
-	move $a2, $s0
+	lw $t5, 4($sp)
+	lw $s2, 8($sp)
+	lw $s3, 12($sp)
+	move $t6, $v0
+	move $a1, $t6
+	sub $s3, $s3, 1
+	move $a0, $s3
+	move $a1, $t5
+	move $a2, $s2
 	jal f_tak
-	move $a2, $v0
+	move $t5, $v0
+	move $a2, $t5
 	jal f_tak
-	add $t0, $v0, 1
-	move $v0, $t0
+	move $t5, $v0
+	add $t5, $t5, 1
+	move $v0, $t5
 	lw $ra, 0($sp)
 	add $sp, $sp, 16
 	jr $ra
 L388:
-	move $v0, $t4
+	move $v0, $s3
 	lw $ra, 0($sp)
 	add $sp, $sp, 16
 	jr $ra
@@ -173,4 +179,15 @@ f_stringConcatenate:
 	move $v0, $t4
 	lw $ra, 0($sp)
 	addu $sp, $sp, 4
+	jr $ra
+_string_copy:
+	_begin_string_copy:
+	lb $v0, 0($a0)
+	beqz $v0, _exit_string_copy
+	sb $v0, 0($a1)
+	add $a0, $a0, 1
+	add $a1, $a1, 1
+	j _begin_string_copy
+	_exit_string_copy:
+	sb $zero, 0($a1)
 	jr $ra

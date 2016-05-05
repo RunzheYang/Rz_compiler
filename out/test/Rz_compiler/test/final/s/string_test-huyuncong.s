@@ -15,16 +15,16 @@ main:
 	sub $sp, $sp, 4
 	sw $ra, 0($sp)
 	jal f_getString
-	move $t0, $v0
-	sw $t0, var_0
+	move $t5, $v0
+	sw $t5, var_0
 	jal f_getString
-	move $t0, $v0
-	sw $t0, var_1
-	li $t0, $t0
-	sw $t0, var_3
-	lw $t0, var_3
-	slt $t0, $t0, $t0
-	beq $zero, $t0, L387
+	move $t5, $v0
+	sw $t5, var_1
+	li $t5, $t5
+	sw $t5, var_3
+	lw $t5, var_3
+	slt $t5, $t5, $t5
+	beq $zero, $t5, L387
 	la $a0, msg_2
 	li $v0, 4
 	syscall
@@ -38,10 +38,10 @@ main:
 L387:
 	li $a0, 0
 	jal f_calc
-	move $t0, $v0
-	sw $t0, var_2
-	lw $t0, var_2
-	move $a0, $t0
+	move $t5, $v0
+	sw $t5, var_2
+	lw $t5, var_2
+	move $a0, $t5
 	li $v0, 4
 	syscall
 	la $a0, msg_0
@@ -142,4 +142,15 @@ f_stringConcatenate:
 	move $v0, $t4
 	lw $ra, 0($sp)
 	addu $sp, $sp, 4
+	jr $ra
+_string_copy:
+	_begin_string_copy:
+	lb $v0, 0($a0)
+	beqz $v0, _exit_string_copy
+	sb $v0, 0($a1)
+	add $a0, $a0, 1
+	add $a1, $a1, 1
+	j _begin_string_copy
+	_exit_string_copy:
+	sb $zero, 0($a1)
 	jr $ra

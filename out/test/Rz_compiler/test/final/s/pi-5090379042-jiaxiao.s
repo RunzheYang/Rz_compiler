@@ -6,79 +6,80 @@ msg_0:	.asciiz	"\n"
 main:
 	sub $sp, $sp, 20
 	sw $ra, 0($sp)
-	li $t0, 10000
-	li $s0, 0
-	li $t4, 2800
-	li $t9, 0
+	li $t5, 10000
+	li $s2, 0
+	li $s3, 2800
+	li $t6, 0
 	li $a0, 11204
 	li $v0, 9
 	syscall
 	move $s4, $v0
 L310:
-	sub $t2, $s0, $t4
-	sne $t2, $t2, 0
-	beq $zero, $t2, L311
-	div $t2, $t0, 5
-	move $t7, $s0
-	add $s0, $s0, 1
-	mul $t7, $t7, 4
-	add $t7, $s4, $t7
-	sw $t2, 0($t7)
+	sub $s5, $s2, $s3
+	sne $s5, $s5, 0
+	beq $zero, $s5, L311
+	div $s5, $t5, 5
+	move $t4, $s2
+	add $s2, $s2, 1
+	mul $t4, $t4, 4
+	add $t4, $s4, $t4
+	sw $s5, 0($t4)
 L312:
 	b L310
 L311:
 L313:
-	li $t2, 0
-	mul $s0, $t4, 2
-	move $t7, $s0
-	seq $s0, $t7, 0
-	beq $zero, $s0, L316
+	li $s5, 0
+	mul $s2, $s3, 2
+	move $t4, $s2
+	seq $s2, $t4, 0
+	beq $zero, $s2, L316
 	b L314
 L316:
-	move $s0, $t4
+	move $s2, $s3
 L317:
-	mul $s5, $s0, 4
-	add $s5, $s4, $s5
-	lw $s5, 0($s5)
-	mul $s5, $s5, $t0
-	add $t2, $t2, $s5
-	sub $t7, $t7, 1
-	rem $s5, $t2, $t7
-	mul $s1, $s0, 4
-	add $s1, $s4, $s1
-	sw $s5, 0($s1)
-	move $s5, $t7
-	sub $t7, $t7, 1
-	div $t2, $t2, $s5
-	sub $s0, $s0, 1
-	seq $s5, $s0, 0
-	beq $zero, $s5, L320
+	mul $t1, $s2, 4
+	add $t1, $s4, $t1
+	lw $t1, 0($t1)
+	mul $t1, $t1, $t5
+	add $s5, $s5, $t1
+	sub $t4, $t4, 1
+	rem $t1, $s5, $t4
+	mul $t0, $s2, 4
+	add $t0, $s4, $t0
+	sw $t1, 0($t0)
+	move $t1, $t4
+	sub $t4, $t4, 1
+	div $s5, $s5, $t1
+	sub $s2, $s2, 1
+	seq $t1, $s2, 0
+	beq $zero, $t1, L320
 	b L318
 L320:
 L319:
-	mul $t2, $t2, $s0
+	mul $s5, $s5, $s2
 	b L317
 L318:
-	sub $s0, $t4, 14
-	move $t4, $s0
-	div $s0, $t2, $t0
-	add $s0, $t9, $s0
-	move $a0, $s0
-	sw $s4, 4($sp)
-	sw $t0, 8($sp)
-	sw $t4, 12($sp)
-	sw $t2, 16($sp)
+	sub $s2, $s3, 14
+	move $s3, $s2
+	div $s2, $s5, $t5
+	add $s2, $t6, $s2
+	move $a0, $s2
+	sw $t5, 4($sp)
+	sw $s3, 8($sp)
+	sw $s5, 12($sp)
+	sw $s4, 16($sp)
 	jal f_toString
-	lw $s4, 4($sp)
-	lw $t0, 8($sp)
-	lw $t4, 12($sp)
-	lw $t2, 16($sp)
-	move $a0, $v0
+	lw $t5, 4($sp)
+	lw $s3, 8($sp)
+	lw $s5, 12($sp)
+	lw $s4, 16($sp)
+	move $s2, $v0
+	move $a0, $s2
 	li $v0, 4
 	syscall
 L315:
-	rem $s0, $t2, $t0
-	move $t9, $s0
+	rem $s2, $s5, $t5
+	move $t6, $s2
 	b L313
 L314:
 	la $a0, msg_0
@@ -178,4 +179,15 @@ f_stringConcatenate:
 	move $v0, $t4
 	lw $ra, 0($sp)
 	addu $sp, $sp, 4
+	jr $ra
+_string_copy:
+	_begin_string_copy:
+	lb $v0, 0($a0)
+	beqz $v0, _exit_string_copy
+	sb $v0, 0($a1)
+	add $a0, $a0, 1
+	add $a1, $a1, 1
+	j _begin_string_copy
+	_exit_string_copy:
+	sb $zero, 0($a1)
 	jr $ra

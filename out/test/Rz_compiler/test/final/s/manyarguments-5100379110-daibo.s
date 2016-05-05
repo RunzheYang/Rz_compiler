@@ -85,3 +85,14 @@ f_stringConcatenate:
 	lw $ra, 0($sp)
 	addu $sp, $sp, 4
 	jr $ra
+_string_copy:
+	_begin_string_copy:
+	lb $v0, 0($a0)
+	beqz $v0, _exit_string_copy
+	sb $v0, 0($a1)
+	add $a0, $a0, 1
+	add $a1, $a1, 1
+	j _begin_string_copy
+	_exit_string_copy:
+	sb $zero, 0($a1)
+	jr $ra

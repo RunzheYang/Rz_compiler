@@ -33,10 +33,10 @@ f_origin:
 	sw $s2, var_13
 	li $s3, 0
 	sw $s3, var_14
-L147:
+L169:
 	lw $s3, var_14
 	slt $s2, $s3, $t5
-	beq $zero, $s2, L148
+	beq $zero, $s2, L170
 	mul $s2, $t5, 4
 	add $a0, $zero, $s2
 	li $v0, 9
@@ -49,10 +49,10 @@ L147:
 	sw $s3, 0($s2)
 	li $s2, 0
 	sw $s2, var_15
-L150:
+L172:
 	lw $s2, var_15
 	slt $s2, $s2, $t5
-	beq $zero, $s2, L151
+	beq $zero, $s2, L173
 	lw $s2, var_13
 	lw $s3, var_14
 	mul $s3, $s3, 4
@@ -63,18 +63,18 @@ L150:
 	add $s2, $s3, $s2
 	li $s3, 0
 	sw $s3, 0($s2)
-L152:
+L174:
 	lw $s2, var_15
 	add $s2, $s2, 1
 	sw $s2, var_15
-	b L150
-L151:
-L149:
+	b L172
+L173:
+L171:
 	lw $s3, var_14
 	add $s3, $s3, 1
 	sw $s3, var_14
-	b L147
-L148:
+	b L169
+L170:
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
@@ -92,7 +92,7 @@ f_addList:
 	lw $t5, 4($sp)
 	lw $s3, 8($sp)
 	move $t6, $v0
-	beq $zero, $t6, L154
+	beq $zero, $t6, L176
 	move $a0, $s3
 	lw $s2, var_0
 	move $a1, $s2
@@ -105,8 +105,8 @@ f_addList:
 	lw $s3, 8($sp)
 	move $s2, $v0
 	and $s4, $t6, $s2
-L154:
-	beq $zero, $s4, L155
+L176:
+	beq $zero, $s4, L177
 	lw $s2, var_13
 	mul $t6, $t5, 4
 	add $s2, $s2, $t6
@@ -116,8 +116,8 @@ L154:
 	lw $s2, 0($s2)
 	seq $s2, $s2, -1
 	and $s5, $s4, $s2
-L155:
-	beq $zero, $s5, L156
+L177:
+	beq $zero, $s5, L178
 	lw $s2, var_10
 	add $s2, $s2, 1
 	sw $s2, var_10
@@ -144,16 +144,20 @@ L155:
 	sw $t6, 0($s2)
 	lw $s2, var_4
 	seq $t5, $t5, $s2
-	beq $zero, $t5, L157
+	beq $zero, $t5, L180
 	lw $s2, var_5
 	seq $s2, $s3, $s2
 	and $t4, $t5, $s2
-L157:
-	beq $zero, $t4, L158
+L180:
+	beq $zero, $t4, L181
 	li $t5, 1
 	sw $t5, var_11
-L158:
-L156:
+	b L182
+L181:
+L182:
+	b L179
+L178:
+L179:
 	lw $ra, 0($sp)
 	add $sp, $sp, 16
 	jr $ra
@@ -184,18 +188,18 @@ main:
 	sw $s2, var_4
 	li $s3, 0
 	sw $s3, var_14
-L159:
+L183:
 	lw $s3, var_14
 	lw $s2, var_0
 	slt $t5, $s3, $s2
-	beq $zero, $t5, L160
+	beq $zero, $t5, L184
 	li $s2, 0
 	sw $s2, var_15
-L162:
+L186:
 	lw $s2, var_15
 	lw $s2, var_0
 	slt $t5, $s2, $s2
-	beq $zero, $t5, L163
+	beq $zero, $t5, L187
 	lw $s2, var_13
 	lw $s3, var_14
 	mul $t5, $s3, 4
@@ -206,23 +210,23 @@ L162:
 	add $t5, $t5, $s2
 	li $s2, -1
 	sw $s2, 0($t5)
-L164:
+L188:
 	lw $s2, var_15
 	add $s2, $s2, 1
 	sw $s2, var_15
-	b L162
-L163:
-L161:
+	b L186
+L187:
+L185:
 	lw $s3, var_14
 	add $s3, $s3, 1
 	sw $s3, var_14
-	b L159
-L160:
-L165:
+	b L183
+L184:
+L189:
 	lw $t5, var_1
 	lw $s2, var_10
 	sle $t5, $t5, $s2
-	beq $zero, $t5, L166
+	beq $zero, $t5, L190
 	lw $t6, var_8
 	lw $t5, var_1
 	mul $t5, $t5, 4
@@ -304,17 +308,19 @@ L165:
 	jal f_addList
 	lw $t5, var_11
 	seq $t5, $t5, 1
-	beq $zero, $t5, L167
-	b L166
-L167:
+	beq $zero, $t5, L191
+	b L190
+	b L192
+L191:
+L192:
 	lw $t5, var_1
 	add $t5, $t5, 1
 	sw $t5, var_1
-	b L165
-L166:
+	b L189
+L190:
 	lw $t5, var_11
 	seq $t5, $t5, 1
-	beq $zero, $t5, L168
+	beq $zero, $t5, L193
 	lw $s2, var_13
 	lw $s2, var_4
 	mul $t5, $s2, 4
@@ -333,10 +339,12 @@ L166:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-L168:
+	b L194
+L193:
 	la $a0, msg_1
 	li $v0, 4
 	syscall
+L194:
 	li $v0, 0
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
@@ -357,10 +365,10 @@ f_check:
 	move $t5, $a0
 	move $s2, $a1
 	slt $s2, $t5, $s2
-	beq $zero, $s2, L153
+	beq $zero, $s2, L175
 	sge $t5, $t5, 0
 	and $s3, $s2, $t5
-L153:
+L175:
 	move $v0, $s3
 	lw $ra, 0($sp)
 	add $sp, $sp, 4

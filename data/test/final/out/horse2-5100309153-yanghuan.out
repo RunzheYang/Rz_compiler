@@ -1,4 +1,4 @@
   Exception 7  [Bad data address]  occurred and ignored
   Exception 7  [Bad data address]  occurred and ignored
-  Exception 7  [Bad data address]  occurred and ignored
-  Exception 7  [Bad data address]  occurred and ignored
+  Exception 5  [Address error in store]  occurred and ignored
+-1

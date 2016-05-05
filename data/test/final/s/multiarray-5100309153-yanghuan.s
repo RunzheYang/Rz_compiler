@@ -38,10 +38,10 @@ main:
 	sw $ra, 0($sp)
 	li $s3, 0
 	sw $s3, var_1
-L286:
+L342:
 	lw $s3, var_1
 	slt $t5, $s3, 4
-	beq $zero, $t5, L287
+	beq $zero, $t5, L343
 	li $a0, 44
 	li $v0, 9
 	syscall
@@ -51,24 +51,24 @@ L286:
 	add $t5, $t5, $s2
 	move $s2, $v0
 	sw $s2, 0($t5)
-L288:
+L344:
 	lw $s3, var_1
 	add $s3, $s3, 1
 	sw $s3, var_1
-	b L286
-L287:
+	b L342
+L343:
 	li $s3, 0
 	sw $s3, var_1
-L289:
+L345:
 	lw $s3, var_1
 	slt $t5, $s3, 4
-	beq $zero, $t5, L290
+	beq $zero, $t5, L346
 	li $t5, 0
 	sw $t5, var_2
-L292:
+L348:
 	lw $t5, var_2
 	slt $t5, $t5, 10
-	beq $zero, $t5, L293
+	beq $zero, $t5, L349
 	lw $t5, var_0
 	lw $s3, var_1
 	mul $s2, $s3, 4
@@ -79,24 +79,24 @@ L292:
 	add $t5, $s2, $t5
 	li $s2, 888
 	sw $s2, 0($t5)
-L294:
+L350:
 	lw $t5, var_2
 	add $t5, $t5, 1
 	sw $t5, var_2
-	b L292
-L293:
-L291:
+	b L348
+L349:
+L347:
 	lw $s3, var_1
 	add $s3, $s3, 1
 	sw $s3, var_1
-	b L289
-L290:
+	b L345
+L346:
 	li $s3, 0
 	sw $s3, var_1
-L295:
+L351:
 	lw $s3, var_1
 	slt $t5, $s3, 5
-	beq $zero, $t5, L296
+	beq $zero, $t5, L352
 	li $a0, 8
 	li $v0, 9
 	syscall
@@ -114,12 +114,12 @@ L295:
 	la $t5, 0($t5)
 	li $s2, -1
 	sw $s2, 0($t5)
-L297:
+L353:
 	lw $s3, var_1
 	add $s3, $s3, 1
 	sw $s3, var_1
-	b L295
-L296:
+	b L351
+L352:
 	lw $t5, var_0
 	la $t5, 12($t5)
 	lw $t5, 0($t5)
@@ -129,16 +129,16 @@ L296:
 	jal f_printNum
 	li $s3, 0
 	sw $s3, var_1
-L298:
+L354:
 	lw $s3, var_1
 	sle $t5, $s3, 3
-	beq $zero, $t5, L299
+	beq $zero, $t5, L355
 	li $t5, 0
 	sw $t5, var_2
-L301:
+L357:
 	lw $t5, var_2
 	sle $t5, $t5, 9
-	beq $zero, $t5, L302
+	beq $zero, $t5, L358
 	lw $s3, var_1
 	mul $s2, $s3, 10
 	lw $t5, var_2
@@ -152,30 +152,30 @@ L301:
 	mul $t5, $t5, 4
 	add $t5, $s3, $t5
 	sw $s2, 0($t5)
-L303:
+L359:
 	lw $t5, var_2
 	add $t5, $t5, 1
 	sw $t5, var_2
-	b L301
-L302:
-L300:
+	b L357
+L358:
+L356:
 	lw $s3, var_1
 	add $s3, $s3, 1
 	sw $s3, var_1
-	b L298
-L299:
+	b L354
+L355:
 	li $s3, 0
 	sw $s3, var_1
-L304:
+L360:
 	lw $s3, var_1
 	sle $t5, $s3, 3
-	beq $zero, $t5, L305
+	beq $zero, $t5, L361
 	li $t5, 0
 	sw $t5, var_2
-L307:
+L363:
 	lw $t5, var_2
 	sle $t5, $t5, 9
-	beq $zero, $t5, L308
+	beq $zero, $t5, L364
 	lw $t5, var_0
 	lw $s3, var_1
 	mul $s2, $s3, 4
@@ -187,18 +187,18 @@ L307:
 	lw $t5, 0($t5)
 	move $a0, $t5
 	jal f_printNum
-L309:
+L365:
 	lw $t5, var_2
 	add $t5, $t5, 1
 	sw $t5, var_2
-	b L307
-L308:
-L306:
+	b L363
+L364:
+L362:
 	lw $s3, var_1
 	add $s3, $s3, 1
 	sw $s3, var_1
-	b L304
-L305:
+	b L360
+L361:
 	lw $t5, var_0
 	la $t5, 8($t5)
 	lw $t5, 0($t5)

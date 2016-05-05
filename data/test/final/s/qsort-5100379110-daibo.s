@@ -21,31 +21,31 @@ f_qsrt:
 	add $s4, $s4, $s5
 	lw $s4, 0($s4)
 	move $s5, $s4
-L359:
+L424:
 	sle $s4, $s3, $t6
-	beq $zero, $s4, L360
-L361:
+	beq $zero, $s4, L425
+L426:
 	lw $s4, var_0
 	mul $t4, $s3, 4
 	add $s4, $s4, $t4
 	lw $s4, 0($s4)
 	slt $s4, $s4, $s5
-	beq $zero, $s4, L362
+	beq $zero, $s4, L427
 	add $s3, $s3, 1
-	b L361
-L362:
-L363:
+	b L426
+L427:
+L428:
 	lw $s4, var_0
 	mul $t4, $t6, 4
 	add $s4, $s4, $t4
 	lw $s4, 0($s4)
 	sgt $s4, $s4, $s5
-	beq $zero, $s4, L364
+	beq $zero, $s4, L429
 	sub $t6, $t6, 1
-	b L363
-L364:
+	b L428
+L429:
 	sle $s4, $s3, $t6
-	beq $zero, $s4, L365
+	beq $zero, $s4, L430
 	lw $s4, var_0
 	mul $t4, $s3, 4
 	add $s4, $s4, $t4
@@ -65,11 +65,13 @@ L364:
 	sw $t4, 0($s4)
 	add $s3, $s3, 1
 	sub $t6, $t6, 1
-L365:
-	b L359
-L360:
+	b L431
+L430:
+L431:
+	b L424
+L425:
 	slt $s4, $t5, $t6
-	beq $zero, $s4, L366
+	beq $zero, $s4, L432
 	move $a0, $t5
 	move $a1, $t6
 	sw $s2, 4($sp)
@@ -77,13 +79,17 @@ L360:
 	jal f_qsrt
 	lw $s2, 4($sp)
 	lw $s3, 8($sp)
-L366:
+	b L433
+L432:
+L433:
 	slt $t5, $s3, $s2
-	beq $zero, $t5, L367
+	beq $zero, $t5, L434
 	move $a0, $s3
 	move $a1, $s2
 	jal f_qsrt
-L367:
+	b L435
+L434:
+L435:
 	li $v0, 0
 	lw $ra, 0($sp)
 	add $sp, $sp, 12
@@ -100,10 +106,10 @@ main:
 	sub $sp, $sp, 8
 	sw $ra, 0($sp)
 	li $t5, 1
-L368:
+L436:
 	lw $s2, var_1
 	sle $s2, $t5, $s2
-	beq $zero, $s2, L369
+	beq $zero, $s2, L437
 	lw $s2, var_1
 	add $s2, $s2, 1
 	sub $s2, $s2, $t5
@@ -111,19 +117,19 @@ L368:
 	mul $s3, $t5, 4
 	add $s3, $s4, $s3
 	sw $s2, 0($s3)
-L370:
+L438:
 	add $t5, $t5, 1
-	b L368
-L369:
+	b L436
+L437:
 	li $a0, 1
 	lw $s2, var_1
 	move $a1, $s2
 	jal f_qsrt
 	li $t5, 1
-L371:
+L439:
 	lw $s2, var_1
 	sle $s2, $t5, $s2
-	beq $zero, $s2, L372
+	beq $zero, $s2, L440
 	lw $s4, var_0
 	mul $s2, $t5, 4
 	add $s2, $s4, $s2
@@ -139,10 +145,10 @@ L371:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-L373:
+L441:
 	add $t5, $t5, 1
-	b L371
-L372:
+	b L439
+L440:
 	la $a0, msg_1
 	li $v0, 4
 	syscall

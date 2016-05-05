@@ -6,20 +6,22 @@ msg_0:	.asciiz	"\n"
 f_gcd:
 	sub $sp, $sp, 4
 	sw $ra, 0($sp)
-	move $t0, $a0
-	move $s0, $a1
-	rem $t4, $t0, $s0
-	seq $t4, $t4, 0
-	beq $zero, $t4, L112
-	move $v0, $s0
+	move $t5, $a0
+	move $s2, $a1
+	rem $s3, $t5, $s2
+	seq $s3, $s3, 0
+	beq $zero, $s3, L112
+	move $v0, $s2
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
 L112:
-	move $a0, $s0
-	rem $t0, $t0, $s0
-	move $a1, $t0
+	move $a0, $s2
+	rem $t5, $t5, $s2
+	move $a1, $t5
 	jal f_gcd
+	move $t5, $v0
+	move $v0, $t5
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
@@ -32,9 +34,11 @@ main:
 	li $a0, 10
 	li $a1, 1
 	jal f_gcd
-	move $a0, $v0
+	move $t5, $v0
+	move $a0, $t5
 	jal f_toString
-	move $a0, $v0
+	move $t5, $v0
+	move $a0, $t5
 	li $v0, 4
 	syscall
 	la $a0, msg_0
@@ -43,9 +47,11 @@ main:
 	li $a0, 34986
 	li $a1, 3087
 	jal f_gcd
-	move $a0, $v0
+	move $t5, $v0
+	move $a0, $t5
 	jal f_toString
-	move $a0, $v0
+	move $t5, $v0
+	move $a0, $t5
 	li $v0, 4
 	syscall
 	la $a0, msg_0
@@ -54,9 +60,11 @@ main:
 	li $a0, 2907
 	li $a1, 1539
 	jal f_gcd
-	move $a0, $v0
+	move $t5, $v0
+	move $a0, $t5
 	jal f_toString
-	move $a0, $v0
+	move $t5, $v0
+	move $a0, $t5
 	li $v0, 4
 	syscall
 	la $a0, msg_0
@@ -156,4 +164,15 @@ f_stringConcatenate:
 	move $v0, $t4
 	lw $ra, 0($sp)
 	addu $sp, $sp, 4
+	jr $ra
+_string_copy:
+	_begin_string_copy:
+	lb $v0, 0($a0)
+	beqz $v0, _exit_string_copy
+	sb $v0, 0($a1)
+	add $a0, $a0, 1
+	add $a1, $a1, 1
+	j _begin_string_copy
+	_exit_string_copy:
+	sb $zero, 0($a1)
 	jr $ra

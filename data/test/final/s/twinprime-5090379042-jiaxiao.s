@@ -19,40 +19,40 @@ main:
 	sub $sp, $sp, 20
 	sw $ra, 0($sp)
 	li $s2, 1
-L389:
+L463:
 	lw $t5, var_0
 	sle $t5, $s2, $t5
-	beq $zero, $t5, L390
+	beq $zero, $t5, L464
 	lw $t5, var_1
 	mul $s3, $s2, 4
 	add $t5, $t5, $s3
 	li $s3, 1
 	sw $s3, 0($t5)
-L391:
+L465:
 	add $s2, $s2, 1
-	b L389
-L390:
+	b L463
+L464:
 	li $s2, 2
-L392:
+L466:
 	lw $t5, var_0
 	sle $t5, $s2, $t5
-	beq $zero, $t5, L393
+	beq $zero, $t5, L467
 	lw $t5, var_1
 	mul $s3, $s2, 4
 	add $t5, $t5, $s3
 	lw $t5, 0($t5)
-	beq $zero, $t5, L395
+	beq $zero, $t5, L469
 	li $s3, 2
 	sgt $t6, $s2, 3
-	beq $zero, $t6, L396
+	beq $zero, $t6, L471
 	lw $t5, var_1
 	sub $s4, $s2, 2
 	mul $s4, $s4, 4
 	add $t5, $t5, $s4
 	lw $t5, 0($t5)
 	and $s4, $t6, $t5
-L396:
-	beq $zero, $s4, L397
+L471:
+	beq $zero, $s4, L472
 	lw $t5, var_2
 	add $t5, $t5, 1
 	sw $t5, var_2
@@ -103,12 +103,14 @@ L396:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-L397:
-L398:
+	b L473
+L472:
+L473:
+L474:
 	mul $t6, $s2, $s3
 	lw $t5, var_0
 	sle $t5, $t6, $t5
-	beq $zero, $t5, L399
+	beq $zero, $t5, L475
 	lw $t5, var_1
 	mul $t6, $s2, $s3
 	mul $t6, $t6, 4
@@ -116,13 +118,15 @@ L398:
 	li $t6, 0
 	sw $t6, 0($t5)
 	add $s3, $s3, 1
-	b L398
-L399:
-L395:
-L394:
+	b L474
+L475:
+	b L470
+L469:
+L470:
+L468:
 	add $s2, $s2, 1
-	b L392
-L393:
+	b L466
+L467:
 	lw $t5, var_2
 	move $a0, $t5
 	jal f_toString

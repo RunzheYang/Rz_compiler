@@ -22,10 +22,10 @@ main:
 	move $t5, $v0
 	sw $t5, var_2
 	li $s2, 0
-L374:
+L442:
 	lw $t5, var_0
 	sle $t5, $s2, $t5
-	beq $zero, $t5, L375
+	beq $zero, $t5, L443
 	lw $t5, var_2
 	move $s3, $s2
 	add $s2, $s2, 1
@@ -33,8 +33,8 @@ L374:
 	add $t5, $t5, $s3
 	li $s3, 1
 	sw $s3, 0($t5)
-	b L374
-L375:
+	b L442
+L443:
 	lw $t5, var_0
 	add $t5, $t5, 5
 	mul $t5, $t5, 4
@@ -53,17 +53,19 @@ L375:
 	li $s2, 1
 	sw $s2, 0($t5)
 	li $s2, 2
-L376:
+L444:
 	lw $t5, var_0
 	sgt $t5, $s2, $t5
-	beq $zero, $t5, L379
-	b L377
-L379:
+	beq $zero, $t5, L447
+	b L445
+	b L448
+L447:
+L448:
 	lw $t5, var_2
 	mul $s4, $s2, 4
 	add $t5, $t5, $s4
 	lw $t5, 0($t5)
-	beq $zero, $t5, L380
+	beq $zero, $t5, L449
 	lw $t5, var_1
 	add $t5, $t5, 1
 	sw $t5, var_1
@@ -75,13 +77,15 @@ L379:
 	mul $s4, $s2, 4
 	add $s4, $s3, $s4
 	sw $t5, 0($s4)
-L380:
+	b L450
+L449:
+L450:
 	move $s4, $s2
 	li $s5, 1
-L381:
+L451:
 	lw $t5, var_1
 	sle $t4, $s5, $t5
-	beq $zero, $t4, L382
+	beq $zero, $t4, L452
 	mul $t5, $s5, 4
 	add $t5, $t6, $t5
 	lw $t5, 0($t5)
@@ -89,8 +93,8 @@ L381:
 	lw $t5, var_0
 	sle $t5, $t1, $t5
 	and $t1, $t4, $t5
-L382:
-	beq $zero, $t1, L383
+L452:
+	beq $zero, $t1, L453
 	mul $t5, $s5, 4
 	add $t5, $t6, $t5
 	lw $t5, 0($t5)
@@ -98,9 +102,11 @@ L382:
 	move $t4, $t5
 	lw $t5, var_0
 	sgt $t5, $t4, $t5
-	beq $zero, $t5, L385
-	b L384
-L385:
+	beq $zero, $t5, L455
+	b L454
+	b L456
+L455:
+L456:
 	lw $t5, var_2
 	mul $t0, $t4, 4
 	add $t5, $t5, $t0
@@ -111,7 +117,7 @@ L385:
 	lw $t5, 0($t5)
 	rem $t5, $s4, $t5
 	seq $t5, $t5, 0
-	beq $zero, $t5, L386
+	beq $zero, $t5, L457
 	mul $t5, $s4, 4
 	add $t5, $s3, $t5
 	lw $t5, 0($t5)
@@ -122,8 +128,9 @@ L385:
 	mul $s5, $t4, 4
 	add $s5, $s3, $s5
 	sw $t5, 0($s5)
-	b L383
-L386:
+	b L453
+	b L458
+L457:
 	mul $t5, $s4, 4
 	add $t5, $s3, $t5
 	lw $t5, 0($t5)
@@ -139,10 +146,11 @@ L386:
 	mul $t4, $t4, 4
 	add $t4, $s3, $t4
 	sw $t5, 0($t4)
-L384:
+L458:
+L454:
 	add $s5, $s5, 1
-	b L381
-L383:
+	b L451
+L453:
 	mul $t5, $s4, 4
 	add $t5, $s3, $t5
 	lw $t5, 0($t5)
@@ -163,10 +171,10 @@ L383:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-L378:
+L446:
 	add $s2, $s2, 1
-	b L376
-L377:
+	b L444
+L445:
 	li $v0, 0
 	lw $ra, 0($sp)
 	add $sp, $sp, 20
