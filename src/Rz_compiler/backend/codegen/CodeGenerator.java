@@ -32,6 +32,12 @@ public class CodeGenerator {
 
     public static boolean hasLabelStringCopy = false;
 
+    public static boolean hasSubString = false;
+
+    public static boolean hasParseInt = false;
+
+    public static boolean hasOrd = false;
+
     public CodeGenerator(RzParser.ProgContext program, SymbolTable symbolTable) {
         this.program = program;
         this.symbolTable = symbolTable;
@@ -113,6 +119,18 @@ public class CodeGenerator {
 
         if (hasLabelStringCopy) {
             finalcode += new MipsLibrary().label_stringCopy + "\n";
+        }
+
+        if (hasSubString) {
+            finalcode += new MipsLibrary().func_subString + "\n";
+        }
+
+        if (hasParseInt) {
+            finalcode += new MipsLibrary().func_parseInt + "\n";
+        }
+
+        if (hasOrd) {
+            finalcode += new MipsLibrary().func_ord + "\n";
         }
 
         return finalcode;

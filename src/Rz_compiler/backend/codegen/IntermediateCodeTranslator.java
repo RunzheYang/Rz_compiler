@@ -756,7 +756,7 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                 }
                 CodeGenerator.hasStringAdd = true;
                 CodeGenerator.hasLabelStringCopy = true;
-                instrList.add(new JalInstr(new Label("f_stringConcatenate")));
+                instrList.add(new JalInstr(new Label("f_str.stringConcatenate")));
                 Register result = trg.generate().setMem();
                 instrList.add(new MoveInstr(result, MipsRegister.$v0.setMem()));
                 returnOperand = result;
@@ -1070,18 +1070,35 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
         Operand expReg = returnOperand;
 
         if (expReg instanceof ImmediateValue) {
-            int combined = ((ImmediateValue) expReg).getValue() * WORD_SIZE;
+            int combined = ((ImmediateValue) expReg).getValue() * WORD_SIZE + WORD_SIZE;
             instrList.add(new LiInstr(MipsRegister.$a0, new ImmediateValue(combined)));
         } else {
             Operand tempReg = trg.generate();
             instrList.add(new MulInstr(tempReg, expReg, new ImmediateValue(WORD_SIZE)));
+            instrList.add(new AddInstr(tempReg, tempReg, new ImmediateValue(WORD_SIZE)));
             instrList.add(new AddInstr(MipsRegister.$a0, MipsRegister.$zero, tempReg));
         }
         instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(9)));
         instrList.add(new Syscall());
+
         MipsRegister.$v0.setMem();
-        returnOperand = MipsRegister.$v0;
+
+        if (expReg instanceof ImmediateValue) {
+            Register sizeTemp = trg.generate().setValue();
+            instrList.add(new LiInstr(sizeTemp, expReg));
+            instrList.add(new SwInstr(sizeTemp, new MemAddress(MipsRegister.$v0, 0)));
+        } else {
+            Register sizeTemp = trg.generate().setValue();
+            instrList.add(new MoveInstr(sizeTemp, expReg));
+            instrList.add(new SwInstr(sizeTemp, new MemAddress(MipsRegister.$v0, 0)));
+        }
+
+        Register start = trg.generate().setMem();
+        instrList.add(new AddInstr(start, MipsRegister.$v0, new ImmediateValue(WORD_SIZE)));
+
+        returnOperand = start;
         returnOperandAddress = null;
+
         return instrList;
     }
 
@@ -1298,6 +1315,7 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                     instrList.add(new MoveInstr(result, MipsRegister.$v0.setValue()));
                     returnOperand = result;
                 } else {
+
                     int argCnt = 0;
 
                     if (funcname.equals("toString"))
@@ -1305,20 +1323,34 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
 
                     RzParser.ArgumentsContext argumentsContext =
                             ((RzParser.FunctionCallContext) ctx.postfix()).arguments();
+                    List<Register> tempRegs = new LinkedList<>();
+
                     if (argumentsContext != null) {
+
                         for (RzParser.Assign_exprContext arg
                                 : argumentsContext.assign_expr()) {
                             instrList.addAll(arg.accept(this));
+                            Register temp;
                             if (returnOperand instanceof Register) {
-                                instrList.add(new MoveInstr(getArgReg(argCnt), returnOperand));
+                                temp = (Register) returnOperand;
+                                tempRegs.add(temp);
                             } else if (returnOperand instanceof ImmediateValue) {
-                                instrList.add(new LiInstr(getArgReg(argCnt), returnOperand));
+                                temp = trg.generate().setValue();
+                                instrList.add(new LiInstr(temp, returnOperand));
+                                tempRegs.add(temp);
                             } else if (returnOperand instanceof Label) {
-                                instrList.add(new LaInstr(getArgReg(argCnt), returnOperand));
+                                temp = trg.generate().setMem();
+                                instrList.add(new LaInstr(temp, returnOperand));
+                                tempRegs.add(temp);
                             }
-                            argCnt++;
                         }
+
+                        for (Register temp : tempRegs) {
+                            instrList.add(new MoveInstr(getArgReg(argCnt++), temp));
+                        }
+
                     }
+
                     instrList.add(new JalInstr(new Label("f_" + funcname)));
                 }
                 if (((FunctionType)symt.lookup(funcname)).getReturnType().equals(new IntType())) {
@@ -1330,6 +1362,104 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                     instrList.add(new MoveInstr(result, MipsRegister.$v0.setMem()));
                     returnOperand = result;
                 }
+            }
+
+            if (ctx.postfix() instanceof RzParser.Build_in_FuntionContext) {
+                if (((RzParser.Build_in_FuntionContext) ctx.postfix()).ident().getText().equals("size")) {
+                    instrList.addAll(ctx.postfix_expr().accept(this));
+                    Register result = trg.generate().setValue();
+                    instrList.add(new LwInstr(result, new MemAddress((Register) returnOperand, -4)));
+                    returnOperand = result;
+                }
+                if (((RzParser.Build_in_FuntionContext) ctx.postfix()).ident().getText().equals("length")) {
+                    instrList.addAll(ctx.postfix_expr().accept(this));
+                    Register result = trg.generate().setValue();
+                    if (returnOperand instanceof Label) {
+                        Register addr = trg.generate().setMem();
+                        instrList.add(new LaInstr(addr, returnOperand));
+                        instrList.add(new LwInstr(result, new MemAddress(addr, -4)));
+                    } else {
+                        instrList.add(new LwInstr(result, new MemAddress((Register) returnOperand, -4)));
+                    }
+                    returnOperand = result;
+                }
+
+                if (((RzParser.Build_in_FuntionContext) ctx.postfix()).ident().getText().equals("substring")
+                        || ((RzParser.Build_in_FuntionContext) ctx.postfix()).ident().getText().equals("parseInt")
+                        ||((RzParser.Build_in_FuntionContext) ctx.postfix()).ident().getText().equals("ord")) {
+
+                    String funcname = ((RzParser.Build_in_FuntionContext) ctx.postfix()).ident().getText();
+
+                    if (funcname.equals("substring")) {
+                        CodeGenerator.hasLabelStringCopy = true;
+                        CodeGenerator.hasSubString = true;
+                    } else if (funcname.equals("parseInt")) {
+                        CodeGenerator.hasParseInt = true;
+                    } else if (funcname.equals("ord")) {
+                        CodeGenerator.hasOrd = true;
+                    }
+
+
+                    instrList.addAll(ctx.postfix_expr().accept(this));
+                    Operand lhs = returnOperand;
+
+                    int argCnt = 0;
+
+                    RzParser.ArgumentsContext argumentsContext =
+                            ((RzParser.Build_in_FuntionContext) ctx.postfix()).arguments();
+
+                    List<Register> tempRegs = new LinkedList<>();
+
+                    if (lhs instanceof Register) {
+                        tempRegs.add((Register) lhs);
+                    } else if (lhs instanceof ImmediateValue) {
+                        Register temp = trg.generate().setValue();
+                        instrList.add(new LiInstr(temp, lhs));
+                        tempRegs.add(temp);
+                    } else if (lhs instanceof Label) {
+                        Register temp = trg.generate().setMem();
+                        instrList.add(new LaInstr(temp, lhs));
+                        tempRegs.add(temp);
+                    }
+
+                    if (argumentsContext != null) {
+                        for (RzParser.Assign_exprContext arg
+                                : argumentsContext.assign_expr()) {
+                            instrList.addAll(arg.accept(this));
+                            Register temp;
+                            if (returnOperand instanceof Register) {
+                                temp = (Register) returnOperand;
+                                tempRegs.add(temp);
+                            } else if (returnOperand instanceof ImmediateValue) {
+                                temp = trg.generate().setValue();
+                                instrList.add(new LiInstr(temp, returnOperand));
+                                tempRegs.add(temp);
+                            } else if (returnOperand instanceof Label) {
+                                temp = trg.generate().setMem();
+                                instrList.add(new LaInstr(temp, returnOperand));
+                                tempRegs.add(temp);
+                            }
+                        }
+                    }
+
+                    for (Register temp : tempRegs) {
+                        instrList.add(new MoveInstr(getArgReg(argCnt++), temp));
+                    }
+
+                    instrList.add(new JalInstr(new Label("f_str."  + funcname)));
+
+                    if (funcname.equals("substring")) {
+                        Register result = trg.generate().setMem();
+                        instrList.add(new MoveInstr(result, MipsRegister.$v0.setMem()));
+                        returnOperand = result;
+                    } else {
+                        Register result = trg.generate().setValue();
+                        instrList.add(new MoveInstr(result, MipsRegister.$v0.setValue()));
+                        returnOperand = result;
+                    }
+
+                }
+
             }
         }
         return instrList;

@@ -1,27 +1,10 @@
+int[] a = new int [10];
+int main() {
+    println(toString(a.size()));
+    string a = "2334Hello Word!";
 
-class TA{
-	string state;
-	int anger;
-}
-int init_anger = 100;
-int work_anger = 10;
-void work(string st, TA ta)
-{
-	if (ta.anger <= 100) println(st + ", " + ta.state + " enjoys this work. XD");
-	else println(st + ", " + ta.state + " wants to give up!!!!!");
-	ta.anger = ta.anger + work_anger;
-}
-int main()
-{
-	TA mr;
-	TA mars;
-	mr = new TA;
-	mr.state = "the leading TA";
-	mr.anger = 0;
-	mars = new TA;
-	mars.state = "the striking TA";
-	mars.anger = init_anger;
-	work("MR", mr);
-	work("Mars", mars);
-	work("Mars", mars);
+    println(a.substring(0,7));
+    println(toString(a.parseInt()));
+
+    println(toString(a.ord(4)));
 }

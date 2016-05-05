@@ -11,131 +11,133 @@ var_1:	.word	0
 var_2:	.word	0
 .text
 main:
-	li $a0, 60004
+	li $a0, 60008
 	li $v0, 9
 	syscall
-	move $t5, $v0
-	sw $t5, var_1
+	li $s3, 15001
+	sw $s3, 0($v0)
+	add $s3, $v0, 4
+	sw $s3, var_1
 	sub $sp, $sp, 20
 	sw $ra, 0($sp)
+	li $s5, 1
+L473:
+	lw $s3, var_0
+	sle $s3, $s5, $s3
+	beq $zero, $s3, L474
+	lw $s3, var_1
+	mul $s2, $s5, 4
+	add $s3, $s3, $s2
 	li $s2, 1
-L463:
-	lw $t5, var_0
-	sle $t5, $s2, $t5
-	beq $zero, $t5, L464
-	lw $t5, var_1
-	mul $s3, $s2, 4
-	add $t5, $t5, $s3
-	li $s3, 1
-	sw $s3, 0($t5)
-L465:
-	add $s2, $s2, 1
-	b L463
-L464:
+	sw $s2, 0($s3)
+L475:
+	add $s5, $s5, 1
+	b L473
+L474:
+	li $s5, 2
+L476:
+	lw $s3, var_0
+	sle $s3, $s5, $s3
+	beq $zero, $s3, L477
+	lw $s3, var_1
+	mul $s2, $s5, 4
+	add $s3, $s3, $s2
+	lw $s3, 0($s3)
+	beq $zero, $s3, L479
 	li $s2, 2
-L466:
-	lw $t5, var_0
-	sle $t5, $s2, $t5
-	beq $zero, $t5, L467
-	lw $t5, var_1
-	mul $s3, $s2, 4
-	add $t5, $t5, $s3
-	lw $t5, 0($t5)
-	beq $zero, $t5, L469
-	li $s3, 2
-	sgt $t6, $s2, 3
-	beq $zero, $t6, L471
-	lw $t5, var_1
-	sub $s4, $s2, 2
-	mul $s4, $s4, 4
-	add $t5, $t5, $s4
-	lw $t5, 0($t5)
-	and $s4, $t6, $t5
-L471:
-	beq $zero, $s4, L472
-	lw $t5, var_2
-	add $t5, $t5, 1
-	sw $t5, var_2
-	sub $t5, $s2, 2
-	move $a0, $t5
-	sw $s3, 4($sp)
-	sw $s2, 8($sp)
-	sw $s4, 12($sp)
+	sgt $t6, $s5, 3
+	beq $zero, $t6, L481
+	lw $s3, var_1
+	sub $t9, $s5, 2
+	mul $t9, $t9, 4
+	add $s3, $s3, $t9
+	lw $s3, 0($s3)
+	and $t9, $t6, $s3
+L481:
+	beq $zero, $t9, L482
+	lw $s3, var_2
+	add $s3, $s3, 1
+	sw $s3, var_2
+	sub $s3, $s5, 2
+	move $a0, $s3
+	sw $s2, 4($sp)
+	sw $s5, 8($sp)
+	sw $t9, 12($sp)
 	jal f_toString
-	lw $s3, 4($sp)
-	lw $s2, 8($sp)
-	lw $s4, 12($sp)
-	move $t5, $v0
-	move $a0, $t5
+	lw $s2, 4($sp)
+	lw $s5, 8($sp)
+	lw $t9, 12($sp)
+	move $s3, $v0
+	move $a0, $s3
 	la $a1, msg_1
-	sw $s3, 4($sp)
-	sw $s2, 8($sp)
-	sw $s4, 12($sp)
-	jal f_stringConcatenate
-	lw $s3, 4($sp)
-	lw $s2, 8($sp)
-	lw $s4, 12($sp)
-	move $t5, $v0
-	move $a0, $s2
-	sw $t5, 16($sp)
-	sw $s3, 4($sp)
-	sw $s2, 8($sp)
-	sw $s4, 12($sp)
+	sw $s2, 4($sp)
+	sw $s5, 8($sp)
+	sw $t9, 12($sp)
+	jal f_str.stringConcatenate
+	lw $s2, 4($sp)
+	lw $s5, 8($sp)
+	lw $t9, 12($sp)
+	move $s3, $v0
+	move $a0, $s5
+	sw $s3, 16($sp)
+	sw $s2, 4($sp)
+	sw $s5, 8($sp)
+	sw $t9, 12($sp)
 	jal f_toString
-	lw $t5, 16($sp)
-	lw $s3, 4($sp)
-	lw $s2, 8($sp)
-	lw $s4, 12($sp)
+	lw $s3, 16($sp)
+	lw $s2, 4($sp)
+	lw $s5, 8($sp)
+	lw $t9, 12($sp)
 	move $t6, $v0
-	move $a0, $t5
+	move $a0, $s3
 	move $a1, $t6
-	sw $s3, 4($sp)
-	sw $s2, 8($sp)
-	sw $s4, 12($sp)
-	jal f_stringConcatenate
-	lw $s3, 4($sp)
-	lw $s2, 8($sp)
-	lw $s4, 12($sp)
-	move $t5, $v0
-	move $a0, $t5
+	sw $s2, 4($sp)
+	sw $s5, 8($sp)
+	sw $t9, 12($sp)
+	jal f_str.stringConcatenate
+	lw $s2, 4($sp)
+	lw $s5, 8($sp)
+	lw $t9, 12($sp)
+	move $s3, $v0
+	move $a0, $s3
 	li $v0, 4
 	syscall
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-	b L473
-L472:
-L473:
-L474:
-	mul $t6, $s2, $s3
-	lw $t5, var_0
-	sle $t5, $t6, $t5
-	beq $zero, $t5, L475
-	lw $t5, var_1
-	mul $t6, $s2, $s3
+	b L483
+L482:
+L483:
+L484:
+	mul $t6, $s5, $s2
+	lw $s3, var_0
+	sle $s3, $t6, $s3
+	beq $zero, $s3, L485
+	lw $s3, var_1
+	mul $t6, $s5, $s2
 	mul $t6, $t6, 4
-	add $t5, $t5, $t6
+	add $s3, $s3, $t6
 	li $t6, 0
-	sw $t6, 0($t5)
-	add $s3, $s3, 1
-	b L474
-L475:
-	b L470
-L469:
-L470:
-L468:
+	sw $t6, 0($s3)
 	add $s2, $s2, 1
-	b L466
-L467:
-	lw $t5, var_2
-	move $a0, $t5
+	b L484
+L485:
+	b L480
+L479:
+L480:
+L478:
+	add $s5, $s5, 1
+	b L476
+L477:
+	lw $s3, var_2
+	move $a0, $s3
 	jal f_toString
-	move $t5, $v0
+	move $s3, $v0
 	la $a0, msg_2
-	move $a1, $t5
-	jal f_stringConcatenate
-	move $t5, $v0
-	move $a0, $t5
+	move $a1, $s3
+	jal f_str.stringConcatenate
+	move $s3, $v0
+	move $a0, $s3
 	li $v0, 4
 	syscall
 	la $a0, msg_0
@@ -212,7 +214,7 @@ f_toString:
 	li $a0, 48
 	sb $a0, 0($v0)
 	jr $ra
-f_stringConcatenate:
+f_str.stringConcatenate:
 	subu $sp, $sp, 4
 	sw $ra, 0($sp)
 	move $t2, $a0
@@ -246,4 +248,54 @@ _string_copy:
 	j _begin_string_copy
 	_exit_string_copy:
 	sb $zero, 0($a1)
+	jr $ra
+f_str.substring:
+	subu $sp, $sp, 4
+	sw $ra, 0($sp)
+	move $t0, $a0
+	sub $t1, $a2, $a1
+	add $t1, $t1, 1
+	add $a0, $t1, 5
+	li $v0, 9
+	syscall
+	sw $t1, 0($v0)
+	add $v0, $v0, 4
+	add $a0, $t0, $a1
+	add $t2, $t0, $a2
+	lb $t3, 1($t2)
+	sb $zero, 1($t2)
+	move $a1, $v0
+	move $t4, $v0
+	jal _string_copy
+	move $v0, $t4
+	sb $t3, 1($t2)
+	lw $ra, 0($sp)
+	addu $sp, $sp, 4
+	jr $ra
+f_str.parseInt:
+	li $v0, 0
+	move $t0, $a0
+	li $t2, 1
+	_count_number_pos:
+	lb $t1, 0($t0)
+	bgt $t1, 57, _begin_parse_int
+	blt $t1, 48, _begin_parse_int
+	add $t0, $t0, 1
+	j _count_number_pos
+	_begin_parse_int:
+	sub $t0, $t0, 1
+	_parsing_int:
+	blt $t0, $a0, _finish_parse_int
+	lb $t1, 0($t0)
+	sub $t1, $t1, 48
+	mul $t1, $t1, $t2
+	add $v0, $v0, $t1
+	mul $t2, $t2, 10
+	sub $t0, $t0, 1
+	j _parsing_int
+	_finish_parse_int:
+	jr $ra
+f_str.ord:
+	add $a0, $a0, $a1
+	lb $v0, 0($a0)
 	jr $ra

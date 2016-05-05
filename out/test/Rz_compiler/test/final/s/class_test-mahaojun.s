@@ -20,39 +20,33 @@ var_0:	.word	100
 var_1:	.word	10
 .text
 f_work:
-	sub $sp, $sp, 12
+	sub $sp, $sp, 8
 	sw $ra, 0($sp)
-	move $t5, $a0
-	move $s2, $a1
-	la $s3, 4($s2)
-	lw $s3, 0($s3)
-	sle $s3, $s3, 100
-	beq $zero, $s3, L93
-	move $a0, $t5
-	la $a1, msg_1
-	sw $t5, 4($sp)
-	sw $s2, 8($sp)
-	jal f_stringConcatenate
-	lw $t5, 4($sp)
-	lw $s2, 8($sp)
-	move $s3, $v0
-	la $t6, 0($s2)
-	lw $t6, 0($t6)
+	move $s3, $a0
+	move $s5, $a1
+	la $s2, 4($s5)
+	lw $s2, 0($s2)
+	sle $s2, $s2, 100
+	beq $zero, $s2, L104
 	move $a0, $s3
-	move $a1, $t6
-	sw $t5, 4($sp)
-	sw $s2, 8($sp)
-	jal f_stringConcatenate
-	lw $t5, 4($sp)
-	lw $s2, 8($sp)
+	la $a1, msg_1
+	sw $s5, 4($sp)
+	jal f_str.stringConcatenate
+	lw $s5, 4($sp)
+	move $s3, $v0
+	la $s2, 0($s5)
+	lw $s2, 0($s2)
+	move $a0, $s3
+	move $a1, $s2
+	sw $s5, 4($sp)
+	jal f_str.stringConcatenate
+	lw $s5, 4($sp)
 	move $s3, $v0
 	move $a0, $s3
 	la $a1, msg_2
-	sw $t5, 4($sp)
-	sw $s2, 8($sp)
-	jal f_stringConcatenate
-	lw $t5, 4($sp)
-	lw $s2, 8($sp)
+	sw $s5, 4($sp)
+	jal f_str.stringConcatenate
+	lw $s5, 4($sp)
 	move $s3, $v0
 	move $a0, $s3
 	li $v0, 4
@@ -60,41 +54,43 @@ f_work:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-L93:
-	move $a0, $t5
+	b L105
+L104:
+	move $a0, $s3
 	la $a1, msg_1
-	sw $s2, 8($sp)
-	jal f_stringConcatenate
-	lw $s2, 8($sp)
-	move $t5, $v0
-	la $s3, 0($s2)
-	lw $s3, 0($s3)
-	move $a0, $t5
-	move $a1, $s3
-	sw $s2, 8($sp)
-	jal f_stringConcatenate
-	lw $s2, 8($sp)
-	move $t5, $v0
-	move $a0, $t5
+	sw $s5, 4($sp)
+	jal f_str.stringConcatenate
+	lw $s5, 4($sp)
+	move $s3, $v0
+	la $s2, 0($s5)
+	lw $s2, 0($s2)
+	move $a0, $s3
+	move $a1, $s2
+	sw $s5, 4($sp)
+	jal f_str.stringConcatenate
+	lw $s5, 4($sp)
+	move $s3, $v0
+	move $a0, $s3
 	la $a1, msg_3
-	sw $s2, 8($sp)
-	jal f_stringConcatenate
-	lw $s2, 8($sp)
-	move $t5, $v0
-	move $a0, $t5
+	sw $s5, 4($sp)
+	jal f_str.stringConcatenate
+	lw $s5, 4($sp)
+	move $s3, $v0
+	move $a0, $s3
 	li $v0, 4
 	syscall
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-	la $t5, 4($s2)
-	lw $t5, 0($t5)
-	lw $s3, var_1
-	add $t5, $t5, $s3
-	la $s2, 4($s2)
-	sw $t5, 0($s2)
+L105:
+	la $s3, 4($s5)
+	lw $s3, 0($s3)
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	la $s5, 4($s5)
+	sw $s3, 0($s5)
 	lw $ra, 0($sp)
-	add $sp, $sp, 12
+	add $sp, $sp, 8
 	jr $ra
 main:
 	sub $sp, $sp, 8
@@ -102,35 +98,38 @@ main:
 	li $a0, 8
 	li $v0, 9
 	syscall
-	move $t5, $v0
-	la $s2, 0($t5)
-	la $s3, msg_4
-	sw $s3, 0($s2)
-	la $s2, 4($t5)
-	li $s3, 0
-	sw $s3, 0($s2)
+	move $s3, $v0
+	la $s5, 0($s3)
+	la $s2, msg_4
+	sw $s2, 0($s5)
+	la $s5, 4($s3)
+	li $s2, 0
+	sw $s2, 0($s5)
 	li $a0, 8
 	li $v0, 9
 	syscall
-	move $s2, $v0
-	la $s3, 0($s2)
+	move $s5, $v0
+	la $s2, 0($s5)
 	la $t6, msg_5
-	sw $t6, 0($s3)
-	lw $s3, var_0
-	la $t6, 4($s2)
-	sw $s3, 0($t6)
-	la $a0, msg_6
-	move $a1, $t5
-	sw $s2, 4($sp)
+	sw $t6, 0($s2)
+	lw $s2, var_0
+	la $t6, 4($s5)
+	sw $s2, 0($t6)
+	la $s2, msg_6
+	move $a0, $s2
+	move $a1, $s3
+	sw $s5, 4($sp)
 	jal f_work
-	lw $s2, 4($sp)
-	la $a0, msg_7
-	move $a1, $s2
-	sw $s2, 4($sp)
+	lw $s5, 4($sp)
+	la $s3, msg_7
+	move $a0, $s3
+	move $a1, $s5
+	sw $s5, 4($sp)
 	jal f_work
-	lw $s2, 4($sp)
-	la $a0, msg_7
-	move $a1, $s2
+	lw $s5, 4($sp)
+	la $s3, msg_7
+	move $a0, $s3
+	move $a1, $s5
 	jal f_work
 	lw $ra, 0($sp)
 	add $sp, $sp, 8
@@ -199,7 +198,7 @@ f_toString:
 	li $a0, 48
 	sb $a0, 0($v0)
 	jr $ra
-f_stringConcatenate:
+f_str.stringConcatenate:
 	subu $sp, $sp, 4
 	sw $ra, 0($sp)
 	move $t2, $a0

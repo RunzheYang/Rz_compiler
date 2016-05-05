@@ -13,564 +13,587 @@ var_4:	.word	0
 f_search:
 	sub $sp, $sp, 24
 	sw $ra, 0($sp)
-	move $t5, $a0
-	move $s2, $a1
-	move $s3, $a2
-	sgt $t6, $s2, 0
-	bne $zero, $t6, L257
-	slt $s4, $s2, 0
-	or $s4, $t6, $s4
-L257:
-	bne $zero, $s4, L258
-	seq $t6, $t5, 0
-	or $s5, $s4, $t6
-L258:
-	bne $zero, $s5, L259
+	move $s3, $a0
+	move $s5, $a1
+	move $s2, $a2
+	sgt $t6, $s5, 0
+	bne $zero, $t6, L305
+	slt $t9, $s5, 0
+	or $t9, $t6, $t9
+L305:
+	bne $zero, $t9, L306
+	seq $t6, $s3, 0
+	or $s0, $t9, $t6
+L306:
+	bne $zero, $s0, L307
 	lw $t6, var_0
-	sub $s4, $t5, 1
-	mul $s4, $s4, 4
-	add $t6, $t6, $s4
+	sub $t9, $s3, 1
+	mul $t9, $t9, 4
+	add $t6, $t6, $t9
 	lw $t6, 0($t6)
 	la $t6, 0($t6)
-	lw $s4, 0($t6)
+	lw $t9, 0($t6)
 	lw $t6, var_0
-	sub $t4, $t5, 1
-	mul $t4, $t4, 4
-	add $t6, $t6, $t4
+	sub $s7, $s3, 1
+	mul $s7, $s7, 4
+	add $t6, $t6, $s7
 	lw $t6, 0($t6)
 	la $t6, 4($t6)
 	lw $t6, 0($t6)
-	add $s4, $s4, $t6
+	add $t9, $t9, $t6
 	lw $t6, var_0
-	sub $t4, $t5, 1
-	mul $t4, $t4, 4
-	add $t6, $t6, $t4
+	sub $s7, $s3, 1
+	mul $s7, $s7, 4
+	add $t6, $t6, $s7
 	lw $t6, 0($t6)
 	la $t6, 8($t6)
 	lw $t6, 0($t6)
-	add $t6, $s4, $t6
+	add $t6, $t9, $t6
 	seq $t6, $t6, 15
-	or $t4, $s5, $t6
-L259:
-	beq $zero, $t4, L260
-	seq $t6, $t5, 2
-	beq $zero, $t6, L261
-	seq $s4, $s2, 2
-	and $t1, $t6, $s4
-L261:
-	beq $zero, $t1, L262
-	li $s4, 45
-	sub $s4, $s4, $s3
+	or $s7, $s0, $t6
+L307:
+	beq $zero, $s7, L308
+	seq $t6, $s3, 2
+	beq $zero, $t6, L310
+	seq $t9, $s5, 2
+	and $t0, $t6, $t9
+L310:
+	beq $zero, $t0, L311
+	li $s3, 45
+	sub $s3, $s3, $s2
 	lw $t6, var_0
-	la $t6, 8($t6)
-	lw $t6, 0($t6)
-	la $t6, 8($t6)
-	sw $s4, 0($t6)
+	la $s5, 8($t6)
+	lw $s5, 0($s5)
+	la $s5, 8($s5)
+	sw $s3, 0($s5)
 	lw $t6, var_0
-	la $t6, 0($t6)
-	lw $t6, 0($t6)
-	la $t6, 0($t6)
-	lw $s4, 0($t6)
+	la $s3, 0($t6)
+	lw $s3, 0($s3)
+	la $s3, 0($s3)
+	lw $s3, 0($s3)
 	lw $t6, var_0
-	la $t6, 0($t6)
-	lw $t6, 0($t6)
-	la $t6, 4($t6)
-	lw $t6, 0($t6)
-	add $s4, $s4, $t6
+	la $s5, 0($t6)
+	lw $s5, 0($s5)
+	la $s5, 4($s5)
+	lw $s5, 0($s5)
+	add $s3, $s3, $s5
 	lw $t6, var_0
-	la $t6, 0($t6)
-	lw $t6, 0($t6)
-	la $t6, 8($t6)
-	lw $t6, 0($t6)
-	add $t6, $s4, $t6
-	move $s4, $t6
+	la $s5, 0($t6)
+	lw $s5, 0($s5)
+	la $s5, 8($s5)
+	lw $s5, 0($s5)
+	add $s3, $s3, $s5
 	lw $t6, var_0
-	la $t6, 4($t6)
-	lw $t6, 0($t6)
-	la $t6, 0($t6)
-	lw $s5, 0($t6)
+	la $s5, 4($t6)
+	lw $s5, 0($s5)
+	la $s5, 0($s5)
+	lw $s5, 0($s5)
 	lw $t6, var_0
-	la $t6, 4($t6)
-	lw $t6, 0($t6)
-	la $t6, 4($t6)
-	lw $t6, 0($t6)
-	add $s5, $s5, $t6
+	la $s2, 4($t6)
+	lw $s2, 0($s2)
+	la $s2, 4($s2)
+	lw $s2, 0($s2)
+	add $s5, $s5, $s2
 	lw $t6, var_0
-	la $t6, 4($t6)
-	lw $t6, 0($t6)
-	la $t6, 8($t6)
-	lw $t6, 0($t6)
-	add $t6, $s5, $t6
-	seq $s5, $t6, $s4
-	beq $zero, $s5, L263
+	la $s2, 4($t6)
+	lw $s2, 0($s2)
+	la $s2, 8($s2)
+	lw $s2, 0($s2)
+	add $s5, $s5, $s2
+	seq $s5, $s5, $s3
+	beq $zero, $s5, L313
 	lw $t6, var_0
-	la $t6, 8($t6)
-	lw $t6, 0($t6)
-	la $t6, 0($t6)
-	lw $t4, 0($t6)
-	lw $t6, var_0
-	la $t6, 8($t6)
-	lw $t6, 0($t6)
-	la $t6, 4($t6)
-	lw $t6, 0($t6)
-	add $t4, $t4, $t6
-	lw $t6, var_0
-	la $t6, 8($t6)
-	lw $t6, 0($t6)
-	la $t6, 8($t6)
-	lw $t6, 0($t6)
-	add $t6, $t4, $t6
-	seq $t6, $t6, $s4
-	and $t0, $s5, $t6
-L263:
-	beq $zero, $t0, L264
-	lw $t6, var_0
-	la $t6, 0($t6)
-	lw $t6, 0($t6)
-	la $t6, 0($t6)
-	lw $s5, 0($t6)
-	lw $t6, var_0
-	la $t6, 4($t6)
-	lw $t6, 0($t6)
-	la $t6, 0($t6)
-	lw $t6, 0($t6)
-	add $s5, $s5, $t6
-	lw $t6, var_0
-	la $t6, 8($t6)
-	lw $t6, 0($t6)
-	la $t6, 0($t6)
-	lw $t6, 0($t6)
-	add $t6, $s5, $t6
-	seq $t6, $t6, $s4
-	and $t2, $t0, $t6
-L264:
-	beq $zero, $t2, L265
-	lw $t6, var_0
-	la $t6, 0($t6)
-	lw $t6, 0($t6)
-	la $t6, 4($t6)
-	lw $s5, 0($t6)
-	lw $t6, var_0
-	la $t6, 4($t6)
-	lw $t6, 0($t6)
-	la $t6, 4($t6)
-	lw $t6, 0($t6)
-	add $s5, $s5, $t6
+	la $s2, 8($t6)
+	lw $s2, 0($s2)
+	la $s2, 0($s2)
+	lw $s2, 0($s2)
 	lw $t6, var_0
 	la $t6, 8($t6)
 	lw $t6, 0($t6)
 	la $t6, 4($t6)
 	lw $t6, 0($t6)
-	add $t6, $s5, $t6
-	seq $t6, $t6, $s4
-	and $s6, $t2, $t6
-L265:
-	beq $zero, $s6, L266
-	lw $t6, var_0
-	la $t6, 0($t6)
-	lw $t6, 0($t6)
-	la $t6, 8($t6)
-	lw $s5, 0($t6)
-	lw $t6, var_0
-	la $t6, 4($t6)
-	lw $t6, 0($t6)
-	la $t6, 8($t6)
-	lw $t6, 0($t6)
-	add $s5, $s5, $t6
+	add $s2, $s2, $t6
 	lw $t6, var_0
 	la $t6, 8($t6)
 	lw $t6, 0($t6)
 	la $t6, 8($t6)
 	lw $t6, 0($t6)
-	add $t6, $s5, $t6
-	seq $t6, $t6, $s4
-	and $t3, $s6, $t6
-L266:
-	beq $zero, $t3, L267
+	add $s2, $s2, $t6
+	seq $s2, $s2, $s3
+	and $t3, $s5, $s2
+L313:
+	beq $zero, $t3, L314
 	lw $t6, var_0
-	la $t6, 0($t6)
-	lw $t6, 0($t6)
-	la $t6, 0($t6)
-	lw $s5, 0($t6)
+	la $s5, 0($t6)
+	lw $s5, 0($s5)
+	la $s5, 0($s5)
+	lw $s5, 0($s5)
 	lw $t6, var_0
-	la $t6, 4($t6)
-	lw $t6, 0($t6)
-	la $t6, 4($t6)
-	lw $t6, 0($t6)
-	add $s5, $s5, $t6
+	la $s2, 4($t6)
+	lw $s2, 0($s2)
+	la $s2, 0($s2)
+	lw $s2, 0($s2)
+	add $s5, $s5, $s2
 	lw $t6, var_0
-	la $t6, 8($t6)
-	lw $t6, 0($t6)
-	la $t6, 8($t6)
-	lw $t6, 0($t6)
-	add $t6, $s5, $t6
-	seq $t6, $t6, $s4
-	and $t7, $t3, $t6
-L267:
-	beq $zero, $t7, L268
+	la $s2, 8($t6)
+	lw $s2, 0($s2)
+	la $s2, 0($s2)
+	lw $s2, 0($s2)
+	add $s5, $s5, $s2
+	seq $s5, $s5, $s3
+	and $s4, $t3, $s5
+L314:
+	beq $zero, $s4, L315
 	lw $t6, var_0
-	la $t6, 8($t6)
-	lw $t6, 0($t6)
-	la $t6, 0($t6)
-	lw $s5, 0($t6)
+	la $s5, 0($t6)
+	lw $s5, 0($s5)
+	la $s5, 4($s5)
+	lw $s5, 0($s5)
 	lw $t6, var_0
-	la $t6, 4($t6)
-	lw $t6, 0($t6)
-	la $t6, 4($t6)
-	lw $t6, 0($t6)
-	add $s5, $s5, $t6
+	la $s2, 4($t6)
+	lw $s2, 0($s2)
+	la $s2, 4($s2)
+	lw $s2, 0($s2)
+	add $s5, $s5, $s2
 	lw $t6, var_0
-	la $t6, 0($t6)
-	lw $t6, 0($t6)
-	la $t6, 8($t6)
-	lw $t6, 0($t6)
-	add $t6, $s5, $t6
-	seq $t6, $t6, $s4
-	and $s0, $t7, $t6
-L268:
-	beq $zero, $s0, L269
-	lw $t6, var_2
-	la $t6, 0($t6)
-	lw $t6, 0($t6)
-	add $s4, $t6, 1
-	lw $t6, var_2
-	la $t6, 0($t6)
-	sw $s4, 0($t6)
-	li $s4, 0
-L270:
-	sle $t6, $s4, 2
-	beq $zero, $t6, L271
-	li $s5, 0
-L273:
-	sle $t6, $s5, 2
-	beq $zero, $t6, L274
+	la $s2, 8($t6)
+	lw $s2, 0($s2)
+	la $s2, 4($s2)
+	lw $s2, 0($s2)
+	add $s5, $s5, $s2
+	seq $s5, $s5, $s3
+	and $t4, $s4, $s5
+L315:
+	beq $zero, $t4, L316
 	lw $t6, var_0
-	mul $t4, $s4, 4
-	add $t6, $t6, $t4
-	lw $t6, 0($t6)
-	mul $t4, $s5, 4
-	add $t6, $t6, $t4
-	lw $t6, 0($t6)
-	move $a0, $t6
-	sw $t5, 4($sp)
-	sw $s2, 8($sp)
-	sw $s3, 12($sp)
-	sw $s4, 16($sp)
-	sw $s5, 20($sp)
+	la $s5, 0($t6)
+	lw $s5, 0($s5)
+	la $s5, 8($s5)
+	lw $s5, 0($s5)
+	lw $t6, var_0
+	la $s2, 4($t6)
+	lw $s2, 0($s2)
+	la $s2, 8($s2)
+	lw $s2, 0($s2)
+	add $s5, $s5, $s2
+	lw $t6, var_0
+	la $s2, 8($t6)
+	lw $s2, 0($s2)
+	la $s2, 8($s2)
+	lw $s2, 0($s2)
+	add $s5, $s5, $s2
+	seq $s5, $s5, $s3
+	and $t1, $t4, $s5
+L316:
+	beq $zero, $t1, L317
+	lw $t6, var_0
+	la $s5, 0($t6)
+	lw $s5, 0($s5)
+	la $s5, 0($s5)
+	lw $s5, 0($s5)
+	lw $t6, var_0
+	la $s2, 4($t6)
+	lw $s2, 0($s2)
+	la $s2, 4($s2)
+	lw $s2, 0($s2)
+	add $s5, $s5, $s2
+	lw $t6, var_0
+	la $s2, 8($t6)
+	lw $s2, 0($s2)
+	la $s2, 8($s2)
+	lw $s2, 0($s2)
+	add $s5, $s5, $s2
+	seq $s5, $s5, $s3
+	and $s1, $t1, $s5
+L317:
+	beq $zero, $s1, L318
+	lw $t6, var_0
+	la $s5, 8($t6)
+	lw $s5, 0($s5)
+	la $s5, 0($s5)
+	lw $s5, 0($s5)
+	lw $t6, var_0
+	la $s2, 4($t6)
+	lw $s2, 0($s2)
+	la $s2, 4($s2)
+	lw $s2, 0($s2)
+	add $s5, $s5, $s2
+	lw $t6, var_0
+	la $s2, 0($t6)
+	lw $s2, 0($s2)
+	la $s2, 8($s2)
+	lw $s2, 0($s2)
+	add $s5, $s5, $s2
+	seq $s3, $s5, $s3
+	and $t8, $s1, $s3
+L318:
+	beq $zero, $t8, L319
+	lw $s3, var_2
+	la $s3, 0($s3)
+	lw $s3, 0($s3)
+	add $s5, $s3, 1
+	lw $s3, var_2
+	la $s3, 0($s3)
+	sw $s5, 0($s3)
+	li $t9, 0
+L321:
+	sle $s3, $t9, 2
+	beq $zero, $s3, L322
+	li $s3, 0
+L324:
+	sle $s5, $s3, 2
+	beq $zero, $s5, L325
+	lw $t6, var_0
+	mul $s5, $t9, 4
+	add $s5, $t6, $s5
+	lw $s5, 0($s5)
+	mul $s2, $s3, 4
+	add $s5, $s5, $s2
+	lw $s5, 0($s5)
+	move $a0, $s5
+	sw $s3, 4($sp)
+	sw $t9, 8($sp)
 	jal f_toString
-	lw $t5, 4($sp)
-	lw $s2, 8($sp)
-	lw $s3, 12($sp)
-	lw $s4, 16($sp)
-	lw $s5, 20($sp)
-	move $t6, $v0
-	move $a0, $t6
+	lw $s3, 4($sp)
+	lw $t9, 8($sp)
+	move $s5, $v0
+	move $a0, $s5
 	li $v0, 4
 	syscall
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-L275:
-	add $s5, $s5, 1
-	b L273
-L274:
+L326:
+	add $s3, $s3, 1
+	b L324
+L325:
 	la $a0, msg_1
 	li $v0, 4
 	syscall
-L272:
-	add $s4, $s4, 1
-	b L270
-L271:
+L323:
+	add $t9, $t9, 1
+	b L321
+L322:
 	la $a0, msg_1
 	li $v0, 4
 	syscall
-L269:
-L262:
-	seq $t6, $s2, 2
-	beq $zero, $t6, L276
+	b L320
+L319:
+L320:
+	b L312
+L311:
+	seq $t6, $s5, 2
+	beq $zero, $t6, L327
 	lw $t6, var_0
-	mul $s4, $t5, 4
-	add $t6, $t6, $s4
+	mul $t9, $s3, 4
+	add $t6, $t6, $t9
 	lw $t6, 0($t6)
 	la $t6, 0($t6)
 	lw $t6, 0($t6)
-	li $s4, 15
-	sub $s4, $s4, $t6
+	li $t9, 15
+	sub $t9, $t9, $t6
 	lw $t6, var_0
-	mul $s5, $t5, 4
-	add $t6, $t6, $s5
+	mul $s0, $s3, 4
+	add $t6, $t6, $s0
 	lw $t6, 0($t6)
 	la $t6, 4($t6)
 	lw $t6, 0($t6)
-	sub $s4, $s4, $t6
+	sub $t9, $t9, $t6
 	lw $t6, var_0
-	mul $s5, $t5, 4
-	add $t6, $t6, $s5
+	mul $s0, $s3, 4
+	add $t6, $t6, $s0
 	lw $t6, 0($t6)
-	mul $s5, $s2, 4
-	add $t6, $t6, $s5
-	sw $s4, 0($t6)
+	mul $s0, $s5, 4
+	add $t6, $t6, $s0
+	sw $t9, 0($t6)
 	lw $t6, var_0
-	mul $s4, $t5, 4
-	add $t6, $t6, $s4
+	mul $t9, $s3, 4
+	add $t6, $t6, $t9
 	lw $t6, 0($t6)
-	mul $s4, $s2, 4
-	add $t6, $t6, $s4
+	mul $t9, $s5, 4
+	add $t6, $t6, $t9
 	lw $t6, 0($t6)
-	sgt $s4, $t6, 0
-	beq $zero, $s4, L277
+	sgt $t9, $t6, 0
+	beq $zero, $t9, L329
 	lw $t6, var_0
-	mul $s5, $t5, 4
-	add $t6, $t6, $s5
+	mul $s0, $s3, 4
+	add $t6, $t6, $s0
 	lw $t6, 0($t6)
-	mul $s5, $s2, 4
-	add $t6, $t6, $s5
+	mul $s0, $s5, 4
+	add $t6, $t6, $s0
 	lw $t6, 0($t6)
 	slt $t6, $t6, 10
-	and $t9, $s4, $t6
-L277:
-	beq $zero, $t9, L278
-	lw $s5, var_1
+	and $t7, $t9, $t6
+L329:
+	beq $zero, $t7, L330
+	lw $s0, var_1
 	lw $t6, var_0
-	mul $s4, $t5, 4
-	add $t6, $t6, $s4
+	mul $t9, $s3, 4
+	add $t6, $t6, $t9
 	lw $t6, 0($t6)
-	mul $s4, $s2, 4
-	add $t6, $t6, $s4
+	mul $t9, $s5, 4
+	add $t6, $t6, $t9
 	lw $t6, 0($t6)
 	mul $t6, $t6, 4
-	add $t6, $s5, $t6
+	add $t6, $s0, $t6
 	lw $t6, 0($t6)
 	seq $t6, $t6, 0
-	and $t8, $t9, $t6
-L278:
-	beq $zero, $t8, L279
-	lw $s5, var_1
+	and $t5, $t7, $t6
+L330:
+	beq $zero, $t5, L331
+	lw $s0, var_1
 	lw $t6, var_0
-	mul $s4, $t5, 4
-	add $t6, $t6, $s4
+	mul $t9, $s3, 4
+	add $t6, $t6, $t9
 	lw $t6, 0($t6)
-	mul $s4, $s2, 4
-	add $t6, $t6, $s4
+	mul $t9, $s5, 4
+	add $t6, $t6, $t9
 	lw $t6, 0($t6)
 	mul $t6, $t6, 4
-	add $t6, $s5, $t6
-	li $s4, 1
-	sw $s4, 0($t6)
-	seq $t6, $s2, 2
-	beq $zero, $t6, L280
-	add $t6, $t5, 1
-	move $a0, $t6
-	li $a1, 0
+	add $t6, $s0, $t6
+	li $t9, 1
+	sw $t9, 0($t6)
+	seq $t6, $s5, 2
+	beq $zero, $t6, L333
+	add $t9, $s3, 1
+	li $s0, 0
 	lw $t6, var_0
-	mul $s4, $t5, 4
-	add $t6, $t6, $s4
+	mul $s7, $s3, 4
+	add $t6, $t6, $s7
 	lw $t6, 0($t6)
-	mul $s4, $s2, 4
-	add $t6, $t6, $s4
+	mul $s7, $s5, 4
+	add $t6, $t6, $s7
 	lw $t6, 0($t6)
-	add $t6, $s3, $t6
-	move $a2, $t6
-	sw $t5, 4($sp)
-	sw $s2, 8($sp)
+	add $s2, $s2, $t6
+	move $a0, $t9
+	move $a1, $s0
+	move $a2, $s2
 	sw $s3, 12($sp)
+	sw $s5, 16($sp)
 	jal f_search
-	lw $t5, 4($sp)
-	lw $s2, 8($sp)
 	lw $s3, 12($sp)
-L280:
-	move $a0, $t5
-	add $t6, $s2, 1
-	move $a1, $t6
+	lw $s5, 16($sp)
+	b L334
+L333:
+	add $t9, $s5, 1
 	lw $t6, var_0
-	mul $s4, $t5, 4
-	add $t6, $t6, $s4
+	mul $s0, $s3, 4
+	add $t6, $t6, $s0
 	lw $t6, 0($t6)
-	mul $s4, $s2, 4
-	add $t6, $t6, $s4
+	mul $s0, $s5, 4
+	add $t6, $t6, $s0
 	lw $t6, 0($t6)
-	add $t6, $s3, $t6
-	move $a2, $t6
-	sw $t5, 4($sp)
-	sw $s2, 8($sp)
+	add $s2, $s2, $t6
+	move $a0, $s3
+	move $a1, $t9
+	move $a2, $s2
 	sw $s3, 12($sp)
+	sw $s5, 16($sp)
 	jal f_search
-	lw $t5, 4($sp)
-	lw $s2, 8($sp)
 	lw $s3, 12($sp)
-	lw $s5, var_1
+	lw $s5, 16($sp)
+L334:
+	lw $s0, var_1
 	lw $t6, var_0
-	mul $s4, $t5, 4
-	add $t6, $t6, $s4
-	lw $t6, 0($t6)
-	mul $s4, $s2, 4
-	add $t6, $t6, $s4
-	lw $t6, 0($t6)
-	mul $t6, $t6, 4
-	add $t6, $s5, $t6
-	li $s4, 0
-	sw $s4, 0($t6)
-L279:
-L276:
-	li $s4, 1
-L281:
-	sle $t6, $s4, 9
-	beq $zero, $t6, L282
-	lw $s5, var_1
-	mul $t6, $s4, 4
-	add $t6, $s5, $t6
+	mul $s3, $s3, 4
+	add $s3, $t6, $s3
+	lw $s3, 0($s3)
+	mul $s5, $s5, 4
+	add $s3, $s3, $s5
+	lw $s3, 0($s3)
+	mul $s3, $s3, 4
+	add $s3, $s0, $s3
+	li $s5, 0
+	sw $s5, 0($s3)
+	b L332
+L331:
+L332:
+	b L328
+L327:
+	li $t9, 1
+L335:
+	sle $t6, $t9, 9
+	beq $zero, $t6, L336
+	lw $s0, var_1
+	mul $t6, $t9, 4
+	add $t6, $s0, $t6
 	lw $t6, 0($t6)
 	seq $t6, $t6, 0
-	beq $zero, $t6, L284
-	lw $s5, var_1
-	mul $t6, $s4, 4
-	add $t6, $s5, $t6
-	li $s5, 1
-	sw $s5, 0($t6)
+	beq $zero, $t6, L338
+	lw $s0, var_1
+	mul $t6, $t9, 4
+	add $t6, $s0, $t6
+	li $s0, 1
+	sw $s0, 0($t6)
 	lw $t6, var_0
-	mul $s5, $t5, 4
-	add $t6, $t6, $s5
+	mul $s0, $s3, 4
+	add $t6, $t6, $s0
 	lw $t6, 0($t6)
-	mul $s5, $s2, 4
-	add $t6, $t6, $s5
-	move $s5, $s4
-	sw $s5, 0($t6)
-	seq $t6, $s2, 2
-	beq $zero, $t6, L285
-	add $t6, $t5, 1
+	mul $s0, $s5, 4
+	add $t6, $t6, $s0
+	move $s0, $t9
+	sw $s0, 0($t6)
+	seq $t6, $s5, 2
+	beq $zero, $t6, L340
+	add $t6, $s3, 1
+	li $s0, 0
+	add $s7, $s2, $t9
 	move $a0, $t6
-	li $a1, 0
-	add $t6, $s3, $s4
-	move $a2, $t6
-	sw $t5, 4($sp)
-	sw $s2, 8($sp)
+	move $a1, $s0
+	move $a2, $s7
 	sw $s3, 12($sp)
-	sw $s4, 16($sp)
+	sw $s5, 16($sp)
+	sw $s2, 20($sp)
+	sw $t9, 8($sp)
 	jal f_search
-	lw $t5, 4($sp)
-	lw $s2, 8($sp)
 	lw $s3, 12($sp)
-	lw $s4, 16($sp)
-L285:
-	move $a0, $t5
-	add $t6, $s2, 1
+	lw $s5, 16($sp)
+	lw $s2, 20($sp)
+	lw $t9, 8($sp)
+	b L341
+L340:
+	add $t6, $s5, 1
+	add $s0, $s2, $t9
+	move $a0, $s3
 	move $a1, $t6
-	add $t6, $s3, $s4
-	move $a2, $t6
-	sw $t5, 4($sp)
-	sw $s2, 8($sp)
+	move $a2, $s0
 	sw $s3, 12($sp)
-	sw $s4, 16($sp)
+	sw $s5, 16($sp)
+	sw $s2, 20($sp)
+	sw $t9, 8($sp)
 	jal f_search
-	lw $t5, 4($sp)
-	lw $s2, 8($sp)
 	lw $s3, 12($sp)
-	lw $s4, 16($sp)
+	lw $s5, 16($sp)
+	lw $s2, 20($sp)
+	lw $t9, 8($sp)
+L341:
 	lw $t6, var_0
-	mul $s5, $t5, 4
-	add $t6, $t6, $s5
+	mul $s0, $s3, 4
+	add $t6, $t6, $s0
 	lw $t6, 0($t6)
-	mul $s5, $s2, 4
-	add $t6, $t6, $s5
-	li $s5, 0
-	sw $s5, 0($t6)
-	lw $s5, var_1
-	mul $t6, $s4, 4
-	add $t6, $s5, $t6
-	li $s5, 0
-	sw $s5, 0($t6)
-L284:
-L283:
-	add $s4, $s4, 1
-	b L281
-L282:
-L260:
+	mul $s0, $s5, 4
+	add $t6, $t6, $s0
+	li $s0, 0
+	sw $s0, 0($t6)
+	lw $s0, var_1
+	mul $t6, $t9, 4
+	add $t6, $s0, $t6
+	li $s0, 0
+	sw $s0, 0($t6)
+	b L339
+L338:
+L339:
+L337:
+	add $t9, $t9, 1
+	b L335
+L336:
+L328:
+L312:
+	b L309
+L308:
+L309:
 	lw $ra, 0($sp)
 	add $sp, $sp, 24
 	jr $ra
 f_origin:
 	sub $sp, $sp, 4
 	sw $ra, 0($sp)
-	move $t5, $a0
-	mul $s2, $t5, 4
-	add $a0, $zero, $s2
+	move $s3, $a0
+	mul $s5, $s3, 4
+	add $s5, $s5, 4
+	add $a0, $zero, $s5
 	li $v0, 9
 	syscall
-	move $t6, $v0
+	move $s5, $s3
+	sw $s5, 0($v0)
+	add $s5, $v0, 4
+	move $t6, $s5
 	sw $t6, var_0
-	li $s2, 0
-	sw $s2, var_3
-L251:
-	lw $s2, var_3
-	slt $s2, $s2, $t5
-	beq $zero, $s2, L252
-	mul $s2, $t5, 4
-	add $a0, $zero, $s2
+	li $s5, 0
+	sw $s5, var_3
+L299:
+	lw $s5, var_3
+	slt $s5, $s5, $s3
+	beq $zero, $s5, L300
+	mul $s5, $s3, 4
+	add $s5, $s5, 4
+	add $a0, $zero, $s5
 	li $v0, 9
 	syscall
+	move $s5, $s3
+	sw $s5, 0($v0)
+	add $s2, $v0, 4
 	lw $t6, var_0
-	lw $s2, var_3
-	mul $s2, $s2, 4
-	add $s2, $t6, $s2
-	move $s3, $v0
-	sw $s3, 0($s2)
+	lw $s5, var_3
+	mul $s5, $s5, 4
+	add $s5, $t6, $s5
+	sw $s2, 0($s5)
+	li $s5, 0
+	sw $s5, var_4
+L302:
+	lw $s5, var_4
+	slt $s5, $s5, $s3
+	beq $zero, $s5, L303
+	lw $t6, var_0
+	lw $s5, var_3
+	mul $s5, $s5, 4
+	add $s5, $t6, $s5
+	lw $s2, 0($s5)
+	lw $s5, var_4
+	mul $s5, $s5, 4
+	add $s5, $s2, $s5
 	li $s2, 0
-	sw $s2, var_4
-L254:
-	lw $s2, var_4
-	slt $s2, $s2, $t5
-	beq $zero, $s2, L255
-	lw $t6, var_0
-	lw $s2, var_3
-	mul $s2, $s2, 4
-	add $s2, $t6, $s2
-	lw $s3, 0($s2)
-	lw $s2, var_4
-	mul $s2, $s2, 4
-	add $s2, $s3, $s2
-	li $s3, 0
-	sw $s3, 0($s2)
-L256:
-	lw $s2, var_4
-	add $s2, $s2, 1
-	sw $s2, var_4
-	b L254
-L255:
-L253:
-	lw $s2, var_3
-	add $s2, $s2, 1
-	sw $s2, var_3
-	b L251
-L252:
+	sw $s2, 0($s5)
+L304:
+	lw $s5, var_4
+	add $s5, $s5, 1
+	sw $s5, var_4
+	b L302
+L303:
+L301:
+	lw $s5, var_3
+	add $s5, $s5, 1
+	sw $s5, var_3
+	b L299
+L300:
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
 main:
-	li $a0, 40
+	li $a0, 44
 	li $v0, 9
 	syscall
-	move $s5, $v0
-	sw $s5, var_1
-	li $a0, 4
+	li $s3, 10
+	sw $s3, 0($v0)
+	add $s3, $v0, 4
+	move $s0, $s3
+	sw $s0, var_1
+	li $a0, 8
 	li $v0, 9
 	syscall
-	move $t6, $v0
-	sw $t6, var_2
+	li $s3, 1
+	sw $s3, 0($v0)
+	add $s3, $v0, 4
+	sw $s3, var_2
 	sub $sp, $sp, 4
 	sw $ra, 0($sp)
-	li $a0, 3
+	li $s3, 3
+	move $a0, $s3
 	jal f_origin
-	li $a0, 0
-	li $a1, 0
-	li $a2, 0
+	li $s3, 0
+	li $s5, 0
+	li $s2, 0
+	move $a0, $s3
+	move $a1, $s5
+	move $a2, $s2
 	jal f_search
-	lw $t6, var_2
-	la $t5, 0($t6)
-	lw $t5, 0($t5)
-	move $a0, $t5
+	lw $s3, var_2
+	la $s3, 0($s3)
+	lw $s3, 0($s3)
+	move $a0, $s3
 	jal f_toString
-	move $t5, $v0
-	move $a0, $t5
+	move $s3, $v0
+	move $a0, $s3
 	li $v0, 4
 	syscall
 	la $a0, msg_1
@@ -647,7 +670,7 @@ f_toString:
 	li $a0, 48
 	sb $a0, 0($v0)
 	jr $ra
-f_stringConcatenate:
+f_str.stringConcatenate:
 	subu $sp, $sp, 4
 	sw $ra, 0($sp)
 	move $t2, $a0
@@ -681,4 +704,54 @@ _string_copy:
 	j _begin_string_copy
 	_exit_string_copy:
 	sb $zero, 0($a1)
+	jr $ra
+f_str.substring:
+	subu $sp, $sp, 4
+	sw $ra, 0($sp)
+	move $t0, $a0
+	sub $t1, $a2, $a1
+	add $t1, $t1, 1
+	add $a0, $t1, 5
+	li $v0, 9
+	syscall
+	sw $t1, 0($v0)
+	add $v0, $v0, 4
+	add $a0, $t0, $a1
+	add $t2, $t0, $a2
+	lb $t3, 1($t2)
+	sb $zero, 1($t2)
+	move $a1, $v0
+	move $t4, $v0
+	jal _string_copy
+	move $v0, $t4
+	sb $t3, 1($t2)
+	lw $ra, 0($sp)
+	addu $sp, $sp, 4
+	jr $ra
+f_str.parseInt:
+	li $v0, 0
+	move $t0, $a0
+	li $t2, 1
+	_count_number_pos:
+	lb $t1, 0($t0)
+	bgt $t1, 57, _begin_parse_int
+	blt $t1, 48, _begin_parse_int
+	add $t0, $t0, 1
+	j _count_number_pos
+	_begin_parse_int:
+	sub $t0, $t0, 1
+	_parsing_int:
+	blt $t0, $a0, _finish_parse_int
+	lb $t1, 0($t0)
+	sub $t1, $t1, 48
+	mul $t1, $t1, $t2
+	add $v0, $v0, $t1
+	mul $t2, $t2, 10
+	sub $t0, $t0, 1
+	j _parsing_int
+	_finish_parse_int:
+	jr $ra
+f_str.ord:
+	add $a0, $a0, $a1
+	lb $v0, 0($a0)
 	jr $ra

@@ -16,70 +16,6 @@ msg_5:	.asciiz	"four scores and seven years"
 msg_6:	.asciiz	"45 best songs in the world"
 .text
 main:
-	sub $sp, $sp, 4
-	sw $ra, 0($sp)
-	li $a0, 12
-	li $v0, 9
-	syscall
-	la $a0, msg_0
-	jal f_toString
-	move $t5, $v0
-	la $a0, msg_0
-	move $a1, $t5
-	jal f_stringConcatenate
-	move $t5, $v0
-	move $a0, $t5
-	la $a1, msg_1
-	jal f_stringConcatenate
-	move $t5, $v0
-	move $a0, $t5
-	li $v0, 4
-	syscall
-	la $a0, msg_3
-	li $v0, 4
-	syscall
-	la $a0, msg_2
-	li $v0, 4
-	syscall
-	move $t5, $v0
-	move $a0, $t5
-	jal f_toString
-	move $t5, $v0
-	move $a0, $t5
-	li $v0, 4
-	syscall
-	move $t5, $v0
-	move $a0, $t5
-	li $v0, 4
-	syscall
-	la $a0, msg_2
-	li $v0, 4
-	syscall
-	move $t5, $v0
-	move $a0, $t5
-	jal f_toString
-	move $t5, $v0
-	move $a0, $t5
-	li $v0, 4
-	syscall
-	la $a0, msg_2
-	li $v0, 4
-	syscall
-	move $t5, $v0
-	move $v0, $t5
-	lw $ra, 0($sp)
-	add $sp, $sp, 4
-	jr $ra
-	lw $ra, 0($sp)
-	add $sp, $sp, 4
-	jr $ra
-	b main_end
-main_end:
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	li $v0, 10
-	syscall
 f_toString:
 	li $t0, 0
 	bgez $a0, _skip_set_less_than_zero
@@ -137,7 +73,7 @@ f_toString:
 	li $a0, 48
 	sb $a0, 0($v0)
 	jr $ra
-f_stringConcatenate:
+f_str.stringConcatenate:
 	subu $sp, $sp, 4
 	sw $ra, 0($sp)
 	move $t2, $a0

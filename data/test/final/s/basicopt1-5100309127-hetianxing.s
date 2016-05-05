@@ -6,76 +6,80 @@ msg_0:	.asciiz	"\n"
 main:
 	sub $sp, $sp, 4
 	sw $ra, 0($sp)
-	li $a0, 400
+	li $a0, 404
 	li $v0, 9
 	syscall
-	move $t5, $v0
-	li $s2, 0
+	li $s3, 100
+	sw $s3, 0($v0)
+	add $s3, $v0, 4
+	li $s5, 0
 L22:
-	slt $s3, $s2, 100
-	beq $zero, $s3, L23
-	li $a0, 400
+	slt $s2, $s5, 100
+	beq $zero, $s2, L23
+	li $a0, 404
 	li $v0, 9
 	syscall
-	mul $s3, $s2, 4
-	add $s3, $t5, $s3
-	move $t6, $v0
-	sw $t6, 0($s3)
+	li $s2, 100
+	sw $s2, 0($v0)
+	add $s2, $v0, 4
+	mul $t6, $s5, 4
+	add $t6, $s3, $t6
+	sw $s2, 0($t6)
 L24:
-	add $s2, $s2, 1
+	add $s5, $s5, 1
 	b L22
 L23:
-	li $s3, 0
 	li $s2, 0
+	li $s5, 0
 L25:
-	slt $t6, $s2, 100
+	slt $t6, $s5, 100
 	beq $zero, $t6, L26
 	li $t6, 0
 L28:
-	slt $s4, $t6, 100
-	beq $zero, $s4, L29
-	mul $s4, $s2, 4
-	add $s4, $t5, $s4
-	lw $s4, 0($s4)
-	mul $s5, $t6, 4
-	add $s4, $s4, $s5
-	li $s5, 0
-	sw $s5, 0($s4)
+	slt $t9, $t6, 100
+	beq $zero, $t9, L29
+	mul $t9, $s5, 4
+	add $t9, $s3, $t9
+	lw $t9, 0($t9)
+	mul $s0, $t6, 4
+	add $t9, $t9, $s0
+	li $s0, 0
+	sw $s0, 0($t9)
 L30:
 	add $t6, $t6, 1
 	b L28
 L29:
 L27:
-	add $s2, $s2, 1
+	add $s5, $s5, 1
 	b L25
 L26:
-	li $s2, 0
+	li $s5, 0
 L31:
-	slt $t6, $s2, 100
+	slt $t6, $s5, 100
 	beq $zero, $t6, L32
-	sgt $t6, $s2, 20
+	sgt $t6, $s5, 20
 	beq $zero, $t6, L34
-	slt $s4, $s2, 80
-	and $t4, $t6, $s4
+	slt $t9, $s5, 80
+	and $s7, $t6, $t9
 L34:
-	beq $zero, $t4, L35
+	beq $zero, $s7, L35
 	li $t6, 0
 L37:
-	slt $s4, $t6, 100
-	beq $zero, $s4, L38
-	sgt $s4, $t6, 5
-	bne $zero, $s4, L40
-	slt $s5, $s2, 90
-	or $t1, $s4, $s5
+	slt $t9, $t6, 100
+	beq $zero, $t9, L38
+	sgt $t9, $t6, 5
+	bne $zero, $t9, L40
+	slt $s0, $s5, 90
+	or $t0, $t9, $s0
 L40:
-	beq $zero, $t1, L41
-	add $s4, $t6, 50
-	mul $s5, $s2, 4
-	add $s5, $t5, $s5
-	lw $s5, 0($s5)
-	mul $t0, $t6, 4
-	add $s5, $s5, $t0
-	sw $s4, 0($s5)
+	beq $zero, $t0, L41
+	add $t9, $t6, 50
+	mul $s0, $s5, 4
+	add $s0, $s3, $s0
+	lw $s0, 0($s0)
+	mul $t3, $t6, 4
+	add $s0, $s0, $t3
+	sw $t9, 0($s0)
 	b L42
 L41:
 L42:
@@ -87,36 +91,36 @@ L38:
 L35:
 L36:
 L33:
-	add $s2, $s2, 1
+	add $s5, $s5, 1
 	b L31
 L32:
-	li $s2, 0
+	li $s5, 0
 L43:
-	slt $t6, $s2, 100
+	slt $t6, $s5, 100
 	beq $zero, $t6, L44
 	li $t6, 0
 L46:
-	slt $s4, $t6, 100
-	beq $zero, $s4, L47
-	mul $s4, $s2, 4
-	add $s4, $t5, $s4
-	lw $s4, 0($s4)
-	mul $s5, $t6, 4
-	add $s4, $s4, $s5
-	lw $s4, 0($s4)
-	add $s3, $s3, $s4
+	slt $t9, $t6, 100
+	beq $zero, $t9, L47
+	mul $t9, $s5, 4
+	add $t9, $s3, $t9
+	lw $t9, 0($t9)
+	mul $s0, $t6, 4
+	add $t9, $t9, $s0
+	lw $t9, 0($t9)
+	add $s2, $s2, $t9
 L48:
 	add $t6, $t6, 1
 	b L46
 L47:
 L45:
-	add $s2, $s2, 1
+	add $s5, $s5, 1
 	b L43
 L44:
-	move $a0, $s3
+	move $a0, $s2
 	jal f_toString
-	move $t5, $v0
-	move $a0, $t5
+	move $s3, $v0
+	move $a0, $s3
 	li $v0, 4
 	syscall
 	la $a0, msg_0
