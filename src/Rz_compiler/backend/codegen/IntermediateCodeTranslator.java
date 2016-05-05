@@ -1314,6 +1314,13 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                     Register result = trg.generate().setValue();
                     instrList.add(new MoveInstr(result, MipsRegister.$v0.setValue()));
                     returnOperand = result;
+                } else if (funcname.equals("getString")) {
+                    CodeGenerator.hasGetString = true;
+                    instrList.add(new JalInstr(new Label("f_" + funcname)));
+                    Register result = trg.generate().setMem();
+                    instrList.add(new MoveInstr(result, MipsRegister.$v0.setMem()));
+                    returnOperand = result;
+
                 } else {
 
                     int argCnt = 0;

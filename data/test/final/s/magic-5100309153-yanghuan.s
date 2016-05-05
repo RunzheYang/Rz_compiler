@@ -1,5 +1,6 @@
 .data
 .align 2
+_buffer:	.space	256
 	.word	1
 msg_0:	.asciiz	" "
 	.word	1
@@ -251,11 +252,11 @@ L324:
 	add $s5, $s5, $s2
 	lw $s5, 0($s5)
 	move $a0, $s5
-	sw $s3, 4($sp)
-	sw $t9, 8($sp)
+	sw $t9, 4($sp)
+	sw $s3, 8($sp)
 	jal f_toString
-	lw $s3, 4($sp)
-	lw $t9, 8($sp)
+	lw $t9, 4($sp)
+	lw $s3, 8($sp)
 	move $s5, $v0
 	move $a0, $s5
 	li $v0, 4
@@ -441,15 +442,15 @@ L335:
 	move $a0, $t6
 	move $a1, $s0
 	move $a2, $s7
+	sw $t9, 4($sp)
 	sw $s3, 12($sp)
 	sw $s5, 16($sp)
 	sw $s2, 20($sp)
-	sw $t9, 8($sp)
 	jal f_search
+	lw $t9, 4($sp)
 	lw $s3, 12($sp)
 	lw $s5, 16($sp)
 	lw $s2, 20($sp)
-	lw $t9, 8($sp)
 	b L341
 L340:
 	add $t6, $s5, 1
@@ -457,15 +458,15 @@ L340:
 	move $a0, $s3
 	move $a1, $t6
 	move $a2, $s0
+	sw $t9, 4($sp)
 	sw $s3, 12($sp)
 	sw $s5, 16($sp)
 	sw $s2, 20($sp)
-	sw $t9, 8($sp)
 	jal f_search
+	lw $t9, 4($sp)
 	lw $s3, 12($sp)
 	lw $s5, 16($sp)
 	lw $s2, 20($sp)
-	lw $t9, 8($sp)
 L341:
 	lw $t6, var_0
 	mul $s0, $s3, 4
@@ -754,4 +755,36 @@ f_str.parseInt:
 f_str.ord:
 	add $a0, $a0, $a1
 	lb $v0, 0($a0)
+	jr $ra
+f_getString:
+	subu $sp, $sp, 4
+	sw $ra, 0($sp)
+	la $a0, _buffer
+	li $a1, 255
+	li $v0, 8
+	syscall
+	jal _count_string_length
+	move $a1, $v0
+	add $a0, $v0, 5
+	li $v0, 9
+	syscall
+	sw $a1, 0($v0)
+	add $v0, $v0, 4
+	la $a0, _buffer
+	move $a1, $v0
+	move $t0, $v0
+	jal _string_copy
+	move $v0, $t0
+	lw $ra, 0($sp)
+	addu $sp, $sp, 4
+	jr $ra
+_count_string_length:
+	move $v0, $a0
+	_begin_count_string_length:
+	lb $v1, 0($a0)
+	beqz $v1, _exit_count_string_length
+	add $a0, $a0, 1
+	j _begin_count_string_length
+	_exit_count_string_length:
+	sub $v0, $a0, $v0
 	jr $ra

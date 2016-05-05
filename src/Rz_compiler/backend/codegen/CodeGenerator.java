@@ -38,6 +38,8 @@ public class CodeGenerator {
 
     public static boolean hasOrd = false;
 
+    public static boolean hasGetString = false;
+
     public CodeGenerator(RzParser.ProgContext program, SymbolTable symbolTable) {
         this.program = program;
         this.symbolTable = symbolTable;
@@ -79,6 +81,7 @@ public class CodeGenerator {
 
             instrList.add(new AssemblerDirective(".data"));
             instrList.add(new AssemblerDirective(".align 2"));
+            instrList.add(new AssemblerDirective("_buffer:\t.space\t256"));
             instrList.addAll(globalString);
             instrList.addAll(globalVar);
             instrList.add(new AssemblerDirective(".text"));
@@ -131,6 +134,11 @@ public class CodeGenerator {
 
         if (hasOrd) {
             finalcode += new MipsLibrary().func_ord + "\n";
+        }
+
+        if (hasGetString) {
+            finalcode += new MipsLibrary().func_getString + "\n";
+            finalcode += new MipsLibrary().label_getStringLength + "\n";
         }
 
         return finalcode;

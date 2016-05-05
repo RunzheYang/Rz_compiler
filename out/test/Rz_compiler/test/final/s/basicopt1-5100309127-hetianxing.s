@@ -1,5 +1,6 @@
 .data
 .align 2
+_buffer:	.space	256
 	.word	1
 msg_0:	.asciiz	"\n"
 .text

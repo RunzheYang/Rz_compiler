@@ -1095,6 +1095,19 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
                         preList.b.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(4)));
                         preList.b.add(new Syscall());
                     }
+                } else if (funcname.equals("getInt")) {
+                    preList.b.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(5)));
+                    preList.b.add(new Syscall());
+                    Register result = trg.generate().setValue();
+                    preList.b.add(new MoveInstr(result, MipsRegister.$v0.setValue()));
+                    returnOperand = result;
+                } else if (funcname.equals("getString")) {
+                    CodeGenerator.hasGetString = true;
+                    preList.b.add(new JalInstr(new Label("f_" + funcname)));
+                    Register result = trg.generate().setMem();
+                    preList.b.add(new MoveInstr(result, MipsRegister.$v0.setMem()));
+                    returnOperand = result;
+
                 } else {
                     int argCnt = 0;
                     for (RzParser.Assign_exprContext arg

@@ -2,21 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16a51387-6edc-4730-ab64-700e3c74914b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/horse3-5100309153-yanghuan.out" afterPath="$PROJECT_DIR$/data/test/final/out/horse3-5100309153-yanghuan.out" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/CodeGenerator.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/CodeGenerator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/IntermediateCodeTranslator.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/IntermediateCodeTranslator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/MipsLibrary.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/MipsLibrary.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/builtin-5140519064-youyurong.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/builtin-5140519064-youyurong.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/horse3-5100309153-yanghuan.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/horse3-5100309153-yanghuan.out" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/ans/bulgarian-5110379024-wuhang.ans" afterPath="$PROJECT_DIR$/data/test/final/ans/bulgarian-5110379024-wuhang.ans" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/ans/expr-5110309085-jintianxing.ans" afterPath="$PROJECT_DIR$/data/test/final/ans/expr-5110309085-jintianxing.ans" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/array_test1-mahaojun.out" afterPath="$PROJECT_DIR$/data/test/final/out/array_test1-mahaojun.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/array_test2-mahaojun.out" afterPath="$PROJECT_DIR$/data/test/final/out/array_test2-mahaojun.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/builtin-5140519064-youyurong.out" afterPath="$PROJECT_DIR$/data/test/final/out/builtin-5140519064-youyurong.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/function_test-huyuncong.out" afterPath="$PROJECT_DIR$/data/test/final/out/function_test-huyuncong.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/heapsort-5100379110-daibo.out" afterPath="$PROJECT_DIR$/data/test/final/out/heapsort-5100379110-daibo.out" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/horse2-5100309153-yanghuan.out" afterPath="$PROJECT_DIR$/data/test/final/out/horse2-5100309153-yanghuan.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/prime-5100309153-yanghuan.out" afterPath="$PROJECT_DIR$/data/test/final/out/prime-5100309153-yanghuan.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/string_test-huyuncong.out" afterPath="$PROJECT_DIR$/data/test/final/out/string_test-huyuncong.out" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/array_test1-mahaojun.s" afterPath="$PROJECT_DIR$/data/test/final/s/array_test1-mahaojun.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/array_test2-mahaojun.s" afterPath="$PROJECT_DIR$/data/test/final/s/array_test2-mahaojun.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/basicopt1-5100309127-hetianxing.s" afterPath="$PROJECT_DIR$/data/test/final/s/basicopt1-5100309127-hetianxing.s" />
@@ -43,14 +37,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/string_test-huyuncong.s" afterPath="$PROJECT_DIR$/data/test/final/s/string_test-huyuncong.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/tak-5090379042-jiaxiao.s" afterPath="$PROJECT_DIR$/data/test/final/s/tak-5090379042-jiaxiao.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/twinprime-5090379042-jiaxiao.s" afterPath="$PROJECT_DIR$/data/test/final/s/twinprime-5090379042-jiaxiao.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/bulgarian-5110379024-wuhang.ans" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/bulgarian-5110379024-wuhang.ans" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/expr-5110309085-jintianxing.ans" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/expr-5110309085-jintianxing.ans" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/array_test1-mahaojun.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/array_test1-mahaojun.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/array_test2-mahaojun.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/array_test2-mahaojun.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/bulgarian-5110379024-wuhang.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/bulgarian-5110379024-wuhang.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/class_test-mahaojun.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/class_test-mahaojun.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/builtin-5140519064-youyurong.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/builtin-5140519064-youyurong.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/function_test-huyuncong.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/function_test-huyuncong.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/heapsort-5100379110-daibo.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/heapsort-5100379110-daibo.out" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/horse2-5100309153-yanghuan.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/horse2-5100309153-yanghuan.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/prime-5100309153-yanghuan.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/prime-5100309153-yanghuan.out" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/string_test-huyuncong.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/string_test-huyuncong.out" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/array_test1-mahaojun.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/array_test1-mahaojun.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/array_test2-mahaojun.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/array_test2-mahaojun.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/basicopt1-5100309127-hetianxing.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/basicopt1-5100309127-hetianxing.s" />
@@ -107,18 +98,18 @@
       <file leaf-file-name="IntermediateCodeTranslator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/IntermediateCodeTranslator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="1383" column="43" selection-start-line="1383" selection-start-column="43" selection-end-line="1383" selection-end-column="43" />
+            <state relative-caret-position="304">
+              <caret line="1316" column="17" selection-start-line="1310" selection-start-column="18" selection-end-line="1316" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CompilerTest.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/Test/CompilerTest.java">
+      <file leaf-file-name="RegisterAllocator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/allocation/RegisterAllocator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+            <state relative-caret-position="465">
+              <caret line="723" column="57" selection-start-line="723" selection-start-column="57" selection-end-line="723" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -127,28 +118,18 @@
       <file leaf-file-name="MipsLibrary.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/MipsLibrary.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+            <state relative-caret-position="75">
+              <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testfortype.mraz" pinned="false" current-in-tab="false">
+      <file leaf-file-name="testfortype.mraz" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testfortype.mraz">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PreIntermediateCodeTranslator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="1133" column="73" selection-start-line="1133" selection-start-column="73" selection-end-line="1133" selection-end-column="73" />
+            <state relative-caret-position="330">
+              <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -157,8 +138,8 @@
       <file leaf-file-name="CodeGenerator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="132" column="59" selection-start-line="132" selection-start-column="59" selection-end-line="132" selection-end-column="59" />
+            <state relative-caret-position="360">
+              <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -232,10 +213,10 @@
         <option value="$PROJECT_DIR$/data/test/final/out/bulgarian-5110379024-wuhang.out" />
         <option value="$PROJECT_DIR$/data/test/final/ans/bulgarian-5110379024-wuhang.ans" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java" />
-        <option value="$PROJECT_DIR$/testfortype.mraz" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/MipsLibrary.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/IntermediateCodeTranslator.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.java" />
+        <option value="$PROJECT_DIR$/testfortype.mraz" />
       </list>
     </option>
   </component>
@@ -434,7 +415,7 @@
       <recent name="Rz_compiler.backend.codegen" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CompilerTest">
+  <component name="RunManager" selected="Application.MRazCompiler">
     <configuration default="false" name="CompilerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1028,14 +1009,11 @@
       <workItem from="1462408728743" duration="2624000" />
       <workItem from="1462413531333" duration="4746000" />
       <workItem from="1462424528875" duration="2111000" />
-      <workItem from="1462428921306" duration="4220000" />
+      <workItem from="1462428921306" duration="6080000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CompilerTest - 2016.05.05 at 11h 17m 45s.xml">
-      <configuration name="CompilerTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CompilerTest - 2016.05.05 at 11h 22m 01s.xml">
       <configuration name="CompilerTest" configurationId="JUnit" />
     </history-entry>
@@ -1046,6 +1024,9 @@
       <configuration name="CompilerTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="CompilerTest - 2016.05.05 at 15h 32m 54s.xml">
+      <configuration name="CompilerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CompilerTest - 2016.05.05 at 16h 14m 25s.xml">
       <configuration name="CompilerTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="CompilerTest_testPass - 2016.05.05 at 10h 14m 49s.xml">
@@ -1065,7 +1046,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="296754000" />
+    <option name="totallyTimeSpent" value="298614000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1353,13 +1334,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/allocation/RegisterAllocator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10260">
-          <caret line="723" column="57" selection-start-line="723" selection-start-column="57" selection-end-line="723" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/identifier/VoidType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1503,40 +1477,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="132" column="59" selection-start-line="132" selection-start-column="59" selection-end-line="132" selection-end-column="59" />
+        <state relative-caret-position="360">
+          <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testfortype.mraz">
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/allocation/RegisterAllocator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+        <state relative-caret-position="465">
+          <caret line="723" column="57" selection-start-line="723" selection-start-column="57" selection-end-line="723" selection-end-column="57" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/MipsLibrary.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="1133" column="73" selection-start-line="1133" selection-start-column="73" selection-end-line="1133" selection-end-column="73" />
+        <state relative-caret-position="75">
+          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/IntermediateCodeTranslator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="1383" column="43" selection-start-line="1383" selection-start-column="43" selection-end-line="1383" selection-end-column="43" />
+        <state relative-caret-position="304">
+          <caret line="1316" column="17" selection-start-line="1310" selection-start-column="18" selection-end-line="1316" selection-end-column="17" />
           <folding />
         </state>
       </provider>
@@ -1545,6 +1511,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16035">
+          <caret line="1098" column="65" selection-start-line="1098" selection-start-column="65" selection-end-line="1098" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testfortype.mraz">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
           <folding />
         </state>
       </provider>

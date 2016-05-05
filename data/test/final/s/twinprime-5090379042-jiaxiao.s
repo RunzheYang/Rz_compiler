@@ -1,5 +1,6 @@
 .data
 .align 2
+_buffer:	.space	256
 	.word	1
 msg_0:	.asciiz	"\n"
 	.word	1
@@ -60,44 +61,44 @@ L481:
 	sw $s3, var_2
 	sub $s3, $s5, 2
 	move $a0, $s3
-	sw $s2, 4($sp)
-	sw $s5, 8($sp)
-	sw $t9, 12($sp)
+	sw $t9, 4($sp)
+	sw $s2, 8($sp)
+	sw $s5, 12($sp)
 	jal f_toString
-	lw $s2, 4($sp)
-	lw $s5, 8($sp)
-	lw $t9, 12($sp)
+	lw $t9, 4($sp)
+	lw $s2, 8($sp)
+	lw $s5, 12($sp)
 	move $s3, $v0
 	move $a0, $s3
 	la $a1, msg_1
-	sw $s2, 4($sp)
-	sw $s5, 8($sp)
-	sw $t9, 12($sp)
+	sw $t9, 4($sp)
+	sw $s2, 8($sp)
+	sw $s5, 12($sp)
 	jal f_str.stringConcatenate
-	lw $s2, 4($sp)
-	lw $s5, 8($sp)
-	lw $t9, 12($sp)
+	lw $t9, 4($sp)
+	lw $s2, 8($sp)
+	lw $s5, 12($sp)
 	move $s3, $v0
 	move $a0, $s5
+	sw $t9, 4($sp)
 	sw $s3, 16($sp)
-	sw $s2, 4($sp)
-	sw $s5, 8($sp)
-	sw $t9, 12($sp)
+	sw $s2, 8($sp)
+	sw $s5, 12($sp)
 	jal f_toString
+	lw $t9, 4($sp)
 	lw $s3, 16($sp)
-	lw $s2, 4($sp)
-	lw $s5, 8($sp)
-	lw $t9, 12($sp)
+	lw $s2, 8($sp)
+	lw $s5, 12($sp)
 	move $t6, $v0
 	move $a0, $s3
 	move $a1, $t6
-	sw $s2, 4($sp)
-	sw $s5, 8($sp)
-	sw $t9, 12($sp)
+	sw $t9, 4($sp)
+	sw $s2, 8($sp)
+	sw $s5, 12($sp)
 	jal f_str.stringConcatenate
-	lw $s2, 4($sp)
-	lw $s5, 8($sp)
-	lw $t9, 12($sp)
+	lw $t9, 4($sp)
+	lw $s2, 8($sp)
+	lw $s5, 12($sp)
 	move $s3, $v0
 	move $a0, $s3
 	li $v0, 4
@@ -298,4 +299,36 @@ f_str.parseInt:
 f_str.ord:
 	add $a0, $a0, $a1
 	lb $v0, 0($a0)
+	jr $ra
+f_getString:
+	subu $sp, $sp, 4
+	sw $ra, 0($sp)
+	la $a0, _buffer
+	li $a1, 255
+	li $v0, 8
+	syscall
+	jal _count_string_length
+	move $a1, $v0
+	add $a0, $v0, 5
+	li $v0, 9
+	syscall
+	sw $a1, 0($v0)
+	add $v0, $v0, 4
+	la $a0, _buffer
+	move $a1, $v0
+	move $t0, $v0
+	jal _string_copy
+	move $v0, $t0
+	lw $ra, 0($sp)
+	addu $sp, $sp, 4
+	jr $ra
+_count_string_length:
+	move $v0, $a0
+	_begin_count_string_length:
+	lb $v1, 0($a0)
+	beqz $v1, _exit_count_string_length
+	add $a0, $a0, 1
+	j _begin_count_string_length
+	_exit_count_string_length:
+	sub $v0, $a0, $v0
 	jr $ra

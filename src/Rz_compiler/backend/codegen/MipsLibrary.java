@@ -22,4 +22,10 @@ public class MipsLibrary {
 
     public String func_ord
             = "f_str.ord:\n\tadd $a0, $a0, $a1\n\tlb $v0, 0($a0)\n\tjr $ra";
+
+    public String func_getString
+            = "f_getString:\n\tsubu $sp, $sp, 4\n\tsw $ra, 0($sp)\n\tla $a0, _buffer\n\tli $a1, 255\n\tli $v0, 8\n\tsyscall\n\tjal _count_string_length\n\tmove $a1, $v0\n\tadd $a0, $v0, 5\n\tli $v0, 9\n\tsyscall\n\tsw $a1, 0($v0)\n\tadd $v0, $v0, 4\n\tla $a0, _buffer\n\tmove $a1, $v0\n\tmove $t0, $v0\n\tjal _string_copy\n\tmove $v0, $t0\n\tlw $ra, 0($sp)\n\taddu $sp, $sp, 4\n\tjr $ra";
+
+    public String label_getStringLength
+            = "_count_string_length:\n\tmove $v0, $a0\n\t_begin_count_string_length:\n\tlb $v1, 0($a0)\n\tbeqz $v1, _exit_count_string_length\n\tadd $a0, $a0, 1\n\tj _begin_count_string_length\n\t_exit_count_string_length:\n\tsub $v0, $a0, $v0\n\tjr $ra";
 }

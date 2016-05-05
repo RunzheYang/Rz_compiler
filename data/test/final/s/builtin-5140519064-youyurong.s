@@ -1,5 +1,6 @@
 .data
 .align 2
+_buffer:	.space	256
 	.word	12
 msg_0:	.asciiz	"I have done "
 	.word	14
