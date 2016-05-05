@@ -85,7 +85,7 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
 
         instrList.addAll(ctx.compound_stmt().accept(this));
 
-        if (functype.toString().equals("void")) {
+        if (functype.getReturnType().toString().equals("void") || true) {
             instrList.add(new LwInstr(MipsRegister.$ra, new MemAddress(MipsRegister.$sp, 0)));
             instrList.add(new AddInstr(MipsRegister.$sp, MipsRegister.$sp, new ImmediateValue(4)));
             instrList.add(new JrInstr(MipsRegister.$ra));
@@ -728,7 +728,8 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
             if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
                 int combined = (((ImmediateValue) lhsReg).getValue() + ((ImmediateValue) rhsReg).getValue());
                 returnOperand = new ImmediateValue(combined);
-            } else {
+            } else if ((rhsReg instanceof Register && ((Register) rhsReg).isContainValue())
+                    || (lhsReg instanceof Register && ((Register) lhsReg).isContainValue())) {
                 Register resultReg = trg.generate();
                 if (lhsReg instanceof ImmediateValue) {
                     Operand swap = lhsReg;
@@ -737,7 +738,26 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                 }
                 instrList.add(new AddInstr(resultReg, lhsReg, rhsReg));
                 returnOperand = resultReg;
+            } else {
+                if (lhsReg instanceof Register) {
+                    instrList.add(new MoveInstr(MipsRegister.$a0, lhsReg));
+                } else if (lhsReg instanceof Label) {
+                    instrList.add(new LaInstr(MipsRegister.$a0, lhsReg));
+                }
+
+                if (rhsReg instanceof Register) {
+                    instrList.add(new MoveInstr(MipsRegister.$a1, rhsReg));
+                } else if (rhsReg instanceof Label) {
+                    instrList.add(new LaInstr(MipsRegister.$a1, rhsReg));
+                }
+                CodeGenerator.hasStringAdd = true;
+                CodeGenerator.hasLabelStringCopy = true;
+                instrList.add(new JalInstr(new Label("f_stringConcatenate")));
+                Register result = trg.generate().setMem();
+                instrList.add(new MoveInstr(result, MipsRegister.$v0.setMem()));
+                returnOperand = result;
             }
+
         } else {
             if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
                 int combined = (((ImmediateValue) lhsReg).getValue() - ((ImmediateValue) rhsReg).getValue());
@@ -1270,7 +1290,9 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                 } else if (funcname.equals("getInt")) {
                     instrList.add(new LiInstr(MipsRegister.$v0, new ImmediateValue(5)));
                     instrList.add(new Syscall());
-                    returnOperand = MipsRegister.$v0.setValue();
+                    Register result = trg.generate().setValue();
+                    instrList.add(new MoveInstr(result, MipsRegister.$v0.setValue()));
+                    returnOperand = result;
                 } else {
                     int argCnt = 0;
 
@@ -1296,9 +1318,13 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                     instrList.add(new JalInstr(new Label("f_" + funcname)));
                 }
                 if (((FunctionType)symt.lookup(funcname)).getReturnType().equals(new IntType())) {
-                    returnOperand = MipsRegister.$v0.setValue();
+                    Register result = trg.generate().setValue();
+                    instrList.add(new MoveInstr(result, MipsRegister.$v0.setValue()));
+                    returnOperand = result;
                 } else {
-                    returnOperand = MipsRegister.$v0.setMem();
+                    Register result = trg.generate().setMem();
+                    instrList.add(new MoveInstr(result, MipsRegister.$v0.setMem()));
+                    returnOperand = result;
                 }
             }
         }

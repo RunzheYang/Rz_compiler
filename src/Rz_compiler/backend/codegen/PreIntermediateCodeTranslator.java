@@ -528,7 +528,8 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
             if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
                 int combined = (((ImmediateValue) lhsReg).getValue() + ((ImmediateValue) rhsReg).getValue());
                 returnOperand = new ImmediateValue(combined);
-            } else {
+            }  else if ((rhsReg instanceof Register && ((Register) rhsReg).isContainValue())
+                    || (lhsReg instanceof Register && ((Register) lhsReg).isContainValue())) {
                 Register resultReg = trg.generate();
                 if (lhsReg instanceof ImmediateValue) {
                     Operand swap = lhsReg;
@@ -537,7 +538,26 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
                 }
                 preList.b.add(new AddInstr(resultReg, lhsReg, rhsReg));
                 returnOperand = resultReg;
+            } else {
+                if (lhsReg instanceof Register) {
+                    preList.b.add(new MoveInstr(MipsRegister.$a0, lhsReg));
+                } else if (lhsReg instanceof Label) {
+                    preList.b.add(new LaInstr(MipsRegister.$a0, lhsReg));
+                }
+
+                if (rhsReg instanceof Register) {
+                    preList.b.add(new MoveInstr(MipsRegister.$a1, rhsReg));
+                } else if (rhsReg instanceof Label) {
+                    preList.b.add(new LaInstr(MipsRegister.$a1, rhsReg));
+                }
+                CodeGenerator.hasStringAdd = true;
+                CodeGenerator.hasLabelStringCopy = true;
+                preList.b.add(new JalInstr(new Label("f_stringConcatenate")));
+                Register result = trg.generate().setMem();
+                preList.b.add(new MoveInstr(result, MipsRegister.$v0.setMem()));
+                returnOperand = result;
             }
+
         } else {
             if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
                 int combined = (((ImmediateValue) lhsReg).getValue() - ((ImmediateValue) rhsReg).getValue());

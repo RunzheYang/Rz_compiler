@@ -1,6 +1,7 @@
 package Rz_compiler;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -78,5 +79,20 @@ public class MRazCompiler {
         }
 
         return preSymt;
+    }
+
+    public void compile(FileInputStream fileInputStream, FileOutputStream fileOutputStream) throws IOException, CloneNotSupportedException{
+
+        ANTLRInputStream input = new ANTLRInputStream(fileInputStream);
+        RzLexer lexer = new RzLexer(input);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        RzParser paser = new RzParser(tokens);
+        ParseTree program = paser.prog();
+
+        SymbolTable symbolTable = frontendTest(paser, program, false, false);
+
+        int optlevel = -1;
+        String mipsCode = new CodeGenerator((RzParser.ProgContext) program, symbolTable).compile(optlevel);
+        fileOutputStream.write(mipsCode.getBytes());
     }
 }

@@ -408,6 +408,7 @@ public class StringConstGetter implements RzVisitor<Deque<PseudoInstruction>> {
         if (((RzParser.Postfix_exprContext) ctx.parent).postfix_expr().getText().equals("println")) {
             if (!stringConsts.containsKey("\"\\n\"")) {
                 String varname = string_generate();
+                instrList.add(new AssemblerDirective("\t.word\t" + 1));
                 instrList.add(new AssemblerDirective(varname + ":\t.asciiz\t" + "\"\\n\""));
                 stringConsts.put("\"\\n\"", varname);
             }
@@ -488,6 +489,8 @@ public class StringConstGetter implements RzVisitor<Deque<PseudoInstruction>> {
 
         if (!stringConsts.containsKey(ctx.STRING().getText())) {
             String varname = string_generate();
+            instrList.add(new AssemblerDirective("\t.word\t"
+                    + (ctx.STRING().getText().replace("\\", "").length() - 2)));
             instrList.add(new AssemblerDirective(varname + ":\t.asciiz\t" + ctx.STRING().getText()));
             stringConsts.put(ctx.STRING().getText(), varname);
         }

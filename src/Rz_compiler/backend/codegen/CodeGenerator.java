@@ -28,6 +28,10 @@ public class CodeGenerator {
 
     public static boolean hasToString = false;
 
+    public static boolean hasStringAdd = false;
+
+    public static boolean hasLabelStringCopy = false;
+
     public CodeGenerator(RzParser.ProgContext program, SymbolTable symbolTable) {
         this.program = program;
         this.symbolTable = symbolTable;
@@ -84,7 +88,7 @@ public class CodeGenerator {
         } catch (Exception error) {
             error.printStackTrace();
 //            System.err.println(error.getMessage());
-            System.exit(1);
+//            System.exit(1);
         }
 
         return printInstr(instrList, optLevel);
@@ -92,18 +96,26 @@ public class CodeGenerator {
 
     public String printInstr(Deque<PseudoInstruction> instrList, int optLevel) {
         // TODO: translate pseudo-instruction to assembly.
-
-        System.err.println("Total #instr = " + instrList.size() + "\n");
+        String finalcode = "";
+//        System.err.println("Total #instr = " + instrList.size() + "\n");
 
         for (PseudoInstruction instr : instrList) {
-            System.err.println(instr.accept(new InstructionPrinter()));
+            finalcode += instr.accept(new InstructionPrinter()) + "\n";
         }
 
         if (hasToString) {
-            System.err.println(new MipsLibrary().func_toString);
+            finalcode += new MipsLibrary().func_toString + "\n";
         }
 
-        return "";
+        if (hasStringAdd) {
+            finalcode += new MipsLibrary().func_stringConcatenate + "\n";
+        }
+
+        if (hasLabelStringCopy) {
+            finalcode += new MipsLibrary().label_stringCopy + "\n";
+        }
+
+        return finalcode;
     }
 
     private Deque<PseudoInstruction> allocateRegisters(Deque<PseudoInstruction> intermediateCode, int optLevel) {
