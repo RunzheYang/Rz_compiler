@@ -28,4 +28,12 @@ public class MipsLibrary {
 
     public String label_getStringLength
             = "_count_string_length:\n\tmove $v0, $a0\n\t_begin_count_string_length:\n\tlb $v1, 0($a0)\n\tbeqz $v1, _exit_count_string_length\n\tadd $a0, $a0, 1\n\tj _begin_count_string_length\n\t_exit_count_string_length:\n\tsub $v0, $a0, $v0\n\tjr $ra";
+
+    public String func_stringCompare
+            = "func__stringIsEqual:\n\tlw $v0, -4($a0)\n\tlw $v1, -4($a1)\n\tbne $v0, $v1, _not_equal\n\t_continue_compare_equal:\n\tlb $v0, 0($a0)\n\tlb $v1, 0($a1)\n\tbeqz $v0, _equal\n\tbne $v0, $v1, _not_equal\n\tadd $a0, $a0, 1\n\tadd $a1, $a1, 1\n\tj _continue_compare_equal\n\t_not_equal:\n\tli $v0, 0\n\tj _compare_final\n\t_equal:\n\tli $v0, 1\n\t_compare_final:\n\tjr $ra"
+            + "\n" + "func__stringLarge:\n\tsubu $sp, $sp, 4\n\tsw $ra, 0($sp)\n\tjal func__stringLess\n\txor $v0, $v0, 1\n\tlw $ra, 0($sp)\n\taddu $sp, $sp, 4\n\tjr $ra"
+            + "\n" + "func__stringLeq:\n\tsubu $sp, $sp, 12\n\tsw $ra, 0($sp)\n\tsw $a0, 4($sp)\n\tsw $a1, 8($sp)\n\tjal func__stringLess\n\tbnez $v0, _skip_compare_equal_in_Leq\n\tlw $a0, 4($sp)\n\tlw $a1, 8($sp)\n\tjal func__stringIsEqual\n\t_skip_compare_equal_in_Leq:\n\tlw $ra, 0($sp)\n\taddu $sp, $sp, 12\n\tjr $ra"
+            + "\n" + "func__stringGeq:\n\tsubu $sp, $sp, 12\n\tsw $ra, 0($sp)\n\tsw $a0, 4($sp)\n\tsw $a1, 8($sp)\n\tjal func__stringLess\n\tbeqz $v0, _skip_compare_equal_in_Geq\n\tlw $a0, 4($sp)\n\tlw $a1, 8($sp)\n\tjal func__stringIsEqual\n\txor $v0, $v0, 1\n\t_skip_compare_equal_in_Geq:\n\txor $v0, $v0, 1\n\tlw $ra, 0($sp)\n\taddu $sp, $sp, 12\n\tjr $ra"
+            + "\n" + "func__stringLess:\n\t_begin_compare_less:\n\tlb $v0, 0($a0)\n\tlb $v1, 0($a1)\n\tblt $v0, $v1, _less_correct\n\tbgt $v0, $v1, _less_false\n\tbeqz $v0, _less_false\n\tadd $a0, $a0, 1\n\tadd $a1, $a1, 1\n\tj _begin_compare_less\n\t_less_correct:\n\tli $v0, 1\n\tj _less_compare_final\n\t_less_false:\n\tli $v0, 0\n\t_less_compare_final:\n\tjr $ra"
+            + "\n" + "func__stringNeq:\n\tsubu $sp, $sp, 4\n\tsw $ra, 0($sp)\n\tjal func__stringIsEqual\n\txor $v0, $v0, 1\n\tlw $ra, 0($sp)\n\taddu $sp, $sp, 4\n\tjr $ra";
 }

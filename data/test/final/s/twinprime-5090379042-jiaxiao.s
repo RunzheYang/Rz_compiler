@@ -332,3 +332,85 @@ _count_string_length:
 	_exit_count_string_length:
 	sub $v0, $a0, $v0
 	jr $ra
+func__stringIsEqual:
+	lw $v0, -4($a0)
+	lw $v1, -4($a1)
+	bne $v0, $v1, _not_equal
+	_continue_compare_equal:
+	lb $v0, 0($a0)
+	lb $v1, 0($a1)
+	beqz $v0, _equal
+	bne $v0, $v1, _not_equal
+	add $a0, $a0, 1
+	add $a1, $a1, 1
+	j _continue_compare_equal
+	_not_equal:
+	li $v0, 0
+	j _compare_final
+	_equal:
+	li $v0, 1
+	_compare_final:
+	jr $ra
+func__stringLarge:
+	subu $sp, $sp, 4
+	sw $ra, 0($sp)
+	jal func__stringLess
+	xor $v0, $v0, 1
+	lw $ra, 0($sp)
+	addu $sp, $sp, 4
+	jr $ra
+func__stringLeq:
+	subu $sp, $sp, 12
+	sw $ra, 0($sp)
+	sw $a0, 4($sp)
+	sw $a1, 8($sp)
+	jal func__stringLess
+	bnez $v0, _skip_compare_equal_in_Leq
+	lw $a0, 4($sp)
+	lw $a1, 8($sp)
+	jal func__stringIsEqual
+	_skip_compare_equal_in_Leq:
+	lw $ra, 0($sp)
+	addu $sp, $sp, 12
+	jr $ra
+func__stringGeq:
+	subu $sp, $sp, 12
+	sw $ra, 0($sp)
+	sw $a0, 4($sp)
+	sw $a1, 8($sp)
+	jal func__stringLess
+	beqz $v0, _skip_compare_equal_in_Geq
+	lw $a0, 4($sp)
+	lw $a1, 8($sp)
+	jal func__stringIsEqual
+	xor $v0, $v0, 1
+	_skip_compare_equal_in_Geq:
+	xor $v0, $v0, 1
+	lw $ra, 0($sp)
+	addu $sp, $sp, 12
+	jr $ra
+func__stringLess:
+	_begin_compare_less:
+	lb $v0, 0($a0)
+	lb $v1, 0($a1)
+	blt $v0, $v1, _less_correct
+	bgt $v0, $v1, _less_false
+	beqz $v0, _less_false
+	add $a0, $a0, 1
+	add $a1, $a1, 1
+	j _begin_compare_less
+	_less_correct:
+	li $v0, 1
+	j _less_compare_final
+	_less_false:
+	li $v0, 0
+	_less_compare_final:
+	jr $ra
+func__stringNeq:
+	subu $sp, $sp, 4
+	sw $ra, 0($sp)
+	jal func__stringIsEqual
+	xor $v0, $v0, 1
+	lw $ra, 0($sp)
+	addu $sp, $sp, 4
+	jr $ra

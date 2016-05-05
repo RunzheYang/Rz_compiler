@@ -855,7 +855,8 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
             if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
                 boolean combined = ((ImmediateValue) lhsReg).getValue() < ((ImmediateValue) rhsReg).getValue();
                 returnOperand = new ImmediateValue(combined);
-            } else {
+            } else if (!tpa.getTypeofExpression(ctx.expression(0), symt).toString().equals("string")) {
+
                 Register resultReg = trg.generate();
                 if (lhsReg instanceof ImmediateValue) {
                     Operand swap = lhsReg;
@@ -866,12 +867,42 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                     instrList.add(new SltInstr(resultReg, lhsReg, rhsReg));
                 }
                 returnOperand = resultReg;
+
+            } else {
+                Operand ll, rr;
+
+                if (lhsReg instanceof Label) {
+                    ll = trg.generate().setMem();
+                    instrList.add(new LaInstr(ll, lhsReg));
+                } else {
+                    ll = lhsReg;
+                }
+
+                if (rhsReg instanceof Label) {
+                    rr = trg.generate().setMem();
+                    instrList.add(new LaInstr(ll, rhsReg));
+                } else {
+                    rr = rhsReg;
+                }
+
+                instrList.add(new MoveInstr(MipsRegister.$a0, ll));
+                instrList.add(new MoveInstr(MipsRegister.$a1, rr));
+
+                CodeGenerator.hasStringCompare = true;
+
+                instrList.add(new JalInstr(new Label("func__stringLess")));
+
+                Register result = trg.generate().setValue();
+                instrList.add(new MoveInstr(result, MipsRegister.$v0));
+
+                returnOperand = result;
             }
+
         } else if (ctx.op.getText().equals(">")) {
             if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
                 boolean combined = ((ImmediateValue) lhsReg).getValue() > ((ImmediateValue) rhsReg).getValue();
                 returnOperand = new ImmediateValue(combined);
-            } else {
+            } else if (!tpa.getTypeofExpression(ctx.expression(0), symt).toString().equals("string")) {
                 Register resultReg = trg.generate();
                 if (lhsReg instanceof ImmediateValue) {
                     Operand swap = lhsReg;
@@ -882,12 +913,42 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                     instrList.add(new SgtInstr(resultReg, lhsReg, rhsReg));
                 }
                 returnOperand = resultReg;
+            } else {
+                Operand ll, rr;
+
+                if (lhsReg instanceof Label) {
+                    ll = trg.generate().setMem();
+                    instrList.add(new LaInstr(ll, lhsReg));
+                } else {
+                    ll = lhsReg;
+                }
+
+                if (rhsReg instanceof Label) {
+                    rr = trg.generate().setMem();
+                    instrList.add(new LaInstr(ll, rhsReg));
+                } else {
+                    rr = rhsReg;
+                }
+
+                instrList.add(new MoveInstr(MipsRegister.$a0, ll));
+                instrList.add(new MoveInstr(MipsRegister.$a1, rr));
+
+                CodeGenerator.hasStringCompare = true;
+
+                instrList.add(new JalInstr(new Label("func__stringLarge")));
+
+                Register result = trg.generate().setValue();
+                instrList.add(new MoveInstr(result, MipsRegister.$v0));
+
+                returnOperand = result;
             }
+
         } else if (ctx.op.getText().equals("<=")) {
+
             if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
                 boolean combined = ((ImmediateValue) lhsReg).getValue() <= ((ImmediateValue) rhsReg).getValue();
                 returnOperand = new ImmediateValue(combined);
-            } else {
+            } else if (!tpa.getTypeofExpression(ctx.expression(0), symt).toString().equals("string")) {
                 Register resultReg = trg.generate();
                 if (lhsReg instanceof ImmediateValue) {
                     Operand swap = lhsReg;
@@ -898,12 +959,41 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                     instrList.add(new SleInstr(resultReg, lhsReg, rhsReg));
                 }
                 returnOperand = resultReg;
+            } else {
+                Operand ll, rr;
+
+                if (lhsReg instanceof Label) {
+                    ll = trg.generate().setMem();
+                    instrList.add(new LaInstr(ll, lhsReg));
+                } else {
+                    ll = lhsReg;
+                }
+
+                if (rhsReg instanceof Label) {
+                    rr = trg.generate().setMem();
+                    instrList.add(new LaInstr(ll, rhsReg));
+                } else {
+                    rr = rhsReg;
+                }
+
+                instrList.add(new MoveInstr(MipsRegister.$a0, ll));
+                instrList.add(new MoveInstr(MipsRegister.$a1, rr));
+
+                CodeGenerator.hasStringCompare = true;
+
+                instrList.add(new JalInstr(new Label("func__stringLeq")));
+
+                Register result = trg.generate().setValue();
+                instrList.add(new MoveInstr(result, MipsRegister.$v0));
+
+                returnOperand = result;
             }
+
         } else if (ctx.op.getText().equals(">=")) {
             if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
                 boolean combined = ((ImmediateValue) lhsReg).getValue() >= ((ImmediateValue) rhsReg).getValue();
                 returnOperand = new ImmediateValue(combined);
-            } else {
+            } else if (!tpa.getTypeofExpression(ctx.expression(0), symt).toString().equals("string")) {
                 Register resultReg = trg.generate();
                 if (lhsReg instanceof ImmediateValue) {
                     Operand swap = lhsReg;
@@ -914,6 +1004,34 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                     instrList.add(new SgeInstr(resultReg, lhsReg, rhsReg));
                 }
                 returnOperand = resultReg;
+            } else {
+                Operand ll, rr;
+
+                if (lhsReg instanceof Label) {
+                    ll = trg.generate().setMem();
+                    instrList.add(new LaInstr(ll, lhsReg));
+                } else {
+                    ll = lhsReg;
+                }
+
+                if (rhsReg instanceof Label) {
+                    rr = trg.generate().setMem();
+                    instrList.add(new LaInstr(ll, rhsReg));
+                } else {
+                    rr = rhsReg;
+                }
+
+                instrList.add(new MoveInstr(MipsRegister.$a0, ll));
+                instrList.add(new MoveInstr(MipsRegister.$a1, rr));
+
+                CodeGenerator.hasStringCompare = true;
+
+                instrList.add(new JalInstr(new Label("func__stringGeq")));
+
+                Register result = trg.generate().setValue();
+                instrList.add(new MoveInstr(result, MipsRegister.$v0));
+
+                returnOperand = result;
             }
         }
 
@@ -937,7 +1055,7 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
             if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
                 boolean combined = ((ImmediateValue) lhsReg).getValue() == ((ImmediateValue) rhsReg).getValue();
                 returnOperand = new ImmediateValue(combined);
-            } else {
+            } else if (!tpa.getTypeofExpression(ctx.expression(0), symt).toString().equals("string")) {
                 Register resultReg = trg.generate();
                 if (lhsReg instanceof ImmediateValue) {
                     Operand swap = lhsReg;
@@ -948,12 +1066,41 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                 instrList.add(new SeqInstr(resultReg, lhsReg, rhsReg));
 
                 returnOperand = resultReg;
+            } else {
+                Operand ll, rr;
+
+                if (lhsReg instanceof Label) {
+                    ll = trg.generate().setMem();
+                    instrList.add(new LaInstr(ll, lhsReg));
+                } else {
+                    ll = lhsReg;
+                }
+
+                if (rhsReg instanceof Label) {
+                    rr = trg.generate().setMem();
+                    instrList.add(new LaInstr(ll, rhsReg));
+                } else {
+                    rr = rhsReg;
+                }
+
+                instrList.add(new MoveInstr(MipsRegister.$a0, ll));
+                instrList.add(new MoveInstr(MipsRegister.$a1, rr));
+
+                CodeGenerator.hasStringCompare = true;
+
+                instrList.add(new JalInstr(new Label("func__stringIsEqual")));
+
+                Register result = trg.generate().setValue();
+                instrList.add(new MoveInstr(result, MipsRegister.$v0));
+
+                returnOperand = result;
             }
+
         } else if (ctx.op.getText().equals("!=")) {
             if (lhsReg instanceof ImmediateValue && rhsReg instanceof ImmediateValue) {
                 boolean combined = ((ImmediateValue) lhsReg).getValue() != ((ImmediateValue) rhsReg).getValue();
                 returnOperand = new ImmediateValue(combined);
-            } else {
+            } else if (!tpa.getTypeofExpression(ctx.expression(0), symt).toString().equals("string")) {
                 Register resultReg = trg.generate();
                 if (lhsReg instanceof ImmediateValue) {
                     Operand swap = lhsReg;
@@ -964,6 +1111,34 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
                 instrList.add(new SneInstr(resultReg, lhsReg, rhsReg));
 
                 returnOperand = resultReg;
+            } else {
+                Operand ll, rr;
+
+                if (lhsReg instanceof Label) {
+                    ll = trg.generate().setMem();
+                    instrList.add(new LaInstr(ll, lhsReg));
+                } else {
+                    ll = lhsReg;
+                }
+
+                if (rhsReg instanceof Label) {
+                    rr = trg.generate().setMem();
+                    instrList.add(new LaInstr(ll, rhsReg));
+                } else {
+                    rr = rhsReg;
+                }
+
+                instrList.add(new MoveInstr(MipsRegister.$a0, ll));
+                instrList.add(new MoveInstr(MipsRegister.$a1, rr));
+
+                CodeGenerator.hasStringCompare = true;
+
+                instrList.add(new JalInstr(new Label("func__stringNeq")));
+
+                Register result = trg.generate().setValue();
+                instrList.add(new MoveInstr(result, MipsRegister.$v0));
+
+                returnOperand = result;
             }
         }
 

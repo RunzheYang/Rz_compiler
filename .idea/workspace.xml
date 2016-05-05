@@ -7,64 +7,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/MipsLibrary.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/MipsLibrary.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/function_test-huyuncong.out" afterPath="$PROJECT_DIR$/data/test/final/out/function_test-huyuncong.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/heapsort-5100379110-daibo.out" afterPath="$PROJECT_DIR$/data/test/final/out/heapsort-5100379110-daibo.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/horse2-5100309153-yanghuan.out" afterPath="$PROJECT_DIR$/data/test/final/out/horse2-5100309153-yanghuan.out" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/string_test-huyuncong.out" afterPath="$PROJECT_DIR$/data/test/final/out/string_test-huyuncong.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/array_test1-mahaojun.s" afterPath="$PROJECT_DIR$/data/test/final/s/array_test1-mahaojun.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/array_test2-mahaojun.s" afterPath="$PROJECT_DIR$/data/test/final/s/array_test2-mahaojun.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/basicopt1-5100309127-hetianxing.s" afterPath="$PROJECT_DIR$/data/test/final/s/basicopt1-5100309127-hetianxing.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/builtin-5140519064-youyurong.s" afterPath="$PROJECT_DIR$/data/test/final/s/builtin-5140519064-youyurong.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/bulgarian-5110379024-wuhang.s" afterPath="$PROJECT_DIR$/data/test/final/s/bulgarian-5110379024-wuhang.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/class_test-mahaojun.s" afterPath="$PROJECT_DIR$/data/test/final/s/class_test-mahaojun.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/expr-5110309085-jintianxing.s" afterPath="$PROJECT_DIR$/data/test/final/s/expr-5110309085-jintianxing.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/function_test-huyuncong.s" afterPath="$PROJECT_DIR$/data/test/final/s/function_test-huyuncong.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/gcd-5090379042-jiaxiao.s" afterPath="$PROJECT_DIR$/data/test/final/s/gcd-5090379042-jiaxiao.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/hanoi-5100379110-daibo.s" afterPath="$PROJECT_DIR$/data/test/final/s/hanoi-5100379110-daibo.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/hashmap-5100309127-hetianxing.s" afterPath="$PROJECT_DIR$/data/test/final/s/hashmap-5100309127-hetianxing.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/heapsort-5100379110-daibo.s" afterPath="$PROJECT_DIR$/data/test/final/s/heapsort-5100379110-daibo.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/horse-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/data/test/final/s/horse-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/horse2-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/data/test/final/s/horse2-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/horse3-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/data/test/final/s/horse3-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/lvalue2-5110379024-wuhang.s" afterPath="$PROJECT_DIR$/data/test/final/s/lvalue2-5110379024-wuhang.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/magic-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/data/test/final/s/magic-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/manyarguments-5100379110-daibo.s" afterPath="$PROJECT_DIR$/data/test/final/s/manyarguments-5100379110-daibo.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/multiarray-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/data/test/final/s/multiarray-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/pi-5090379042-jiaxiao.s" afterPath="$PROJECT_DIR$/data/test/final/s/pi-5090379042-jiaxiao.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/prime-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/data/test/final/s/prime-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/qsort-5100379110-daibo.s" afterPath="$PROJECT_DIR$/data/test/final/s/qsort-5100379110-daibo.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/statement_test-huyuncong.s" afterPath="$PROJECT_DIR$/data/test/final/s/statement_test-huyuncong.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/string_test-huyuncong.s" afterPath="$PROJECT_DIR$/data/test/final/s/string_test-huyuncong.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/tak-5090379042-jiaxiao.s" afterPath="$PROJECT_DIR$/data/test/final/s/tak-5090379042-jiaxiao.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/twinprime-5090379042-jiaxiao.s" afterPath="$PROJECT_DIR$/data/test/final/s/twinprime-5090379042-jiaxiao.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/builtin-5140519064-youyurong.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/builtin-5140519064-youyurong.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/function_test-huyuncong.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/function_test-huyuncong.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/heapsort-5100379110-daibo.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/heapsort-5100379110-daibo.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/horse2-5100309153-yanghuan.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/horse2-5100309153-yanghuan.out" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/string_test-huyuncong.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/string_test-huyuncong.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/array_test1-mahaojun.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/array_test1-mahaojun.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/array_test2-mahaojun.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/array_test2-mahaojun.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/basicopt1-5100309127-hetianxing.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/basicopt1-5100309127-hetianxing.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/builtin-5140519064-youyurong.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/builtin-5140519064-youyurong.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/bulgarian-5110379024-wuhang.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/bulgarian-5110379024-wuhang.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/class_test-mahaojun.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/class_test-mahaojun.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/expr-5110309085-jintianxing.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/expr-5110309085-jintianxing.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/function_test-huyuncong.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/function_test-huyuncong.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/gcd-5090379042-jiaxiao.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/gcd-5090379042-jiaxiao.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/hanoi-5100379110-daibo.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/hanoi-5100379110-daibo.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/hashmap-5100309127-hetianxing.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/hashmap-5100309127-hetianxing.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/heapsort-5100379110-daibo.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/heapsort-5100379110-daibo.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/horse-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/horse-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/horse2-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/horse2-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/horse3-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/horse3-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/lvalue2-5110379024-wuhang.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/lvalue2-5110379024-wuhang.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/magic-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/magic-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/manyarguments-5100379110-daibo.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/manyarguments-5100379110-daibo.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/multiarray-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/multiarray-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/pi-5090379042-jiaxiao.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/pi-5090379042-jiaxiao.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/prime-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/prime-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/qsort-5100379110-daibo.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/qsort-5100379110-daibo.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/statement_test-huyuncong.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/statement_test-huyuncong.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/string_test-huyuncong.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/string_test-huyuncong.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/tak-5090379042-jiaxiao.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/tak-5090379042-jiaxiao.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/twinprime-5090379042-jiaxiao.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/twinprime-5090379042-jiaxiao.s" />
@@ -98,8 +45,8 @@
       <file leaf-file-name="IntermediateCodeTranslator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/IntermediateCodeTranslator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="1316" column="17" selection-start-line="1310" selection-start-column="18" selection-end-line="1316" selection-end-column="17" />
+            <state relative-caret-position="1605">
+              <caret line="1142" column="9" selection-start-line="1053" selection-start-column="8" selection-end-line="1142" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -115,21 +62,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MipsLibrary.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/MipsLibrary.java">
+      <file leaf-file-name="testfortype.mraz" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/testfortype.mraz">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+            <state relative-caret-position="405">
+              <caret line="89" column="1" selection-start-line="89" selection-start-column="1" selection-end-line="89" selection-end-column="1" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="testfortype.mraz" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/testfortype.mraz">
+      <file leaf-file-name="PreIntermediateCodeTranslator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+            <state relative-caret-position="150">
+              <caret line="957" column="59" selection-start-line="957" selection-start-column="59" selection-end-line="957" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -138,8 +85,8 @@
       <file leaf-file-name="CodeGenerator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
+            <state relative-caret-position="375">
+              <caret line="146" column="69" selection-start-line="146" selection-start-column="69" selection-end-line="146" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -212,8 +159,8 @@
         <option value="$PROJECT_DIR$/data/test/final/ans/expr-5110309085-jintianxing.ans" />
         <option value="$PROJECT_DIR$/data/test/final/out/bulgarian-5110379024-wuhang.out" />
         <option value="$PROJECT_DIR$/data/test/final/ans/bulgarian-5110379024-wuhang.ans" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/MipsLibrary.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/IntermediateCodeTranslator.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.java" />
         <option value="$PROJECT_DIR$/testfortype.mraz" />
@@ -1009,17 +956,11 @@
       <workItem from="1462408728743" duration="2624000" />
       <workItem from="1462413531333" duration="4746000" />
       <workItem from="1462424528875" duration="2111000" />
-      <workItem from="1462428921306" duration="6080000" />
+      <workItem from="1462428921306" duration="9302000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CompilerTest - 2016.05.05 at 11h 22m 01s.xml">
-      <configuration name="CompilerTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CompilerTest - 2016.05.05 at 13h 03m 00s.xml">
-      <configuration name="CompilerTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CompilerTest - 2016.05.05 at 15h 31m 31s.xml">
       <configuration name="CompilerTest" configurationId="JUnit" />
     </history-entry>
@@ -1027,6 +968,12 @@
       <configuration name="CompilerTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="CompilerTest - 2016.05.05 at 16h 14m 25s.xml">
+      <configuration name="CompilerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CompilerTest - 2016.05.05 at 17h 25m 34s.xml">
+      <configuration name="CompilerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CompilerTest - 2016.05.05 at 17h 28m 33s.xml">
       <configuration name="CompilerTest" configurationId="JUnit" />
     </history-entry>
     <history-entry file="CompilerTest_testPass - 2016.05.05 at 10h 14m 49s.xml">
@@ -1046,7 +993,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="298614000" />
+    <option name="totallyTimeSpent" value="301836000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1143,13 +1090,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/NoOperand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/controlflow/AbstractGraph.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -1475,14 +1415,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="40" column="47" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/allocation/RegisterAllocator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -1491,42 +1423,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="146" column="69" selection-start-line="146" selection-start-column="69" selection-end-line="146" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/MipsLibrary.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="35" column="26" selection-start-line="35" selection-start-column="26" selection-end-line="35" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/identifier/StringType.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
-          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/IntermediateCodeTranslator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="1316" column="17" selection-start-line="1310" selection-start-column="18" selection-end-line="1316" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/Test/CompilerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="33" column="20" selection-start-line="33" selection-start-column="20" selection-end-line="33" selection-end-column="20" />
+        <state relative-caret-position="1605">
+          <caret line="1142" column="9" selection-start-line="1053" selection-start-column="8" selection-end-line="1142" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16035">
-          <caret line="1098" column="65" selection-start-line="1098" selection-start-column="65" selection-end-line="1098" selection-end-column="65" />
+        <state relative-caret-position="150">
+          <caret line="957" column="59" selection-start-line="957" selection-start-column="59" selection-end-line="957" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Test/CompilerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="109" column="0" selection-start-line="109" selection-start-column="0" selection-end-line="109" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testfortype.mraz">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+        <state relative-caret-position="405">
+          <caret line="89" column="1" selection-start-line="89" selection-start-column="1" selection-end-line="89" selection-end-column="1" />
           <folding />
         </state>
       </provider>

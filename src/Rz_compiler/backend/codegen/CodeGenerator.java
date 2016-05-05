@@ -40,6 +40,8 @@ public class CodeGenerator {
 
     public static boolean hasGetString = false;
 
+    public static boolean hasStringCompare = false;
+
     public CodeGenerator(RzParser.ProgContext program, SymbolTable symbolTable) {
         this.program = program;
         this.symbolTable = symbolTable;
@@ -139,6 +141,10 @@ public class CodeGenerator {
         if (hasGetString) {
             finalcode += new MipsLibrary().func_getString + "\n";
             finalcode += new MipsLibrary().label_getStringLength + "\n";
+        }
+
+        if (hasStringCompare) {
+            finalcode += new MipsLibrary().func_stringCompare + "\n";
         }
 
         return finalcode;
