@@ -99,22 +99,22 @@ L573:
 	move $a0, $s3
 	move $a1, $t6
 	move $a2, $t9
-	sw $s5, 4($sp)
-	sw $s2, 8($sp)
-	sw $s3, 12($sp)
+	sw $s2, 4($sp)
+	sw $s3, 8($sp)
+	sw $s5, 12($sp)
 	jal f_str.substring
-	lw $s5, 4($sp)
-	lw $s2, 8($sp)
-	lw $s3, 12($sp)
+	lw $s2, 4($sp)
+	lw $s3, 8($sp)
+	lw $s5, 12($sp)
 	move $t6, $v0
 	move $a0, $t6
-	sw $s5, 4($sp)
-	sw $s2, 8($sp)
-	sw $s3, 12($sp)
+	sw $s2, 4($sp)
+	sw $s3, 8($sp)
+	sw $s5, 12($sp)
 	jal f_calc
-	lw $s5, 4($sp)
-	lw $s2, 8($sp)
-	lw $s3, 12($sp)
+	lw $s2, 4($sp)
+	lw $s3, 8($sp)
+	lw $s5, 12($sp)
 	move $t6, $v0
 	sub $s5, $s5, 1
 	move $a0, $s3

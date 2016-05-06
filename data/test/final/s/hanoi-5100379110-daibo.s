@@ -61,57 +61,57 @@ L132:
 	move $a2, $t6
 	move $a3, $s2
 	sw $t9, 4($sp)
-	sw $s5, 16($sp)
-	sw $s2, 20($sp)
+	sw $s3, 16($sp)
+	sw $s5, 20($sp)
+	sw $s2, 24($sp)
 	sw $t6, 8($sp)
-	sw $s3, 24($sp)
 	jal f_cd
-	lw $s5, 16($sp)
-	lw $s2, 20($sp)
+	lw $s3, 16($sp)
+	lw $s5, 20($sp)
+	lw $s2, 24($sp)
 	lw $t6, 8($sp)
-	lw $s3, 24($sp)
 	move $t9, $v0
 	la $a0, msg_1
 	move $a1, $s5
-	sw $s5, 16($sp)
-	sw $s2, 20($sp)
+	sw $s3, 16($sp)
+	sw $s5, 20($sp)
+	sw $s2, 24($sp)
 	sw $t6, 8($sp)
 	sw $t9, 12($sp)
-	sw $s3, 24($sp)
 	jal f_str.stringConcatenate
-	lw $s5, 16($sp)
-	lw $s2, 20($sp)
+	lw $s3, 16($sp)
+	lw $s5, 20($sp)
+	lw $s2, 24($sp)
 	lw $t6, 8($sp)
 	lw $t9, 12($sp)
-	lw $s3, 24($sp)
 	move $s0, $v0
 	move $a0, $s0
 	la $a1, msg_2
-	sw $s5, 16($sp)
-	sw $s2, 20($sp)
+	sw $s3, 16($sp)
+	sw $s5, 20($sp)
+	sw $s2, 24($sp)
 	sw $t6, 8($sp)
 	sw $t9, 12($sp)
-	sw $s3, 24($sp)
 	jal f_str.stringConcatenate
-	lw $s5, 16($sp)
-	lw $s2, 20($sp)
+	lw $s3, 16($sp)
+	lw $s5, 20($sp)
+	lw $s2, 24($sp)
 	lw $t6, 8($sp)
 	lw $t9, 12($sp)
-	lw $s3, 24($sp)
 	move $s0, $v0
 	move $a0, $s0
 	move $a1, $t6
-	sw $s5, 16($sp)
-	sw $s2, 20($sp)
+	sw $s3, 16($sp)
+	sw $s5, 20($sp)
+	sw $s2, 24($sp)
 	sw $t6, 8($sp)
 	sw $t9, 12($sp)
-	sw $s3, 24($sp)
 	jal f_str.stringConcatenate
-	lw $s5, 16($sp)
-	lw $s2, 20($sp)
+	lw $s3, 16($sp)
+	lw $s5, 20($sp)
+	lw $s2, 24($sp)
 	lw $t6, 8($sp)
 	lw $t9, 12($sp)
-	lw $s3, 24($sp)
 	move $s0, $v0
 	move $a0, $s0
 	li $v0, 4

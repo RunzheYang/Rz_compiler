@@ -78,13 +78,19 @@ L41:
 	li $t9, 1
 L42:
 	beq $zero, $t9, L43
-	add $t9, $t6, 50
-	mul $s0, $s5, 4
-	add $s0, $s3, $s0
-	lw $s0, 0($s0)
-	mul $s7, $t6, 4
-	add $s0, $s0, $s7
-	sw $t9, 0($s0)
+	mul $t9, $t6, 4
+	div $t9, $t9, 100
+	mul $s0, $t6, 4
+	rem $s0, $s0, 100
+	add $s7, $t6, 50
+	add $t9, $s5, $t9
+	mul $t9, $t9, 4
+	add $t9, $s3, $t9
+	lw $t9, 0($t9)
+	mul $s0, $s0, 4
+	add $t9, $t9, $s0
+	move $s0, $s7
+	sw $s0, 0($t9)
 	b L44
 L43:
 L44:

@@ -242,11 +242,11 @@ L127:
 	beq $zero, $s3, L128
 	move $a0, $t9
 	move $a1, $s2
-	sw $t6, 12($sp)
 	sw $s2, 4($sp)
+	sw $t6, 12($sp)
 	jal f_merge
-	lw $t6, 12($sp)
 	lw $s2, 4($sp)
+	lw $t6, 12($sp)
 	move $s3, $v0
 	move $t9, $s3
 L129:
@@ -258,11 +258,11 @@ L128:
 	add $s3, $s5, $s3
 	lw $s3, 0($s3)
 	move $a0, $s3
-	sw $t6, 12($sp)
 	sw $t9, 8($sp)
+	sw $t6, 12($sp)
 	jal f_toString
-	lw $t6, 12($sp)
 	lw $t9, 8($sp)
+	lw $t6, 12($sp)
 	move $s3, $v0
 	move $a0, $s3
 	li $v0, 4
@@ -280,11 +280,11 @@ L128:
 	move $a0, $s5
 	move $a1, $s2
 	move $a2, $s3
-	sw $t6, 12($sp)
 	sw $t9, 8($sp)
+	sw $t6, 12($sp)
 	jal f_str.substring
-	lw $t6, 12($sp)
 	lw $t9, 8($sp)
+	lw $t6, 12($sp)
 	move $s3, $v0
 	move $a0, $s3
 	li $v0, 4

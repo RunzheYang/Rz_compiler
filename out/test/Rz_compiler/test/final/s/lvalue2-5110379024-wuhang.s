@@ -1,6 +1,8 @@
 .data
 .align 2
 _buffer:	.space	256
+	.word	1
+msg_0:	.asciiz	"\n"
 var_0:	.word	0
 .text
 main:
@@ -19,7 +21,22 @@ main:
 	li $s3, 4
 	sw $s3, 0($v0)
 	add $s3, $v0, 4
+	la $s5, 8($s3)
+	li $s2, 2
+	sw $s2, 0($s5)
 	sw $s3, var_0
+	lw $s3, var_0
+	la $s3, 8($s3)
+	lw $s3, 0($s3)
+	move $a0, $s3
+	jal f_toString
+	move $s3, $v0
+	move $a0, $s3
+	li $v0, 4
+	syscall
+	la $a0, msg_0
+	li $v0, 4
+	syscall
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra

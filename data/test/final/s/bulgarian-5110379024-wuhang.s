@@ -11,12 +11,14 @@ msg_2:	.asciiz	""
 msg_3:	.asciiz	"Sorry, the number n must be a number s.t. there exists i satisfying n=1+2+...+i"
 	.word	12
 msg_4:	.asciiz	"Let's start!"
-	.word	6
-msg_5:	.asciiz	"step :"
+	.word	5
+msg_5:	.asciiz	"step "
+	.word	1
+msg_6:	.asciiz	":"
 	.word	7
-msg_6:	.asciiz	"Total: "
+msg_7:	.asciiz	"Total: "
 	.word	8
-msg_7:	.asciiz	" step(s)"
+msg_8:	.asciiz	" step(s)"
 var_0:	.word	0
 var_1:	.word	0
 var_2:	.word	0
@@ -439,6 +441,12 @@ L104:
 	lw $s2, 12($sp)
 	move $s3, $v0
 	move $a0, $s3
+	la $a1, msg_6
+	sw $s2, 12($sp)
+	jal f_str.stringConcatenate
+	lw $s2, 12($sp)
+	move $s3, $v0
+	move $a0, $s3
 	li $v0, 4
 	syscall
 	la $a0, msg_1
@@ -458,12 +466,12 @@ L105:
 	move $a0, $s2
 	jal f_toString
 	move $s3, $v0
-	la $a0, msg_6
+	la $a0, msg_7
 	move $a1, $s3
 	jal f_str.stringConcatenate
 	move $s3, $v0
 	move $a0, $s3
-	la $a1, msg_7
+	la $a1, msg_8
 	jal f_str.stringConcatenate
 	move $s3, $v0
 	move $a0, $s3

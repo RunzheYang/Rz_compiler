@@ -197,7 +197,6 @@ public class ControlFlowGraph extends AbstractGraph<CFGNode> {
                 allRegisters.addAll(n.uses);
             }
         } while (isChanged(liveIn, prevLiveIn) || isChanged(liveOut, prevLiveOut));
-
         // lable unuseful instruction && prepare for smart caller
         for(CFGNode n : this) {
             if (n.defs.size() == 1 && n.getInstr() instanceof MipsInstruction) {

@@ -1,5 +1,6 @@
 package Rz_compiler.backend.codegen;
 
+import Rz_compiler.backend.allocation.CiscRegisterAllocator;
 import Rz_compiler.backend.allocation.FrameManager;
 import Rz_compiler.backend.allocation.RegisterAllocator;
 import Rz_compiler.backend.controlflow.ControlFlowGraph;
@@ -81,6 +82,7 @@ public class CodeGenerator {
                 startOffSet.put(func.ident().getText(), codeGen.getArgOff());
             }
 
+
             if (preInstr.size() != 0) {
                 preInstr.addAll(fbody.get("main"));
                 fbody.put("main", preInstr);
@@ -160,13 +162,52 @@ public class CodeGenerator {
         if (optLevel == -1) {
             ControlFlowGraph cfg = new ControlFlowGraph(intermediateCode);
             //System.err.println(cfg);
-            InterferenceGraph ig = new InterferenceGraph(cfg);
-            //System.err.println(funcname);
-            //System.err.println(ig);
-            //IGColouration igc = new IGColouration(ig);
-            intermediateCode = simpleRegisterAllocation(intermediateCode, ig, funcname);
+
+            if (cfg.getNodeSet().size() > 2000) {
+                intermediateCode = ciscRegisterAllocation(intermediateCode, funcname);
+            } else {
+                InterferenceGraph ig = new InterferenceGraph(cfg);
+                //System.err.println(funcname);
+                //System.err.println(ig);
+                intermediateCode = simpleRegisterAllocation(intermediateCode, ig, funcname);
+            }
         }
         return intermediateCode;
+    }
+
+    private Deque<PseudoInstruction> ciscRegisterAllocation(Deque<PseudoInstruction> intermediateCode, String funcname) {
+        FrameManager frameManager = new FrameManager(1 + startOffSet.get(funcname));
+        Deque<PseudoInstruction> alloCode = new ArrayDeque<>();
+        CiscRegisterAllocator registerAllocator = new CiscRegisterAllocator(frameManager);
+
+        for (PseudoInstruction ps : intermediateCode) {
+            Deque<PseudoInstruction> instructions = ps.accept(registerAllocator);
+
+            for (PseudoInstruction ppp : instructions) {
+                if (ppp != null ) alloCode.add(ppp);
+            }
+        }
+
+        //Correct the SP MOVE
+        Deque<PseudoInstruction> finalCode = new ArrayDeque<>();
+        for (PseudoInstruction ps : alloCode) {
+            if (ps instanceof AddInstr
+                    && ((AddInstr) ps).getDest().toString().equals("$sp")
+                    && ((AddInstr) ps).getSrc1().toString().equals("$sp")) {
+                ps = new AddInstr(MipsRegister.$sp, MipsRegister.$sp, new ImmediateValue(frameManager.getOffset()));
+            } else if (ps instanceof SubInstr
+                    && ((SubInstr) ps).getDest().toString().equals("$sp")
+                    && ((SubInstr) ps).getSrc1().toString().equals("$sp")) {
+                ps = new SubInstr(MipsRegister.$sp, MipsRegister.$sp, new ImmediateValue(frameManager.getOffset()));
+            }
+            finalCode.add(ps);
+        }
+
+        for (Register reg : frameManager.getRegUseInFrame()) {
+            ((TemporaryRegister) reg).clear();
+        }
+
+        return finalCode;
     }
 
     private Deque<PseudoInstruction> simpleRegisterAllocation(Deque<PseudoInstruction> intermediateCode,

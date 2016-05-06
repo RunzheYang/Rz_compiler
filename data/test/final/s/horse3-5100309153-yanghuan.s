@@ -28,6 +28,10 @@ f_origin:
 	move $s3, $a0
 	sub $sp, $sp, 4
 	sw $ra, 0($sp)
+	li $s5, 0
+	sw $s5, var_1
+	li $s5, 0
+	sw $s5, var_10
 	mul $s5, $s3, 4
 	add $s5, $s5, 4
 	add $a0, $zero, $s5

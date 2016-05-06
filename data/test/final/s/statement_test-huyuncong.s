@@ -167,13 +167,13 @@ L566:
 	add $s3, $s2, $s3
 	lw $s3, 0($s3)
 	move $a0, $s3
-	sw $s5, 4($sp)
-	sw $t6, 8($sp)
-	sw $s2, 12($sp)
+	sw $t6, 4($sp)
+	sw $s2, 8($sp)
+	sw $s5, 12($sp)
 	jal f_toString
-	lw $s5, 4($sp)
-	lw $t6, 8($sp)
-	lw $s2, 12($sp)
+	lw $t6, 4($sp)
+	lw $s2, 8($sp)
+	lw $s5, 12($sp)
 	move $s3, $v0
 	move $a0, $s3
 	li $v0, 4

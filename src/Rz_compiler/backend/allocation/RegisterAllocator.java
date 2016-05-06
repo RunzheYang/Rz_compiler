@@ -721,18 +721,18 @@ public class RegisterAllocator implements InstructionVisitor<Deque<PseudoInstruc
         Operand operand1 = result.a;
         instructions.addAll(result.b);
 
-        instructions.addAll(jalInstr.getNeedSave().stream().filter(reg
-                -> reg instanceof TemporaryRegister
-                && ((TemporaryRegister) reg).isInRegister() != null).map(reg
-                -> frameManager.CastToMem(reg)).collect(Collectors.toList()));
+            instructions.addAll(jalInstr.getNeedSave().stream().filter(reg
+                    -> reg instanceof TemporaryRegister
+                    && ((TemporaryRegister) reg).isInRegister() != null).map(reg
+                    -> frameManager.CastToMem(reg)).collect(Collectors.toList()));
 
-        instructions.add(new JalInstr((Label) operand1));
+            instructions.add(new JalInstr((Label) operand1));
 
-        jalInstr.getNeedSave().stream().filter(reg
-                -> reg instanceof TemporaryRegister
-                && ((TemporaryRegister) reg).getHistoryRegister() != null).forEach(reg
-                -> {instructions.addAll(reg.accept(new RegisterMapper()).b);
-        });
+            jalInstr.getNeedSave().stream().filter(reg
+                    -> reg instanceof TemporaryRegister
+                    && ((TemporaryRegister) reg).getHistoryRegister() != null).forEach(reg
+                    -> {instructions.addAll(reg.accept(new RegisterMapper()).b);
+            });
 
         return instructions;
     }

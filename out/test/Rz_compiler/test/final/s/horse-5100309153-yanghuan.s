@@ -104,13 +104,13 @@ f_addList:
 	lw $s2, var_0
 	move $a0, $s5
 	move $a1, $s2
+	sw $t6, 12($sp)
 	sw $s3, 4($sp)
 	sw $s5, 8($sp)
-	sw $t6, 12($sp)
 	jal f_check
+	lw $t6, 12($sp)
 	lw $s3, 4($sp)
 	lw $s5, 8($sp)
-	lw $t6, 12($sp)
 	move $s2, $v0
 	and $s2, $t6, $s2
 	b L185
