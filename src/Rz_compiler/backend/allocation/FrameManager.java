@@ -66,7 +66,8 @@ public class FrameManager {
 
         Operand memAdd = varMemDic.get(reg);
         if (memAdd instanceof Label) {
-            return new LaInstr(newTarget, memAdd);
+            //ALSO lw!!
+            return new LwInstr(newTarget, memAdd);
         } else if (memAdd instanceof MemAddress) {
             return new LwInstr(newTarget, memAdd);
         }

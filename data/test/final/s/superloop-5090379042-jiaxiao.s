@@ -18,375 +18,375 @@ main:
 	move $s3, $v0
 	sw $s3, var_0
 	li $s5, 1
-L567:
+L584:
 	lw $s3, var_0
 	sle $s3, $s5, $s3
-	beq $zero, $s3, L568
+	beq $zero, $s3, L585
 	li $s2, 1
-L570:
+L587:
 	lw $s3, var_0
 	sle $s3, $s2, $s3
-	beq $zero, $s3, L571
+	beq $zero, $s3, L588
 	li $t6, 1
-L573:
+L590:
 	lw $s3, var_0
 	sle $s3, $t6, $s3
-	beq $zero, $s3, L574
+	beq $zero, $s3, L591
 	li $t9, 1
-L576:
+L593:
 	lw $s3, var_0
 	sle $s3, $t9, $s3
-	beq $zero, $s3, L577
+	beq $zero, $s3, L594
 	li $s0, 1
-L579:
+L596:
 	lw $s3, var_0
 	sle $s3, $s0, $s3
-	beq $zero, $s3, L580
+	beq $zero, $s3, L597
 	li $s7, 1
-L582:
+L599:
 	lw $s3, var_0
 	sle $s3, $s7, $s3
-	beq $zero, $s3, L583
+	beq $zero, $s3, L600
 	sne $s3, $s5, $s2
-	beq $zero, $s3, L585
+	beq $zero, $s3, L602
 	sne $t0, $s5, $t6
 	and $s3, $s3, $t0
-	b L586
-L585:
+	b L603
+L602:
 	li $s3, 0
-L586:
-	beq $zero, $s3, L587
+L603:
+	beq $zero, $s3, L604
 	sne $t0, $s5, $t9
 	and $s3, $s3, $t0
-	b L588
-L587:
+	b L605
+L604:
 	li $s3, 0
-L588:
-	beq $zero, $s3, L589
+L605:
+	beq $zero, $s3, L606
 	sne $t0, $s5, $s0
 	and $s3, $s3, $t0
-	b L590
-L589:
+	b L607
+L606:
 	li $s3, 0
-L590:
-	beq $zero, $s3, L591
+L607:
+	beq $zero, $s3, L608
 	sne $t0, $s5, $s7
 	and $s3, $s3, $t0
-	b L592
-L591:
+	b L609
+L608:
 	li $s3, 0
-L592:
-	beq $zero, $s3, L593
+L609:
+	beq $zero, $s3, L610
 	lw $t0, var_1
 	sne $t0, $s5, $t0
 	and $s3, $s3, $t0
-	b L594
-L593:
+	b L611
+L610:
 	li $s3, 0
-L594:
-	beq $zero, $s3, L595
+L611:
+	beq $zero, $s3, L612
 	lw $t0, var_2
 	sne $t0, $s5, $t0
 	and $s3, $s3, $t0
-	b L596
-L595:
+	b L613
+L612:
 	li $s3, 0
-L596:
-	beq $zero, $s3, L597
+L613:
+	beq $zero, $s3, L614
 	lw $t3, var_3
 	sne $t0, $s5, $t3
 	and $s3, $s3, $t0
-	b L598
-L597:
+	b L615
+L614:
 	li $s3, 0
-L598:
-	beq $zero, $s3, L599
+L615:
+	beq $zero, $s3, L616
 	lw $t3, var_4
 	sne $t0, $s5, $t3
 	and $s3, $s3, $t0
-	b L600
-L599:
+	b L617
+L616:
 	li $s3, 0
-L600:
-	beq $zero, $s3, L601
+L617:
+	beq $zero, $s3, L618
 	sne $t0, $s2, $t6
 	and $s3, $s3, $t0
-	b L602
-L601:
+	b L619
+L618:
 	li $s3, 0
-L602:
-	beq $zero, $s3, L603
+L619:
+	beq $zero, $s3, L620
 	sne $t0, $s2, $t9
 	and $s3, $s3, $t0
-	b L604
-L603:
+	b L621
+L620:
 	li $s3, 0
-L604:
-	beq $zero, $s3, L605
+L621:
+	beq $zero, $s3, L622
 	sne $t0, $s2, $s0
 	and $s3, $s3, $t0
-	b L606
-L605:
+	b L623
+L622:
 	li $s3, 0
-L606:
-	beq $zero, $s3, L607
+L623:
+	beq $zero, $s3, L624
 	sne $t0, $s2, $s7
 	and $s3, $s3, $t0
-	b L608
-L607:
+	b L625
+L624:
 	li $s3, 0
-L608:
-	beq $zero, $s3, L609
+L625:
+	beq $zero, $s3, L626
 	lw $t0, var_1
 	sne $t0, $s2, $t0
 	and $s3, $s3, $t0
-	b L610
-L609:
+	b L627
+L626:
 	li $s3, 0
-L610:
-	beq $zero, $s3, L611
+L627:
+	beq $zero, $s3, L628
 	lw $t0, var_2
 	sne $t0, $s2, $t0
 	and $s3, $s3, $t0
-	b L612
-L611:
+	b L629
+L628:
 	li $s3, 0
-L612:
-	beq $zero, $s3, L613
+L629:
+	beq $zero, $s3, L630
 	lw $t3, var_3
 	sne $t0, $s2, $t3
 	and $s3, $s3, $t0
-	b L614
-L613:
+	b L631
+L630:
 	li $s3, 0
-L614:
-	beq $zero, $s3, L615
+L631:
+	beq $zero, $s3, L632
 	lw $t3, var_4
 	sne $t0, $s2, $t3
 	and $s3, $s3, $t0
-	b L616
-L615:
+	b L633
+L632:
 	li $s3, 0
-L616:
-	beq $zero, $s3, L617
+L633:
+	beq $zero, $s3, L634
 	sne $t0, $t6, $t9
 	and $s3, $s3, $t0
-	b L618
-L617:
+	b L635
+L634:
 	li $s3, 0
-L618:
-	beq $zero, $s3, L619
+L635:
+	beq $zero, $s3, L636
 	sne $t0, $t6, $s0
 	and $s3, $s3, $t0
-	b L620
-L619:
+	b L637
+L636:
 	li $s3, 0
-L620:
-	beq $zero, $s3, L621
+L637:
+	beq $zero, $s3, L638
 	sne $t0, $t6, $s7
 	and $s3, $s3, $t0
-	b L622
-L621:
+	b L639
+L638:
 	li $s3, 0
-L622:
-	beq $zero, $s3, L623
+L639:
+	beq $zero, $s3, L640
 	lw $t0, var_1
 	sne $t0, $t6, $t0
 	and $s3, $s3, $t0
-	b L624
-L623:
+	b L641
+L640:
 	li $s3, 0
-L624:
-	beq $zero, $s3, L625
+L641:
+	beq $zero, $s3, L642
 	lw $t0, var_2
 	sne $t0, $t6, $t0
 	and $s3, $s3, $t0
-	b L626
-L625:
+	b L643
+L642:
 	li $s3, 0
-L626:
-	beq $zero, $s3, L627
+L643:
+	beq $zero, $s3, L644
 	lw $t3, var_3
 	sne $t0, $t6, $t3
 	and $s3, $s3, $t0
-	b L628
-L627:
+	b L645
+L644:
 	li $s3, 0
-L628:
-	beq $zero, $s3, L629
+L645:
+	beq $zero, $s3, L646
 	lw $t3, var_4
 	sne $t0, $t6, $t3
 	and $s3, $s3, $t0
-	b L630
-L629:
+	b L647
+L646:
 	li $s3, 0
-L630:
-	beq $zero, $s3, L631
+L647:
+	beq $zero, $s3, L648
 	sne $t0, $t9, $s0
 	and $s3, $s3, $t0
-	b L632
-L631:
+	b L649
+L648:
 	li $s3, 0
-L632:
-	beq $zero, $s3, L633
+L649:
+	beq $zero, $s3, L650
 	sne $t0, $t9, $s7
 	and $s3, $s3, $t0
-	b L634
-L633:
+	b L651
+L650:
 	li $s3, 0
-L634:
-	beq $zero, $s3, L635
+L651:
+	beq $zero, $s3, L652
 	lw $t0, var_1
 	sne $t0, $t9, $t0
 	and $s3, $s3, $t0
-	b L636
-L635:
+	b L653
+L652:
 	li $s3, 0
-L636:
-	beq $zero, $s3, L637
+L653:
+	beq $zero, $s3, L654
 	lw $t0, var_2
 	sne $t0, $t9, $t0
 	and $s3, $s3, $t0
-	b L638
-L637:
+	b L655
+L654:
 	li $s3, 0
-L638:
-	beq $zero, $s3, L639
+L655:
+	beq $zero, $s3, L656
 	lw $t3, var_3
 	sne $t0, $t9, $t3
 	and $s3, $s3, $t0
-	b L640
-L639:
+	b L657
+L656:
 	li $s3, 0
-L640:
-	beq $zero, $s3, L641
+L657:
+	beq $zero, $s3, L658
 	lw $t3, var_4
 	sne $t0, $t9, $t3
 	and $s3, $s3, $t0
-	b L642
-L641:
+	b L659
+L658:
 	li $s3, 0
-L642:
-	beq $zero, $s3, L643
+L659:
+	beq $zero, $s3, L660
 	sne $t0, $s0, $s7
 	and $s3, $s3, $t0
-	b L644
-L643:
-	li $s3, 0
-L644:
-	beq $zero, $s3, L645
-	lw $t0, var_1
-	sne $t0, $s0, $t0
-	and $s3, $s3, $t0
-	b L646
-L645:
-	li $s3, 0
-L646:
-	beq $zero, $s3, L647
-	lw $t0, var_2
-	sne $t0, $s0, $t0
-	and $s3, $s3, $t0
-	b L648
-L647:
-	li $s3, 0
-L648:
-	beq $zero, $s3, L649
-	lw $t3, var_3
-	sne $t0, $s0, $t3
-	and $s3, $s3, $t0
-	b L650
-L649:
-	li $s3, 0
-L650:
-	beq $zero, $s3, L651
-	lw $t3, var_4
-	sne $t0, $s0, $t3
-	and $s3, $s3, $t0
-	b L652
-L651:
-	li $s3, 0
-L652:
-	beq $zero, $s3, L653
-	lw $t0, var_1
-	sne $t0, $s7, $t0
-	and $s3, $s3, $t0
-	b L654
-L653:
-	li $s3, 0
-L654:
-	beq $zero, $s3, L655
-	lw $t0, var_2
-	sne $t0, $s7, $t0
-	and $s3, $s3, $t0
-	b L656
-L655:
-	li $s3, 0
-L656:
-	beq $zero, $s3, L657
-	lw $t3, var_3
-	sne $t0, $s7, $t3
-	and $s3, $s3, $t0
-	b L658
-L657:
-	li $s3, 0
-L658:
-	beq $zero, $s3, L659
-	lw $t3, var_4
-	sne $t0, $s7, $t3
-	and $s3, $s3, $t0
-	b L660
-L659:
-	li $s3, 0
+	b L661
 L660:
-	beq $zero, $s3, L661
+	li $s3, 0
+L661:
+	beq $zero, $s3, L662
+	lw $t0, var_1
+	sne $t0, $s0, $t0
+	and $s3, $s3, $t0
+	b L663
+L662:
+	li $s3, 0
+L663:
+	beq $zero, $s3, L664
+	lw $t0, var_2
+	sne $t0, $s0, $t0
+	and $s3, $s3, $t0
+	b L665
+L664:
+	li $s3, 0
+L665:
+	beq $zero, $s3, L666
+	lw $t3, var_3
+	sne $t0, $s0, $t3
+	and $s3, $s3, $t0
+	b L667
+L666:
+	li $s3, 0
+L667:
+	beq $zero, $s3, L668
+	lw $t3, var_4
+	sne $t0, $s0, $t3
+	and $s3, $s3, $t0
+	b L669
+L668:
+	li $s3, 0
+L669:
+	beq $zero, $s3, L670
+	lw $t0, var_1
+	sne $t0, $s7, $t0
+	and $s3, $s3, $t0
+	b L671
+L670:
+	li $s3, 0
+L671:
+	beq $zero, $s3, L672
+	lw $t0, var_2
+	sne $t0, $s7, $t0
+	and $s3, $s3, $t0
+	b L673
+L672:
+	li $s3, 0
+L673:
+	beq $zero, $s3, L674
+	lw $t3, var_3
+	sne $t0, $s7, $t3
+	and $s3, $s3, $t0
+	b L675
+L674:
+	li $s3, 0
+L675:
+	beq $zero, $s3, L676
+	lw $t3, var_4
+	sne $t0, $s7, $t3
+	and $s3, $s3, $t0
+	b L677
+L676:
+	li $s3, 0
+L677:
+	beq $zero, $s3, L678
 	lw $t0, var_2
 	lw $t3, var_3
 	sne $t0, $t0, $t3
 	and $s3, $s3, $t0
-	b L662
-L661:
+	b L679
+L678:
 	li $s3, 0
-L662:
-	beq $zero, $s3, L663
+L679:
+	beq $zero, $s3, L680
 	lw $t0, var_1
 	lw $t3, var_4
 	sne $t0, $t0, $t3
 	and $s3, $s3, $t0
-	b L664
-L663:
+	b L681
+L680:
 	li $s3, 0
-L664:
-	beq $zero, $s3, L665
+L681:
+	beq $zero, $s3, L682
 	lw $s3, var_5
 	add $s3, $s3, 1
 	sw $s3, var_5
-	b L666
-L665:
-L666:
-L584:
+	b L683
+L682:
+L683:
+L601:
 	add $s7, $s7, 1
-	b L582
-L583:
-L581:
+	b L599
+L600:
+L598:
 	add $s0, $s0, 1
-	b L579
-L580:
-L578:
+	b L596
+L597:
+L595:
 	add $t9, $t9, 1
-	b L576
-L577:
-L575:
+	b L593
+L594:
+L592:
 	add $t6, $t6, 1
-	b L573
-L574:
-L572:
+	b L590
+L591:
+L589:
 	add $s2, $s2, 1
-	b L570
-L571:
-L569:
+	b L587
+L588:
+L586:
 	add $s5, $s5, 1
-	b L567
-L568:
+	b L584
+L585:
 	lw $s3, var_5
 	move $a0, $s3
 	jal f_toString

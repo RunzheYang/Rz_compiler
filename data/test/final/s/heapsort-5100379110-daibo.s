@@ -54,29 +54,29 @@ main:
 	add $s3, $v0, 4
 	sw $s3, var_1
 	li $s5, 0
-L153:
+L170:
 	lw $s3, var_1
 	lw $s3, -4($s3)
 	slt $s3, $s5, $s3
-	beq $zero, $s3, L154
+	beq $zero, $s3, L171
 	lw $s3, var_1
 	mul $s2, $s5, 4
 	add $s3, $s3, $s2
 	move $s2, $s5
 	sw $s2, 0($s3)
-L155:
+L172:
 	add $s3, $s5, 1
 	move $s5, $s3
-	b L153
-L154:
+	b L170
+L171:
 	jal f_makeHeap
 	jal f_heapSort
 	li $s5, 0
-L156:
+L173:
 	lw $s3, var_1
 	lw $s3, -4($s3)
 	slt $s3, $s5, $s3
-	beq $zero, $s3, L157
+	beq $zero, $s3, L174
 	lw $s3, var_1
 	mul $s2, $s5, 4
 	add $s3, $s3, $s2
@@ -95,11 +95,11 @@ L156:
 	move $a0, $s3
 	li $v0, 4
 	syscall
-L158:
+L175:
 	add $s3, $s5, 1
 	move $s5, $s3
-	b L156
-L157:
+	b L173
+L174:
 	la $a0, msg_1
 	li $v0, 4
 	syscall
@@ -123,15 +123,15 @@ f_adjustHeap:
 	sw $ra, 0($sp)
 	li $s5, 0
 	move $s2, $s5
-L142:
+L159:
 	mul $s5, $s2, 2
 	slt $s5, $s5, $s3
-	beq $zero, $s5, L143
+	beq $zero, $s5, L160
 	mul $s5, $s2, 2
 	mul $t6, $s2, 2
 	add $t6, $t6, 1
 	slt $t6, $t6, $s3
-	beq $zero, $t6, L144
+	beq $zero, $t6, L161
 	lw $t9, var_1
 	mul $s0, $s2, 2
 	add $s0, $s0, 1
@@ -145,16 +145,16 @@ L142:
 	lw $t9, 0($t9)
 	slt $t9, $s0, $t9
 	and $t6, $t6, $t9
-	b L145
-L144:
+	b L162
+L161:
 	li $t6, 0
-L145:
-	beq $zero, $t6, L146
+L162:
+	beq $zero, $t6, L163
 	mul $s5, $s2, 2
 	add $s5, $s5, 1
-	b L147
-L146:
-L147:
+	b L164
+L163:
+L164:
 	lw $t9, var_1
 	mul $t6, $s2, 4
 	add $t6, $t9, $t6
@@ -164,7 +164,7 @@ L147:
 	add $t9, $t9, $s0
 	lw $t9, 0($t9)
 	sgt $t6, $t6, $t9
-	beq $zero, $t6, L148
+	beq $zero, $t6, L165
 	lw $t9, var_1
 	mul $t6, $s2, 4
 	add $t6, $t9, $t6
@@ -183,12 +183,12 @@ L147:
 	add $s2, $t9, $s2
 	sw $t6, 0($s2)
 	move $s2, $s5
-	b L149
-L148:
-	b L143
-L149:
-	b L142
-L143:
+	b L166
+L165:
+	b L160
+L166:
+	b L159
+L160:
 	li $v0, 0
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
@@ -200,10 +200,10 @@ f_heapSort:
 	sub $sp, $sp, 8
 	sw $ra, 0($sp)
 	li $s3, 0
-L150:
+L167:
 	lw $s5, var_0
 	slt $s5, $s3, $s5
-	beq $zero, $s5, L151
+	beq $zero, $s5, L168
 	lw $s2, var_1
 	la $s5, 0($s2)
 	lw $s5, 0($s5)
@@ -233,10 +233,10 @@ L150:
 	sw $s3, 4($sp)
 	jal f_adjustHeap
 	lw $s3, 4($sp)
-L152:
+L169:
 	add $s3, $s3, 1
-	b L150
-L151:
+	b L167
+L168:
 	li $v0, 0
 	lw $ra, 0($sp)
 	add $sp, $sp, 8
@@ -252,16 +252,16 @@ f_makeHeap:
 	div $s3, $s3, 2
 	move $s5, $s3
 	li $s2, 0
-L134:
+L151:
 	sge $s3, $s5, 0
-	beq $zero, $s3, L135
+	beq $zero, $s3, L152
 	mul $s3, $s5, 2
 	move $s2, $s3
 	mul $s3, $s5, 2
 	add $t6, $s3, 1
 	lw $s3, var_0
 	slt $s3, $t6, $s3
-	beq $zero, $s3, L136
+	beq $zero, $s3, L153
 	lw $t6, var_1
 	mul $t9, $s5, 2
 	add $t9, $t9, 1
@@ -275,17 +275,17 @@ L134:
 	lw $t6, 0($t6)
 	slt $t6, $t9, $t6
 	and $s3, $s3, $t6
-	b L137
-L136:
+	b L154
+L153:
 	li $s3, 0
-L137:
-	beq $zero, $s3, L138
+L154:
+	beq $zero, $s3, L155
 	mul $s3, $s5, 2
 	add $s3, $s3, 1
 	move $s2, $s3
-	b L139
-L138:
-L139:
+	b L156
+L155:
+L156:
 	lw $t6, var_1
 	mul $s3, $s5, 4
 	add $s3, $t6, $s3
@@ -295,19 +295,19 @@ L139:
 	add $t6, $t6, $t9
 	lw $t6, 0($t6)
 	sgt $s3, $s3, $t6
-	beq $zero, $s3, L140
+	beq $zero, $s3, L157
 	move $a0, $s5
 	move $a1, $s2
 	sw $s5, 4($sp)
 	jal f_exchange
 	lw $s5, 4($sp)
-	b L141
-L140:
-L141:
+	b L158
+L157:
+L158:
 	sub $s3, $s5, 1
 	move $s5, $s3
-	b L134
-L135:
+	b L151
+L152:
 	li $v0, 0
 	lw $ra, 0($sp)
 	add $sp, $sp, 8

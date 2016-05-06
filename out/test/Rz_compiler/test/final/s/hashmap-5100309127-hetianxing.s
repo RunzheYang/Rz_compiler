@@ -31,7 +31,7 @@ f_get:
 	sw $s5, var_1
 	sw $s3, 4($sp)
 	jal f_getHash
-	la $s5, var_1
+	lw $s5, var_1
 	lw $s3, 4($sp)
 	move $s2, $v0
 	mul $s2, $s2, 4

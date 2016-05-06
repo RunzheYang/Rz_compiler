@@ -22,43 +22,43 @@ main:
 	sub $sp, $sp, 16
 	sw $ra, 0($sp)
 	li $s5, 1
-L669:
+L686:
 	lw $s3, var_0
 	sle $s3, $s5, $s3
-	beq $zero, $s3, L670
+	beq $zero, $s3, L687
 	lw $s3, var_1
 	mul $s2, $s5, 4
 	add $s3, $s3, $s2
 	li $s2, 1
 	sw $s2, 0($s3)
-L671:
+L688:
 	add $s5, $s5, 1
-	b L669
-L670:
+	b L686
+L687:
 	li $s5, 2
-L672:
+L689:
 	lw $s3, var_0
 	sle $s3, $s5, $s3
-	beq $zero, $s3, L673
+	beq $zero, $s3, L690
 	lw $s3, var_1
 	mul $s2, $s5, 4
 	add $s3, $s3, $s2
 	lw $s3, 0($s3)
-	beq $zero, $s3, L675
+	beq $zero, $s3, L692
 	li $s2, 2
 	sgt $t6, $s5, 3
-	beq $zero, $t6, L677
+	beq $zero, $t6, L694
 	lw $s3, var_1
 	sub $t9, $s5, 2
 	mul $t9, $t9, 4
 	add $s3, $s3, $t9
 	lw $s3, 0($s3)
 	and $s3, $t6, $s3
-	b L678
-L677:
+	b L695
+L694:
 	li $s3, 0
-L678:
-	beq $zero, $s3, L679
+L695:
+	beq $zero, $s3, L696
 	lw $s3, var_2
 	add $s3, $s3, 1
 	sw $s3, var_2
@@ -101,14 +101,14 @@ L678:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-	b L680
-L679:
-L680:
-L681:
+	b L697
+L696:
+L697:
+L698:
 	mul $t6, $s5, $s2
 	lw $s3, var_0
 	sle $s3, $t6, $s3
-	beq $zero, $s3, L682
+	beq $zero, $s3, L699
 	lw $s3, var_1
 	mul $t6, $s5, $s2
 	mul $t6, $t6, 4
@@ -116,15 +116,15 @@ L681:
 	li $t6, 0
 	sw $t6, 0($s3)
 	add $s2, $s2, 1
-	b L681
-L682:
-	b L676
-L675:
-L676:
-L674:
+	b L698
+L699:
+	b L693
+L692:
+L693:
+L691:
 	add $s5, $s5, 1
-	b L672
-L673:
+	b L689
+L690:
 	lw $s3, var_2
 	move $a0, $s3
 	jal f_toString

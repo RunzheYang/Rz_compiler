@@ -18,17 +18,17 @@ f_search:
 	sub $sp, $sp, 24
 	sw $ra, 0($sp)
 	sgt $t6, $s5, 0
-	bne $zero, $t6, L328
+	bne $zero, $t6, L345
 	slt $t9, $s5, 0
-L328:
+L345:
 	li $t6, 1
-L329:
-	bne $zero, $t6, L330
+L346:
+	bne $zero, $t6, L347
 	seq $t9, $s3, 0
-L330:
+L347:
 	li $t6, 1
-L331:
-	bne $zero, $t6, L332
+L348:
+	bne $zero, $t6, L349
 	lw $t9, var_0
 	sub $s0, $s3, 1
 	mul $s0, $s0, 4
@@ -53,19 +53,19 @@ L331:
 	lw $t9, 0($t9)
 	add $t9, $s0, $t9
 	seq $t9, $t9, 15
-L332:
+L349:
 	li $t6, 1
-L333:
-	beq $zero, $t6, L334
+L350:
+	beq $zero, $t6, L351
 	seq $t6, $s3, 2
-	beq $zero, $t6, L336
+	beq $zero, $t6, L353
 	seq $t9, $s5, 2
 	and $t6, $t6, $t9
-	b L337
-L336:
+	b L354
+L353:
 	li $t6, 0
-L337:
-	beq $zero, $t6, L338
+L354:
+	beq $zero, $t6, L355
 	li $s3, 45
 	sub $s3, $s3, $s2
 	lw $t9, var_0
@@ -108,7 +108,7 @@ L337:
 	lw $s2, 0($s2)
 	add $s5, $s5, $s2
 	seq $s5, $s5, $s3
-	beq $zero, $s5, L340
+	beq $zero, $s5, L357
 	lw $t9, var_0
 	la $s2, 8($t9)
 	lw $s2, 0($s2)
@@ -128,11 +128,11 @@ L337:
 	add $s2, $s2, $t6
 	seq $s2, $s2, $s3
 	and $s5, $s5, $s2
-	b L341
-L340:
+	b L358
+L357:
 	li $s5, 0
-L341:
-	beq $zero, $s5, L342
+L358:
+	beq $zero, $s5, L359
 	lw $t9, var_0
 	la $s2, 0($t9)
 	lw $s2, 0($s2)
@@ -152,11 +152,11 @@ L341:
 	add $s2, $s2, $t6
 	seq $s2, $s2, $s3
 	and $s5, $s5, $s2
-	b L343
-L342:
+	b L360
+L359:
 	li $s5, 0
-L343:
-	beq $zero, $s5, L344
+L360:
+	beq $zero, $s5, L361
 	lw $t9, var_0
 	la $s2, 0($t9)
 	lw $s2, 0($s2)
@@ -176,11 +176,11 @@ L343:
 	add $s2, $s2, $t6
 	seq $s2, $s2, $s3
 	and $s5, $s5, $s2
-	b L345
-L344:
+	b L362
+L361:
 	li $s5, 0
-L345:
-	beq $zero, $s5, L346
+L362:
+	beq $zero, $s5, L363
 	lw $t9, var_0
 	la $s2, 0($t9)
 	lw $s2, 0($s2)
@@ -200,11 +200,11 @@ L345:
 	add $s2, $s2, $t6
 	seq $s2, $s2, $s3
 	and $s5, $s5, $s2
-	b L347
-L346:
+	b L364
+L363:
 	li $s5, 0
-L347:
-	beq $zero, $s5, L348
+L364:
+	beq $zero, $s5, L365
 	lw $t9, var_0
 	la $s2, 0($t9)
 	lw $s2, 0($s2)
@@ -224,11 +224,11 @@ L347:
 	add $s2, $s2, $t6
 	seq $s2, $s2, $s3
 	and $s5, $s5, $s2
-	b L349
-L348:
+	b L366
+L365:
 	li $s5, 0
-L349:
-	beq $zero, $s5, L350
+L366:
+	beq $zero, $s5, L367
 	lw $t9, var_0
 	la $s2, 8($t9)
 	lw $s2, 0($s2)
@@ -248,11 +248,11 @@ L349:
 	add $s2, $s2, $t6
 	seq $s3, $s2, $s3
 	and $s3, $s5, $s3
-	b L351
-L350:
+	b L368
+L367:
 	li $s3, 0
-L351:
-	beq $zero, $s3, L352
+L368:
+	beq $zero, $s3, L369
 	lw $s3, var_2
 	la $s3, 0($s3)
 	lw $s3, 0($s3)
@@ -261,13 +261,13 @@ L351:
 	la $s3, 0($s3)
 	sw $s5, 0($s3)
 	li $t6, 0
-L354:
+L371:
 	sle $s3, $t6, 2
-	beq $zero, $s3, L355
+	beq $zero, $s3, L372
 	li $s3, 0
-L357:
+L374:
 	sle $s5, $s3, 2
-	beq $zero, $s5, L358
+	beq $zero, $s5, L375
 	lw $t9, var_0
 	mul $s5, $t6, 4
 	add $s5, $t9, $s5
@@ -288,27 +288,27 @@ L357:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-L359:
+L376:
 	add $s3, $s3, 1
-	b L357
-L358:
+	b L374
+L375:
 	la $a0, msg_1
 	li $v0, 4
 	syscall
-L356:
+L373:
 	add $t6, $t6, 1
-	b L354
-L355:
+	b L371
+L372:
 	la $a0, msg_1
 	li $v0, 4
 	syscall
-	b L353
-L352:
-L353:
-	b L339
-L338:
+	b L370
+L369:
+L370:
+	b L356
+L355:
 	seq $t6, $s5, 2
-	beq $zero, $t6, L360
+	beq $zero, $t6, L377
 	lw $t9, var_0
 	mul $t6, $s3, 4
 	add $t6, $t9, $t6
@@ -339,7 +339,7 @@ L338:
 	add $t6, $t6, $t9
 	lw $t6, 0($t6)
 	sgt $t6, $t6, 0
-	beq $zero, $t6, L362
+	beq $zero, $t6, L379
 	lw $t9, var_0
 	mul $s0, $s3, 4
 	add $t9, $t9, $s0
@@ -349,11 +349,11 @@ L338:
 	lw $t9, 0($t9)
 	slt $t9, $t9, 10
 	and $t6, $t6, $t9
-	b L363
-L362:
+	b L380
+L379:
 	li $t6, 0
-L363:
-	beq $zero, $t6, L364
+L380:
+	beq $zero, $t6, L381
 	lw $s0, var_1
 	lw $t9, var_0
 	mul $s7, $s3, 4
@@ -367,11 +367,11 @@ L363:
 	lw $t9, 0($t9)
 	seq $t9, $t9, 0
 	and $t6, $t6, $t9
-	b L365
-L364:
+	b L382
+L381:
 	li $t6, 0
-L365:
-	beq $zero, $t6, L366
+L382:
+	beq $zero, $t6, L383
 	lw $s0, var_1
 	lw $t9, var_0
 	mul $t6, $s3, 4
@@ -385,7 +385,7 @@ L365:
 	li $t9, 1
 	sw $t9, 0($t6)
 	seq $t6, $s5, 2
-	beq $zero, $t6, L368
+	beq $zero, $t6, L385
 	add $t6, $s3, 1
 	li $s0, 0
 	lw $t9, var_0
@@ -404,8 +404,8 @@ L365:
 	jal f_search
 	lw $s3, 12($sp)
 	lw $s5, 16($sp)
-	b L369
-L368:
+	b L386
+L385:
 	add $t6, $s5, 1
 	lw $t9, var_0
 	mul $s0, $s3, 4
@@ -423,7 +423,7 @@ L368:
 	jal f_search
 	lw $s3, 12($sp)
 	lw $s5, 16($sp)
-L369:
+L386:
 	lw $s0, var_1
 	lw $t9, var_0
 	mul $s3, $s3, 4
@@ -436,21 +436,21 @@ L369:
 	add $s3, $s0, $s3
 	li $s5, 0
 	sw $s5, 0($s3)
-	b L367
-L366:
-L367:
-	b L361
-L360:
+	b L384
+L383:
+L384:
+	b L378
+L377:
 	li $t6, 1
-L370:
+L387:
 	sle $t9, $t6, 9
-	beq $zero, $t9, L371
+	beq $zero, $t9, L388
 	lw $s0, var_1
 	mul $t9, $t6, 4
 	add $t9, $s0, $t9
 	lw $t9, 0($t9)
 	seq $t9, $t9, 0
-	beq $zero, $t9, L373
+	beq $zero, $t9, L390
 	lw $s0, var_1
 	mul $t9, $t6, 4
 	add $t9, $s0, $t9
@@ -465,7 +465,7 @@ L370:
 	move $s0, $t6
 	sw $s0, 0($t9)
 	seq $t9, $s5, 2
-	beq $zero, $t9, L375
+	beq $zero, $t9, L392
 	add $t9, $s3, 1
 	li $s0, 0
 	add $s7, $s2, $t6
@@ -481,8 +481,8 @@ L370:
 	lw $s3, 12($sp)
 	lw $s5, 16($sp)
 	lw $s2, 20($sp)
-	b L376
-L375:
+	b L393
+L392:
 	add $t9, $s5, 1
 	add $s0, $s2, $t6
 	move $a0, $s3
@@ -497,7 +497,7 @@ L375:
 	lw $s3, 12($sp)
 	lw $s5, 16($sp)
 	lw $s2, 20($sp)
-L376:
+L393:
 	lw $t9, var_0
 	mul $s0, $s3, 4
 	add $t9, $t9, $s0
@@ -511,18 +511,18 @@ L376:
 	add $t9, $s0, $t9
 	li $s0, 0
 	sw $s0, 0($t9)
-	b L374
-L373:
-L374:
-L372:
+	b L391
+L390:
+L391:
+L389:
 	add $t6, $t6, 1
-	b L370
-L371:
-L361:
-L339:
-	b L335
-L334:
-L335:
+	b L387
+L388:
+L378:
+L356:
+	b L352
+L351:
+L352:
 	lw $ra, 0($sp)
 	add $sp, $sp, 24
 	jr $ra
@@ -541,10 +541,10 @@ f_origin:
 	sw $s5, var_0
 	li $s2, 0
 	sw $s2, var_3
-L322:
+L339:
 	lw $s2, var_3
 	slt $s5, $s2, $s3
-	beq $zero, $s5, L323
+	beq $zero, $s5, L340
 	mul $s5, $s3, 4
 	add $s5, $s5, 4
 	add $a0, $zero, $s5
@@ -561,10 +561,10 @@ L322:
 	sw $s2, 0($s5)
 	li $s5, 0
 	sw $s5, var_4
-L325:
+L342:
 	lw $s5, var_4
 	slt $s5, $s5, $s3
-	beq $zero, $s5, L326
+	beq $zero, $s5, L343
 	lw $s5, var_0
 	lw $s2, var_3
 	mul $s2, $s2, 4
@@ -575,18 +575,18 @@ L325:
 	add $s5, $s2, $s5
 	li $s2, 0
 	sw $s2, 0($s5)
-L327:
+L344:
 	lw $s5, var_4
 	add $s5, $s5, 1
 	sw $s5, var_4
-	b L325
-L326:
-L324:
+	b L342
+L343:
+L341:
 	lw $s2, var_3
 	add $s2, $s2, 1
 	sw $s2, var_3
-	b L322
-L323:
+	b L339
+L340:
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
