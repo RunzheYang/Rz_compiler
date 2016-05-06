@@ -18,44 +18,44 @@ f_printBoard:
 	sub $sp, $sp, 4
 	sw $ra, 0($sp)
 	li $s3, 0
-L532:
+L524:
 	lw $s5, var_0
 	slt $s5, $s3, $s5
-	beq $zero, $s5, L533
+	beq $zero, $s5, L525
 	li $s2, 0
-L535:
+L527:
 	lw $s5, var_0
 	slt $s5, $s2, $s5
-	beq $zero, $s5, L536
+	beq $zero, $s5, L528
 	lw $s5, var_2
 	mul $t6, $s3, 4
 	add $s5, $s5, $t6
 	lw $s5, 0($s5)
 	seq $s5, $s5, $s2
-	beq $zero, $s5, L538
+	beq $zero, $s5, L530
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-	b L539
-L538:
+	b L531
+L530:
 	la $a0, msg_1
 	li $v0, 4
 	syscall
-L539:
-L537:
+L531:
+L529:
 	add $s2, $s2, 1
-	b L535
-L536:
+	b L527
+L528:
 	la $a0, msg_3
 	li $v0, 4
 	syscall
 	la $a0, msg_2
 	li $v0, 4
 	syscall
-L534:
+L526:
 	add $s3, $s3, 1
-	b L532
-L533:
+	b L524
+L525:
 	la $a0, msg_3
 	li $v0, 4
 	syscall
@@ -71,21 +71,21 @@ f_search:
 	sw $ra, 0($sp)
 	lw $s5, var_0
 	seq $s5, $s3, $s5
-	beq $zero, $s5, L540
+	beq $zero, $s5, L532
 	jal f_printBoard
-	b L541
-L540:
+	b L533
+L532:
 	li $s2, 0
-L542:
+L534:
 	lw $s5, var_0
 	slt $s5, $s2, $s5
-	beq $zero, $s5, L543
+	beq $zero, $s5, L535
 	lw $s5, var_1
 	mul $t6, $s2, 4
 	add $s5, $s5, $t6
 	lw $s5, 0($s5)
 	seq $s5, $s5, 0
-	beq $zero, $s5, L545
+	beq $zero, $s5, L537
 	lw $t6, var_3
 	la $t6, 0($t6)
 	lw $t6, 0($t6)
@@ -95,11 +95,11 @@ L542:
 	lw $t6, 0($t6)
 	seq $t6, $t6, 0
 	and $t9, $s5, $t6
-	b L546
-L545:
+	b L538
+L537:
 	li $t9, 0
-L546:
-	beq $zero, $t9, L547
+L538:
+	beq $zero, $t9, L539
 	lw $t6, var_3
 	la $s5, 4($t6)
 	lw $t6, 0($s5)
@@ -112,11 +112,11 @@ L546:
 	lw $s5, 0($s5)
 	seq $s5, $s5, 0
 	and $s5, $t9, $s5
-	b L548
-L547:
+	b L540
+L539:
 	li $s5, 0
-L548:
-	beq $zero, $s5, L549
+L540:
+	beq $zero, $s5, L541
 	lw $t6, var_3
 	la $s5, 4($t6)
 	lw $t6, 0($s5)
@@ -175,14 +175,14 @@ L548:
 	mul $t9, $s2, 4
 	add $s5, $s5, $t9
 	sw $t6, 0($s5)
-	b L550
-L549:
-L550:
-L544:
-	add $s2, $s2, 1
 	b L542
-L543:
 L541:
+L542:
+L536:
+	add $s2, $s2, 1
+	b L534
+L535:
+L533:
 	lw $ra, 0($sp)
 	add $sp, $sp, 12
 	jr $ra
@@ -211,9 +211,9 @@ main:
 	sub $sp, $sp, 4
 	sw $ra, 0($sp)
 	li $s5, 0
-L551:
+L543:
 	slt $s3, $s5, 2
-	beq $zero, $s3, L552
+	beq $zero, $s3, L544
 	li $a0, 64
 	li $v0, 9
 	syscall
@@ -224,10 +224,10 @@ L551:
 	mul $t6, $s5, 4
 	add $s3, $s3, $t6
 	sw $s2, 0($s3)
-L553:
+L545:
 	add $s5, $s5, 1
-	b L551
-L552:
+	b L543
+L544:
 	li $s3, 0
 	move $a0, $s3
 	jal f_search

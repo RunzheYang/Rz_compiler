@@ -390,6 +390,18 @@ public interface RzListener extends ParseTreeListener {
 	 */
 	void exitINCLUSIVE_OR(RzParser.INCLUSIVE_ORContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code MULTI_LOGIC_AND}
+	 * labeled alternative in {@link RzParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterMULTI_LOGIC_AND(RzParser.MULTI_LOGIC_ANDContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code MULTI_LOGIC_AND}
+	 * labeled alternative in {@link RzParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitMULTI_LOGIC_AND(RzParser.MULTI_LOGIC_ANDContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code EXCLUSIVE_OR}
 	 * labeled alternative in {@link RzParser#expression}.
 	 * @param ctx the parse tree

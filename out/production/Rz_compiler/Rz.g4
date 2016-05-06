@@ -127,6 +127,7 @@ expression
     |   expression  op = '&'                        expression  #AND
     |   expression  op = '^'                        expression  #EXCLUSIVE_OR
     |   expression  op = '|'                        expression  #INCLUSIVE_OR
+    |   expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression '&&' expression  #MULTI_LOGIC_AND
     |   expression  op = '&&'                       expression  #LOGIC_AND
     |   expression  op = '||'                       expression  #LOGIC_OR
     ;

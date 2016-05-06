@@ -64,36 +64,36 @@ L695:
 	sw $s3, var_2
 	sub $s3, $s5, 2
 	move $a0, $s3
-	sw $s5, 4($sp)
-	sw $s2, 8($sp)
+	sw $s2, 4($sp)
+	sw $s5, 8($sp)
 	jal f_toString
-	lw $s5, 4($sp)
-	lw $s2, 8($sp)
+	lw $s2, 4($sp)
+	lw $s5, 8($sp)
 	move $s3, $v0
 	move $a0, $s3
 	la $a1, msg_1
-	sw $s5, 4($sp)
-	sw $s2, 8($sp)
+	sw $s2, 4($sp)
+	sw $s5, 8($sp)
 	jal f_str.stringConcatenate
-	lw $s5, 4($sp)
-	lw $s2, 8($sp)
+	lw $s2, 4($sp)
+	lw $s5, 8($sp)
 	move $s3, $v0
 	move $a0, $s5
-	sw $s5, 4($sp)
 	sw $s3, 12($sp)
-	sw $s2, 8($sp)
+	sw $s2, 4($sp)
+	sw $s5, 8($sp)
 	jal f_toString
-	lw $s5, 4($sp)
 	lw $s3, 12($sp)
-	lw $s2, 8($sp)
+	lw $s2, 4($sp)
+	lw $s5, 8($sp)
 	move $t6, $v0
 	move $a0, $s3
 	move $a1, $t6
-	sw $s5, 4($sp)
-	sw $s2, 8($sp)
+	sw $s2, 4($sp)
+	sw $s5, 8($sp)
 	jal f_str.stringConcatenate
-	lw $s5, 4($sp)
-	lw $s2, 8($sp)
+	lw $s2, 4($sp)
+	lw $s5, 8($sp)
 	move $s3, $v0
 	move $a0, $s3
 	li $v0, 4

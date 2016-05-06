@@ -541,4 +541,14 @@ public class StringConstGetter implements RzVisitor<Deque<PseudoInstruction>> {
         Deque<PseudoInstruction> instrList = new LinkedList<>();
         return instrList;
     }
+
+    @Override
+    public Deque<PseudoInstruction> visitMULTI_LOGIC_AND(RzParser.MULTI_LOGIC_ANDContext ctx) {
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+        int statementCnt = ctx.getChildCount();
+        for (int i = 0; i < statementCnt; ++i) {
+            instrList.addAll(ctx.getChild(i).accept(this));
+        }
+        return instrList;
+    }
 }

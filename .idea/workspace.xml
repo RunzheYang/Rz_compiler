@@ -2,104 +2,122 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="16a51387-6edc-4730-ab64-700e3c74914b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/allocation/CiscRegisterAllocator.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/basicopt1-5100309127-hetianxing.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/bulgarian-5110379024-wuhang.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/expr-5110309085-jintianxing.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/hanoi-5100379110-daibo.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/hashmap-5100309127-hetianxing.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/heapsort-5100379110-daibo.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/horse-5100309153-yanghuan.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/horse2-5100309153-yanghuan.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/horse3-5100309153-yanghuan.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/magic-5100309153-yanghuan.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/maxflow-5100379110-daibo.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/prime-5100309153-yanghuan.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/qsort-5100379110-daibo.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/queens-5100379110-daibo.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/spill2-5100379110-daibo.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/superloop-5090379042-jiaxiao.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/tak-5090379042-jiaxiao.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/lim/twinprime-5090379042-jiaxiao.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/mx/spill2-5100379110-daibo.mp3" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/test/final/s/spill2-5100379110-daibo.s1.s" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/basicopt1-5100309127-hetianxing.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/bulgarian-5110379024-wuhang.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/expr-5110309085-jintianxing.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/hanoi-5100379110-daibo.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/hashmap-5100309127-hetianxing.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/heapsort-5100379110-daibo.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/horse-5100309153-yanghuan.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/horse2-5100309153-yanghuan.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/horse3-5100309153-yanghuan.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/magic-5100309153-yanghuan.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/maxflow-5100379110-daibo.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/prime-5100309153-yanghuan.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/qsort-5100379110-daibo.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/queens-5100379110-daibo.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/spill2-5100379110-daibo.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/superloop-5090379042-jiaxiao.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/tak-5090379042-jiaxiao.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/lim/twinprime-5090379042-jiaxiao.lim" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/mx/spill2-5100379110-daibo.mp3" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/spill2-5100379110-daibo.s1.s" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/ans/lvalue2-5110379024-wuhang.ans" afterPath="$PROJECT_DIR$/data/test/final/ans/lvalue2-5110379024-wuhang.ans" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/CodeGenerator.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/CodeGenerator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/controlflow/ControlFlowGraph.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/controlflow/ControlFlowGraph.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/CompilerTest.class" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/CompilerTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/IntermediateCodeTranslator.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/IntermediateCodeTranslator.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/StringConstGetter.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/backend/codegen/StringConstGetter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/semantics/TypeAnalyser.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/semantics/TypeAnalyser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzBaseListener.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzBaseListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzBaseVisitor.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzBaseVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzLexer.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzLexer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzListener.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzListener.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ADDITIVEContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ADDITIVEContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ANDContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ANDContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ARRAYTYPEContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ARRAYTYPEContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ARR_FINAL_BASEContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ARR_FINAL_BASEContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ARR_FINAL_CLASSContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ARR_FINAL_CLASSContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ARR_MOREContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ARR_MOREContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ArgumentsContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ArgumentsContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ArrayContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ArrayContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Assign_exprContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Assign_exprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$BASETYPEContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$BASETYPEContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Break_jumpContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Break_jumpContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Build_in_FuntionContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Build_in_FuntionContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$CLASSTYPEContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$CLASSTYPEContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$CREATIONContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$CREATIONContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Class_declContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Class_declContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Compound_stmtContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Compound_stmtContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Continue_jumpContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Continue_jumpContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Creation_exprContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Creation_exprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$EQUALITYContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$EQUALITYContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$EXCLUSIVE_ORContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$EXCLUSIVE_ORContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Enter_scopeContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Enter_scopeContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Exit_scopeContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Exit_scopeContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ExprContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ExprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Expr_stmtContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Expr_stmtContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ExpressionContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ExpressionContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Func_defContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Func_defContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$FunctionCallContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$FunctionCallContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$INCLUSIVE_ORContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$INCLUSIVE_ORContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$IdentContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$IdentContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Init_declaratorContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Init_declaratorContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$InitializerContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$InitializerContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Iteration_stmtContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Iteration_stmtContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Jump_stmtContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Jump_stmtContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$LOGIC_ANDContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$LOGIC_ANDContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$LOGIC_ORContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$LOGIC_ORContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$MULTIContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$MULTIContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$MemberContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$MemberContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Member_decl_listContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Member_decl_listContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$MinusMinusContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$MinusMinusContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$NEWARRAYTYPEContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$NEWARRAYTYPEContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$NEWCLASSTYPEContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$NEWCLASSTYPEContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$NEWTYPEContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$NEWTYPEContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Param_listContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Param_listContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$PlusPlusContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$PlusPlusContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$PostfixContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$PostfixContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Postfix_exprContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Postfix_exprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Primary_PexprPContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Primary_PexprPContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Primary_const_boolContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Primary_const_boolContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Primary_const_intContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Primary_const_intContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Primary_const_stringContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Primary_const_stringContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Primary_exprContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Primary_exprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Primary_identContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Primary_identContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Primary_nullContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Primary_nullContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ProgContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$ProgContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$RELATIONContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$RELATIONContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Return_jumpContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Return_jumpContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$SHIFTContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$SHIFTContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Selec_stmtContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Selec_stmtContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$StmtContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$StmtContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$SubscriptContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$SubscriptContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$TypeContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$TypeContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$UNARYEXPRContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$UNARYEXPRContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Unary_exprContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Unary_exprContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Var_declContext.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser$Var_declContext.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzParser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzVisitor.class" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz_compiler/frontend/syntax/RzVisitor.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/superloop-5090379042-jiaxiao.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/superloop-5090379042-jiaxiao.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/ans/array_test1-mahaojun.ans" afterPath="$PROJECT_DIR$/data/test/final/ans/array_test1-mahaojun.ans" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/ans/array_test2-mahaojun.ans" afterPath="$PROJECT_DIR$/data/test/final/ans/array_test2-mahaojun.ans" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/ans/basicopt1-5100309127-hetianxing.ans" afterPath="$PROJECT_DIR$/data/test/final/ans/basicopt1-5100309127-hetianxing.ans" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/ans/builtin-5140519064-youyurong.ans" afterPath="$PROJECT_DIR$/data/test/final/ans/builtin-5140519064-youyurong.ans" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/ans/bulgarian-5110379024-wuhang.ans" afterPath="$PROJECT_DIR$/data/test/final/ans/bulgarian-5110379024-wuhang.ans" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/ans/class_test-mahaojun.ans" afterPath="$PROJECT_DIR$/data/test/final/ans/class_test-mahaojun.ans" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/ans/function_test-huyuncong.ans" afterPath="$PROJECT_DIR$/data/test/final/ans/function_test-huyuncong.ans" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/ans/statement_test-huyuncong.ans" afterPath="$PROJECT_DIR$/data/test/final/ans/statement_test-huyuncong.ans" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/in/builtin-5140519064-youyurong.in" afterPath="$PROJECT_DIR$/data/test/final/in/builtin-5140519064-youyurong.in" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/in/hanoi-5100379110-daibo.in" afterPath="$PROJECT_DIR$/data/test/final/in/hanoi-5100379110-daibo.in" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/in/heapsort-5100379110-daibo.in" afterPath="$PROJECT_DIR$/data/test/final/in/heapsort-5100379110-daibo.in" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/mx/basicopt1-5100309127-hetianxing.mx" afterPath="$PROJECT_DIR$/data/test/final/mx/basicopt1-5100309127-hetianxing.mx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/mx/bulgarian-5110379024-wuhang.mx" afterPath="$PROJECT_DIR$/data/test/final/mx/bulgarian-5110379024-wuhang.mx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/mx/horse3-5100309153-yanghuan.mx" afterPath="$PROJECT_DIR$/data/test/final/mx/horse3-5100309153-yanghuan.mx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/mx/lvalue2-5110379024-wuhang.mx" afterPath="$PROJECT_DIR$/data/test/final/mx/lvalue2-5110379024-wuhang.mx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/basicopt1-5100309127-hetianxing.out" afterPath="$PROJECT_DIR$/data/test/final/out/basicopt1-5100309127-hetianxing.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/builtin-5140519064-youyurong.out" afterPath="$PROJECT_DIR$/data/test/final/out/builtin-5140519064-youyurong.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/bulgarian-5110379024-wuhang.out" afterPath="$PROJECT_DIR$/data/test/final/out/bulgarian-5110379024-wuhang.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/out/lvalue2-5110379024-wuhang.out" afterPath="$PROJECT_DIR$/data/test/final/out/lvalue2-5110379024-wuhang.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/basicopt1-5100309127-hetianxing.s" afterPath="$PROJECT_DIR$/data/test/final/s/basicopt1-5100309127-hetianxing.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/bulgarian-5110379024-wuhang.s" afterPath="$PROJECT_DIR$/data/test/final/s/bulgarian-5110379024-wuhang.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/function_test-huyuncong.s" afterPath="$PROJECT_DIR$/data/test/final/s/function_test-huyuncong.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/hanoi-5100379110-daibo.s" afterPath="$PROJECT_DIR$/data/test/final/s/hanoi-5100379110-daibo.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/horse-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/data/test/final/s/horse-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/horse2-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/data/test/final/s/horse2-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/horse3-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/data/test/final/s/horse3-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/lvalue2-5110379024-wuhang.s" afterPath="$PROJECT_DIR$/data/test/final/s/lvalue2-5110379024-wuhang.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/spill2-5100379110-daibo.s" afterPath="$PROJECT_DIR$/data/test/final/s/spill2-5100379110-daibo.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/statement_test-huyuncong.s" afterPath="$PROJECT_DIR$/data/test/final/s/statement_test-huyuncong.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/string_test-huyuncong.s" afterPath="$PROJECT_DIR$/data/test/final/s/string_test-huyuncong.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/mx/basicopt1-5100309127-hetianxing.mx" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/mx/basicopt1-5100309127-hetianxing.mx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/mx/bulgarian-5110379024-wuhang.mx" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/mx/bulgarian-5110379024-wuhang.mx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/mx/horse3-5100309153-yanghuan.mx" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/mx/horse3-5100309153-yanghuan.mx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/mx/lvalue2-5110379024-wuhang.mx" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/mx/lvalue2-5110379024-wuhang.mx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/basicopt1-5100309127-hetianxing.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/basicopt1-5100309127-hetianxing.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/builtin-5140519064-youyurong.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/builtin-5140519064-youyurong.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/bulgarian-5110379024-wuhang.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/bulgarian-5110379024-wuhang.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/lvalue2-5110379024-wuhang.out" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/out/lvalue2-5110379024-wuhang.out" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/basicopt1-5100309127-hetianxing.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/basicopt1-5100309127-hetianxing.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/bulgarian-5110379024-wuhang.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/bulgarian-5110379024-wuhang.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/function_test-huyuncong.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/function_test-huyuncong.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/hanoi-5100379110-daibo.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/hanoi-5100379110-daibo.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/horse-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/horse-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/horse2-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/horse2-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/horse3-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/horse3-5100309153-yanghuan.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/lvalue2-5110379024-wuhang.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/lvalue2-5110379024-wuhang.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/superloop-5090379042-jiaxiao.s" afterPath="$PROJECT_DIR$/data/test/final/s/superloop-5090379042-jiaxiao.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/tak-5090379042-jiaxiao.s" afterPath="$PROJECT_DIR$/data/test/final/s/tak-5090379042-jiaxiao.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/test/final/s/twinprime-5090379042-jiaxiao.s" afterPath="$PROJECT_DIR$/data/test/final/s/twinprime-5090379042-jiaxiao.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Rz_compiler/Rz.g4" afterPath="$PROJECT_DIR$/out/production/Rz_compiler/Rz.g4" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/array_test1-mahaojun.ans" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/array_test1-mahaojun.ans" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/array_test2-mahaojun.ans" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/array_test2-mahaojun.ans" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/basicopt1-5100309127-hetianxing.ans" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/basicopt1-5100309127-hetianxing.ans" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/builtin-5140519064-youyurong.ans" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/builtin-5140519064-youyurong.ans" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/bulgarian-5110379024-wuhang.ans" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/bulgarian-5110379024-wuhang.ans" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/class_test-mahaojun.ans" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/class_test-mahaojun.ans" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/function_test-huyuncong.ans" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/function_test-huyuncong.ans" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/lvalue2-5110379024-wuhang.ans" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/lvalue2-5110379024-wuhang.ans" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/statement_test-huyuncong.ans" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/ans/statement_test-huyuncong.ans" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/in/builtin-5140519064-youyurong.in" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/in/builtin-5140519064-youyurong.in" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/in/hanoi-5100379110-daibo.in" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/in/hanoi-5100379110-daibo.in" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/in/heapsort-5100379110-daibo.in" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/in/heapsort-5100379110-daibo.in" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/magic-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/magic-5100309153-yanghuan.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/maxflow-5100379110-daibo.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/maxflow-5100379110-daibo.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/multiarray-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/multiarray-5100309153-yanghuan.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/pi-5090379042-jiaxiao.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/pi-5090379042-jiaxiao.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/prime-5100309153-yanghuan.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/prime-5100309153-yanghuan.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/qsort-5100379110-daibo.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/qsort-5100379110-daibo.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/queens-5100379110-daibo.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/queens-5100379110-daibo.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/spill2-5100379110-daibo.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/spill2-5100379110-daibo.s" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/statement_test-huyuncong.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/statement_test-huyuncong.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/string_test-huyuncong.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/string_test-huyuncong.s" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/twinprime-5090379042-jiaxiao.s" afterPath="$PROJECT_DIR$/out/test/Rz_compiler/test/final/s/twinprime-5090379042-jiaxiao.s" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rz_compiler/backend/allocation/RegisterAllocator.java" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/allocation/RegisterAllocator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rz_compiler/backend/controlflow/ControlFlowGraph.java" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/controlflow/ControlFlowGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/Test/CompilerTest.java" afterPath="$PROJECT_DIR$/test/Test/CompilerTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rz.g4" afterPath="$PROJECT_DIR$/src/Rz.g4" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/IntermediateCodeTranslator.java" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/IntermediateCodeTranslator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.java" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/StringConstGetter.java" afterPath="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/StringConstGetter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/TypeAnalyser.java" afterPath="$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/TypeAnalyser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzBaseListener.java" afterPath="$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzBaseListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzBaseVisitor.java" afterPath="$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzBaseVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzLexer.java" afterPath="$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzLexer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzListener.java" afterPath="$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzParser.java" afterPath="$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzVisitor.java" afterPath="$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testfortype.mraz" afterPath="$PROJECT_DIR$/testfortype.mraz" />
     </list>
     <ignored path="Rz_compiler.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -122,33 +140,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TemporaryRegister.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/TemporaryRegister.java">
+      <file leaf-file-name="IntermediateCodeTranslator.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/IntermediateCodeTranslator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="47" column="19" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
+            <state relative-caret-position="357">
+              <caret line="1790" column="59" selection-start-line="1790" selection-start-column="59" selection-end-line="1790" selection-end-column="59" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RegisterAllocator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/allocation/RegisterAllocator.java">
+      <file leaf-file-name="PreIntermediateCodeTranslator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="332" column="36" selection-start-line="332" selection-start-column="36" selection-end-line="332" selection-end-column="36" />
-              <folding>
-                <element signature="e#2095#2105#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="89">
+              <caret line="1518" column="33" selection-start-line="1518" selection-start-column="33" selection-end-line="1518" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Rz.g4" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Rz.g4" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Rz.g4">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="128" column="77" selection-start-line="128" selection-start-column="77" selection-end-line="128" selection-end-column="77" />
+            <state relative-caret-position="150">
+              <caret line="124" column="73" selection-start-line="124" selection-start-column="73" selection-end-line="124" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -157,23 +173,9 @@
       <file leaf-file-name="testfortype.mraz" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testfortype.mraz">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15345">
-              <caret line="1023" column="32" selection-start-line="1023" selection-start-column="32" selection-end-line="1023" selection-end-column="32" />
+            <state relative-caret-position="360">
+              <caret line="24" column="80" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="80" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CiscRegisterAllocator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/allocation/CiscRegisterAllocator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="922" column="38" selection-start-line="922" selection-start-column="38" selection-end-line="922" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#959#960#0" expanded="true" />
-                <element signature="e#1007#1008#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -181,18 +183,8 @@
       <file leaf-file-name="CodeGenerator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="189" column="0" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FrameManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/allocation/FrameManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="34" column="0" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+            <state relative-caret-position="270">
+              <caret line="161" column="29" selection-start-line="161" selection-start-column="29" selection-end-line="161" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -225,7 +217,6 @@
         <option value="$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/identifier/Identifier.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/operands/Label.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/RegisterAllocator.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/TypeAnalyser.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/JrInstr.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/controlflow/LabelDiction.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/visitors/NoJumpInstructionVisitor.java" />
@@ -248,15 +239,12 @@
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/OptimizedIntermediateCodeTranslator.java" />
         <option value="$PROJECT_DIR$/test/Test/Test.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/MRazCompiler.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/StringConstGetter.java" />
         <option value="$PROJECT_DIR$/data/test/final/lim/expr-5110309085-jintianxing.lim" />
         <option value="$PROJECT_DIR$/data/test/final/ans/expr-5110309085-jintianxing.ans" />
         <option value="$PROJECT_DIR$/data/test/final/out/bulgarian-5110379024-wuhang.out" />
         <option value="$PROJECT_DIR$/data/test/final/ans/bulgarian-5110379024-wuhang.ans" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/MipsLibrary.java" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.java" />
         <option value="$PROJECT_DIR$/test.mraz" />
-        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/IntermediateCodeTranslator.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/SeparateIntermediateCodeTranslator.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/operands/TemporaryRegister.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/allocation/FrameManager.java" />
@@ -264,12 +252,16 @@
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/controlflow/ControlFlowGraph.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/allocation/RegisterAllocator.java" />
         <option value="$PROJECT_DIR$/test/Test/CompilerTest.java" />
-        <option value="$PROJECT_DIR$/testfortype.mraz" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/DivInstr.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/NegInstr.java" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/allocation/CiscRegisterAllocator.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/StringConstGetter.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/TypeAnalyser.java" />
+        <option value="$PROJECT_DIR$/testfortype.mraz" />
         <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java" />
         <option value="$PROJECT_DIR$/src/Rz.g4" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/IntermediateCodeTranslator.java" />
+        <option value="$PROJECT_DIR$/src/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.java" />
       </list>
     </option>
   </component>
@@ -315,6 +307,8 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -401,6 +395,54 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rz_compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rz_compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rz_compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="frontend" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="semantics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rz_compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rz_compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Rz_compiler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="backend" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -428,32 +470,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rz_compiler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rz_compiler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rz_compiler" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controlflow" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -511,8 +527,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1161,26 +1175,12 @@
       <workItem from="1462424528875" duration="2111000" />
       <workItem from="1462428921306" duration="9352000" />
       <workItem from="1462444012300" duration="10455000" />
-      <workItem from="1462461074134" duration="24819000" />
+      <workItem from="1462461074134" duration="26564000" />
+      <workItem from="1462531331535" duration="495000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CompilerTest - 2016.05.06 at 11h 13m 28s.xml">
-      <configuration name="CompilerTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CompilerTest - 2016.05.06 at 13h 10m 54s.xml">
-      <configuration name="CompilerTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CompilerTest - 2016.05.06 at 13h 11m 25s.xml">
-      <configuration name="CompilerTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CompilerTest - 2016.05.06 at 13h 12m 28s.xml">
-      <configuration name="CompilerTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="CompilerTest - 2016.05.06 at 13h 13m 27s.xml">
-      <configuration name="CompilerTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="CompilerTest - 2016.05.06 at 13h 35m 49s.xml">
       <configuration name="CompilerTest" configurationId="JUnit" />
     </history-entry>
@@ -1196,9 +1196,24 @@
     <history-entry file="CompilerTest - 2016.05.06 at 17h 59m 49s.xml">
       <configuration name="CompilerTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="CompilerTest - 2016.05.06 at 18h 26m 01s.xml">
+      <configuration name="CompilerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CompilerTest - 2016.05.06 at 18h 33m 45s.xml">
+      <configuration name="CompilerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CompilerTest - 2016.05.06 at 18h 35m 27s.xml">
+      <configuration name="CompilerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CompilerTest - 2016.05.06 at 18h 37m 18s.xml">
+      <configuration name="CompilerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CompilerTest - 2016.05.06 at 18h 51m 04s.xml">
+      <configuration name="CompilerTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="337160000" />
+    <option name="totallyTimeSpent" value="339400000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1222,7 +1237,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28356165" sideWeight="0.50646204" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32739726" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28356165" sideWeight="0.49353796" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28219178" sideWeight="0.49353796" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1265,70 +1280,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/load_store_move/SwInstr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/controlflow/DefinedRegisterGetter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/PseudoInstruction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/AssemblerDirective.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/MipsInstruction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
-          <folding>
-            <element signature="e#428#429#0" expanded="false" />
-            <element signature="e#458#459#0" expanded="false" />
-            <element signature="e#490#491#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/arithmetic_logic/AbsInstr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/allocation/SmartCaller.java" />
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/visitors/InstructionPrinter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="272" column="31" selection-start-line="272" selection-start-column="24" selection-end-line="272" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/src.zip!/java/util/stream/ReferencePipeline.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="498" column="0" selection-start-line="498" selection-start-column="0" selection-end-line="498" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/instructions/branch_jump/JalInstr.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -1370,13 +1321,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/test/final/lim/expr-5110309085-jintianxing.lim">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/data/test/final/lim/expr-5110309085-jintianxing.lim" />
     <entry file="file://$PROJECT_DIR$/data/test/final/out/expr-5110309085-jintianxing.out">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1455,25 +1400,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.mraz">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/MipsLibrary.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/StringConstGetter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6855">
-          <caret line="494" column="62" selection-start-line="494" selection-start-column="62" selection-end-line="494" selection-end-column="62" />
         </state>
       </provider>
     </entry>
@@ -1498,21 +1429,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="795">
-          <caret line="957" column="59" selection-start-line="957" selection-start-column="59" selection-end-line="957" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/syntax/RzParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="202" column="33" selection-start-line="202" selection-start-column="33" selection-end-line="202" selection-end-column="33" />
           <folding>
-            <element signature="e#6849#6850#0" expanded="false" />
-            <element signature="e#6906#6907#0" expanded="false" />
+            <element signature="e#6940#6941#0" expanded="false" />
+            <element signature="e#6997#6998#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1537,14 +1460,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/Test/CompilerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/interference/InterferenceGraph.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1553,14 +1468,6 @@
             <element signature="e#522#523#0" expanded="false" />
             <element signature="e#583#584#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/IntermediateCodeTranslator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="1551" column="57" selection-start-line="1551" selection-start-column="50" selection-end-line="1551" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1591,19 +1498,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testfortype.mraz">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15345">
-          <caret line="1023" column="32" selection-start-line="1023" selection-start-column="32" selection-end-line="1023" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_77.jdk/Contents/Home/src.zip!/java/util/ArrayDeque.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="243" column="0" selection-start-line="243" selection-start-column="0" selection-end-line="243" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1611,7 +1509,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="343" column="0" selection-start-line="343" selection-start-column="0" selection-end-line="343" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1638,14 +1535,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="189" column="0" selection-start-line="189" selection-start-column="0" selection-end-line="189" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/allocation/FrameManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1664,10 +1553,129 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/operands/ImmediateValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/PrettyPrint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/GetFuncAndClassMem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/Dictionary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/GetClass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/errors/SyntaxException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/errors/SemanticException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/Test/CompilerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/TypeAnalyser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="638" column="68" selection-start-line="638" selection-start-column="68" selection-end-line="638" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/frontend/semantics/SemanticCheck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1648">
+          <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/StringConstGetter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="549" column="59" selection-start-line="549" selection-start-column="59" selection-end-line="549" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.mraz">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="2" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/CodeGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="161" column="29" selection-start-line="161" selection-start-column="29" selection-end-line="161" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testfortype.mraz">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="80" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Rz.g4">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="128" column="77" selection-start-line="128" selection-start-column="77" selection-end-line="128" selection-end-column="77" />
+        <state relative-caret-position="150">
+          <caret line="124" column="73" selection-start-line="124" selection-start-column="73" selection-end-line="124" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/PreIntermediateCodeTranslator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="1518" column="33" selection-start-line="1518" selection-start-column="33" selection-end-line="1518" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Rz_compiler/backend/codegen/IntermediateCodeTranslator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="1790" column="59" selection-start-line="1790" selection-start-column="59" selection-end-line="1790" selection-end-column="59" />
           <folding />
         </state>
       </provider>

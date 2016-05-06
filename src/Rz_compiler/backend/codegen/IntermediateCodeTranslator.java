@@ -1781,6 +1781,40 @@ public class IntermediateCodeTranslator implements RzVisitor<Deque<PseudoInstruc
     }
 
     @Override
+    public Deque<PseudoInstruction> visitMULTI_LOGIC_AND(RzParser.MULTI_LOGIC_ANDContext ctx) {
+        Deque<PseudoInstruction> instrList = new LinkedList<>();
+
+        Label isfalse = new Label();
+        Label goOn = new Label();
+
+
+        for (int i = 0; i < ctx.expression().size(); ++i) {
+            instrList.addAll(ctx.expression(i).accept(this));
+            Operand expReg = returnOperand;
+            if (expReg instanceof Register) {
+                instrList.add(new BeqInstr(MipsRegister.$zero, expReg, isfalse));
+            } else if (expReg instanceof ImmediateValue) {
+                if (((ImmediateValue) expReg).getValue() == 0) {
+                    instrList.add(new BInstr(isfalse));
+                }
+            }
+        }
+
+        Operand resultReg = trg.generate();
+
+        instrList.add(new LiInstr(resultReg, new ImmediateValue(1)));
+        instrList.add(new BInstr(goOn));
+
+        instrList.add(isfalse);
+        instrList.add(new LiInstr(resultReg, new ImmediateValue(0)));
+        instrList.add(goOn);
+
+        returnOperand = resultReg;
+
+        return instrList;
+    }
+
+    @Override
     public Deque<PseudoInstruction> visit(ParseTree parseTree) {
         return null;
     }

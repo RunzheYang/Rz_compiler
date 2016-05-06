@@ -211,6 +211,11 @@ public class TypeAnalyser {
         }
         String filePos = "line " +  ((RzParser.ExpressionContext) ctx).start.getLine()
                 + ":" + ((RzParser.ExpressionContext)ctx).start.getCharPositionInLine() + " -> ";
+
+        if (ctx instanceof RzParser.MULTI_LOGIC_ANDContext) {
+            return new BoolType();
+        }
+
         throw new SemanticException(filePos + "Semantic Error: Invalid type or not an expression '" + ctx.getText() + "'");
     }
 
@@ -630,7 +635,8 @@ public class TypeAnalyser {
                 || ctx instanceof RzParser.EXCLUSIVE_ORContext
                 || ctx instanceof RzParser.INCLUSIVE_ORContext
                 || ctx instanceof RzParser.LOGIC_ANDContext
-                || ctx instanceof RzParser.LOGIC_ORContext) {
+                || ctx instanceof RzParser.LOGIC_ORContext
+                || ctx instanceof RzParser.MULTI_LOGIC_ANDContext) {
             return getTypeofExpression(ctx, symt);
         }
         String filePos = "line " +  ((RzParser.Expr_stmtContext) ctx).start.getLine()

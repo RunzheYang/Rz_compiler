@@ -5,6 +5,7 @@ import Rz_compiler.backend.instructions.AssemblerDirective;
 import Rz_compiler.backend.instructions.PseudoInstruction;
 import Rz_compiler.backend.instructions.Syscall;
 import Rz_compiler.backend.instructions.arithmetic_logic.*;
+import Rz_compiler.backend.instructions.branch_jump.BInstr;
 import Rz_compiler.backend.instructions.branch_jump.BeqInstr;
 import Rz_compiler.backend.instructions.branch_jump.BneInstr;
 import Rz_compiler.backend.instructions.branch_jump.JalInstr;
@@ -1507,6 +1508,39 @@ public class PreIntermediateCodeTranslator implements RzVisitor<Pair<Deque<Pseud
         Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> preList
                 = new Pair<>(new LinkedList<>(), new LinkedList<>());
         returnOperand = new ImmediateValue(0);
+        return preList;
+    }
+
+    @Override
+    public Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> visitMULTI_LOGIC_AND(RzParser.MULTI_LOGIC_ANDContext ctx) {
+        Pair<Deque<PseudoInstruction>, Deque<PseudoInstruction>> preList
+                = new Pair<>(new LinkedList<>(), new LinkedList<>());
+        Label isfalse = new Label();
+        Label goOn = new Label();
+
+
+        for (int i = 0; i < ctx.expression().size(); ++i) {
+            preList.b.addAll(ctx.expression(i).accept(this).b);
+            Operand expReg = returnOperand;
+            if (expReg instanceof Register) {
+                preList.b.add(new BeqInstr(MipsRegister.$zero, expReg, isfalse));
+            } else if (expReg instanceof ImmediateValue) {
+                if (((ImmediateValue) expReg).getValue() == 0) {
+                    preList.b.add(new BInstr(isfalse));
+                }
+            }
+        }
+
+        Operand resultReg = trg.generate();
+
+        preList.b.add(new LiInstr(resultReg, new ImmediateValue(1)));
+        preList.b.add(new BInstr(goOn));
+
+        preList.b.add(isfalse);
+        preList.b.add(new LiInstr(resultReg, new ImmediateValue(0)));
+        preList.b.add(goOn);
+
+        returnOperand = resultReg;
         return preList;
     }
 

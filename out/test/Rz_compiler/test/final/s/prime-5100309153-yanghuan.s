@@ -25,15 +25,15 @@ f_getPrime:
 	sw $ra, 0($sp)
 	li $s5, 2
 	li $s2, 2
-L475:
+L467:
 	sle $t6, $s2, $s3
-	beq $zero, $t6, L476
+	beq $zero, $t6, L468
 	lw $t6, var_6
 	mul $t9, $s2, 4
 	add $t6, $t6, $t9
 	lw $t6, 0($t6)
 	seq $t6, $t6, 1
-	beq $zero, $t6, L478
+	beq $zero, $t6, L470
 	lw $t6, var_9
 	la $t6, 0($t6)
 	lw $t6, 0($t6)
@@ -56,13 +56,13 @@ L475:
 	mul $s0, $s2, 4
 	add $t9, $t9, $s0
 	sw $t6, 0($t9)
-	b L479
-L478:
-L479:
-L480:
+	b L471
+L470:
+L471:
+L472:
 	mul $t6, $s2, $s5
 	sle $t6, $t6, $s3
-	beq $zero, $t6, L481
+	beq $zero, $t6, L473
 	lw $t6, var_6
 	mul $t9, $s2, $s5
 	mul $t9, $t9, 4
@@ -70,13 +70,13 @@ L480:
 	li $t9, 0
 	sw $t9, 0($t6)
 	add $s5, $s5, 1
-	b L480
-L481:
+	b L472
+L473:
 	li $s5, 2
-L477:
+L469:
 	add $s2, $s2, 1
-	b L475
-L476:
+	b L467
+L468:
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
@@ -95,10 +95,10 @@ f_origin:
 	sw $s5, var_10
 	li $s2, 0
 	sw $s2, var_2
-L469:
+L461:
 	lw $s2, var_2
 	slt $s5, $s2, $s3
-	beq $zero, $s5, L470
+	beq $zero, $s5, L462
 	mul $s5, $s3, 4
 	add $s5, $s5, 4
 	add $a0, $zero, $s5
@@ -115,10 +115,10 @@ L469:
 	sw $s2, 0($s5)
 	li $s5, 0
 	sw $s5, var_3
-L472:
+L464:
 	lw $s5, var_3
 	slt $s5, $s5, $s3
-	beq $zero, $s5, L473
+	beq $zero, $s5, L465
 	lw $s5, var_10
 	lw $s2, var_2
 	mul $s2, $s2, 4
@@ -129,18 +129,18 @@ L472:
 	add $s5, $s2, $s5
 	li $s2, 0
 	sw $s2, 0($s5)
-L474:
+L466:
 	lw $s5, var_3
 	add $s5, $s5, 1
 	sw $s5, var_3
-	b L472
-L473:
-L471:
+	b L464
+L465:
+L463:
 	lw $s2, var_2
 	add $s2, $s2, 1
 	sw $s2, var_2
-	b L469
-L470:
+	b L461
+L462:
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
@@ -158,7 +158,7 @@ f_getResult:
 	add $t6, $t6, $t9
 	lw $t6, 0($t6)
 	seq $t6, $t6, -1
-	beq $zero, $t6, L482
+	beq $zero, $t6, L474
 	lw $t6, var_7
 	mul $t9, $s2, 4
 	add $t6, $t6, $t9
@@ -170,7 +170,7 @@ f_getResult:
 	lw $t6, 0($t6)
 	sub $t6, $t9, $t6
 	sle $t6, $t6, $s3
-	beq $zero, $t6, L484
+	beq $zero, $t6, L476
 	lw $t9, var_6
 	lw $t6, var_7
 	mul $s0, $s2, 4
@@ -186,7 +186,7 @@ f_getResult:
 	add $t6, $t9, $t6
 	lw $t6, 0($t6)
 	sne $t6, $t6, 0
-	beq $zero, $t6, L486
+	beq $zero, $t6, L478
 	lw $t9, var_8
 	lw $t6, var_7
 	mul $s0, $s2, 4
@@ -218,15 +218,15 @@ f_getResult:
 	mul $t9, $s2, 4
 	add $t6, $t6, $t9
 	sw $s3, 0($t6)
-	b L487
-L486:
-L487:
-	b L485
-L484:
-L485:
-	b L483
-L482:
-L483:
+	b L479
+L478:
+L479:
+	b L477
+L476:
+L477:
+	b L475
+L474:
+L475:
 	lw $t6, var_10
 	mul $s3, $s5, 4
 	add $s3, $t6, $s3
@@ -235,7 +235,7 @@ L483:
 	add $s3, $s3, $t6
 	lw $s3, 0($s3)
 	seq $s3, $s3, -1
-	beq $zero, $s3, L488
+	beq $zero, $s3, L480
 	lw $t6, var_10
 	mul $s3, $s5, 4
 	add $s3, $t6, $s3
@@ -244,9 +244,9 @@ L483:
 	add $s3, $s3, $t6
 	li $t6, 1
 	sw $t6, 0($s3)
-	b L489
-L488:
-L489:
+	b L481
+L480:
+L481:
 	lw $t6, var_10
 	mul $s3, $s5, 4
 	add $s3, $t6, $s3
@@ -311,12 +311,12 @@ main:
 	sw $s5, 0($s3)
 	li $s5, 0
 	sw $s5, var_2
-L492:
+L484:
 	lw $s5, var_2
 	lw $s3, var_0
 	add $s3, $s3, 1
 	slt $s3, $s5, $s3
-	beq $zero, $s3, L493
+	beq $zero, $s3, L485
 	lw $s3, var_6
 	lw $s5, var_2
 	mul $s5, $s5, 4
@@ -329,48 +329,48 @@ L492:
 	add $s3, $s3, $s5
 	li $s5, 0
 	sw $s5, 0($s3)
-L494:
+L486:
 	lw $s5, var_2
 	add $s3, $s5, 1
 	move $s5, $s3
 	sw $s5, var_2
-	b L492
-L493:
+	b L484
+L485:
 	li $s5, 0
 	sw $s5, var_2
-L495:
+L487:
 	lw $s5, var_2
 	lw $s3, var_1
 	add $s3, $s3, 1
 	slt $s3, $s5, $s3
-	beq $zero, $s3, L496
+	beq $zero, $s3, L488
 	lw $s3, var_7
 	lw $s5, var_2
 	mul $s5, $s5, 4
 	add $s3, $s3, $s5
 	li $s5, 0
 	sw $s5, 0($s3)
-L497:
+L489:
 	lw $s5, var_2
 	add $s3, $s5, 1
 	move $s5, $s3
 	sw $s5, var_2
-	b L495
-L496:
+	b L487
+L488:
 	li $s5, 0
 	sw $s5, var_2
-L498:
+L490:
 	lw $s5, var_2
 	lw $s3, var_1
 	sle $s3, $s5, $s3
-	beq $zero, $s3, L499
+	beq $zero, $s3, L491
 	li $s2, 0
 	sw $s2, var_3
-L501:
+L493:
 	lw $s2, var_3
 	lw $s3, var_1
 	sle $s3, $s2, $s3
-	beq $zero, $s3, L502
+	beq $zero, $s3, L494
 	lw $s3, var_10
 	lw $s5, var_2
 	mul $s5, $s5, 4
@@ -381,20 +381,20 @@ L501:
 	add $s3, $s3, $s5
 	li $s5, -1
 	sw $s5, 0($s3)
-L503:
+L495:
 	lw $s2, var_3
 	add $s3, $s2, 1
 	move $s2, $s3
 	sw $s2, var_3
-	b L501
-L502:
-L500:
+	b L493
+L494:
+L492:
 	lw $s5, var_2
 	add $s3, $s5, 1
 	move $s5, $s3
 	sw $s5, var_2
-	b L498
-L499:
+	b L490
+L491:
 	lw $s3, var_0
 	move $a0, $s3
 	jal f_getPrime
@@ -404,20 +404,20 @@ L499:
 	sw $s3, var_4
 	li $s5, 1
 	sw $s5, var_2
-L504:
+L496:
 	lw $s5, var_2
 	lw $s3, var_4
 	slt $s3, $s5, $s3
-	beq $zero, $s3, L505
+	beq $zero, $s3, L497
 	lw $s5, var_2
 	add $s3, $s5, 1
 	move $s2, $s3
 	sw $s2, var_3
-L507:
+L499:
 	lw $s2, var_3
 	lw $s3, var_4
 	sle $s3, $s2, $s3
-	beq $zero, $s3, L508
+	beq $zero, $s3, L500
 	lw $s3, var_10
 	lw $s5, var_2
 	mul $s5, $s5, 4
@@ -428,7 +428,7 @@ L507:
 	add $s3, $s3, $s5
 	lw $s3, 0($s3)
 	seq $s3, $s3, -1
-	beq $zero, $s3, L510
+	beq $zero, $s3, L502
 	lw $s3, var_0
 	lw $s5, var_2
 	lw $s2, var_3
@@ -457,7 +457,7 @@ L507:
 	add $s3, $s3, $s5
 	lw $s3, 0($s3)
 	sgt $s3, $s3, 1
-	beq $zero, $s3, L512
+	beq $zero, $s3, L504
 	lw $s3, var_7
 	lw $s5, var_2
 	mul $s5, $s5, 4
@@ -484,26 +484,26 @@ L507:
 	lw $s3, var_5
 	add $s3, $s3, 1
 	sw $s3, var_5
-	b L513
-L512:
-L513:
-	b L511
-L510:
-L511:
-L509:
+	b L505
+L504:
+L505:
+	b L503
+L502:
+L503:
+L501:
 	lw $s2, var_3
 	add $s3, $s2, 1
 	move $s2, $s3
 	sw $s2, var_3
-	b L507
-L508:
-L506:
+	b L499
+L500:
+L498:
 	lw $s5, var_2
 	add $s3, $s5, 1
 	move $s5, $s3
 	sw $s5, var_2
-	b L504
-L505:
+	b L496
+L497:
 	la $a0, msg_2
 	li $v0, 4
 	syscall
@@ -538,31 +538,31 @@ f_printF:
 	sub $sp, $sp, 16
 	sw $ra, 0($sp)
 	move $a0, $s3
-	sw $s3, 4($sp)
-	sw $s5, 8($sp)
-	sw $s2, 12($sp)
+	sw $s5, 4($sp)
+	sw $s2, 8($sp)
+	sw $s3, 12($sp)
 	jal f_toString
-	lw $s3, 4($sp)
-	lw $s5, 8($sp)
-	lw $s2, 12($sp)
+	lw $s5, 4($sp)
+	lw $s2, 8($sp)
+	lw $s3, 12($sp)
 	move $t6, $v0
 	move $a0, $t6
 	li $v0, 4
 	syscall
-L490:
+L482:
 	sgt $t6, $s2, 0
-	beq $zero, $t6, L491
+	beq $zero, $t6, L483
 	la $a0, msg_0
 	li $v0, 4
 	syscall
 	move $a0, $s5
-	sw $s3, 4($sp)
-	sw $s5, 8($sp)
-	sw $s2, 12($sp)
+	sw $s5, 4($sp)
+	sw $s2, 8($sp)
+	sw $s3, 12($sp)
 	jal f_toString
-	lw $s3, 4($sp)
-	lw $s5, 8($sp)
-	lw $s2, 12($sp)
+	lw $s5, 4($sp)
+	lw $s2, 8($sp)
+	lw $s3, 12($sp)
 	move $t6, $v0
 	move $a0, $t6
 	li $v0, 4
@@ -572,8 +572,8 @@ L490:
 	add $s3, $s3, $s5
 	div $s3, $s3, 2
 	sub $s2, $s2, 1
-	b L490
-L491:
+	b L482
+L483:
 	la $a0, msg_1
 	li $v0, 4
 	syscall

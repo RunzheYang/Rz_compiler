@@ -237,6 +237,13 @@ public interface RzVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitINCLUSIVE_OR(RzParser.INCLUSIVE_ORContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code MULTI_LOGIC_AND}
+	 * labeled alternative in {@link RzParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitMULTI_LOGIC_AND(RzParser.MULTI_LOGIC_ANDContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code EXCLUSIVE_OR}
 	 * labeled alternative in {@link RzParser#expression}.
 	 * @param ctx the parse tree

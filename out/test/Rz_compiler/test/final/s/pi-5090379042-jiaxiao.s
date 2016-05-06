@@ -17,31 +17,31 @@ main:
 	li $t9, 2801
 	sw $t9, 0($v0)
 	add $t9, $v0, 4
-L456:
+L448:
 	sub $s0, $s5, $s2
 	sne $s0, $s0, 0
-	beq $zero, $s0, L457
+	beq $zero, $s0, L449
 	div $s0, $s3, 5
 	move $s7, $s5
 	add $s5, $s5, 1
 	mul $s7, $s7, 4
 	add $s7, $t9, $s7
 	sw $s0, 0($s7)
-L458:
-	b L456
-L457:
-L459:
+L450:
+	b L448
+L449:
+L451:
 	li $s0, 0
 	mul $s5, $s2, 2
 	move $s7, $s5
 	seq $s5, $s7, 0
-	beq $zero, $s5, L462
-	b L460
-	b L463
-L462:
-L463:
+	beq $zero, $s5, L454
+	b L452
+	b L455
+L454:
+L455:
 	move $s5, $s2
-L464:
+L456:
 	mul $t0, $s5, 4
 	add $t0, $t9, $t0
 	lw $t0, 0($t0)
@@ -57,15 +57,15 @@ L464:
 	div $s0, $s0, $t0
 	sub $s5, $s5, 1
 	seq $t0, $s5, 0
-	beq $zero, $t0, L467
-	b L465
-	b L468
-L467:
-L468:
-L466:
+	beq $zero, $t0, L459
+	b L457
+	b L460
+L459:
+L460:
+L458:
 	mul $s0, $s0, $s5
-	b L464
-L465:
+	b L456
+L457:
 	sub $s5, $s2, 14
 	move $s2, $s5
 	div $s5, $s0, $s3
@@ -84,11 +84,11 @@ L465:
 	move $a0, $s5
 	li $v0, 4
 	syscall
-L461:
+L453:
 	rem $s5, $s0, $s3
 	move $t6, $s5
-	b L459
-L460:
+	b L451
+L452:
 	la $a0, msg_0
 	li $v0, 4
 	syscall

@@ -436,6 +436,18 @@ public class RzBaseListener implements RzListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMULTI_LOGIC_AND(RzParser.MULTI_LOGIC_ANDContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMULTI_LOGIC_AND(RzParser.MULTI_LOGIC_ANDContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterEXCLUSIVE_OR(RzParser.EXCLUSIVE_ORContext ctx) { }
 	/**
 	 * {@inheritDoc}

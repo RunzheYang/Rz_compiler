@@ -44,10 +44,10 @@ main:
 	sw $ra, 0($sp)
 	li $s2, 0
 	sw $s2, var_1
-L432:
+L424:
 	lw $s2, var_1
 	slt $s3, $s2, 4
-	beq $zero, $s3, L433
+	beq $zero, $s3, L425
 	li $a0, 48
 	li $v0, 9
 	syscall
@@ -59,24 +59,24 @@ L432:
 	mul $s2, $s2, 4
 	add $s3, $s3, $s2
 	sw $s5, 0($s3)
-L434:
+L426:
 	lw $s2, var_1
 	add $s2, $s2, 1
 	sw $s2, var_1
-	b L432
-L433:
+	b L424
+L425:
 	li $s2, 0
 	sw $s2, var_1
-L435:
+L427:
 	lw $s2, var_1
 	slt $s3, $s2, 4
-	beq $zero, $s3, L436
+	beq $zero, $s3, L428
 	li $s3, 0
 	sw $s3, var_2
-L438:
+L430:
 	lw $s3, var_2
 	slt $s3, $s3, 10
-	beq $zero, $s3, L439
+	beq $zero, $s3, L431
 	lw $s3, var_0
 	lw $s2, var_1
 	mul $s5, $s2, 4
@@ -87,24 +87,24 @@ L438:
 	add $s3, $s5, $s3
 	li $s5, 888
 	sw $s5, 0($s3)
-L440:
+L432:
 	lw $s3, var_2
 	add $s3, $s3, 1
 	sw $s3, var_2
-	b L438
-L439:
-L437:
+	b L430
+L431:
+L429:
 	lw $s2, var_1
 	add $s2, $s2, 1
 	sw $s2, var_1
-	b L435
-L436:
+	b L427
+L428:
 	li $s2, 0
 	sw $s2, var_1
-L441:
+L433:
 	lw $s2, var_1
 	slt $s3, $s2, 5
-	beq $zero, $s3, L442
+	beq $zero, $s3, L434
 	li $a0, 8
 	li $v0, 9
 	syscall
@@ -122,12 +122,12 @@ L441:
 	la $s3, 0($s3)
 	li $s5, -1
 	sw $s5, 0($s3)
-L443:
+L435:
 	lw $s2, var_1
 	add $s2, $s2, 1
 	sw $s2, var_1
-	b L441
-L442:
+	b L433
+L434:
 	lw $s3, var_0
 	la $s3, 12($s3)
 	lw $s3, 0($s3)
@@ -137,16 +137,16 @@ L442:
 	jal f_printNum
 	li $s2, 0
 	sw $s2, var_1
-L444:
+L436:
 	lw $s2, var_1
 	sle $s3, $s2, 3
-	beq $zero, $s3, L445
+	beq $zero, $s3, L437
 	li $s3, 0
 	sw $s3, var_2
-L447:
+L439:
 	lw $s3, var_2
 	sle $s3, $s3, 9
-	beq $zero, $s3, L448
+	beq $zero, $s3, L440
 	lw $s2, var_1
 	mul $s5, $s2, 10
 	lw $s3, var_2
@@ -160,30 +160,30 @@ L447:
 	mul $s3, $s3, 4
 	add $s3, $s2, $s3
 	sw $s5, 0($s3)
-L449:
+L441:
 	lw $s3, var_2
 	add $s3, $s3, 1
 	sw $s3, var_2
-	b L447
-L448:
-L446:
+	b L439
+L440:
+L438:
 	lw $s2, var_1
 	add $s2, $s2, 1
 	sw $s2, var_1
-	b L444
-L445:
+	b L436
+L437:
 	li $s2, 0
 	sw $s2, var_1
-L450:
+L442:
 	lw $s2, var_1
 	sle $s3, $s2, 3
-	beq $zero, $s3, L451
+	beq $zero, $s3, L443
 	li $s3, 0
 	sw $s3, var_2
-L453:
+L445:
 	lw $s3, var_2
 	sle $s3, $s3, 9
-	beq $zero, $s3, L454
+	beq $zero, $s3, L446
 	lw $s3, var_0
 	lw $s2, var_1
 	mul $s5, $s2, 4
@@ -195,18 +195,18 @@ L453:
 	lw $s3, 0($s3)
 	move $a0, $s3
 	jal f_printNum
-L455:
+L447:
 	lw $s3, var_2
 	add $s3, $s3, 1
 	sw $s3, var_2
-	b L453
-L454:
-L452:
+	b L445
+L446:
+L444:
 	lw $s2, var_1
 	add $s2, $s2, 1
 	sw $s2, var_1
-	b L450
-L451:
+	b L442
+L443:
 	lw $s3, var_0
 	la $s3, 8($s3)
 	lw $s3, 0($s3)

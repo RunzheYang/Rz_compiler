@@ -22,43 +22,43 @@ main:
 	sub $sp, $sp, 16
 	sw $ra, 0($sp)
 	li $s5, 1
-L686:
+L608:
 	lw $s3, var_0
 	sle $s3, $s5, $s3
-	beq $zero, $s3, L687
+	beq $zero, $s3, L609
 	lw $s3, var_1
 	mul $s2, $s5, 4
 	add $s3, $s3, $s2
 	li $s2, 1
 	sw $s2, 0($s3)
-L688:
+L610:
 	add $s5, $s5, 1
-	b L686
-L687:
+	b L608
+L609:
 	li $s5, 2
-L689:
+L611:
 	lw $s3, var_0
 	sle $s3, $s5, $s3
-	beq $zero, $s3, L690
+	beq $zero, $s3, L612
 	lw $s3, var_1
 	mul $s2, $s5, 4
 	add $s3, $s3, $s2
 	lw $s3, 0($s3)
-	beq $zero, $s3, L692
+	beq $zero, $s3, L614
 	li $s2, 2
 	sgt $t6, $s5, 3
-	beq $zero, $t6, L694
+	beq $zero, $t6, L616
 	lw $s3, var_1
 	sub $t9, $s5, 2
 	mul $t9, $t9, 4
 	add $s3, $s3, $t9
 	lw $s3, 0($s3)
 	and $s3, $t6, $s3
-	b L695
-L694:
+	b L617
+L616:
 	li $s3, 0
-L695:
-	beq $zero, $s3, L696
+L617:
+	beq $zero, $s3, L618
 	lw $s3, var_2
 	add $s3, $s3, 1
 	sw $s3, var_2
@@ -79,13 +79,13 @@ L695:
 	lw $s5, 8($sp)
 	move $s3, $v0
 	move $a0, $s5
-	sw $s3, 12($sp)
 	sw $s2, 4($sp)
 	sw $s5, 8($sp)
+	sw $s3, 12($sp)
 	jal f_toString
-	lw $s3, 12($sp)
 	lw $s2, 4($sp)
 	lw $s5, 8($sp)
+	lw $s3, 12($sp)
 	move $t6, $v0
 	move $a0, $s3
 	move $a1, $t6
@@ -101,14 +101,14 @@ L695:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-	b L697
-L696:
-L697:
-L698:
+	b L619
+L618:
+L619:
+L620:
 	mul $t6, $s5, $s2
 	lw $s3, var_0
 	sle $s3, $t6, $s3
-	beq $zero, $s3, L699
+	beq $zero, $s3, L621
 	lw $s3, var_1
 	mul $t6, $s5, $s2
 	mul $t6, $t6, 4
@@ -116,15 +116,15 @@ L698:
 	li $t6, 0
 	sw $t6, 0($s3)
 	add $s2, $s2, 1
-	b L698
-L699:
-	b L693
-L692:
-L693:
-L691:
+	b L620
+L621:
+	b L615
+L614:
+L615:
+L613:
 	add $s5, $s5, 1
-	b L689
-L690:
+	b L611
+L612:
 	lw $s3, var_2
 	move $a0, $s3
 	jal f_toString

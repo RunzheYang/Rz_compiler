@@ -51,7 +51,7 @@ f_tak:
 	sub $sp, $sp, 24
 	sw $ra, 0($sp)
 	slt $t6, $s5, $s3
-	beq $zero, $t6, L684
+	beq $zero, $t6, L606
 	sub $t6, $s3, 1
 	move $a0, $t6
 	move $a1, $s5
@@ -82,11 +82,11 @@ f_tak:
 	move $a0, $s2
 	move $a1, $s3
 	move $a2, $s5
-	sw $t6, 16($sp)
 	sw $t9, 20($sp)
+	sw $t6, 16($sp)
 	jal f_tak
-	lw $t6, 16($sp)
 	lw $t9, 20($sp)
+	lw $t6, 16($sp)
 	move $s3, $v0
 	move $a0, $t6
 	move $a1, $t9
@@ -98,13 +98,13 @@ f_tak:
 	lw $ra, 0($sp)
 	add $sp, $sp, 24
 	jr $ra
-	b L685
-L684:
+	b L607
+L606:
 	move $v0, $s2
 	lw $ra, 0($sp)
 	add $sp, $sp, 24
 	jr $ra
-L685:
+L607:
 	lw $ra, 0($sp)
 	add $sp, $sp, 24
 	jr $ra

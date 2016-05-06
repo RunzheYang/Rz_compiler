@@ -25,10 +25,10 @@ main:
 	add $s3, $v0, 4
 	sw $s3, var_2
 	li $s5, 0
-L554:
+L546:
 	lw $s3, var_0
 	sle $s3, $s5, $s3
-	beq $zero, $s3, L555
+	beq $zero, $s3, L547
 	lw $s3, var_2
 	move $s2, $s5
 	add $s5, $s5, 1
@@ -36,8 +36,8 @@ L554:
 	add $s3, $s3, $s2
 	li $s2, 1
 	sw $s2, 0($s3)
-	b L554
-L555:
+	b L546
+L547:
 	lw $s3, var_0
 	add $s3, $s3, 5
 	mul $s5, $s3, 4
@@ -62,19 +62,19 @@ L555:
 	li $s5, 1
 	sw $s5, 0($s3)
 	li $s5, 2
-L556:
+L548:
 	lw $s3, var_0
 	sgt $s3, $s5, $s3
-	beq $zero, $s3, L559
-	b L557
-	b L560
-L559:
-L560:
+	beq $zero, $s3, L551
+	b L549
+	b L552
+L551:
+L552:
 	lw $s3, var_2
 	mul $t9, $s5, 4
 	add $s3, $s3, $t9
 	lw $s3, 0($s3)
-	beq $zero, $s3, L561
+	beq $zero, $s3, L553
 	lw $s3, var_1
 	add $s3, $s3, 1
 	sw $s3, var_1
@@ -86,15 +86,15 @@ L560:
 	mul $t9, $s5, 4
 	add $t9, $s2, $t9
 	sw $s3, 0($t9)
-	b L562
-L561:
-L562:
+	b L554
+L553:
+L554:
 	move $t9, $s5
 	li $s0, 1
-L563:
+L555:
 	lw $s3, var_1
 	sle $s7, $s0, $s3
-	beq $zero, $s7, L564
+	beq $zero, $s7, L556
 	mul $s3, $s0, 4
 	add $s3, $t6, $s3
 	lw $s3, 0($s3)
@@ -102,11 +102,11 @@ L563:
 	lw $s3, var_0
 	sle $s3, $t0, $s3
 	and $s3, $s7, $s3
-	b L565
-L564:
+	b L557
+L556:
 	li $s3, 0
-L565:
-	beq $zero, $s3, L566
+L557:
+	beq $zero, $s3, L558
 	mul $s3, $s0, 4
 	add $s3, $t6, $s3
 	lw $s3, 0($s3)
@@ -114,11 +114,11 @@ L565:
 	move $s7, $s3
 	lw $s3, var_0
 	sgt $s3, $s7, $s3
-	beq $zero, $s3, L568
-	b L567
-	b L569
-L568:
-L569:
+	beq $zero, $s3, L560
+	b L559
+	b L561
+L560:
+L561:
 	lw $s3, var_2
 	mul $t0, $s7, 4
 	add $s3, $s3, $t0
@@ -129,7 +129,7 @@ L569:
 	lw $s3, 0($s3)
 	rem $s3, $t9, $s3
 	seq $s3, $s3, 0
-	beq $zero, $s3, L570
+	beq $zero, $s3, L562
 	mul $s3, $t9, 4
 	add $s3, $s2, $s3
 	lw $s3, 0($s3)
@@ -140,9 +140,9 @@ L569:
 	mul $s0, $s7, 4
 	add $s0, $s2, $s0
 	sw $s3, 0($s0)
-	b L566
-	b L571
-L570:
+	b L558
+	b L563
+L562:
 	mul $s3, $t9, 4
 	add $s3, $s2, $s3
 	lw $s3, 0($s3)
@@ -158,22 +158,22 @@ L570:
 	mul $s7, $s7, 4
 	add $s7, $s2, $s7
 	sw $s3, 0($s7)
-L571:
-L567:
+L563:
+L559:
 	add $s0, $s0, 1
-	b L563
-L566:
+	b L555
+L558:
 	mul $s3, $t9, 4
 	add $s3, $s2, $s3
 	lw $s3, 0($s3)
 	move $a0, $s3
-	sw $s5, 4($sp)
-	sw $t6, 8($sp)
-	sw $s2, 12($sp)
+	sw $s2, 4($sp)
+	sw $s5, 8($sp)
+	sw $t6, 12($sp)
 	jal f_toString
-	lw $s5, 4($sp)
-	lw $t6, 8($sp)
-	lw $s2, 12($sp)
+	lw $s2, 4($sp)
+	lw $s5, 8($sp)
+	lw $t6, 12($sp)
 	move $s3, $v0
 	move $a0, $s3
 	li $v0, 4
@@ -181,10 +181,10 @@ L566:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-L558:
+L550:
 	add $s5, $s5, 1
-	b L556
-L557:
+	b L548
+L549:
 	li $v0, 0
 	lw $ra, 0($sp)
 	add $sp, $sp, 16
