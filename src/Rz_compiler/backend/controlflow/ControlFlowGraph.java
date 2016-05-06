@@ -210,6 +210,8 @@ public class ControlFlowGraph extends AbstractGraph<CFGNode> {
             }
         }
 
+        //System.err.println(liveOut);
+
         return liveOut;
     }
 

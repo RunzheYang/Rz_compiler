@@ -158,26 +158,26 @@ L79:
 	lw $s5, var_2
 	slt $s5, $s3, $s5
 	beq $zero, $s5, L80
-	lw $s2, var_3
-	mul $s5, $s3, 4
-	add $s5, $s2, $s5
+	lw $s5, var_3
+	mul $s2, $s3, 4
+	add $s5, $s5, $s2
 	lw $s5, 0($s5)
 	seq $s5, $s5, 0
 	beq $zero, $s5, L82
 	add $s5, $s3, 1
-	move $t6, $s5
+	move $s2, $s5
 L84:
 	lw $s5, var_2
-	slt $s5, $t6, $s5
+	slt $s5, $s2, $s5
 	beq $zero, $s5, L85
-	lw $s2, var_3
-	mul $s5, $t6, 4
-	add $s5, $s2, $s5
+	lw $s5, var_3
+	mul $t6, $s2, 4
+	add $s5, $s5, $t6
 	lw $s5, 0($s5)
 	sne $s5, $s5, 0
 	beq $zero, $s5, L87
 	move $a0, $s3
-	move $a1, $t6
+	move $a1, $s2
 	sw $s3, 4($sp)
 	jal f_swap
 	lw $s3, 4($sp)
@@ -186,7 +186,7 @@ L84:
 L87:
 L88:
 L86:
-	add $t6, $t6, 1
+	add $s2, $s2, 1
 	b L84
 L85:
 	b L83
@@ -201,9 +201,9 @@ L89:
 	lw $s5, var_2
 	slt $s5, $s3, $s5
 	beq $zero, $s5, L90
-	lw $s2, var_3
-	mul $s5, $s3, 4
-	add $s5, $s2, $s5
+	lw $s5, var_3
+	mul $s2, $s3, 4
+	add $s5, $s5, $s2
 	lw $s5, 0($s5)
 	seq $s5, $s5, 0
 	beq $zero, $s5, L92
@@ -228,9 +228,9 @@ L58:
 	lw $s5, var_2
 	slt $s5, $s3, $s5
 	beq $zero, $s5, L59
-	lw $s2, var_3
-	mul $s5, $s3, 4
-	add $s5, $s2, $s5
+	lw $s5, var_3
+	mul $s2, $s3, 4
+	add $s5, $s5, $s2
 	lw $s5, 0($s5)
 	move $a0, $s5
 	sw $s3, 4($sp)
@@ -262,43 +262,40 @@ L59:
 main:
 	sub $sp, $sp, 16
 	sw $ra, 0($sp)
-	li $t9, 0
-	li $s0, 0
-	li $s7, 0
-	li $s3, 210
-	sw $s3, var_0
+	li $s3, 0
 	li $s5, 0
-	sw $s5, var_1
+	li $s2, 0
+	li $t6, 210
+	sw $t6, var_0
+	li $t6, 0
+	sw $t6, var_1
 	li $a0, 404
 	li $v0, 9
 	syscall
-	li $s3, 100
-	sw $s3, 0($v0)
-	add $s3, $v0, 4
-	move $s2, $s3
-	sw $s2, var_3
-	lw $s5, var_5
-	lw $s3, var_4
-	div $s3, $s5, $s3
-	move $s2, $s3
-	sw $s2, var_6
-	lw $s5, var_5
-	lw $s3, var_4
-	rem $s3, $s5, $s3
-	move $t6, $s3
+	li $t6, 100
+	sw $t6, 0($v0)
+	add $t6, $v0, 4
+	sw $t6, var_3
+	lw $t6, var_5
+	lw $t9, var_4
+	div $t6, $t6, $t9
+	sw $t6, var_6
+	lw $t6, var_5
+	lw $t9, var_4
+	rem $t6, $t6, $t9
 	sw $t6, var_7
-	lw $s3, var_0
-	move $a0, $s3
-	sw $t9, 4($sp)
-	sw $s0, 8($sp)
-	sw $s7, 12($sp)
+	lw $t6, var_0
+	move $a0, $t6
+	sw $s3, 4($sp)
+	sw $s5, 8($sp)
+	sw $s2, 12($sp)
 	jal f_pd
-	lw $t9, 4($sp)
-	lw $s0, 8($sp)
-	lw $s7, 12($sp)
-	move $s3, $v0
-	seq $s3, $zero, $s3
-	beq $zero, $s3, L97
+	lw $s3, 4($sp)
+	lw $s5, 8($sp)
+	lw $s2, 12($sp)
+	move $t6, $v0
+	seq $t6, $zero, $t6
+	beq $zero, $t6, L97
 	la $a0, msg_3
 	li $v0, 4
 	syscall
@@ -318,129 +315,128 @@ L98:
 	la $a0, msg_1
 	li $v0, 4
 	syscall
-	li $s3, 3654898
-	move $a0, $s3
-	sw $t9, 4($sp)
-	sw $s0, 8($sp)
-	sw $s7, 12($sp)
+	li $t6, 3654898
+	move $a0, $t6
+	sw $s3, 4($sp)
+	sw $s5, 8($sp)
+	sw $s2, 12($sp)
 	jal f_initialize
-	lw $t9, 4($sp)
-	lw $s0, 8($sp)
-	lw $s7, 12($sp)
-	sw $t9, 4($sp)
-	sw $s0, 8($sp)
-	sw $s7, 12($sp)
+	lw $s3, 4($sp)
+	lw $s5, 8($sp)
+	lw $s2, 12($sp)
+	sw $s3, 4($sp)
+	sw $s5, 8($sp)
+	sw $s2, 12($sp)
 	jal f_random
-	lw $t9, 4($sp)
-	lw $s0, 8($sp)
-	lw $s7, 12($sp)
-	move $s3, $v0
-	rem $s3, $s3, 10
-	add $s3, $s3, 1
-	move $s5, $s3
-	sw $s5, var_2
-	lw $s5, var_2
-	move $a0, $s5
-	sw $t9, 4($sp)
-	sw $s0, 8($sp)
-	sw $s7, 12($sp)
+	lw $s3, 4($sp)
+	lw $s5, 8($sp)
+	lw $s2, 12($sp)
+	move $t6, $v0
+	rem $t6, $t6, 10
+	add $t6, $t6, 1
+	move $t9, $t6
+	sw $t9, var_2
+	lw $t9, var_2
+	move $a0, $t9
+	sw $s3, 4($sp)
+	sw $s5, 8($sp)
+	sw $s2, 12($sp)
 	jal f_toString
-	lw $t9, 4($sp)
-	lw $s0, 8($sp)
-	lw $s7, 12($sp)
-	move $s3, $v0
-	move $a0, $s3
+	lw $s3, 4($sp)
+	lw $s5, 8($sp)
+	lw $s2, 12($sp)
+	move $t6, $v0
+	move $a0, $t6
 	li $v0, 4
 	syscall
 	la $a0, msg_1
 	li $v0, 4
 	syscall
 L99:
-	lw $s5, var_2
-	sub $s3, $s5, 1
-	slt $s3, $t9, $s3
-	beq $zero, $s3, L100
-	sw $t9, 4($sp)
-	sw $s0, 8($sp)
-	sw $s7, 12($sp)
+	lw $t9, var_2
+	sub $t6, $t9, 1
+	slt $t6, $s3, $t6
+	beq $zero, $t6, L100
+	sw $s3, 4($sp)
+	sw $s5, 8($sp)
+	sw $s2, 12($sp)
 	jal f_random
-	lw $t9, 4($sp)
-	lw $s0, 8($sp)
-	lw $s7, 12($sp)
-	move $s3, $v0
-	rem $s3, $s3, 10
-	add $s3, $s3, 1
-	lw $s2, var_3
-	mul $s5, $t9, 4
-	add $s5, $s2, $s5
-	sw $s3, 0($s5)
+	lw $s3, 4($sp)
+	lw $s5, 8($sp)
+	lw $s2, 12($sp)
+	move $t6, $v0
+	rem $t6, $t6, 10
+	add $t9, $t6, 1
+	lw $t6, var_3
+	mul $s0, $s3, 4
+	add $t6, $t6, $s0
+	sw $t9, 0($t6)
 L102:
-	lw $s2, var_3
-	mul $s3, $t9, 4
-	add $s3, $s2, $s3
-	lw $s3, 0($s3)
-	add $s5, $s3, $s0
-	lw $s3, var_0
-	sgt $s3, $s5, $s3
-	beq $zero, $s3, L103
-	sw $t9, 4($sp)
-	sw $s0, 8($sp)
-	sw $s7, 12($sp)
+	lw $t6, var_3
+	mul $t9, $s3, 4
+	add $t6, $t6, $t9
+	lw $t6, 0($t6)
+	add $t9, $t6, $s5
+	lw $t6, var_0
+	sgt $t6, $t9, $t6
+	beq $zero, $t6, L103
+	sw $s3, 4($sp)
+	sw $s5, 8($sp)
+	sw $s2, 12($sp)
 	jal f_random
-	lw $t9, 4($sp)
-	lw $s0, 8($sp)
-	lw $s7, 12($sp)
-	move $s3, $v0
-	rem $s3, $s3, 10
-	add $s3, $s3, 1
-	lw $s2, var_3
-	mul $s5, $t9, 4
-	add $s5, $s2, $s5
-	sw $s3, 0($s5)
+	lw $s3, 4($sp)
+	lw $s5, 8($sp)
+	lw $s2, 12($sp)
+	move $t6, $v0
+	rem $t6, $t6, 10
+	add $t9, $t6, 1
+	lw $t6, var_3
+	mul $s0, $s3, 4
+	add $t6, $t6, $s0
+	sw $t9, 0($t6)
 	b L102
 L103:
-	lw $s2, var_3
-	mul $s3, $t9, 4
-	add $s3, $s2, $s3
-	lw $s3, 0($s3)
-	add $s3, $s0, $s3
-	move $s0, $s3
+	lw $t6, var_3
+	mul $t9, $s3, 4
+	add $t6, $t6, $t9
+	lw $t6, 0($t6)
+	add $s5, $s5, $t6
 L101:
-	add $t9, $t9, 1
+	add $s3, $s3, 1
 	b L99
 L100:
-	lw $s3, var_0
-	sub $s3, $s3, $s0
-	lw $s2, var_3
-	lw $s5, var_2
-	sub $s5, $s5, 1
+	lw $t6, var_0
+	sub $s3, $t6, $s5
+	lw $t6, var_3
+	lw $t9, var_2
+	sub $s5, $t9, 1
 	mul $s5, $s5, 4
-	add $s5, $s2, $s5
+	add $s5, $t6, $s5
 	sw $s3, 0($s5)
-	sw $s7, 12($sp)
+	sw $s2, 12($sp)
 	jal f_show
-	lw $s7, 12($sp)
-	sw $s7, 12($sp)
+	lw $s2, 12($sp)
+	sw $s2, 12($sp)
 	jal f_merge
-	lw $s7, 12($sp)
+	lw $s2, 12($sp)
 L104:
-	sw $s7, 12($sp)
+	sw $s2, 12($sp)
 	jal f_win
-	lw $s7, 12($sp)
+	lw $s2, 12($sp)
 	move $s3, $v0
 	seq $s3, $zero, $s3
 	beq $zero, $s3, L105
-	add $s7, $s7, 1
-	move $a0, $s7
-	sw $s7, 12($sp)
+	add $s2, $s2, 1
+	move $a0, $s2
+	sw $s2, 12($sp)
 	jal f_toString
-	lw $s7, 12($sp)
+	lw $s2, 12($sp)
 	move $s3, $v0
 	la $a0, msg_5
 	move $a1, $s3
-	sw $s7, 12($sp)
+	sw $s2, 12($sp)
 	jal f_str.stringConcatenate
-	lw $s7, 12($sp)
+	lw $s2, 12($sp)
 	move $s3, $v0
 	move $a0, $s3
 	li $v0, 4
@@ -448,18 +444,18 @@ L104:
 	la $a0, msg_1
 	li $v0, 4
 	syscall
-	sw $s7, 12($sp)
+	sw $s2, 12($sp)
 	jal f_move
-	lw $s7, 12($sp)
-	sw $s7, 12($sp)
+	lw $s2, 12($sp)
+	sw $s2, 12($sp)
 	jal f_merge
-	lw $s7, 12($sp)
-	sw $s7, 12($sp)
+	lw $s2, 12($sp)
+	sw $s2, 12($sp)
 	jal f_show
-	lw $s7, 12($sp)
+	lw $s2, 12($sp)
 	b L104
 L105:
-	move $a0, $s7
+	move $a0, $s2
 	jal f_toString
 	move $s3, $v0
 	la $a0, msg_6
@@ -494,8 +490,7 @@ f_initialize:
 	move $s3, $a0
 	sub $sp, $sp, 4
 	sw $ra, 0($sp)
-	move $s5, $s3
-	sw $s5, var_8
+	sw $s3, var_8
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
@@ -509,8 +504,8 @@ f_win:
 	sw $s3, 0($v0)
 	add $s3, $v0, 4
 	lw $s5, var_2
-	lw $s5, var_1
-	sne $s5, $s5, $s5
+	lw $s2, var_1
+	sne $s5, $s5, $s2
 	beq $zero, $s5, L61
 	li $v0, 0
 	lw $ra, 0($sp)
@@ -519,75 +514,75 @@ f_win:
 	b L62
 L61:
 L62:
-	li $t6, 0
+	li $s2, 0
 L63:
 	lw $s5, var_2
-	slt $s5, $t6, $s5
+	slt $s5, $s2, $s5
 	beq $zero, $s5, L64
-	lw $s2, var_3
-	mul $s5, $t6, 4
-	add $s5, $s2, $s5
+	lw $s5, var_3
+	mul $t6, $s2, 4
+	add $s5, $s5, $t6
 	lw $s5, 0($s5)
-	mul $s2, $t6, 4
-	add $s2, $s3, $s2
-	sw $s5, 0($s2)
+	mul $t6, $s2, 4
+	add $t6, $s3, $t6
+	sw $s5, 0($t6)
 L65:
-	add $t6, $t6, 1
+	add $s2, $s2, 1
 	b L63
 L64:
-	li $s2, 0
+	li $t6, 0
 L66:
 	lw $s5, var_2
 	sub $s5, $s5, 1
-	slt $s5, $s2, $s5
+	slt $s5, $t6, $s5
 	beq $zero, $s5, L67
-	add $s5, $s2, 1
-	move $t6, $s5
+	add $s5, $t6, 1
+	move $s2, $s5
 L69:
 	lw $s5, var_2
-	slt $s5, $t6, $s5
+	slt $s5, $s2, $s5
 	beq $zero, $s5, L70
-	mul $s5, $s2, 4
+	mul $s5, $t6, 4
 	add $s5, $s3, $s5
 	lw $s5, 0($s5)
-	mul $t9, $t6, 4
+	mul $t9, $s2, 4
 	add $t9, $s3, $t9
 	lw $t9, 0($t9)
 	sgt $s5, $s5, $t9
 	beq $zero, $s5, L72
-	mul $s5, $s2, 4
+	mul $s5, $t6, 4
 	add $s5, $s3, $s5
 	lw $s5, 0($s5)
-	mul $t9, $t6, 4
+	mul $t9, $s2, 4
 	add $t9, $s3, $t9
 	lw $t9, 0($t9)
-	mul $s0, $s2, 4
+	mul $s0, $t6, 4
 	add $s0, $s3, $s0
 	sw $t9, 0($s0)
-	mul $t9, $t6, 4
+	mul $t9, $s2, 4
 	add $t9, $s3, $t9
 	sw $s5, 0($t9)
 	b L73
 L72:
 L73:
 L71:
-	add $t6, $t6, 1
+	add $s2, $s2, 1
 	b L69
 L70:
 L68:
-	add $s2, $s2, 1
+	add $t6, $t6, 1
 	b L66
 L67:
-	li $s2, 0
+	li $t6, 0
 L74:
 	lw $s5, var_2
-	slt $s5, $s2, $s5
+	slt $s5, $t6, $s5
 	beq $zero, $s5, L75
-	mul $s5, $s2, 4
+	mul $s5, $t6, 4
 	add $s5, $s3, $s5
 	lw $s5, 0($s5)
-	add $t6, $s2, 1
-	sne $s5, $s5, $t6
+	add $s2, $t6, 1
+	sne $s5, $s5, $s2
 	beq $zero, $s5, L77
 	li $v0, 0
 	lw $ra, 0($sp)
@@ -597,7 +592,7 @@ L74:
 L77:
 L78:
 L76:
-	add $s2, $s2, 1
+	add $t6, $t6, 1
 	b L74
 L75:
 	li $v0, 1

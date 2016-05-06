@@ -130,8 +130,8 @@ main:
 	syscall
 	sw $s3, 0($v0)
 	add $s3, $v0, 4
-	move $s2, $s3
-	sw $s2, var_4
+	move $s5, $s3
+	sw $s5, var_4
 	lw $s3, var_0
 	lw $s5, var_1
 	add $s3, $s3, $s5
@@ -143,125 +143,126 @@ main:
 	syscall
 	sw $s3, 0($v0)
 	add $s3, $v0, 4
-	move $s2, $s3
-	sw $s2, var_5
-	li $t6, 1
+	move $s5, $s3
+	sw $s5, var_5
+	li $s2, 1
 L118:
 	lw $s3, var_0
-	sle $s3, $t6, $s3
+	sle $s3, $s2, $s3
 	beq $zero, $s3, L119
 	li $v0, 5
 	syscall
 	move $s3, $v0
-	lw $s2, var_5
-	mul $s5, $t6, 4
-	add $s5, $s2, $s5
+	lw $s5, var_5
+	mul $t6, $s2, 4
+	add $s5, $s5, $t6
 	sw $s3, 0($s5)
 	lw $s5, var_3
-	mul $s3, $t6, 4
+	mul $s3, $s2, 4
 	add $s3, $s5, $s3
 	li $s5, 0
 	sw $s5, 0($s3)
-	lw $s2, var_4
-	mul $s3, $t6, 4
-	add $s3, $s2, $s3
+	lw $s5, var_4
+	mul $s3, $s2, 4
+	add $s3, $s5, $s3
 	li $s5, 0
 	sw $s5, 0($s3)
 L120:
-	add $t6, $t6, 1
+	add $s2, $s2, 1
 	b L118
 L119:
-	li $t6, 1
+	li $s2, 1
 L121:
 	lw $s5, var_1
-	sle $s3, $t6, $s5
+	sle $s3, $s2, $s5
 	beq $zero, $s3, L122
 	lw $s5, var_2
-	sub $s3, $t6, 1
+	sub $s3, $s2, 1
 	move $a0, $s5
 	move $a1, $s3
-	sw $t6, 4($sp)
+	sw $s2, 4($sp)
 	jal f_str.ord
-	lw $t6, 4($sp)
-	move $s5, $v0
-	lw $s2, var_5
+	lw $s2, 4($sp)
+	move $t6, $v0
+	lw $s5, var_5
 	lw $s3, var_0
-	add $s3, $t6, $s3
-	mul $s3, $s3, 4
 	add $s3, $s2, $s3
+	mul $s3, $s3, 4
+	add $s3, $s5, $s3
+	move $s5, $t6
 	sw $s5, 0($s3)
 	lw $s5, var_3
 	lw $s3, var_0
-	add $s3, $t6, $s3
+	add $s3, $s2, $s3
 	mul $s3, $s3, 4
 	add $s3, $s5, $s3
 	li $s5, 0
 	sw $s5, 0($s3)
-	lw $s2, var_4
+	lw $s5, var_4
 	lw $s3, var_0
-	add $s3, $t6, $s3
-	mul $s3, $s3, 4
 	add $s3, $s2, $s3
+	mul $s3, $s3, 4
+	add $s3, $s5, $s3
 	li $s5, 0
 	sw $s5, 0($s3)
 L123:
-	add $t6, $t6, 1
+	add $s2, $s2, 1
 	b L121
 L122:
-	li $t9, 1
+	li $t6, 1
 	lw $s3, var_0
 	add $s3, $s3, 1
-	move $s0, $s3
-	li $t6, 2
+	move $t9, $s3
+	li $s2, 2
 L124:
 	lw $s3, var_0
-	sle $s3, $t6, $s3
+	sle $s3, $s2, $s3
 	beq $zero, $s3, L125
-	move $a0, $t9
-	move $a1, $t6
-	sw $s0, 8($sp)
-	sw $t6, 4($sp)
+	move $a0, $t6
+	move $a1, $s2
+	sw $t9, 8($sp)
+	sw $s2, 4($sp)
 	jal f_merge
-	lw $s0, 8($sp)
-	lw $t6, 4($sp)
+	lw $t9, 8($sp)
+	lw $s2, 4($sp)
 	move $s3, $v0
-	move $t9, $s3
+	move $t6, $s3
 L126:
-	add $t6, $t6, 1
+	add $s2, $s2, 1
 	b L124
 L125:
 	lw $s3, var_0
 	add $s3, $s3, 2
-	move $t6, $s3
+	move $s2, $s3
 L127:
 	lw $s3, var_0
 	lw $s5, var_1
 	add $s3, $s3, $s5
-	sle $s3, $t6, $s3
+	sle $s3, $s2, $s3
 	beq $zero, $s3, L128
-	move $a0, $s0
-	move $a1, $t6
-	sw $t9, 12($sp)
-	sw $t6, 4($sp)
+	move $a0, $t9
+	move $a1, $s2
+	sw $t6, 12($sp)
+	sw $s2, 4($sp)
 	jal f_merge
-	lw $t9, 12($sp)
-	lw $t6, 4($sp)
+	lw $t6, 12($sp)
+	lw $s2, 4($sp)
 	move $s3, $v0
-	move $s0, $s3
+	move $t9, $s3
 L129:
-	add $t6, $t6, 1
+	add $s2, $s2, 1
 	b L127
 L128:
-	lw $s2, var_5
-	mul $s3, $t9, 4
-	add $s3, $s2, $s3
+	lw $s5, var_5
+	mul $s3, $t6, 4
+	add $s3, $s5, $s3
 	lw $s3, 0($s3)
 	move $a0, $s3
-	sw $t9, 12($sp)
-	sw $s0, 8($sp)
+	sw $t6, 12($sp)
+	sw $t9, 8($sp)
 	jal f_toString
-	lw $t9, 12($sp)
-	lw $s0, 8($sp)
+	lw $t6, 12($sp)
+	lw $t9, 8($sp)
 	move $s3, $v0
 	move $a0, $s3
 	li $v0, 4
@@ -271,19 +272,19 @@ L128:
 	syscall
 	lw $s5, var_2
 	lw $s3, var_0
-	sub $s3, $s0, $s3
+	sub $s3, $t9, $s3
 	sub $s2, $s3, 1
 	lw $s3, var_0
-	sub $s3, $s0, $s3
+	sub $s3, $t9, $s3
 	sub $s3, $s3, 1
 	move $a0, $s5
 	move $a1, $s2
 	move $a2, $s3
-	sw $t9, 12($sp)
-	sw $s0, 8($sp)
+	sw $t6, 12($sp)
+	sw $t9, 8($sp)
 	jal f_str.substring
-	lw $t9, 12($sp)
-	lw $s0, 8($sp)
+	lw $t6, 12($sp)
+	lw $t9, 8($sp)
 	move $s3, $v0
 	move $a0, $s3
 	li $v0, 4
@@ -291,8 +292,8 @@ L128:
 	la $a0, msg_1
 	li $v0, 4
 	syscall
-	move $a0, $t9
-	move $a1, $s0
+	move $a0, $t6
+	move $a1, $t9
 	jal f_merge
 	move $s3, $v0
 	move $a0, $s3

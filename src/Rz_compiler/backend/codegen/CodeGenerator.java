@@ -11,6 +11,8 @@ import Rz_compiler.backend.instructions.visitors.InstructionPrinter;
 import Rz_compiler.backend.interference.InterferenceGraph;
 import Rz_compiler.backend.operands.ImmediateValue;
 import Rz_compiler.backend.operands.MipsRegister;
+import Rz_compiler.backend.operands.Register;
+import Rz_compiler.backend.operands.TemporaryRegister;
 import Rz_compiler.frontend.semantics.SymbolTable;
 import Rz_compiler.frontend.syntax.RzParser;
 import org.antlr.v4.runtime.misc.Pair;
@@ -159,6 +161,7 @@ public class CodeGenerator {
             ControlFlowGraph cfg = new ControlFlowGraph(intermediateCode);
             //System.err.println(cfg);
             InterferenceGraph ig = new InterferenceGraph(cfg);
+            //System.err.println(funcname);
             //System.err.println(ig);
             //IGColouration igc = new IGColouration(ig);
             intermediateCode = simpleRegisterAllocation(intermediateCode, ig, funcname);
@@ -193,6 +196,11 @@ public class CodeGenerator {
             }
             finalCode.add(ps);
         }
+
+        for (Register reg : frameManager.getRegUseInFrame()) {
+            ((TemporaryRegister) reg).clear();
+        }
+
         return finalCode;
     }
 }

@@ -31,7 +31,7 @@ main:
 	lw $s3, -4($s3)
 	lw $s5, var_3
 	slt $s3, $s3, $s5
-	beq $zero, $s3, L544
+	beq $zero, $s3, L565
 	la $a0, msg_2
 	li $v0, 4
 	syscall
@@ -42,9 +42,9 @@ main:
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
-	b L545
-L544:
-L545:
+	b L566
+L565:
+L566:
 	lw $s3, var_0
 	li $s2, 0
 	lw $s5, var_3
@@ -80,6 +80,157 @@ main_end:
 	li $v0, 10
 	syscall
 f_calc:
+	move $s3, $a0
+	sub $sp, $sp, 28
+	sw $ra, 0($sp)
+	lw $s5, -4($s3)
+	seq $s2, $s5, 1
+	beq $zero, $s2, L555
+	move $v0, $s3
+	lw $ra, 0($sp)
+	add $sp, $sp, 28
+	jr $ra
+	b L556
+L555:
+L556:
+	div $s2, $s5, 2
+	li $t6, 0
+	sub $t9, $s2, 1
+	move $a0, $s3
+	move $a1, $t6
+	move $a2, $t9
+	sw $s5, 4($sp)
+	sw $s2, 8($sp)
+	sw $s3, 12($sp)
+	jal f_str.substring
+	lw $s5, 4($sp)
+	lw $s2, 8($sp)
+	lw $s3, 12($sp)
+	move $t6, $v0
+	move $a0, $t6
+	sw $s5, 4($sp)
+	sw $s2, 8($sp)
+	sw $s3, 12($sp)
+	jal f_calc
+	lw $s5, 4($sp)
+	lw $s2, 8($sp)
+	lw $s3, 12($sp)
+	move $t6, $v0
+	sub $s5, $s5, 1
+	move $a0, $s3
+	move $a1, $s2
+	move $a2, $s5
+	sw $t6, 16($sp)
+	jal f_str.substring
+	lw $t6, 16($sp)
+	move $s3, $v0
+	move $a0, $s3
+	sw $t6, 16($sp)
+	jal f_calc
+	lw $t6, 16($sp)
+	move $s3, $v0
+	move $a0, $t6
+	move $a1, $s3
+	sw $t6, 16($sp)
+	sw $s3, 20($sp)
+	jal func__stringLess
+	lw $t6, 16($sp)
+	lw $s3, 20($sp)
+	move $s5, $v0
+	beq $zero, $s5, L557
+	move $a0, $t6
+	move $a1, $s3
+	jal f_str.stringConcatenate
+	move $s3, $v0
+	move $v0, $s3
+	lw $ra, 0($sp)
+	add $sp, $sp, 28
+	jr $ra
+	b L558
+L557:
+	move $a0, $t6
+	move $a1, $s3
+	sw $t6, 16($sp)
+	sw $s3, 20($sp)
+	jal func__stringIsEqual
+	lw $t6, 16($sp)
+	lw $s3, 20($sp)
+	move $s5, $v0
+	beq $zero, $s5, L559
+	li $s5, 0
+	move $a0, $t6
+	move $a1, $s5
+	sw $t6, 16($sp)
+	sw $s3, 20($sp)
+	jal f_str.ord
+	lw $t6, 16($sp)
+	lw $s3, 20($sp)
+	move $s5, $v0
+	li $s2, 0
+	move $a0, $s3
+	move $a1, $s2
+	sw $s5, 24($sp)
+	sw $t6, 16($sp)
+	sw $s3, 20($sp)
+	jal f_str.ord
+	lw $s5, 24($sp)
+	lw $t6, 16($sp)
+	lw $s3, 20($sp)
+	move $s2, $v0
+	slt $s5, $s5, $s2
+	beq $zero, $s5, L561
+	move $a0, $t6
+	move $a1, $s3
+	jal f_str.stringConcatenate
+	move $s3, $v0
+	move $v0, $s3
+	lw $ra, 0($sp)
+	add $sp, $sp, 28
+	jr $ra
+	b L562
+L561:
+L562:
+	move $a0, $s3
+	move $a1, $t6
+	jal f_str.stringConcatenate
+	move $s3, $v0
+	move $v0, $s3
+	lw $ra, 0($sp)
+	add $sp, $sp, 28
+	jr $ra
+	b L560
+L559:
+	move $a0, $t6
+	move $a1, $s3
+	sw $t6, 16($sp)
+	sw $s3, 20($sp)
+	jal func__stringLarge
+	lw $t6, 16($sp)
+	lw $s3, 20($sp)
+	move $s5, $v0
+	beq $zero, $s5, L563
+	move $a0, $s3
+	move $a1, $t6
+	jal f_str.stringConcatenate
+	move $s3, $v0
+	move $v0, $s3
+	lw $ra, 0($sp)
+	add $sp, $sp, 28
+	jr $ra
+	b L564
+L563:
+L564:
+L560:
+L558:
+	la $a0, msg_1
+	li $v0, 4
+	syscall
+	la $a0, msg_0
+	li $v0, 4
+	syscall
+	lw $ra, 0($sp)
+	add $sp, $sp, 28
+	jr $ra
 f_toString:
 	li $t0, 0
 	bgez $a0, _skip_set_less_than_zero

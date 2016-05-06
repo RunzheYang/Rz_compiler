@@ -15,6 +15,236 @@ var_2:	.word	0
 var_3:	.word	0
 .text
 f_printBoard:
+	sub $sp, $sp, 4
+	sw $ra, 0($sp)
+	li $s3, 0
+L515:
+	lw $s5, var_0
+	slt $s5, $s3, $s5
+	beq $zero, $s5, L516
+	li $s2, 0
+L518:
+	lw $s5, var_0
+	slt $s5, $s2, $s5
+	beq $zero, $s5, L519
+	lw $s5, var_2
+	mul $t6, $s3, 4
+	add $s5, $s5, $t6
+	lw $s5, 0($s5)
+	seq $s5, $s5, $s2
+	beq $zero, $s5, L521
+	la $a0, msg_0
+	li $v0, 4
+	syscall
+	b L522
+L521:
+	la $a0, msg_1
+	li $v0, 4
+	syscall
+L522:
+L520:
+	add $s2, $s2, 1
+	b L518
+L519:
+	la $a0, msg_3
+	li $v0, 4
+	syscall
+	la $a0, msg_2
+	li $v0, 4
+	syscall
+L517:
+	add $s3, $s3, 1
+	b L515
+L516:
+	la $a0, msg_3
+	li $v0, 4
+	syscall
+	la $a0, msg_2
+	li $v0, 4
+	syscall
+	lw $ra, 0($sp)
+	add $sp, $sp, 4
+	jr $ra
+f_search:
+	move $s3, $a0
+	sub $sp, $sp, 12
+	sw $ra, 0($sp)
+	lw $s5, var_0
+	seq $s5, $s3, $s5
+	beq $zero, $s5, L523
+	jal f_printBoard
+	b L524
+L523:
+	li $s2, 0
+L525:
+	lw $s5, var_0
+	slt $s5, $s2, $s5
+	beq $zero, $s5, L526
+	lw $s5, var_1
+	mul $t6, $s2, 4
+	add $s5, $s5, $t6
+	lw $s5, 0($s5)
+	seq $s5, $s5, 0
+	beq $zero, $s5, L528
+	lw $t6, var_3
+	la $t6, 0($t6)
+	lw $t6, 0($t6)
+	add $t9, $s2, $s3
+	mul $t9, $t9, 4
+	add $t6, $t6, $t9
+	lw $t6, 0($t6)
+	seq $t6, $t6, 0
+	and $t9, $s5, $t6
+	b L529
+L528:
+	li $t9, 0
+L529:
+	beq $zero, $t9, L530
+	lw $t6, var_3
+	la $s5, 4($t6)
+	lw $t6, 0($s5)
+	lw $s5, var_0
+	add $s5, $s2, $s5
+	sub $s5, $s5, 1
+	sub $s5, $s5, $s3
+	mul $s5, $s5, 4
+	add $s5, $t6, $s5
+	lw $s5, 0($s5)
+	seq $s5, $s5, 0
+	and $s5, $t9, $s5
+	b L531
+L530:
+	li $s5, 0
+L531:
+	beq $zero, $s5, L532
+	lw $t6, var_3
+	la $s5, 4($t6)
+	lw $t6, 0($s5)
+	lw $s5, var_0
+	add $s5, $s2, $s5
+	sub $s5, $s5, 1
+	sub $s5, $s5, $s3
+	mul $s5, $s5, 4
+	add $s5, $t6, $s5
+	li $t9, 1
+	sw $t9, 0($s5)
+	lw $t6, var_3
+	la $s5, 0($t6)
+	lw $s5, 0($s5)
+	add $t6, $s2, $s3
+	mul $t6, $t6, 4
+	add $s5, $s5, $t6
+	move $t6, $t9
+	sw $t6, 0($s5)
+	lw $s5, var_1
+	mul $t9, $s2, 4
+	add $s5, $s5, $t9
+	sw $t6, 0($s5)
+	lw $s5, var_2
+	mul $t6, $s3, 4
+	add $s5, $s5, $t6
+	move $t6, $s2
+	sw $t6, 0($s5)
+	add $s5, $s3, 1
+	move $a0, $s5
+	sw $s3, 4($sp)
+	sw $s2, 8($sp)
+	jal f_search
+	lw $s3, 4($sp)
+	lw $s2, 8($sp)
+	lw $t6, var_3
+	la $s5, 4($t6)
+	lw $t6, 0($s5)
+	lw $s5, var_0
+	add $s5, $s2, $s5
+	sub $s5, $s5, 1
+	sub $s5, $s5, $s3
+	mul $s5, $s5, 4
+	add $s5, $t6, $s5
+	li $t9, 0
+	sw $t9, 0($s5)
+	lw $t6, var_3
+	la $s5, 0($t6)
+	lw $s5, 0($s5)
+	add $t6, $s2, $s3
+	mul $t6, $t6, 4
+	add $s5, $s5, $t6
+	move $t6, $t9
+	sw $t6, 0($s5)
+	lw $s5, var_1
+	mul $t9, $s2, 4
+	add $s5, $s5, $t9
+	sw $t6, 0($s5)
+	b L533
+L532:
+L533:
+L527:
+	add $s2, $s2, 1
+	b L525
+L526:
+L524:
+	lw $ra, 0($sp)
+	add $sp, $sp, 12
+	jr $ra
+main:
+	li $a0, 36
+	li $v0, 9
+	syscall
+	li $s3, 8
+	sw $s3, 0($v0)
+	add $s3, $v0, 4
+	sw $s3, var_1
+	li $a0, 36
+	li $v0, 9
+	syscall
+	li $s3, 8
+	sw $s3, 0($v0)
+	add $s3, $v0, 4
+	sw $s3, var_2
+	li $a0, 12
+	li $v0, 9
+	syscall
+	li $s3, 2
+	sw $s3, 0($v0)
+	add $s3, $v0, 4
+	sw $s3, var_3
+	sub $sp, $sp, 4
+	sw $ra, 0($sp)
+	li $s5, 0
+L534:
+	slt $s3, $s5, 2
+	beq $zero, $s3, L535
+	li $a0, 64
+	li $v0, 9
+	syscall
+	li $s3, 15
+	sw $s3, 0($v0)
+	add $s2, $v0, 4
+	lw $s3, var_3
+	mul $t6, $s5, 4
+	add $s3, $s3, $t6
+	sw $s2, 0($s3)
+L536:
+	add $s5, $s5, 1
+	b L534
+L535:
+	li $s3, 0
+	move $a0, $s3
+	jal f_search
+	li $v0, 0
+	lw $ra, 0($sp)
+	add $sp, $sp, 4
+	jr $ra
+	lw $ra, 0($sp)
+	add $sp, $sp, 4
+	jr $ra
+	b main_end
+main_end:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	li $v0, 10
+	syscall
 f_toString:
 	li $t0, 0
 	bgez $a0, _skip_set_less_than_zero

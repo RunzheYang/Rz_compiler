@@ -45,6 +45,69 @@ main_end:
 	li $v0, 10
 	syscall
 f_tak:
+	move $s3, $a0
+	move $s5, $a1
+	move $s2, $a2
+	sub $sp, $sp, 24
+	sw $ra, 0($sp)
+	slt $t6, $s5, $s3
+	beq $zero, $t6, L667
+	sub $t6, $s3, 1
+	move $a0, $t6
+	move $a1, $s5
+	move $a2, $s2
+	sw $s3, 4($sp)
+	sw $s5, 8($sp)
+	sw $s2, 12($sp)
+	jal f_tak
+	lw $s3, 4($sp)
+	lw $s5, 8($sp)
+	lw $s2, 12($sp)
+	move $t6, $v0
+	sub $t9, $s5, 1
+	move $a0, $t9
+	move $a1, $s2
+	move $a2, $s3
+	sw $s3, 4($sp)
+	sw $s5, 8($sp)
+	sw $s2, 12($sp)
+	sw $t6, 16($sp)
+	jal f_tak
+	lw $s3, 4($sp)
+	lw $s5, 8($sp)
+	lw $s2, 12($sp)
+	lw $t6, 16($sp)
+	move $t9, $v0
+	sub $s2, $s2, 1
+	move $a0, $s2
+	move $a1, $s3
+	move $a2, $s5
+	sw $t6, 16($sp)
+	sw $t9, 20($sp)
+	jal f_tak
+	lw $t6, 16($sp)
+	lw $t9, 20($sp)
+	move $s3, $v0
+	move $a0, $t6
+	move $a1, $t9
+	move $a2, $s3
+	jal f_tak
+	move $s3, $v0
+	add $s3, $s3, 1
+	move $v0, $s3
+	lw $ra, 0($sp)
+	add $sp, $sp, 24
+	jr $ra
+	b L668
+L667:
+	move $v0, $s2
+	lw $ra, 0($sp)
+	add $sp, $sp, 24
+	jr $ra
+L668:
+	lw $ra, 0($sp)
+	add $sp, $sp, 24
+	jr $ra
 f_toString:
 	li $t0, 0
 	bgez $a0, _skip_set_less_than_zero

@@ -31,7 +31,7 @@ main:
 	lw $s3, -4($s3)
 	lw $s5, var_3
 	slt $s3, $s3, $s5
-	beq $zero, $s3, L544
+	beq $zero, $s3, L565
 	la $a0, msg_2
 	li $v0, 4
 	syscall
@@ -42,9 +42,9 @@ main:
 	lw $ra, 0($sp)
 	add $sp, $sp, 4
 	jr $ra
-	b L545
-L544:
-L545:
+	b L566
+L565:
+L566:
 	lw $s3, var_0
 	li $s2, 0
 	lw $s5, var_3
@@ -85,14 +85,14 @@ f_calc:
 	sw $ra, 0($sp)
 	lw $s5, -4($s3)
 	seq $s2, $s5, 1
-	beq $zero, $s2, L534
+	beq $zero, $s2, L555
 	move $v0, $s3
 	lw $ra, 0($sp)
 	add $sp, $sp, 28
 	jr $ra
-	b L535
-L534:
-L535:
+	b L556
+L555:
+L556:
 	div $s2, $s5, 2
 	li $t6, 0
 	sub $t9, $s2, 1
@@ -137,7 +137,7 @@ L535:
 	lw $t6, 16($sp)
 	lw $s3, 20($sp)
 	move $s5, $v0
-	beq $zero, $s5, L536
+	beq $zero, $s5, L557
 	move $a0, $t6
 	move $a1, $s3
 	jal f_str.stringConcatenate
@@ -146,8 +146,8 @@ L535:
 	lw $ra, 0($sp)
 	add $sp, $sp, 28
 	jr $ra
-	b L537
-L536:
+	b L558
+L557:
 	move $a0, $t6
 	move $a1, $s3
 	sw $t6, 16($sp)
@@ -156,7 +156,7 @@ L536:
 	lw $t6, 16($sp)
 	lw $s3, 20($sp)
 	move $s5, $v0
-	beq $zero, $s5, L538
+	beq $zero, $s5, L559
 	li $s5, 0
 	move $a0, $t6
 	move $a1, $s5
@@ -178,7 +178,7 @@ L536:
 	lw $s3, 20($sp)
 	move $s2, $v0
 	slt $s5, $s5, $s2
-	beq $zero, $s5, L540
+	beq $zero, $s5, L561
 	move $a0, $t6
 	move $a1, $s3
 	jal f_str.stringConcatenate
@@ -187,9 +187,9 @@ L536:
 	lw $ra, 0($sp)
 	add $sp, $sp, 28
 	jr $ra
-	b L541
-L540:
-L541:
+	b L562
+L561:
+L562:
 	move $a0, $s3
 	move $a1, $t6
 	jal f_str.stringConcatenate
@@ -198,8 +198,8 @@ L541:
 	lw $ra, 0($sp)
 	add $sp, $sp, 28
 	jr $ra
-	b L539
-L538:
+	b L560
+L559:
 	move $a0, $t6
 	move $a1, $s3
 	sw $t6, 16($sp)
@@ -208,7 +208,7 @@ L538:
 	lw $t6, 16($sp)
 	lw $s3, 20($sp)
 	move $s5, $v0
-	beq $zero, $s5, L542
+	beq $zero, $s5, L563
 	move $a0, $s3
 	move $a1, $t6
 	jal f_str.stringConcatenate
@@ -217,11 +217,11 @@ L538:
 	lw $ra, 0($sp)
 	add $sp, $sp, 28
 	jr $ra
-	b L543
-L542:
-L543:
-L539:
-L537:
+	b L564
+L563:
+L564:
+L560:
+L558:
 	la $a0, msg_1
 	li $v0, 4
 	syscall

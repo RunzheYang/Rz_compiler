@@ -45,10 +45,13 @@ public class RegisterAllocator implements InstructionVisitor<Deque<PseudoInstruc
         @Override
         public Pair<Operand, Deque<PseudoInstruction>> visit(TemporaryRegister tempReg) {
 
+            frameManager.recordNewReg(tempReg);
+
             Pair<Operand, Deque<PseudoInstruction>> result;
 
             if (tempReg.isInRegister() != null) {
                 result = new Pair<>(tempReg.isInRegister(), new LinkedList<>()) ;
+
                 return result;
             }
 
@@ -58,11 +61,13 @@ public class RegisterAllocator implements InstructionVisitor<Deque<PseudoInstruc
                 Register reg = node.getReg();
                 if (reg instanceof TemporaryRegister) {
                     Register real =  ((TemporaryRegister) reg).isInRegister();
+
                     if (real != null) {
                         available.remove(real);
                     }
                 }
             }
+
 
             Register history = tempReg.getHistoryRegister();
             if (available.size() > 0) {

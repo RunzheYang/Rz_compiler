@@ -25,10 +25,10 @@ main:
 	add $s3, $v0, 4
 	sw $s3, var_2
 	li $s5, 0
-L516:
+L537:
 	lw $s3, var_0
 	sle $s3, $s5, $s3
-	beq $zero, $s3, L517
+	beq $zero, $s3, L538
 	lw $s3, var_2
 	move $s2, $s5
 	add $s5, $s5, 1
@@ -36,8 +36,8 @@ L516:
 	add $s3, $s3, $s2
 	li $s2, 1
 	sw $s2, 0($s3)
-	b L516
-L517:
+	b L537
+L538:
 	lw $s3, var_0
 	add $s3, $s3, 5
 	mul $s5, $s3, 4
@@ -62,19 +62,19 @@ L517:
 	li $s5, 1
 	sw $s5, 0($s3)
 	li $s5, 2
-L518:
+L539:
 	lw $s3, var_0
 	sgt $s3, $s5, $s3
-	beq $zero, $s3, L521
-	b L519
-	b L522
-L521:
-L522:
+	beq $zero, $s3, L542
+	b L540
+	b L543
+L542:
+L543:
 	lw $s3, var_2
 	mul $t9, $s5, 4
 	add $s3, $s3, $t9
 	lw $s3, 0($s3)
-	beq $zero, $s3, L523
+	beq $zero, $s3, L544
 	lw $s3, var_1
 	add $s3, $s3, 1
 	sw $s3, var_1
@@ -86,15 +86,15 @@ L522:
 	mul $t9, $s5, 4
 	add $t9, $s2, $t9
 	sw $s3, 0($t9)
-	b L524
-L523:
-L524:
+	b L545
+L544:
+L545:
 	move $t9, $s5
 	li $s0, 1
-L525:
+L546:
 	lw $s3, var_1
 	sle $s7, $s0, $s3
-	beq $zero, $s7, L526
+	beq $zero, $s7, L547
 	mul $s3, $s0, 4
 	add $s3, $t6, $s3
 	lw $s3, 0($s3)
@@ -102,11 +102,11 @@ L525:
 	lw $s3, var_0
 	sle $s3, $t0, $s3
 	and $s3, $s7, $s3
-	b L527
-L526:
+	b L548
+L547:
 	li $s3, 0
-L527:
-	beq $zero, $s3, L528
+L548:
+	beq $zero, $s3, L549
 	mul $s3, $s0, 4
 	add $s3, $t6, $s3
 	lw $s3, 0($s3)
@@ -114,11 +114,11 @@ L527:
 	move $s7, $s3
 	lw $s3, var_0
 	sgt $s3, $s7, $s3
-	beq $zero, $s3, L530
-	b L529
-	b L531
-L530:
-L531:
+	beq $zero, $s3, L551
+	b L550
+	b L552
+L551:
+L552:
 	lw $s3, var_2
 	mul $t0, $s7, 4
 	add $s3, $s3, $t0
@@ -129,7 +129,7 @@ L531:
 	lw $s3, 0($s3)
 	rem $s3, $t9, $s3
 	seq $s3, $s3, 0
-	beq $zero, $s3, L532
+	beq $zero, $s3, L553
 	mul $s3, $t9, 4
 	add $s3, $s2, $s3
 	lw $s3, 0($s3)
@@ -140,9 +140,9 @@ L531:
 	mul $s0, $s7, 4
 	add $s0, $s2, $s0
 	sw $s3, 0($s0)
-	b L528
-	b L533
-L532:
+	b L549
+	b L554
+L553:
 	mul $s3, $t9, 4
 	add $s3, $s2, $s3
 	lw $s3, 0($s3)
@@ -158,11 +158,11 @@ L532:
 	mul $s7, $s7, 4
 	add $s7, $s2, $s7
 	sw $s3, 0($s7)
-L533:
-L529:
+L554:
+L550:
 	add $s0, $s0, 1
-	b L525
-L528:
+	b L546
+L549:
 	mul $s3, $t9, 4
 	add $s3, $s2, $s3
 	lw $s3, 0($s3)
@@ -181,10 +181,10 @@ L528:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-L520:
+L541:
 	add $s5, $s5, 1
-	b L518
-L519:
+	b L539
+L540:
 	li $v0, 0
 	lw $ra, 0($sp)
 	add $sp, $sp, 16

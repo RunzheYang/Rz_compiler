@@ -12,7 +12,6 @@ public class TemporaryRegister implements Register {
     private boolean global = false;
     private MipsRegister inRegister = null;
     private MipsRegister historyRegister = null;
-    private int offset = 0;
     private Label GLMem = null;
 
     // inMem indicates whether should be load
@@ -61,8 +60,13 @@ public class TemporaryRegister implements Register {
     }
 
     public Register setGlobal() {
-        this.global = global;
+        this.global = true;
         return this;
+    }
+
+    public void clear() {
+        this.inRegister = null;
+        this.historyRegister = null;
     }
 
     @Override

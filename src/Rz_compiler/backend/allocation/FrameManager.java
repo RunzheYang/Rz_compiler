@@ -8,7 +8,9 @@ import Rz_compiler.backend.operands.*;
 import Rz_compiler.frontend.semantics.SymbolTable;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by YRZ on 5/4/16.
@@ -16,6 +18,8 @@ import java.util.Map;
 public class FrameManager {
     private int offset = 0;
     Map<Register, Operand> varMemDic = new HashMap<>();
+
+    Set<Register> regUseInFrame = new HashSet<>();
 
     public FrameManager(int startoffset) {
         this.offset = startoffset;
@@ -72,5 +76,13 @@ public class FrameManager {
 
     public int getOffset() {
         return offset * 4;
+    }
+
+    public void recordNewReg(Register reg) {
+        regUseInFrame.add(reg);
+    }
+
+    public Set<Register> getRegUseInFrame() {
+        return regUseInFrame;
     }
 }

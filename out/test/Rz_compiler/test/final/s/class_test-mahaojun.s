@@ -21,6 +21,127 @@ var_0:	.word	100
 var_1:	.word	10
 .text
 f_work:
+	move $s3, $a0
+	move $s5, $a1
+	sub $sp, $sp, 8
+	sw $ra, 0($sp)
+	la $s2, 4($s5)
+	lw $s2, 0($s2)
+	sle $s2, $s2, 100
+	beq $zero, $s2, L106
+	move $a0, $s3
+	la $a1, msg_1
+	sw $s5, 4($sp)
+	jal f_str.stringConcatenate
+	lw $s5, 4($sp)
+	move $s3, $v0
+	la $s2, 0($s5)
+	lw $s2, 0($s2)
+	move $a0, $s3
+	move $a1, $s2
+	sw $s5, 4($sp)
+	jal f_str.stringConcatenate
+	lw $s5, 4($sp)
+	move $s3, $v0
+	move $a0, $s3
+	la $a1, msg_2
+	sw $s5, 4($sp)
+	jal f_str.stringConcatenate
+	lw $s5, 4($sp)
+	move $s3, $v0
+	move $a0, $s3
+	li $v0, 4
+	syscall
+	la $a0, msg_0
+	li $v0, 4
+	syscall
+	b L107
+L106:
+	move $a0, $s3
+	la $a1, msg_1
+	sw $s5, 4($sp)
+	jal f_str.stringConcatenate
+	lw $s5, 4($sp)
+	move $s3, $v0
+	la $s2, 0($s5)
+	lw $s2, 0($s2)
+	move $a0, $s3
+	move $a1, $s2
+	sw $s5, 4($sp)
+	jal f_str.stringConcatenate
+	lw $s5, 4($sp)
+	move $s3, $v0
+	move $a0, $s3
+	la $a1, msg_3
+	sw $s5, 4($sp)
+	jal f_str.stringConcatenate
+	lw $s5, 4($sp)
+	move $s3, $v0
+	move $a0, $s3
+	li $v0, 4
+	syscall
+	la $a0, msg_0
+	li $v0, 4
+	syscall
+L107:
+	la $s3, 4($s5)
+	lw $s3, 0($s3)
+	lw $s2, var_1
+	add $s3, $s3, $s2
+	la $s5, 4($s5)
+	sw $s3, 0($s5)
+	lw $ra, 0($sp)
+	add $sp, $sp, 8
+	jr $ra
+main:
+	sub $sp, $sp, 8
+	sw $ra, 0($sp)
+	li $a0, 8
+	li $v0, 9
+	syscall
+	move $s3, $v0
+	la $s5, 0($s3)
+	la $s2, msg_4
+	sw $s2, 0($s5)
+	la $s5, 4($s3)
+	li $s2, 0
+	sw $s2, 0($s5)
+	li $a0, 8
+	li $v0, 9
+	syscall
+	move $s5, $v0
+	la $s2, 0($s5)
+	la $t6, msg_5
+	sw $t6, 0($s2)
+	lw $s2, var_0
+	la $t6, 4($s5)
+	sw $s2, 0($t6)
+	la $s2, msg_6
+	move $a0, $s2
+	move $a1, $s3
+	sw $s5, 4($sp)
+	jal f_work
+	lw $s5, 4($sp)
+	la $s3, msg_7
+	move $a0, $s3
+	move $a1, $s5
+	sw $s5, 4($sp)
+	jal f_work
+	lw $s5, 4($sp)
+	la $s3, msg_7
+	move $a0, $s3
+	move $a1, $s5
+	jal f_work
+	lw $ra, 0($sp)
+	add $sp, $sp, 8
+	jr $ra
+	b main_end
+main_end:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	li $v0, 10
+	syscall
 f_toString:
 	li $t0, 0
 	bgez $a0, _skip_set_less_than_zero

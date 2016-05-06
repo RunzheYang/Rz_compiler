@@ -12,6 +12,637 @@ var_3:	.word	0
 var_4:	.word	0
 .text
 f_search:
+	move $s3, $a0
+	move $s5, $a1
+	move $s2, $a2
+	sub $sp, $sp, 24
+	sw $ra, 0($sp)
+	sgt $t6, $s5, 0
+	bne $zero, $t6, L328
+	slt $t9, $s5, 0
+L328:
+	li $t6, 1
+L329:
+	bne $zero, $t6, L330
+	seq $t9, $s3, 0
+L330:
+	li $t6, 1
+L331:
+	bne $zero, $t6, L332
+	lw $t9, var_0
+	sub $s0, $s3, 1
+	mul $s0, $s0, 4
+	add $t9, $t9, $s0
+	lw $t9, 0($t9)
+	la $t9, 0($t9)
+	lw $s0, 0($t9)
+	lw $t9, var_0
+	sub $s7, $s3, 1
+	mul $s7, $s7, 4
+	add $t9, $t9, $s7
+	lw $t9, 0($t9)
+	la $t9, 4($t9)
+	lw $t9, 0($t9)
+	add $s0, $s0, $t9
+	lw $t9, var_0
+	sub $s7, $s3, 1
+	mul $s7, $s7, 4
+	add $t9, $t9, $s7
+	lw $t9, 0($t9)
+	la $t9, 8($t9)
+	lw $t9, 0($t9)
+	add $t9, $s0, $t9
+	seq $t9, $t9, 15
+L332:
+	li $t6, 1
+L333:
+	beq $zero, $t6, L334
+	seq $t6, $s3, 2
+	beq $zero, $t6, L336
+	seq $t9, $s5, 2
+	and $t6, $t6, $t9
+	b L337
+L336:
+	li $t6, 0
+L337:
+	beq $zero, $t6, L338
+	li $s3, 45
+	sub $s3, $s3, $s2
+	lw $t9, var_0
+	la $s5, 8($t9)
+	lw $s5, 0($s5)
+	la $s5, 8($s5)
+	sw $s3, 0($s5)
+	lw $t9, var_0
+	la $s3, 0($t9)
+	lw $s3, 0($s3)
+	la $s3, 0($s3)
+	lw $s3, 0($s3)
+	lw $t9, var_0
+	la $s5, 0($t9)
+	lw $s5, 0($s5)
+	la $s5, 4($s5)
+	lw $s5, 0($s5)
+	add $s3, $s3, $s5
+	lw $t9, var_0
+	la $s5, 0($t9)
+	lw $s5, 0($s5)
+	la $s5, 8($s5)
+	lw $s5, 0($s5)
+	add $s3, $s3, $s5
+	lw $t9, var_0
+	la $s5, 4($t9)
+	lw $s5, 0($s5)
+	la $s5, 0($s5)
+	lw $s5, 0($s5)
+	lw $t9, var_0
+	la $s2, 4($t9)
+	lw $s2, 0($s2)
+	la $s2, 4($s2)
+	lw $s2, 0($s2)
+	add $s5, $s5, $s2
+	lw $t9, var_0
+	la $s2, 4($t9)
+	lw $s2, 0($s2)
+	la $s2, 8($s2)
+	lw $s2, 0($s2)
+	add $s5, $s5, $s2
+	seq $s5, $s5, $s3
+	beq $zero, $s5, L340
+	lw $t9, var_0
+	la $s2, 8($t9)
+	lw $s2, 0($s2)
+	la $s2, 0($s2)
+	lw $s2, 0($s2)
+	lw $t9, var_0
+	la $t6, 8($t9)
+	lw $t6, 0($t6)
+	la $t6, 4($t6)
+	lw $t6, 0($t6)
+	add $s2, $s2, $t6
+	lw $t9, var_0
+	la $t6, 8($t9)
+	lw $t6, 0($t6)
+	la $t6, 8($t6)
+	lw $t6, 0($t6)
+	add $s2, $s2, $t6
+	seq $s2, $s2, $s3
+	and $s5, $s5, $s2
+	b L341
+L340:
+	li $s5, 0
+L341:
+	beq $zero, $s5, L342
+	lw $t9, var_0
+	la $s2, 0($t9)
+	lw $s2, 0($s2)
+	la $s2, 0($s2)
+	lw $s2, 0($s2)
+	lw $t9, var_0
+	la $t6, 4($t9)
+	lw $t6, 0($t6)
+	la $t6, 0($t6)
+	lw $t6, 0($t6)
+	add $s2, $s2, $t6
+	lw $t9, var_0
+	la $t6, 8($t9)
+	lw $t6, 0($t6)
+	la $t6, 0($t6)
+	lw $t6, 0($t6)
+	add $s2, $s2, $t6
+	seq $s2, $s2, $s3
+	and $s5, $s5, $s2
+	b L343
+L342:
+	li $s5, 0
+L343:
+	beq $zero, $s5, L344
+	lw $t9, var_0
+	la $s2, 0($t9)
+	lw $s2, 0($s2)
+	la $s2, 4($s2)
+	lw $s2, 0($s2)
+	lw $t9, var_0
+	la $t6, 4($t9)
+	lw $t6, 0($t6)
+	la $t6, 4($t6)
+	lw $t6, 0($t6)
+	add $s2, $s2, $t6
+	lw $t9, var_0
+	la $t6, 8($t9)
+	lw $t6, 0($t6)
+	la $t6, 4($t6)
+	lw $t6, 0($t6)
+	add $s2, $s2, $t6
+	seq $s2, $s2, $s3
+	and $s5, $s5, $s2
+	b L345
+L344:
+	li $s5, 0
+L345:
+	beq $zero, $s5, L346
+	lw $t9, var_0
+	la $s2, 0($t9)
+	lw $s2, 0($s2)
+	la $s2, 8($s2)
+	lw $s2, 0($s2)
+	lw $t9, var_0
+	la $t6, 4($t9)
+	lw $t6, 0($t6)
+	la $t6, 8($t6)
+	lw $t6, 0($t6)
+	add $s2, $s2, $t6
+	lw $t9, var_0
+	la $t6, 8($t9)
+	lw $t6, 0($t6)
+	la $t6, 8($t6)
+	lw $t6, 0($t6)
+	add $s2, $s2, $t6
+	seq $s2, $s2, $s3
+	and $s5, $s5, $s2
+	b L347
+L346:
+	li $s5, 0
+L347:
+	beq $zero, $s5, L348
+	lw $t9, var_0
+	la $s2, 0($t9)
+	lw $s2, 0($s2)
+	la $s2, 0($s2)
+	lw $s2, 0($s2)
+	lw $t9, var_0
+	la $t6, 4($t9)
+	lw $t6, 0($t6)
+	la $t6, 4($t6)
+	lw $t6, 0($t6)
+	add $s2, $s2, $t6
+	lw $t9, var_0
+	la $t6, 8($t9)
+	lw $t6, 0($t6)
+	la $t6, 8($t6)
+	lw $t6, 0($t6)
+	add $s2, $s2, $t6
+	seq $s2, $s2, $s3
+	and $s5, $s5, $s2
+	b L349
+L348:
+	li $s5, 0
+L349:
+	beq $zero, $s5, L350
+	lw $t9, var_0
+	la $s2, 8($t9)
+	lw $s2, 0($s2)
+	la $s2, 0($s2)
+	lw $s2, 0($s2)
+	lw $t9, var_0
+	la $t6, 4($t9)
+	lw $t6, 0($t6)
+	la $t6, 4($t6)
+	lw $t6, 0($t6)
+	add $s2, $s2, $t6
+	lw $t9, var_0
+	la $t6, 0($t9)
+	lw $t6, 0($t6)
+	la $t6, 8($t6)
+	lw $t6, 0($t6)
+	add $s2, $s2, $t6
+	seq $s3, $s2, $s3
+	and $s3, $s5, $s3
+	b L351
+L350:
+	li $s3, 0
+L351:
+	beq $zero, $s3, L352
+	lw $s3, var_2
+	la $s3, 0($s3)
+	lw $s3, 0($s3)
+	add $s5, $s3, 1
+	lw $s3, var_2
+	la $s3, 0($s3)
+	sw $s5, 0($s3)
+	li $t6, 0
+L354:
+	sle $s3, $t6, 2
+	beq $zero, $s3, L355
+	li $s3, 0
+L357:
+	sle $s5, $s3, 2
+	beq $zero, $s5, L358
+	lw $t9, var_0
+	mul $s5, $t6, 4
+	add $s5, $t9, $s5
+	lw $s5, 0($s5)
+	mul $s2, $s3, 4
+	add $s5, $s5, $s2
+	lw $s5, 0($s5)
+	move $a0, $s5
+	sw $t6, 4($sp)
+	sw $s3, 8($sp)
+	jal f_toString
+	lw $t6, 4($sp)
+	lw $s3, 8($sp)
+	move $s5, $v0
+	move $a0, $s5
+	li $v0, 4
+	syscall
+	la $a0, msg_0
+	li $v0, 4
+	syscall
+L359:
+	add $s3, $s3, 1
+	b L357
+L358:
+	la $a0, msg_1
+	li $v0, 4
+	syscall
+L356:
+	add $t6, $t6, 1
+	b L354
+L355:
+	la $a0, msg_1
+	li $v0, 4
+	syscall
+	b L353
+L352:
+L353:
+	b L339
+L338:
+	seq $t6, $s5, 2
+	beq $zero, $t6, L360
+	lw $t9, var_0
+	mul $t6, $s3, 4
+	add $t6, $t9, $t6
+	lw $t6, 0($t6)
+	la $t6, 0($t6)
+	lw $t6, 0($t6)
+	li $s0, 15
+	sub $s0, $s0, $t6
+	lw $t9, var_0
+	mul $t6, $s3, 4
+	add $t6, $t9, $t6
+	lw $t6, 0($t6)
+	la $t6, 4($t6)
+	lw $t6, 0($t6)
+	sub $t6, $s0, $t6
+	lw $t9, var_0
+	mul $s0, $s3, 4
+	add $t9, $t9, $s0
+	lw $t9, 0($t9)
+	mul $s0, $s5, 4
+	add $t9, $t9, $s0
+	sw $t6, 0($t9)
+	lw $t9, var_0
+	mul $t6, $s3, 4
+	add $t6, $t9, $t6
+	lw $t6, 0($t6)
+	mul $t9, $s5, 4
+	add $t6, $t6, $t9
+	lw $t6, 0($t6)
+	sgt $t6, $t6, 0
+	beq $zero, $t6, L362
+	lw $t9, var_0
+	mul $s0, $s3, 4
+	add $t9, $t9, $s0
+	lw $t9, 0($t9)
+	mul $s0, $s5, 4
+	add $t9, $t9, $s0
+	lw $t9, 0($t9)
+	slt $t9, $t9, 10
+	and $t6, $t6, $t9
+	b L363
+L362:
+	li $t6, 0
+L363:
+	beq $zero, $t6, L364
+	lw $s0, var_1
+	lw $t9, var_0
+	mul $s7, $s3, 4
+	add $t9, $t9, $s7
+	lw $t9, 0($t9)
+	mul $s7, $s5, 4
+	add $t9, $t9, $s7
+	lw $t9, 0($t9)
+	mul $t9, $t9, 4
+	add $t9, $s0, $t9
+	lw $t9, 0($t9)
+	seq $t9, $t9, 0
+	and $t6, $t6, $t9
+	b L365
+L364:
+	li $t6, 0
+L365:
+	beq $zero, $t6, L366
+	lw $s0, var_1
+	lw $t9, var_0
+	mul $t6, $s3, 4
+	add $t6, $t9, $t6
+	lw $t6, 0($t6)
+	mul $t9, $s5, 4
+	add $t6, $t6, $t9
+	lw $t6, 0($t6)
+	mul $t6, $t6, 4
+	add $t6, $s0, $t6
+	li $t9, 1
+	sw $t9, 0($t6)
+	seq $t6, $s5, 2
+	beq $zero, $t6, L368
+	add $t6, $s3, 1
+	li $s0, 0
+	lw $t9, var_0
+	mul $s7, $s3, 4
+	add $t9, $t9, $s7
+	lw $t9, 0($t9)
+	mul $s7, $s5, 4
+	add $t9, $t9, $s7
+	lw $t9, 0($t9)
+	add $s2, $s2, $t9
+	move $a0, $t6
+	move $a1, $s0
+	move $a2, $s2
+	sw $s3, 12($sp)
+	sw $s5, 16($sp)
+	jal f_search
+	lw $s3, 12($sp)
+	lw $s5, 16($sp)
+	b L369
+L368:
+	add $t6, $s5, 1
+	lw $t9, var_0
+	mul $s0, $s3, 4
+	add $t9, $t9, $s0
+	lw $t9, 0($t9)
+	mul $s0, $s5, 4
+	add $t9, $t9, $s0
+	lw $t9, 0($t9)
+	add $s2, $s2, $t9
+	move $a0, $s3
+	move $a1, $t6
+	move $a2, $s2
+	sw $s3, 12($sp)
+	sw $s5, 16($sp)
+	jal f_search
+	lw $s3, 12($sp)
+	lw $s5, 16($sp)
+L369:
+	lw $s0, var_1
+	lw $t9, var_0
+	mul $s3, $s3, 4
+	add $s3, $t9, $s3
+	lw $s3, 0($s3)
+	mul $s5, $s5, 4
+	add $s3, $s3, $s5
+	lw $s3, 0($s3)
+	mul $s3, $s3, 4
+	add $s3, $s0, $s3
+	li $s5, 0
+	sw $s5, 0($s3)
+	b L367
+L366:
+L367:
+	b L361
+L360:
+	li $t6, 1
+L370:
+	sle $t9, $t6, 9
+	beq $zero, $t9, L371
+	lw $s0, var_1
+	mul $t9, $t6, 4
+	add $t9, $s0, $t9
+	lw $t9, 0($t9)
+	seq $t9, $t9, 0
+	beq $zero, $t9, L373
+	lw $s0, var_1
+	mul $t9, $t6, 4
+	add $t9, $s0, $t9
+	li $s0, 1
+	sw $s0, 0($t9)
+	lw $t9, var_0
+	mul $s0, $s3, 4
+	add $t9, $t9, $s0
+	lw $t9, 0($t9)
+	mul $s0, $s5, 4
+	add $t9, $t9, $s0
+	move $s0, $t6
+	sw $s0, 0($t9)
+	seq $t9, $s5, 2
+	beq $zero, $t9, L375
+	add $t9, $s3, 1
+	li $s0, 0
+	add $s7, $s2, $t6
+	move $a0, $t9
+	move $a1, $s0
+	move $a2, $s7
+	sw $t6, 4($sp)
+	sw $s3, 12($sp)
+	sw $s5, 16($sp)
+	sw $s2, 20($sp)
+	jal f_search
+	lw $t6, 4($sp)
+	lw $s3, 12($sp)
+	lw $s5, 16($sp)
+	lw $s2, 20($sp)
+	b L376
+L375:
+	add $t9, $s5, 1
+	add $s0, $s2, $t6
+	move $a0, $s3
+	move $a1, $t9
+	move $a2, $s0
+	sw $t6, 4($sp)
+	sw $s3, 12($sp)
+	sw $s5, 16($sp)
+	sw $s2, 20($sp)
+	jal f_search
+	lw $t6, 4($sp)
+	lw $s3, 12($sp)
+	lw $s5, 16($sp)
+	lw $s2, 20($sp)
+L376:
+	lw $t9, var_0
+	mul $s0, $s3, 4
+	add $t9, $t9, $s0
+	lw $t9, 0($t9)
+	mul $s0, $s5, 4
+	add $t9, $t9, $s0
+	li $s0, 0
+	sw $s0, 0($t9)
+	lw $s0, var_1
+	mul $t9, $t6, 4
+	add $t9, $s0, $t9
+	li $s0, 0
+	sw $s0, 0($t9)
+	b L374
+L373:
+L374:
+L372:
+	add $t6, $t6, 1
+	b L370
+L371:
+L361:
+L339:
+	b L335
+L334:
+L335:
+	lw $ra, 0($sp)
+	add $sp, $sp, 24
+	jr $ra
+f_origin:
+	move $s3, $a0
+	sub $sp, $sp, 4
+	sw $ra, 0($sp)
+	mul $s5, $s3, 4
+	add $s5, $s5, 4
+	add $a0, $zero, $s5
+	li $v0, 9
+	syscall
+	move $s5, $s3
+	sw $s5, 0($v0)
+	add $s5, $v0, 4
+	sw $s5, var_0
+	li $s2, 0
+	sw $s2, var_3
+L322:
+	lw $s2, var_3
+	slt $s5, $s2, $s3
+	beq $zero, $s5, L323
+	mul $s5, $s3, 4
+	add $s5, $s5, 4
+	add $a0, $zero, $s5
+	li $v0, 9
+	syscall
+	move $s5, $s3
+	sw $s5, 0($v0)
+	add $t6, $v0, 4
+	lw $s5, var_0
+	lw $s2, var_3
+	mul $s2, $s2, 4
+	add $s5, $s5, $s2
+	move $s2, $t6
+	sw $s2, 0($s5)
+	li $s5, 0
+	sw $s5, var_4
+L325:
+	lw $s5, var_4
+	slt $s5, $s5, $s3
+	beq $zero, $s5, L326
+	lw $s5, var_0
+	lw $s2, var_3
+	mul $s2, $s2, 4
+	add $s5, $s5, $s2
+	lw $s2, 0($s5)
+	lw $s5, var_4
+	mul $s5, $s5, 4
+	add $s5, $s2, $s5
+	li $s2, 0
+	sw $s2, 0($s5)
+L327:
+	lw $s5, var_4
+	add $s5, $s5, 1
+	sw $s5, var_4
+	b L325
+L326:
+L324:
+	lw $s2, var_3
+	add $s2, $s2, 1
+	sw $s2, var_3
+	b L322
+L323:
+	lw $ra, 0($sp)
+	add $sp, $sp, 4
+	jr $ra
+main:
+	li $a0, 44
+	li $v0, 9
+	syscall
+	li $s3, 10
+	sw $s3, 0($v0)
+	add $s3, $v0, 4
+	sw $s3, var_1
+	li $a0, 8
+	li $v0, 9
+	syscall
+	li $s3, 1
+	sw $s3, 0($v0)
+	add $s3, $v0, 4
+	sw $s3, var_2
+	sub $sp, $sp, 4
+	sw $ra, 0($sp)
+	li $s3, 3
+	move $a0, $s3
+	jal f_origin
+	li $s3, 0
+	li $s5, 0
+	li $s2, 0
+	move $a0, $s3
+	move $a1, $s5
+	move $a2, $s2
+	jal f_search
+	lw $s3, var_2
+	la $s3, 0($s3)
+	lw $s3, 0($s3)
+	move $a0, $s3
+	jal f_toString
+	move $s3, $v0
+	move $a0, $s3
+	li $v0, 4
+	syscall
+	la $a0, msg_1
+	li $v0, 4
+	syscall
+	li $v0, 0
+	lw $ra, 0($sp)
+	add $sp, $sp, 4
+	jr $ra
+	lw $ra, 0($sp)
+	add $sp, $sp, 4
+	jr $ra
+	b main_end
+main_end:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	li $v0, 10
+	syscall
 f_toString:
 	li $t0, 0
 	bgez $a0, _skip_set_less_than_zero

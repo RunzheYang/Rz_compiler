@@ -5,6 +5,94 @@ _buffer:	.space	256
 msg_0:	.asciiz	"\n"
 .text
 f_gcd:
+	move $s3, $a0
+	move $s5, $a1
+	sub $sp, $sp, 4
+	sw $ra, 0($sp)
+	rem $s2, $s3, $s5
+	seq $s2, $s2, 0
+	beq $zero, $s2, L130
+	move $v0, $s5
+	lw $ra, 0($sp)
+	add $sp, $sp, 4
+	jr $ra
+	b L131
+L130:
+	rem $s3, $s3, $s5
+	move $a0, $s5
+	move $a1, $s3
+	jal f_gcd
+	move $s3, $v0
+	move $v0, $s3
+	lw $ra, 0($sp)
+	add $sp, $sp, 4
+	jr $ra
+L131:
+	lw $ra, 0($sp)
+	add $sp, $sp, 4
+	jr $ra
+main:
+	sub $sp, $sp, 4
+	sw $ra, 0($sp)
+	li $s3, 10
+	li $s5, 1
+	move $a0, $s3
+	move $a1, $s5
+	jal f_gcd
+	move $s3, $v0
+	move $a0, $s3
+	jal f_toString
+	move $s3, $v0
+	move $a0, $s3
+	li $v0, 4
+	syscall
+	la $a0, msg_0
+	li $v0, 4
+	syscall
+	li $s3, 34986
+	li $s5, 3087
+	move $a0, $s3
+	move $a1, $s5
+	jal f_gcd
+	move $s3, $v0
+	move $a0, $s3
+	jal f_toString
+	move $s3, $v0
+	move $a0, $s3
+	li $v0, 4
+	syscall
+	la $a0, msg_0
+	li $v0, 4
+	syscall
+	li $s3, 2907
+	li $s5, 1539
+	move $a0, $s3
+	move $a1, $s5
+	jal f_gcd
+	move $s3, $v0
+	move $a0, $s3
+	jal f_toString
+	move $s3, $v0
+	move $a0, $s3
+	li $v0, 4
+	syscall
+	la $a0, msg_0
+	li $v0, 4
+	syscall
+	li $v0, 0
+	lw $ra, 0($sp)
+	add $sp, $sp, 4
+	jr $ra
+	lw $ra, 0($sp)
+	add $sp, $sp, 4
+	jr $ra
+	b main_end
+main_end:
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	li $v0, 10
+	syscall
 f_toString:
 	li $t0, 0
 	bgez $a0, _skip_set_less_than_zero
