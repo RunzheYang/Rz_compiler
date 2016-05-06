@@ -1,11 +1,9 @@
 package Rz_compiler.backend.allocation;
 
 import Rz_compiler.backend.instructions.PseudoInstruction;
-import Rz_compiler.backend.instructions.load_store_move.LaInstr;
 import Rz_compiler.backend.instructions.load_store_move.LwInstr;
 import Rz_compiler.backend.instructions.load_store_move.SwInstr;
 import Rz_compiler.backend.operands.*;
-import Rz_compiler.frontend.semantics.SymbolTable;
 
 import java.util.HashMap;
 import java.util.HashSet;

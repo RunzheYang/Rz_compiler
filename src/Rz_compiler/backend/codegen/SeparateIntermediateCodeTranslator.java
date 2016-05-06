@@ -1,24 +1,8 @@
 package Rz_compiler.backend.codegen;
 
 import Rz_compiler.backend.allocation.FrameManager;
-import Rz_compiler.backend.allocation.RegisterAllocator;
-import Rz_compiler.backend.controlflow.ControlFlowGraph;
-import Rz_compiler.backend.controlflow.DefinedRegisterGetter;
-import Rz_compiler.backend.controlflow.UsedRegisterGetter;
-import Rz_compiler.backend.instructions.AssemblerDirective;
-import Rz_compiler.backend.instructions.MipsInstruction;
 import Rz_compiler.backend.instructions.PseudoInstruction;
-import Rz_compiler.backend.instructions.arithmetic_logic.AbsInstr;
-import Rz_compiler.backend.instructions.arithmetic_logic.AddInstr;
-import Rz_compiler.backend.instructions.arithmetic_logic.SubInstr;
-import Rz_compiler.backend.interference.IGColouration;
-import Rz_compiler.backend.interference.InterferenceGraph;
-import Rz_compiler.backend.operands.ImmediateValue;
-import Rz_compiler.backend.operands.MipsRegister;
-import Rz_compiler.backend.operands.Operand;
-import Rz_compiler.backend.operands.Register;
 import Rz_compiler.frontend.semantics.SymbolTable;
-import Rz_compiler.frontend.syntax.RzParser;
 import org.antlr.v4.runtime.misc.Pair;
 import org.antlr.v4.runtime.tree.ParseTree;
 

@@ -8,7 +8,6 @@ import Rz_compiler.backend.instructions.branch_jump.*;
 import Rz_compiler.backend.instructions.comparison.*;
 import Rz_compiler.backend.instructions.load_store_move.*;
 import Rz_compiler.backend.instructions.visitors.InstructionVisitor;
-import Rz_compiler.backend.interference.IGNode;
 import Rz_compiler.backend.operands.*;
 import org.antlr.v4.runtime.misc.Pair;
 

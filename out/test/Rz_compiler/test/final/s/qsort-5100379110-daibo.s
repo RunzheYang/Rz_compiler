@@ -22,31 +22,31 @@ f_qsrt:
 	add $t9, $t9, $s0
 	lw $t9, 0($t9)
 	move $s0, $t9
-L506:
+L514:
 	sle $t9, $s2, $t6
-	beq $zero, $t9, L507
-L508:
+	beq $zero, $t9, L515
+L516:
 	lw $t9, var_0
 	mul $s7, $s2, 4
 	add $t9, $t9, $s7
 	lw $t9, 0($t9)
 	slt $t9, $t9, $s0
-	beq $zero, $t9, L509
+	beq $zero, $t9, L517
 	add $s2, $s2, 1
-	b L508
-L509:
-L510:
+	b L516
+L517:
+L518:
 	lw $t9, var_0
 	mul $s7, $t6, 4
 	add $t9, $t9, $s7
 	lw $t9, 0($t9)
 	sgt $t9, $t9, $s0
-	beq $zero, $t9, L511
+	beq $zero, $t9, L519
 	sub $t6, $t6, 1
-	b L510
-L511:
+	b L518
+L519:
 	sle $t9, $s2, $t6
-	beq $zero, $t9, L512
+	beq $zero, $t9, L520
 	lw $t9, var_0
 	mul $s7, $s2, 4
 	add $t9, $t9, $s7
@@ -66,13 +66,13 @@ L511:
 	sw $s7, 0($t9)
 	add $s2, $s2, 1
 	sub $t6, $t6, 1
-	b L513
-L512:
-L513:
-	b L506
-L507:
+	b L521
+L520:
+L521:
+	b L514
+L515:
 	slt $t9, $s3, $t6
-	beq $zero, $t9, L514
+	beq $zero, $t9, L522
 	move $a0, $s3
 	move $a1, $t6
 	sw $s5, 4($sp)
@@ -80,17 +80,17 @@ L507:
 	jal f_qsrt
 	lw $s5, 4($sp)
 	lw $s2, 8($sp)
-	b L515
-L514:
-L515:
+	b L523
+L522:
+L523:
 	slt $s3, $s2, $s5
-	beq $zero, $s3, L516
+	beq $zero, $s3, L524
 	move $a0, $s2
 	move $a1, $s5
 	jal f_qsrt
-	b L517
-L516:
-L517:
+	b L525
+L524:
+L525:
 	li $v0, 0
 	lw $ra, 0($sp)
 	add $sp, $sp, 12
@@ -109,10 +109,10 @@ main:
 	sub $sp, $sp, 8
 	sw $ra, 0($sp)
 	li $s5, 1
-L518:
+L526:
 	lw $s3, var_1
 	sle $s3, $s5, $s3
-	beq $zero, $s3, L519
+	beq $zero, $s3, L527
 	lw $s3, var_1
 	add $s3, $s3, 1
 	sub $s2, $s3, $s5
@@ -120,20 +120,20 @@ L518:
 	mul $t6, $s5, 4
 	add $s3, $s3, $t6
 	sw $s2, 0($s3)
-L520:
+L528:
 	add $s5, $s5, 1
-	b L518
-L519:
+	b L526
+L527:
 	li $s5, 1
 	lw $s3, var_1
 	move $a0, $s5
 	move $a1, $s3
 	jal f_qsrt
 	li $s5, 1
-L521:
+L529:
 	lw $s3, var_1
 	sle $s3, $s5, $s3
-	beq $zero, $s3, L522
+	beq $zero, $s3, L530
 	lw $s3, var_0
 	mul $s2, $s5, 4
 	add $s3, $s3, $s2
@@ -149,10 +149,10 @@ L521:
 	la $a0, msg_0
 	li $v0, 4
 	syscall
-L523:
+L531:
 	add $s5, $s5, 1
-	b L521
-L522:
+	b L529
+L530:
 	la $a0, msg_1
 	li $v0, 4
 	syscall

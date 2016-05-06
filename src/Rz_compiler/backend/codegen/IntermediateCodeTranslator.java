@@ -1,6 +1,5 @@
 package Rz_compiler.backend.codegen;
 
-import Rz_compiler.backend.allocation.FrameManager;
 import Rz_compiler.backend.allocation.TemporaryRegisterGenerator;
 import Rz_compiler.backend.instructions.PseudoInstruction;
 import Rz_compiler.backend.instructions.Syscall;
@@ -9,13 +8,11 @@ import Rz_compiler.backend.instructions.branch_jump.*;
 import Rz_compiler.backend.instructions.comparison.*;
 import Rz_compiler.backend.instructions.load_store_move.*;
 import Rz_compiler.backend.operands.*;
-import Rz_compiler.errors.SemanticException;
 import Rz_compiler.frontend.semantics.SymbolTable;
 import Rz_compiler.frontend.semantics.TypeAnalyser;
 import Rz_compiler.frontend.semantics.identifier.*;
 import Rz_compiler.frontend.syntax.RzParser;
 import Rz_compiler.frontend.syntax.RzVisitor;
-import com.sun.deploy.security.ValidationState;
 import org.antlr.v4.runtime.tree.*;
 
 import java.util.*;

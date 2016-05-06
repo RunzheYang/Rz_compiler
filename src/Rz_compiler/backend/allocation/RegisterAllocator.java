@@ -11,7 +11,6 @@ import Rz_compiler.backend.instructions.visitors.InstructionVisitor;
 import Rz_compiler.backend.interference.IGNode;
 import Rz_compiler.backend.interference.InterferenceGraph;
 import Rz_compiler.backend.operands.*;
-import Rz_compiler.frontend.semantics.SymbolTable;
 import org.antlr.v4.runtime.misc.Pair;
 
 import java.util.*;
