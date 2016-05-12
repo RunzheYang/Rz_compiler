@@ -1,0 +1,16 @@
+\beamer@endinputifotherversion {3.33pt}
+\beamer@sectionintoc {1}{Preview}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{General Structure}{2}{0}{1}
+\beamer@subsectionintoc {1}{2}{Features of My Compiler}{3}{0}{1}
+\beamer@sectionintoc {2}{Front-end Design}{4}{0}{2}
+\beamer@subsectionintoc {2}{1}{Syntax}{4}{0}{2}
+\beamer@subsectionintoc {2}{2}{Semantic}{5}{0}{2}
+\beamer@subsectionintoc {2}{3}{Pretty Pirnt}{10}{0}{2}
+\beamer@sectionintoc {3}{Back-end Design}{11}{0}{3}
+\beamer@subsectionintoc {3}{1}{Intermediate Representations}{11}{0}{3}
+\beamer@subsectionintoc {3}{2}{Calling Convention}{16}{0}{3}
+\beamer@subsectionintoc {3}{3}{Register Allocation}{17}{0}{3}
+\beamer@sectionintoc {4}{Performance}{25}{0}{4}
+\beamer@subsectionintoc {4}{1}{Summary}{25}{0}{4}
+\beamer@subsectionintoc {4}{2}{Potential Optimization}{28}{0}{4}
+\beamer@sectionintoc {5}{Acknowledgement}{29}{0}{5}
